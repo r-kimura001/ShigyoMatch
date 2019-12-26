@@ -1,0 +1,33 @@
+:root {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.8rem;
+  font-family: $mainFontFamily;
+  color: $textBaseColor;
+  background-color: $bgBaseColor;
+  word-break: break-all;
+  -webkit-text-size-adjust: 100%;
+  max-width: 1380px;
+  @include media(){
+    font-size: 1.6rem;
+  }
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+
+  transition: $transitionBasis;
+
+  &:hover {
+      opacity: .8;
+      text-decoration: underline;
+  }
+}
+
+img {
+  max-width: 100%;
+  vertical-align: top;
+}

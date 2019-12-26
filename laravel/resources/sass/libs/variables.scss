@@ -1,0 +1,49 @@
+// colors
+// 各色定義
+$blue: #007bc2;
+$deepBlue: #004161;
+$lightBlue: #0094ea;
+$red: #f42a2d;
+$deepRed: #c80c00;
+$paleRed: #ffb8bf;
+$yellow: #fabd3e;
+$deepYellow: #df9201;
+$paleYellow: #ffefad;
+$green: #26b99a;
+$green: #26b99a;
+$deepGreen: #349d9d;
+$paleGreen: #92dcdc;
+$gray: #8ea9b8;
+$deepGray: #516570;
+$paleGray: #cad9e1;
+$black: #2d373d;
+$white: #fefefe;
+
+
+// セマンティックな名前
+$textBaseColor: $black;
+$textDangerColor: $red;
+$textWarnColor: $yellow;
+$textSafeColor: $green;
+$bgBaseColor: $white;
+$bgDangerColor: $red;
+$bgWarnColor: $yellow;
+$bgSafeColor: $green;
+
+// font
+$mainFontFamily: 'Noto Sans JP', sans-serif;
+
+// duration
+$transitionBasis: .3s;
+
+// z-index
+$headerZIndex: 100;
+$modalZIndex: 130;
+
+// media query
+$breakpoints: (
+  'sm': 'screen and (max-width: 480px)',
+  'sm-y': 'screen and (max-width: 670px)',
+  'md': 'screen and (max-width: 768px)',
+  'lg': 'screen and (max-width: 1000px)',
+)!default;

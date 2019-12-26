@@ -1,0 +1,23 @@
+@import "./libs/normalize";
+@import "./libs/html5doctor";
+
+// normalize/resetだと以下タグが太字になるので通常文字にしておく
+h1, h2, h3, h4, h5, h6, th {
+    font-weight: normal;
+}
+
+// normalize/resetだとbuttonがリセットされていないのでリセット
+button, input[type=submit] {
+    font-size: inherit;
+    color: inherit;
+    line-height: inherit;
+    background-color: transparent;
+
+    padding: 0;
+    border: 0;
+    -webkit-appearance: none;
+}
+
+ul, ol {
+    list-style: none;
+}

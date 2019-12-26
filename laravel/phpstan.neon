@@ -1,0 +1,13 @@
+parameters:
+  level: 0
+  paths:
+    - tests
+    - app
+  autoload_files:
+    - _ide_helper.php
+    - vendor/autoload.php
+  fileExtensions:
+    - php
+  ignoreErrors:
+
+  reportUnmatchedIgnoredErrors: false

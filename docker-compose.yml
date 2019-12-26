@@ -1,0 +1,56 @@
+version: "3"
+
+services:
+  web:
+    image: 930275654480.dkr.ecr.ap-northeast-1.amazonaws.com/shigyo-match/web:latest
+    build:
+      context: .
+      dockerfile: ./docker/nginx/Dockerfile
+      args:
+        - TZ=${TZ}
+    volumes:
+      - ./docker/nginx/logs:/etc/nginx/logs
+      - ./docker/nginx/conf.d:/etc/nginx/conf.d
+      - ${PROJECT_PATH}:/var/www/laravel
+    ports:
+      - ${WEB_PORT}:80
+    links:
+      - app
+    depends_on:
+      - app
+
+  app:
+    image: 930275654480.dkr.ecr.ap-northeast-1.amazonaws.com/shigyo-match/app:latest
+    build:
+      context: .
+      dockerfile: ./docker/php/Dockerfile
+      args:
+        - TZ=${TZ}
+    volumes:
+      - ${PROJECT_PATH}:/var/www/laravel
+    links:
+      - db_master
+    environment:
+      - DB_CONNECTION=${DB_CONNECTION}
+      - DB_HOST=db_master
+      - DB_DATABASE=${DB_NAME}
+      - DB_USERNAME=${DB_USER}
+      - DB_PASSWORD=${DB_PASS}
+      - TZ=${TZ}
+      - MAIL_HOST=${MAIL_HOST}
+      - MAIL_PORT=${MAIL_PORT}
+
+  db_master:
+    image: mysql:5.7
+    volumes:
+      - ./mnt/mysql:/var/lib/mysql
+      - ./docker/mysql/mysql_conf:/etc/mysql/conf.d
+    environment:
+      - MYSQL_DATABASE=${DB_NAME}
+      - MYSQL_USER=${DB_USER}
+      - MYSQL_PASSWORD=${DB_PASS}
+      - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASS}
+      - TZ=${TZ}
+    ports:
+      - ${DB_PORT}:3306
+
