@@ -19357,7 +19357,17 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "p-top" }, [
-      _c("h1", { staticClass: "SiteTitle" }, [_vm._v("Hello, Top!!!!!!")])
+      _c("h1", { staticClass: "SiteTitle" }, [_vm._v("Hello, Top!!!!!!")]),
+      _vm._v(" "),
+      _c("div", [
+        _c("img", {
+          attrs: {
+            src:
+              "https://asset.shigyo-match.site/assets/0h0IyXKhWjb2ZEIUVE5ZMQMQt8aQk9QnVuLll4XDF3ZUgxTXhmLFt2UD9-eQY2FCgzZDdjSWghUSkfQy9MMRBIcB8lahQdWFAxECFVcDtgdzEyDSg0fU4hBmAhMVFpGXpifkUiRWApOFY8E300.jpeg",
+            alt: ""
+          }
+        })
+      ])
     ])
   }
 ]
@@ -36622,8 +36632,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/kmrrt/workspace/PracticalCi/ci-php-tutorial/laravel/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/kmrrt/workspace/PracticalCi/ci-php-tutorial/laravel/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/kmrrt/workspace/ShigyoMatch/laravel/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/kmrrt/workspace/ShigyoMatch/laravel/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

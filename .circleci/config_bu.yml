@@ -20,52 +20,38 @@ jobs:
     working_directory: ~/repo
     steps:
       - checkout
-      - save_cache:
-          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
-          paths:
-            - ~/repo
-
-  test:
-    docker:
-      - image: circleci/php:7.3-node-browsers
-        environment:
-          MYSQL_HOST: 127.0.0.1
-          MYSQL_USERNAME: 'root'
-          MYSQL_PASSWORD: ''
-          MYSQL_PORT: 3306
-
-      - image: mysql:5.7
-        environment:
-          MYSQL_DATABASE: shigyo
-          MYSQL_ALLOW_EMPTY_PASSWORD: true
-          MYSQL_ROOT_HOST: '%'
-
-    working_directory: ~/repo
-    steps:
-      - checkout
-      - restore_cache:
-          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
 
       - run: sudo apt update # PHP CircleCI 2.0 Configuration File# PHP CircleCI 2.0 Configuration File sudo apt install zlib1g-dev libsqlite3-dev
       - run: sudo docker-php-ext-install zip
+
       # Download and cache dependencies
       - restore_cache:
           keys:
             # "composer.lock" can be used if it is committed to the repo
-            - v2-dependencies-{{ checksum "laravel/composer.json" }}
+            - v1-dependencies-{{ checksum "laravel/composer.json" }}
 
       - run:
-          name: install composer
           working_directory: laravel
           command: composer install -n --prefer-dist
 
       - save_cache:
-          key: v2-dependencies-{{ checksum "laravel/composer.json" }}
+          key: v1-dependencies-{{ checksum "laravel/composer.json" }}
           paths:
             - ./vendor
+      - restore_cache:
+          keys:
+            - node-v1-{{ checksum "laravel/package.json" }}
+      - run:
+          working_directory: laravel
+          command: npm install
+
+      - save_cache:
+          key: node-v1-{{ checksum "laravel/package.json" }}
+          paths:
+            - node_modules
 
       - run:
-          name: setup testDB
+          name: prapare DB
           working_directory: laravel
           command: |
             touch storage/testing.sqlite
@@ -84,11 +70,13 @@ jobs:
           command: |
             composer phpstan
 
-workflows:
-  version: 2
-  test_and_deploy:
-    jobs:
-      - build
-      - test:
-          requires:
-            - build
+      # run tests with phpunit or codecept
+#      - run:
+#          working_directory: laravel
+#          command: ./vendor/bin/phpunit
+#      - run:
+#          working_directory: laravel
+#          command: ./vendor/bin/codecept build
+#      - run:
+#          working_directory: laravel
+#          command: ./vendor/bin/codecept run
