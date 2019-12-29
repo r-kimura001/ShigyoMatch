@@ -73,11 +73,51 @@ jobs:
           command: |
             composer phpstan
 
+  deploy:
+    docker:
+      - image: circleci/python
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: install aws
+          command: |
+            sudo pip install awscli
+      - run:
+          name: Install ecs-deploy
+          command: |
+            curl https://raw.githubusercontent.com/silinternational/ecs-deploy/master/ecs-deploy | sudo tee -a /usr/bin/ecs-deploy
+            sudo chmod +x /usr/bin/ecs-deploy
+      - run:
+          name: Install jq
+          command: sudo apt-get install -y jq
+      - run:
+          name: "Login ECR"
+          command: eval $(aws ecr get-login --no-include-email --region ap-northeast-1)
+      - run:
+          name: "Push Docker Image"
+          command: |
+            docker build -t $AWS_ECR_APP_URL:latest -t $AWS_ECR_APP_URL:$CIRCLE_SHA1 -f docker/php/Dockerfile --build-arg TZ=$TZ .
+            docker push $AWS_ECR_APP_URL:$CIRCLE_SHA1
+      - run:
+          name: "ECR Deploy"
+          environment:
+          command: |
+            ecs-deploy -c shigyo-match-cluster -n serve-shigyo-match21 \
+              -r $AWS_REGION -t 240 \
+              -i $AWS_ECR_APP_URL:$CIRCLE_SHA1
+
 workflows:
   version: 2
-  test_and_deploy:
+  build_test_deploy:
     jobs:
       - build
       - test:
           requires:
             - build
+      - deploy:
+          requires:
+            - test
+          filters:
+            branches:
+              only: master
