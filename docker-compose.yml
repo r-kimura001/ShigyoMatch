@@ -2,7 +2,6 @@ version: "3"
 
 services:
   web:
-    image: 930275654480.dkr.ecr.ap-northeast-1.amazonaws.com/shigyo-match/web:latest
     build:
       context: .
       dockerfile: ./docker/nginx/Dockerfile
@@ -20,7 +19,6 @@ services:
       - app
 
   app:
-    image: 930275654480.dkr.ecr.ap-northeast-1.amazonaws.com/shigyo-match/app:latest
     build:
       context: .
       dockerfile: ./docker/php/Dockerfile
