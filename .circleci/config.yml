@@ -46,8 +46,11 @@ jobs:
       - restore_cache:
           key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
 
-      - run: sudo apt update # PHP CircleCI 2.0 Configuration File# PHP CircleCI 2.0 Configuration File sudo apt install zlib1g-dev libsqlite3-dev
-      - run: sudo docker-php-ext-install zip
+      - run:
+          name: Install PHP-Extension
+          command: |
+            sudo apt update
+            sudo docker-php-ext-install zip
       # Download and cache dependencies
       - restore_cache:
           keys:
@@ -55,7 +58,7 @@ jobs:
             - v2-dependencies-{{ checksum "laravel/composer.json" }}
 
       - run:
-          name: install composer
+          name: Install Composer
           working_directory: laravel
           command: composer install -n --prefer-dist
 
@@ -65,21 +68,21 @@ jobs:
             - ./vendor
 
       - run:
-          name: setup testDB
+          name: Setup SQLite
           working_directory: laravel
           command: |
             touch storage/testing.sqlite
             php artisan migrate --env=testing --database=sqlite_testing --force
 
       - run:
-          name: run phpunit
+          name: Run PHPunit
           working_directory: laravel
           command: |
             echo $ENV_FILE | base64 --decode > .env
             vendor/bin/phpunit
 
       - run:
-          name: lint php
+          name: Lint PHP
           working_directory: laravel
           command: |
             composer phpstan
