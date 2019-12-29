@@ -9,9 +9,9 @@ jobs:
     steps:
       - checkout
       - save_cache:
-          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
-          paths:
-            - ~/repo
+        key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+        paths:
+          - ~/repo
 
   test:
     docker:
@@ -32,52 +32,89 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+        key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
 
       - run:
-          name: Install PHP-Extension
-          command: |
-            sudo apt update
-            sudo docker-php-ext-install zip
+        name: Install PHP-Extension
+        command: |
+          sudo apt update
+          sudo docker-php-ext-install zip
       # Download and cache dependencies
       - restore_cache:
-          keys:
-            # "composer.lock" can be used if it is committed to the repo
-            - v2-dependencies-{{ checksum "laravel/composer.json" }}
+        keys:
+          # "composer.lock" can be used if it is committed to the repo
+          - v2-dependencies-{{ checksum "laravel/composer.json" }}
 
       - run:
-          name: Install Composer
-          working_directory: laravel
-          command: composer install -n --prefer-dist
+        name: Install Composer
+        working_directory: laravel
+        command: composer install -n --prefer-dist
 
       - save_cache:
-          key: v2-dependencies-{{ checksum "laravel/composer.json" }}
-          paths:
-            - ./vendor
+        key: v2-dependencies-{{ checksum "laravel/composer.json" }}
+        paths:
+          - ./vendor
 
       - run:
-          name: Setup SQLite
-          working_directory: laravel
-          command: |
-            touch storage/testing.sqlite
-            php artisan migrate --env=testing --database=sqlite_testing --force
+        name: Setup SQLite
+        working_directory: laravel
+        command: |
+          touch storage/testing.sqlite
+          php artisan migrate --env=testing --database=sqlite_testing --force
       - run:
-          name: Run PHPunit
-          working_directory: laravel
-          command: |
-            echo $ENV_FILE | base64 --decode > .env
-            vendor/bin/phpunit
+        name: Run PHPunit
+        working_directory: laravel
+        command: |
+          echo $ENV_FILE | base64 --decode > .env
+          vendor/bin/phpunit
       - run:
-          name: Lint PHP
-          working_directory: laravel
-          command: |
-            composer phpstan
+        name: Lint PHP
+        working_directory: laravel
+        command: |
+          composer phpstan
+
+  deploy:
+    docker:
+      - image: circleci/python
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+        name: install aws
+        command: |
+          sudo pip install awscli
+      - run:
+        name: Install ecs-deploy
+        command: |
+          curl https://raw.githubusercontent.com/silinternational/ecs-deploy/master/ecs-deploy | sudo tee -a /usr/bin/ecs-deploy
+          sudo chmod +x /usr/bin/ecs-deploy
+      - run:
+        name: Install jq
+        command: sudo apt-get install -y jq
+      - run:
+        name: "Login ECR"
+        command: eval $(aws ecr get-login --no-include-email --region ap-northeast-1)
+      - run:
+        name: "Push Docker Image"
+        command: |
+          docker build -t $AWS_ECR_APP_URL:latest -t $AWS_ECR_APP_URL:$CIRCLE_SHA1 -f docker/php/Dockerfile --build-arg TZ=$TZ .
+          docker push $AWS_ECR_APP_URL:$CIRCLE_SHA1
+      - run:
+        name: "ECR Deploy"
+        environment:
+        command: |
+          ecs-deploy -c shigyo-match-cluster -n serve-shigyo-match21 \
+            -r $AWS_REGION -t 240 \
+            -i $AWS_ECR_APP_URL:$CIRCLE_SHA1
 
 workflows:
   version: 2
-  test_and_deploy:
+  build_test_deploy:
     jobs:
       - build
       - test:
           requires:
             - build
+      - deploy:
+          requires:
+            - test
