@@ -104,7 +104,7 @@ jobs:
           environment:
           command: |
             ecs-deploy -c shigyo-match-cluster -n serve-shigyo-match21 \
-              -r $AWS_REGION -t 240 \
+              -r $AWS_REGION -t 600 \
               -i $AWS_ECR_APP_URL:$CIRCLE_SHA1
 
 workflows:
