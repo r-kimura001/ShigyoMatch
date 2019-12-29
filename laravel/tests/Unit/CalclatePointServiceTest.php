@@ -42,7 +42,7 @@ class CalclatePointServiceTest extends TestCase
      */
     public function calcPoint(int $expected, int $amount)
     {
-      $result = CalculatePointService::calcPoint($amount);
+      $result = CalculatePointService::calcPoint(1);
       $this->assertSame($expected, $result);
     }
 
