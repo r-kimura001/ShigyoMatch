@@ -94,30 +94,9 @@ jobs:
           command: sudo apt-get install -y jq
       - run:
           name: configure env
-          working_directory: laravel
           command: |
-            echo $ENV_FILE | base64 --decode > .env
-      - run:
-          name: "Login ECR"
-          command: eval $(aws ecr get-login --no-include-email --region $AWS_REGION)
-      - run:
-          name: "Push App Image"
-          command: |
-            docker build -t $AWS_ECR_APP_URL:latest -t $AWS_ECR_APP_URL:$CIRCLE_SHA1 -f docker/php/Dockerfile --build-arg TZ=$TZ .
-            docker push $AWS_ECR_APP_URL:$CIRCLE_SHA1
-      - run:
-          name: "Push Web Image"
-          command: |
-            docker build -t $AWS_ECR_WEB_URL:latest -t $AWS_ECR_WEB_URL:$CIRCLE_SHA1 -f docker/php/Dockerfile --build-arg TZ=$TZ .
-            docker push $AWS_ECR_WEB_URL:$CIRCLE_SHA1
-      - run:
-          name: "ECS Deploy"
-          environment:
-          command: |
-            ecs-deploy -c ShigyoMatchCluster -n MyService_ShigyoMatch \
-              -r $AWS_REGION -t 240 \
-              -i $AWS_ECR_APP_URL:$CIRCLE_SHA1 \
-              -i $AWS_ECR_WEB_URL:$CIRCLE_SHA1
+            ls -la
+      
 
 workflows:
   version: 2
