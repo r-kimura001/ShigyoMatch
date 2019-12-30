@@ -48,7 +48,9 @@ jobs:
       - run:
           name: Install Composer
           working_directory: laravel
-          command: composer install -n --prefer-dist
+          command: |
+            composer install -n --prefer-dist
+            echo $ENV_FILE | base64 --decode > .env
 
       - save_cache:
           key: v2-dependencies-{{ checksum "laravel/composer.json" }}
@@ -65,7 +67,6 @@ jobs:
           name: Run PHPunit
           working_directory: laravel
           command: |
-            echo $ENV_FILE | base64 --decode > .env
             vendor/bin/phpunit
       - run:
           name: Lint PHP
@@ -92,6 +93,12 @@ jobs:
           name: Install jq
           command: sudo apt-get install -y jq
       - run:
+          name: Install Composer
+          working_directory: laravel
+          command: |
+            composer install -n --no-dev --prefer-dist
+            echo $ENV_FILE | base64 --decode > .env
+      - run:
           name: "Login ECR"
           command: eval $(aws ecr get-login --no-include-email --region $AWS_REGION)
       - run:
@@ -104,7 +111,7 @@ jobs:
           environment:
           command: |
 
-            ecs-deploy -c ShigyoMatchCluster -n MyService \
+            ecs-deploy -c ShigyoMatchCluster -n MyService_ShigyoMatch \
               -r $AWS_REGION -t 240 \
               -i $AWS_ECR_APP_URL:$CIRCLE_SHA1
 
