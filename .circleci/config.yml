@@ -93,10 +93,10 @@ jobs:
           name: Install jq
           command: sudo apt-get install -y jq
       - run:
-          name: Install Composer
+          name: configure env
           working_directory: laravel
           command: |
-            composer install -n --no-dev --prefer-dist
+            ls -la
             echo $ENV_FILE | base64 --decode > .env
       - run:
           name: "Login ECR"
