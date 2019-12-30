@@ -19357,7 +19357,9 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "p-top" }, [
-      _c("h1", { staticClass: "SiteTitle" }, [_vm._v("Hello, Top!!!!!!")]),
+      _c("h1", { staticClass: "SiteTitle" }, [
+        _vm._v("welcome to ShigyoMatch!!!!!!")
+      ]),
       _vm._v(" "),
       _c("div", [
         _c("img", {
