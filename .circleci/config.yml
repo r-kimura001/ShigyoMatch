@@ -49,7 +49,7 @@ jobs:
           name: Install Composer
           working_directory: laravel
           command: |
-            composer install -n --prefer-dist
+            ls -la
             echo $ENV_FILE | base64 --decode > .env
 
       - save_cache:
