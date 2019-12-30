@@ -110,6 +110,13 @@ jobs:
           command: |
             docker build -t $AWS_ECR_WEB_URL:latest -t $AWS_ECR_WEB_URL:$CIRCLE_SHA1 -f docker/nginx/Dockerfile --build-arg TZ=$TZ .
             docker push $AWS_ECR_WEB_URL:$CIRCLE_SHA1
+      - run:
+          name: "ECS Deploy"
+          environment:
+          command: |
+            ecs-deploy -c ShigyoMatchCluster -n MyService_ShigyoMatch \
+              -r $AWS_REGION -t 240 \
+              -i $AWS_ECR_WEB_URL:$CIRCLE_SHA1
 
 workflows:
   version: 2
