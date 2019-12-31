@@ -93,7 +93,7 @@ jobs:
           name: Install jq
           command: sudo apt-get install -y jq
       - run:
-          name: configure env
+          name: Configure ENV
           working_directory: laravel
           command: |
             echo $ENV_FILE | base64 --decode > .env
@@ -112,18 +112,18 @@ jobs:
             docker push $AWS_ECR_WEB_URL:latest
 
       - run:
-          name: "DB Migrate"
+          name: "Migrate DB"
           command: |
             aws ecs run-task \
               --region ap-northeast-1 \
-              --cluster ShigyoMatchCluster \
+              --cluster ShigyoMatchCluster-mini \
               --task-definition shigyo-match-task \
               --overrides file://run_migrate.json
       - run:
-          name: "ECS Deploy"
+          name: "Deploy to ECS"
           environment:
           command: |
-            ecs-deploy -c ShigyoMatchCluster -n service_ShigyoMatch \
+            ecs-deploy -c ShigyoMatchCluster-mini -n ShigyoMatchServiceMini \
               -r $AWS_REGION -t 240 \
               -i $AWS_ECR_WEB_URL:latest
 
