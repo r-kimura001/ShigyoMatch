@@ -1,0 +1,8 @@
+{
+  "containerOverrides": [
+    {
+      "name": "app",
+      "command": ["php", "artisan", "migrate"]
+    }
+  ]
+}

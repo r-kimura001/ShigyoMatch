@@ -110,6 +110,15 @@ jobs:
           command: |
             docker build -t $AWS_ECR_WEB_URL:latest -f docker/nginx/Dockerfile --build-arg TZ=$TZ .
             docker push $AWS_ECR_WEB_URL:latest
+
+      - run:
+          name: "DB Migrate"
+          command: |
+            aws ecs run-task \
+              --region ap-northeast-1 \
+              --cluster ShigyoMatchCluster \
+              --task-definition shigyo-match-task \
+              --overrides run_migrate.json
       - run:
           name: "ECS Deploy"
           environment:
