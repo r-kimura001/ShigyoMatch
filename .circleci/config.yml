@@ -116,14 +116,14 @@ jobs:
           command: |
             aws ecs run-task \
               --region ap-northeast-1 \
-              --cluster ShigyoMatchCluster-mini \
+              --cluster ShigyoMatchCluster \
               --task-definition shigyo-match-task \
               --overrides file://run_migrate.json
       - run:
           name: "Deploy to ECS"
           environment:
           command: |
-            ecs-deploy -c ShigyoMatchCluster-mini -n ShigyoMatchServiceMini \
+            ecs-deploy -c ShigyoMatchCluster -n serve_ShigyoMatch \
               -r $AWS_REGION -t 240 \
               -i $AWS_ECR_WEB_URL:latest
 
