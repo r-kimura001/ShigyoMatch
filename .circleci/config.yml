@@ -118,7 +118,7 @@ jobs:
               --region ap-northeast-1 \
               --cluster ShigyoMatchCluster \
               --task-definition shigyo-match-task \
-              --overrides run_migrate.json
+              --overrides file://run_migrate.json
       - run:
           name: "ECS Deploy"
           environment:
