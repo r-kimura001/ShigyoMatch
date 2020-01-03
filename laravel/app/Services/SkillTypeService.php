@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Repositories\SkillTypeRepository;
+
 class SkillTypeService extends Service
 {
   protected $skillTypeRep;

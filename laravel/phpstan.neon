@@ -9,6 +9,5 @@ parameters:
   fileExtensions:
     - php
   ignoreErrors:
-  memoryLimitFile: %tmpDir%/.memory_limit
 
   reportUnmatchedIgnoredErrors: false
