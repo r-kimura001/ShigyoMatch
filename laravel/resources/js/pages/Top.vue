@@ -7,6 +7,7 @@
         alt=""
       />
     </div>
+    <div class="stick"></div>
   </div>
 </template>
 <script></script>

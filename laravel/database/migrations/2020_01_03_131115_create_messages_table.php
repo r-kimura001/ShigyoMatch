@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateStoriesTable extends Migration
+class CreateMessagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,15 @@ class CreateStoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('stories', function (Blueprint $table) {
+        Schema::create('messages', function (Blueprint $table) {
           $table->bigIncrements('id');
-          $table->unsignedBigInteger('user_id');
-          $table->string('title');
+          $table->bigInteger('apply_id');
+          $table->bigInteger('sender_id');
           $table->text('body');
-          $table->string('file_name')->nullable();
           $table->timestamps();
-          $table
-            ->foreign('user_id')
-            ->references('id')
-            ->on('users')
-            ->onDelete('cascade');
+          $table->softDeletes();
+
+          // 外部キー制約を設定するとseedingの際面倒なのであえて設定しない
         });
     }
 
@@ -35,6 +32,6 @@ class CreateStoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('stories');
+      Schema::dropIfExists('messages');
     }
 }

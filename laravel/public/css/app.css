@@ -619,6 +619,12 @@ img {
   vertical-align: top;
 }
 
+.stick {
+  width: 100%;
+  height: 30px;
+  background: #007bc2;
+}
+
 .p-top {
   background: #ffefad;
   color: #df9201;
