@@ -13,15 +13,11 @@ trait HandledByUser
 {
   /**
    * @param array $attributes
-   * @param User $admin
-   * @return static
    */
-  public static function createByUser(array $attributes)
+  public function createByUser(array $attributes)
   {
-    $eloquent = new static($attributes);
-    $eloquent->save();
-
-    return $eloquent;
+    $this->fill($attributes);
+    return $this->save();
   }
 
   /**

@@ -3,7 +3,7 @@
 namespace App\Services;
 
 use App\Repositories\CustomerRepository;
-use App\models\User;
+use App\Models\User;
 class CustomerService extends Service
 {
   protected $customerRep;
