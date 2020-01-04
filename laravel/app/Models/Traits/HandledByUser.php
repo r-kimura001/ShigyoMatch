@@ -17,7 +17,8 @@ trait HandledByUser
   public function createByUser(array $attributes)
   {
     $this->fill($attributes);
-    return $this->save();
+    $this->save();
+    return $this;
   }
 
   /**
