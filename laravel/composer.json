@@ -12,6 +12,7 @@
         "fideloper/proxy": "^4.0",
         "laravel/framework": "^6.2",
         "laravel/helpers": "^1.1",
+        "fzaninotto/faker": "^1.4",
         "laravel/tinker": "^1.0"
     },
     "require-dev": {
@@ -19,7 +20,6 @@
         "barryvdh/laravel-ide-helper": "^2.6",
         "doctrine/dbal": "^2.10",
         "facade/ignition": "^1.4",
-        "fzaninotto/faker": "^1.4",
         "nunomaduro/collision": "^3.0",
         "phpstan/phpstan": "^0.12.3",
         "phpunit/phpunit": "^8.0"

@@ -17,5 +17,5 @@ RUN apk update && apk add --no-cache \
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
   composer global require hirak/prestissimo && \
-  composer install --no-dev  && \
+  composer install --no-dev && \
   chmod -R a+w storage/ bootstrap/cache
