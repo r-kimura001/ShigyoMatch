@@ -26,7 +26,6 @@ class FileUploadService extends Service
     );
 
     $length = count($characters);
-
     $id = "";
 
     for ($i = 0; $i < self::ID_LENGTH; $i++) {
