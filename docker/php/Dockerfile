@@ -18,5 +18,5 @@ RUN apk update && apk add --no-cache \
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
   composer global require hirak/prestissimo && \
   composer install --no-dev && \
-  composer update fzaninotto/faker && \
+  php artisan config:cache && \
   chmod -R a+w storage/ bootstrap/cache

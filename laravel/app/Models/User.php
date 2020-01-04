@@ -47,7 +47,7 @@ class User extends Authenticatable implements CanDeleteRelationInterface
    * @var array
    */
   protected $fillable = [
-      'login_id', 'email', 'password',
+      'login_id', 'customer_id', 'email', 'password',
   ];
 
   /**
