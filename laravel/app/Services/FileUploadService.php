@@ -14,6 +14,13 @@ class FileUploadService extends Service
     $this->upload('assets', $fileData);
   }
 
+  protected function upload($putPath, $fileData)
+  {
+    $fileName = $fileData->getClientOriginalName();
+    Storage::cloud()->putFileAs($putPath, $fileData, $fileName, 'public');
+  }
+
+
   /**
    * ランダムなID値を生成する
    * @return string
@@ -35,9 +42,4 @@ class FileUploadService extends Service
     return $id;
   }
 
-  protected function upload($putPath, $fileData)
-  {
-    $fileName = $this->getRandomId() . '.' . $fileData->extension();
-    Storage::cloud()->putFileAs($putPath, $fileData, $fileName, 'public');
-  }
 }

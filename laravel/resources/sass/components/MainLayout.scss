@@ -1,0 +1,21 @@
+.MainLayout{
+  padding: 40px 60px;
+
+  @include media(lg){
+    padding: 40px;
+  }
+  @include media(){
+    padding: 20px;
+  }
+  @include media(sm){
+    padding: 10px;
+  }
+
+  .MainLayout_heading{
+
+  }
+  .MainLayout_boxList{
+    max-width: $baseWidth;
+    margin: 0 auto;
+  }
+}

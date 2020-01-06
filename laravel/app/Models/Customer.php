@@ -12,6 +12,18 @@ class Customer extends Model
   use HandledByUser;
   use SoftDeletes;
 
+  protected $fillable = [
+    'name',
+    'zip_code',
+    'pref_code',
+    'city',
+    'address',
+    'building',
+    'url',
+    'file_name',
+    'greeting',
+  ];
+
 
   /**
    * リレーション - カスタマーの登録資格

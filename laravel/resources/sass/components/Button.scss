@@ -1,0 +1,98 @@
+.Button{
+    border-radius: 9999px;
+    color: $white;
+    display: inline-block;
+    min-width: 110px;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 10px 12px;
+    text-align: center;
+    transition: $transitionBasis;
+    background: $blue;
+
+    &:focus{
+      outline: none;
+    }
+
+    &:hover{
+        opacity: 0.8;
+    }
+
+    &.--fixed{
+        position: fixed;
+        bottom: 15px;
+        left: 10px;
+        right: 10px;
+        max-width: 480px;
+        margin: 0 auto;
+        z-index: 1;
+    }
+
+    &.--pink{
+        background: $pink;
+    }
+
+
+    &.--flex{
+        width: 100%;
+        max-width: 240px;
+    }
+
+
+    &.--small{
+        font-size: 12px;
+        min-width: initial;
+    }
+
+    &.--large{
+        font-weight: bold;
+        padding: 12px 16px;
+        font-size: 16px;
+    }
+
+    &.--hasShadow{
+        width: 100%;
+        max-width: 150px;
+        padding: 10px 12px;
+        border-radius: 10px;
+        box-shadow: 0 4px 0 $shadowBlue;
+        transition: none;
+        &.--pink{
+            box-shadow: 0 4px 0 $shadowPink;
+        }
+        &:active{
+            box-shadow: none;
+            position: relative;
+            top: 4px;
+        }
+    }
+
+    &.--disable{
+      pointer-events: none;
+      opacity: 0.4;
+    }
+
+    &.--neutral{
+        background: #bdbdbd;
+    }
+
+    &.--pager{
+        background: $white;
+        color: gray;
+        border-radius: 6px;
+        border: 1px solid gray;
+        min-width: initial;
+        &:hover{
+            opacity: 0.6;
+        }
+
+        &.--prev{
+            float: left;
+        }
+
+        &.--next{
+            float: right;
+        }
+    }
+
+}

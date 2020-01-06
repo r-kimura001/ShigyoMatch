@@ -3,17 +3,50 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\Customer\UpdateRequest;
+use App\Http\Requests\Customer\StoreRequest;
+use App\Services\CustomerService;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class CustomerController extends Controller
 {
-  public function register(Request $request)
+  protected $customerService;
+
+  public function __construct(CustomerService $customerService)
+  {
+    $this->customerService = $customerService;
+  }
+
+  /**
+   * @param StoreRequest $request
+   * @return CustomerService
+   * @throws \Exception
+   */
+  public function register(StoreRequest $request)
   {
     $data = $request->all();
-    $data['password'] = \Hash::make($data['password']);
 
-    $user = new User();
-    $createdUser = $user->createByUser($data);
-    return $createdUser;
+    DB::beginTransaction();
+
+    try{
+      $createdCustomer = $this->customerService->firstRegister($data);
+      DB::commit();
+    }catch(\Exception $exception){
+      DB::rollback();
+      throw $exception;
+    }
+    return $createdCustomer;
+  }
+
+
+
+
+
+
+  public function customer()
+  {
+    return Auth::check() ? $this->customerService->customerById(Auth::user()->customer_id) : '';
   }
 }
