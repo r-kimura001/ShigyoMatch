@@ -1,26 +1,37 @@
 <template>
   <header class="Header">
     <div class="Header_nav">
-      <div class="ContentBox">
-        <RouterLink to="/" tag="h1" class="SiteTitle"
-          >士業のマッチングサイトです</RouterLink
-        >
-        <GlobalNav></GlobalNav>
-        <div>
-          <RouterLink to="/signup" tag="button" class="Button"
-            >新規登録</RouterLink
+      <div class="ContentBox u-px20">
+        <div class="HorizontalLayout --vertical">
+          <RouterLink to="/" tag="h1" class="HorizontalLayout_col"
+            >士業のマッチングサイトです</RouterLink
           >
-          <RouterLink v-if="!isLogin()" tag="button" to="/login"
-            >ログイン</RouterLink
-          >
-          <button v-if="isLogin()" class="Button" @click="logout">
-            ログアウト
-          </button>
+          <GlobalNav class="HorizontalLayout_col --flex"></GlobalNav>
+          <div class="HorizontalLayout_col">
+            <RouterLink
+              v-if="!isLogin()"
+              tag="button"
+              to="/login"
+              class="Button --small --green --hasShadow"
+              >ログイン</RouterLink
+            >
+            <RouterLink
+              to="/signup"
+              tag="button"
+              class="Button --small --pink --hasShadow"
+              >新規登録</RouterLink
+            >
+            <button v-if="isLogin()" class="Button --small" @click="logout">
+              ログアウト
+            </button>
+          </div>
         </div>
+        <!-- HorizontalLayout -->
       </div>
       <!-- ContentBox -->
     </div>
     <!-- Header_nav -->
+    <div class="Header_fix"></div>
     <MainVisual v-if="isOnly('MainVisual')"></MainVisual>
   </header>
 </template>

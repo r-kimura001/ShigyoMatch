@@ -1,13 +1,14 @@
 <template>
-  <div class="p-home">
-    マイページへようこそ
+  <div>
+    <RouterView></RouterView>
   </div>
 </template>
 <script>
 export default {
   props: {
     id: {
-      type: Number,
+      type: String,
+      required: true,
     },
   },
 }

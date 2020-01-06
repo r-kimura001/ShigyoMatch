@@ -1,0 +1,7 @@
+.Sidebar{
+
+  .Sidebar_listItem{
+    @include iconFix(15px, 55px, 24px);
+  }
+
+}

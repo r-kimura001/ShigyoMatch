@@ -1,0 +1,18 @@
+.AuthFormLayout{
+  width: 600px;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 40px 15px;
+  background: $white;
+
+  &.--login{
+    background: $gray-4;
+  }
+
+  .AuthFormLayout_title{
+    font-size: 2.4rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+}

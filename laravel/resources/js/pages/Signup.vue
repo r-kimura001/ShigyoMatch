@@ -1,11 +1,12 @@
 <template>
-  <div class="p-signup" :style="bgImage()">
+  <div class="p-signup">
     <Loader :class="{ '--show': isLoading }" />
     <div class="MainLayout">
       <div class="MainLayout_boxList">
         <section class="MainLayout_box">
-          <div class="LoginFormLayout">
-            <div class="Form --auth">
+          <div class="AuthFormLayout">
+            <h2 class="AuthFormLayout_title">Sign up</h2>
+            <div class="Form --signup">
               <form @submit.prevent="register">
                 <div class="Form_row">
                   <div class="Form_errorBox">
@@ -41,17 +42,23 @@
                   <input
                     v-model="customerData.name"
                     type="text"
+                    name="name"
                     class="Form_text"
                     placeholder="XXX法律事務所"
                     required
                   />
                 </div>
                 <div class="Form_row --fetchInfos">
-                  <div class="Form_infoLoader" :class="{ '--show': isWaiting }">
+                  <div
+                    class="Form_infoLoader"
+                    :class="{ '--show': isWaiting }"
+                    data-msg="資格一覧を取得中"
+                  >
                     <vue-loading
                       type="spiningDubbles"
-                      color="#cccccc"
+                      color="#fefefe"
                       :size="{ width: '60px', height: '60px' }"
+                      class="Form_infoLoaderBody"
                     ></vue-loading>
                   </div>
                   <div
@@ -63,14 +70,14 @@
                       type="checkbox"
                       :value="professionType.id"
                     />{{ professionType.body }}
-                    <div class="Form_textWrapper">
+                    <div class="Form_msgWrapper">
                       <input
                         v-model="
                           customerData.registerNumbers[professionType.id]
                         "
                         :class="boxChecked(professionType.id)"
                         type="text"
-                        class="Form_text"
+                        class="Form_text --register-num"
                         placeholder="登録番号"
                       />
                     </div>
@@ -78,10 +85,10 @@
                 </div>
                 <div class="Form_row u-alignCenter">
                   <button
-                    class="Form_button Button --hasShadow --pink"
+                    class="Form_button"
                     :class="{ '--disable': isWaiting }"
                   >
-                    上記内容で登録
+                    Sign up
                   </button>
                 </div>
               </form>
@@ -98,7 +105,6 @@
 </template>
 <script>
 import { mapState, mapGetters } from 'vuex'
-import { BASE_ASSET_URL } from '@/util'
 import Loader from '@/components/Loader'
 import { VueLoading } from 'vue-loading-template'
 
@@ -145,10 +151,10 @@ export default {
         '--disable': this.customerData.professionIds.indexOf(id) === -1,
       }
     },
-    hasError($prop) {
+    hasError(prop) {
       return (
         this.errorMessages !== null &&
-        Object.keys(this.errorMessages).indexOf($prop) >= -1
+        Object.keys(this.errorMessages).indexOf(prop) >= -1
       )
     },
     async fetchProfessions() {
@@ -177,12 +183,6 @@ export default {
       if (this.apiStatus) {
         // マイページに移動する
         this.$router.push(`/mypage/${this.customerId}`)
-      }
-    },
-
-    bgImage() {
-      return {
-        backgroundImage: `url(${BASE_ASSET_URL}/bg-login.jpg)`,
       }
     },
   },

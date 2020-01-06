@@ -1,11 +1,12 @@
 <template>
-  <div class="p-login" :style="bgImage()">
+  <div class="p-login">
     <Loader :class="{ '--show': isLoading }" />
     <div class="MainLayout">
       <div class="MainLayout_boxList">
-        <section class="MainLayout_box">
-          <div class="LoginFormLayout">
-            <div class="Form --auth">
+        <section class="MainLayout_box u-mt50">
+          <div class="AuthFormLayout --login">
+            <h2 class="AuthFormLayout_title">Log in</h2>
+            <div class="Form --login">
               <form @submit.prevent="login">
                 <div class="Form_row">
                   <div class="Form_errorBox">
@@ -21,8 +22,8 @@
                   <input
                     v-model="loginForm.login_id"
                     type="text"
-                    class="Form_text"
-                    placeholder="ログインID"
+                    class="Form_text --id"
+                    placeholder="LOGIN ID"
                     autofocus
                     required
                   />
@@ -42,13 +43,13 @@
                     v-model="loginForm.password"
                     type="password"
                     class="Form_text"
-                    placeholder="パスワード"
+                    placeholder="PASSWORD"
                     required
                   />
                 </div>
                 <div class="Form_row u-alignCenter">
-                  <button class="Form_button Button --hasShadow">
-                    ログイン
+                  <button class="Form_button u-mt20">
+                    Log in
                   </button>
                 </div>
               </form>
@@ -65,7 +66,6 @@
 </template>
 <script>
 import { mapState, mapGetters } from 'vuex'
-import { BASE_ASSET_URL } from '@/util'
 import Loader from '@/components/Loader'
 export default {
   components: {
@@ -95,12 +95,6 @@ export default {
         this.errorMessages !== null &&
         Object.keys(this.errorMessages).indexOf($prop) >= -1
       )
-    },
-
-    bgImage() {
-      return {
-        backgroundImage: `url(${BASE_ASSET_URL}/bg-login.jpg)`,
-      }
     },
 
     async login() {

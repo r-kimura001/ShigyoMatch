@@ -5,14 +5,31 @@ import VueRouter from 'vue-router'
 import Top from '@/pages/Top.vue'
 import Signup from '@/pages/Signup.vue'
 import Login from '@/pages/Login.vue'
-import MyPage from '@/pages/mypages/MyPage.vue'
-import Home from '@/pages/mypages/Home.vue'
-import AssetRegister from '@/pages/AssetRegister.vue'
+import Customers from '@/pages/Customers.vue'
+import CustomerDetail from '@/pages/CustomerDetail.vue'
+import Greeting from '@/pages/Greeting.vue'
+import Works from '@/pages/Works.vue'
+import WorkDetail from '@/pages/WorkDetail.vue'
+
+// mypage
+import MyPage from '@/pages/mypage/MyPage.vue'
+import Base from '@/pages/mypage/Base.vue'
+import Home from '@/pages/mypage/Home.vue'
+import Applies from '@/pages/mypage/Applies.vue'
+import Chats from '@/pages/mypage/Chats.vue'
+import Favorites from '@/pages/mypage/Favorites.vue'
+import Matches from '@/pages/mypage/Matches.vue'
+import Messages from '@/pages/mypage/Messages.vue'
+import Profile from '@/pages/mypage/Profile.vue'
+import Scouts from '@/pages/mypage/Scouts.vue'
 
 // errors
 import ServerError from '@/pages/errors/ServerError.vue'
 import NotFound from '@/pages/errors/NotFound.vue'
 import store from '@/store'
+
+import AssetRegister from '@/pages/AssetRegister.vue'
+
 
 // VueRouterの使用
 Vue.use(VueRouter)
@@ -22,6 +39,10 @@ const routes = [
   {
     path: '/',
     component: Top,
+  },
+  {
+    path: '/greeting',
+    component: Greeting,
   },
   {
     path: '/signup',
@@ -39,6 +60,32 @@ const routes = [
     }
   },
   {
+    path: '/works',
+    component: Works,
+    children: [
+      {
+        path: ':id',
+        component: WorkDetail,
+        props: route => ({
+          id: Number(route.params.id)
+        }),
+      }
+    ]
+  },
+  {
+    path: '/customers',
+    component: Customers,
+    children: [
+      {
+        path: ':id',
+        component: CustomerDetail,
+        props: route => ({
+          id: Number(route.params.id)
+        }),
+      }
+    ]
+  },
+  {
     path: '/mypage',
     component: MyPage,
     beforeEnter (to, from, next) {
@@ -51,11 +98,52 @@ const routes = [
     children: [
       {
         path: ':id',
-        component: Home,
-        props: route => ({
-          id: Number(route.params.id)
-        }),
+        component: Base,
+        props: true,
+        children: [
+          {
+            path: '/',
+            component: Home,
+            props: true
+          },
+          {
+            path: 'applies',
+            component: Applies,
+            props: true,
+          },
+          {
+            path: 'chats',
+            component: Chats,
+            props: true,
+          },
+          {
+            path: 'favorites',
+            component: Favorites,
+            props: true,
+          },
+          {
+            path: 'matches',
+            component: Matches,
+            props: true,
+          },
+          {
+            path: 'messages',
+            component: Messages,
+            props: true,
+          },
+          {
+            path: 'profile',
+            component: Profile,
+            props: true,
+          },
+          {
+            path: 'scouts',
+            component: Scouts,
+            props: true,
+          },
+        ]
       },
+
     ],
   },
   {

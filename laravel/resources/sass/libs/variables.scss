@@ -2,7 +2,7 @@
 // 各色定義
 $blue: #1c91df;
 $deepBlue: #004161;
-$paleBlue: #0094ea;
+$paleBlue: #2992d9;
 $focusBlue: #40aaf0;
 $shadowBlue: #177cc0;
 $red: #f42a2d;
@@ -12,17 +12,20 @@ $pink: #f65ca4;
 $deepPink: #c00060;
 $palePink: #ffb8bf;
 $shadowPink: #e4406f;
+$redPink: #e44963;
 $yellow: #fabd3e;
 $deepYellow: #df9201;
 $paleYellow: #ffefad;
-$green: #26b99a;
+$green: #33ba7c;
 $deepGreen: #349d9d;
-$paleGreen: #92dcdc;
-$gray: #8ea9b8;
-$deepGray: #516570;
+$paleGreen: #3abb83;
+$gray: #a8a3a7;
+$deepGray: #626d78;
 $paleGray: #cad9e1;
 $gray-2: #cccccc;
 $gray-3: #dedede;
+$gray-4: #f0f0f0;
+$gray-5: #fcfcfc;
 $black: #333333;
 $white: #fefefe;
 
@@ -38,6 +41,7 @@ $bgWarnColor: $yellow;
 $bgSafeColor: $green;
 $receiveColor: $pink;
 $sendColor: $blue;
+$authBg: #e9e9e9;
 
 // 弁護士
 $lawyerColor: #4379A9;
@@ -67,8 +71,11 @@ $breakpoints: (
   'lg': 'screen and (max-width: 1000px)',
 )!default;
 
-$headerColor: $palePink;
-$footerColor: $paleYellow;
+$headerColor: $white;
 $mainVisualBg: $paleGreen;
 
 $baseWidth: 1380px;
+$headerHeight: 56px;
+$footerHeight: 93px;
+$basePartition: 1px solid $gray-2;
+$assetPath: "https://asset.shigyo-match.site/assets";

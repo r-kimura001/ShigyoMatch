@@ -3,12 +3,12 @@
     color: $white;
     display: inline-block;
     min-width: 110px;
-    font-size: 16px;
+    font-size: 1.6rem;
     cursor: pointer;
-    padding: 10px 12px;
+    padding: 8px 12px;
     text-align: center;
     transition: $transitionBasis;
-    background: $blue;
+    background: $paleBlue;
 
     &:focus{
       outline: none;
@@ -31,40 +31,44 @@
     &.--pink{
         background: $pink;
     }
-
+    &.--green{
+        background: $paleGreen;
+    }
 
     &.--flex{
         width: 100%;
         max-width: 240px;
     }
 
-
     &.--small{
-        font-size: 12px;
-        min-width: initial;
+      font-size: 1.2rem;
+      padding: 6px 10px;
+      min-width: initial;
     }
 
     &.--large{
         font-weight: bold;
         padding: 12px 16px;
-        font-size: 16px;
+        font-size: 1.6rem;
     }
 
     &.--hasShadow{
-        width: 100%;
-        max-width: 150px;
-        padding: 10px 12px;
-        border-radius: 10px;
-        box-shadow: 0 4px 0 $shadowBlue;
-        transition: none;
-        &.--pink{
-            box-shadow: 0 4px 0 $shadowPink;
-        }
-        &:active{
-            box-shadow: none;
-            position: relative;
-            top: 4px;
-        }
+      max-width: 150px;
+      padding: 8px 12px;
+      border-radius: 10px;
+      box-shadow: 0 4px 0 $shadowBlue;
+      transition: none;
+      &.--pink{
+        box-shadow: 0 4px 0 $shadowPink;
+      }
+      &.--green{
+        box-shadow: 0 4px 0 $deepGreen;
+      }
+      &:active{
+          box-shadow: none;
+          position: relative;
+          top: 4px;
+      }
     }
 
     &.--disable{

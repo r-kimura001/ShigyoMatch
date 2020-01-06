@@ -15,6 +15,9 @@ export default {
       onlyPathes: {
         MainVisual: [
           '/',
+          '/greeting',
+          '/works',
+          '/customers',
         ],
 
       }
