@@ -1,14 +1,17 @@
 // colors
 // 各色定義
-$blue: #007bc2;
+$blue: #1c91df;
 $deepBlue: #004161;
-$lightBlue: #0094ea;
+$paleBlue: #0094ea;
+$focusBlue: #40aaf0;
+$shadowBlue: #177cc0;
 $red: #f42a2d;
 $deepRed: #c80c00;
 $paleRed: #ffb8bf;
-$pink: #ff357c;
+$pink: #f65ca4;
 $deepPink: #c00060;
 $palePink: #ffb8bf;
+$shadowPink: #e4406f;
 $yellow: #fabd3e;
 $deepYellow: #df9201;
 $paleYellow: #ffefad;
@@ -18,7 +21,9 @@ $paleGreen: #92dcdc;
 $gray: #8ea9b8;
 $deepGray: #516570;
 $paleGray: #cad9e1;
-$black: #2d373d;
+$gray-2: #cccccc;
+$gray-3: #dedede;
+$black: #333333;
 $white: #fefefe;
 
 
@@ -61,3 +66,9 @@ $breakpoints: (
   'md': 'screen and (max-width: 768px)',
   'lg': 'screen and (max-width: 1000px)',
 )!default;
+
+$headerColor: $palePink;
+$footerColor: $paleYellow;
+$mainVisualBg: $paleGreen;
+
+$baseWidth: 1380px;

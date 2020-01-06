@@ -1,0 +1,111 @@
+
+.Form{
+  max-width: 600px;
+  margin: 0 auto;
+
+  &.--noMaxWidth{
+    max-width: inherit;
+  }
+
+  .Form_row{
+    &:not(:first-of-type){
+      margin-top: 20px;
+    }
+    &:last-of-type{
+      margin-top: 30px;
+    }
+    &.--fetchInfos{
+      position: relative;
+      .Form_infoLoader{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+        opacity: 0;
+        &.--show{
+          opacity: 1;
+          pointer-events: initial;
+        }
+      }
+    }
+
+    .Form_errorBox{
+      height: 18px;
+    }
+
+    .Form_button:focus{
+      outline: 0;
+    }
+  }
+
+  .Form_label{
+    margin-right: 10px;
+    flex-shrink: 0;
+    width: 100px;
+    text-align: right;
+  }
+  .Form_textWrapper{
+    padding: 10px 0;
+    height: 65px;
+  }
+  .Form_text{
+    width: 100%;
+    border: 2px solid $gray-3;
+    padding: 8px;
+    border-radius: 6px;
+    /* textareaの横伸縮禁止 */
+    resize: vertical;
+
+    &:focus{
+      outline: none;
+      border-color: $shadowPink;
+    }
+
+    &.--disable{
+      background: $gray-2;
+      pointer-events: none;
+    }
+
+    &.--chat{
+      border: none;
+      border-radius: 0;
+      width: 100%;
+      max-height: 100px;
+      resize: none;
+    }
+
+    @include media(){
+      font-size: 16px;
+    }
+  }
+  .Form_output{
+      display: block;
+  }
+
+  &.--auth{
+    max-width: 300px;
+    margin: 0 auto;
+
+    .Form_text{
+      border-radius: 9999px;
+      border: 1px solid transparent;
+      width: 100%;
+      padding: 10px;
+      box-shadow: 0 5px 12px gray;
+      &:focus {
+          border: 1px solid $shadowPink;
+      }
+    }
+  }
+
+
+  &.--inModal{
+    border-radius: 0;
+    box-shadow: none;
+
+    .Form_body{
+        padding: 25px 0;
+    }
+  }
+}

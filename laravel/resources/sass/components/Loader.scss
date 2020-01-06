@@ -1,0 +1,42 @@
+.Loader{
+  transition: $transitionBasis;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10000;
+  opacity: 0;
+  pointer-events: none;
+  &.--show{
+    opacity: 1;
+    pointer-events: initial;
+  }
+
+  .Loader_overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: $black;
+    opacity: 0.6;
+  }
+
+  .Loader_content{
+    padding: 30px;
+    // background: $black;
+    position: fixed;
+    top: 50%;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+  }
+  .Loader_message{
+    color: $white;
+    font-weight: bold;
+    font-size: 28px;
+    text-align: center;
+  }
+
+}

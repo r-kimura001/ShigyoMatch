@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Services\CustomerService;
+
 class LoginController extends Controller
 {
   /*
@@ -68,10 +69,10 @@ class LoginController extends Controller
     ]);
   }
 
+  // ★ メソッド追加
   protected function authenticated(Request $request, $user)
   {
-    $customer = $this->customerService->customerById($user->customer_id);
-    return $customer;
+    return $this->customerService->customerById($user->customer_id);
   }
 
   protected function loggedOut(Request $request)

@@ -1,7 +1,8 @@
 import { OK, CREATED, UNPROCESSABLE_ENTITY } from '@/util'
 
 const state = {
-  user: null,
+  customer: null,
+  admin: null,
   apiStatus: null,
   loginErrorMessages: null,
   registerErrorMessages: null,
@@ -9,14 +10,16 @@ const state = {
 }
 
 const getters = {
-  isLogin: state => !!state.user,
-  userName: state => (state.user ? state.user.name : ''),
-  userId: state => (state.user ? state.user.id : ''),
+  isLogin: state => !!state.customer,
+  isAdmin: state => !!state.admin,
+  customerName: state => (state.customer ? state.customer.name : ''),
+  customerId: state => (state.customer ? state.customer.id : ''),
 }
 
+
 const mutations = {
-  setUser(state, user) {
-    state.user = user
+  setCustomer(state, customer) {
+    state.customer = customer
   },
   setApiStatus(state, status) {
     state.apiStatus = status
@@ -37,10 +40,11 @@ const actions = {
   async register(context, data) {
     context.commit('setApiStatus', null)
     const response = await axios.post('/api/register', data)
+    // context.commit('setResponse', response)
 
     if (response.status === CREATED) {
       context.commit('setApiStatus', true)
-      context.commit('setUser', response.data)
+      context.commit('setCustomer', response.data)
       return false
     }
 
@@ -48,7 +52,7 @@ const actions = {
     if (response.status === UNPROCESSABLE_ENTITY) {
       context.commit('setRegisterErrorMessages', response.data.errors)
     } else {
-      context.commit('error/setCode', response.status, { root: true })
+      context.commit('error/setStatus', response.status, { root: true })
     }
   },
 
@@ -59,7 +63,8 @@ const actions = {
 
     if (response.status === OK) {
       context.commit('setApiStatus', true)
-      context.commit('setUser', response.data)
+      context.commit('setCustomer', response.data)
+      // context.commit('setResponse', response)
       return false
     }
 
@@ -67,7 +72,8 @@ const actions = {
     if (response.status === UNPROCESSABLE_ENTITY) {
       context.commit('setLoginErrorMessages', response.data.errors)
     } else {
-      context.commit('error/setCode', response.status, { root: true })
+      context.commit('error/setStatus', response.status, { root: true })
+      context.commit('setResponse', response)
     }
   },
 
@@ -78,28 +84,30 @@ const actions = {
 
     if (response.status === OK) {
       context.commit('setApiStatus', true)
-      context.commit('setUser', null)
+      context.commit('setCustomer', null)
+      context.commit('error/setStatus', response.status)
       return false
     }
 
     context.commit('setApiStatus', false)
-    context.commit('error/setCode', response.status, { root: true })
+    context.commit('setResponse', response)
+    context.commit('error/setStatus', response.status, { root: true })
   },
 
   // ログインユーザーチェック
-  async currentUser(context) {
+  async currentCustomer(context) {
     context.commit('setApiStatus', null)
-    const response = await axios.get('/api/user')
-    const user = response.data || null
+    const response = await axios.get('/api/customer')
+    const customer = response.data || null
 
     if (response.status === OK) {
       context.commit('setApiStatus', true)
-      context.commit('setUser', user)
+      context.commit('setCustomer', customer)
       return false
     }
 
     context.commit('setApiStatus', false)
-    context.commit('error/setCode', response.status, { root: true })
+    context.commit('error/setStatus', response.status, { root: true })
   },
 }
 

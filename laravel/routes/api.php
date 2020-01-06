@@ -13,5 +13,16 @@ use Illuminate\Http\Request;
 |
 */
 
+//認証
 Route::post('/register', 'CustomerController@register')->name('register');
+Route::post('/login', 'Auth\LoginController@login')->name('login');
+Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
+
 Route::post('/asset/register', 'AssetController@register')->name('asset.register');
+
+// ログインユーザー
+Route::get('/customer', 'CustomerController@customer')->name('customer');
+
+// profession_types
+Route::get('/professions', 'ProfessionTypeController@index')->name('professionType.index');
+

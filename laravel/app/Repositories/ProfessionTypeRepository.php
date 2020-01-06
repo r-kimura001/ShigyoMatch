@@ -19,7 +19,7 @@ class ProfessionTypeRepository extends Repository
 
   public function all()
   {
-    return $this->getBuilder()->latest()->get();
+    return $this->getBuilder()->orderBy('id')->get();
   }
 
   public function idByBody($body)

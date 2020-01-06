@@ -3,12 +3,20 @@
 @import "./base";
 
 // components
-.stick{
-  width: 100%;
-  height: 30px;
-  background: $sendColor;
-}
-
+@import "./components/Button";
+@import "./components/ContentBox";
+@import "./components/Footer";
+@import "./components/Form";
+@import "./components/GlobalNav";
+@import "./components/Header";
+@import "./components/Loader";
+@import "./components/LoginFormLayout";
+@import "./components/MainContent";
+@import "./components/MainLayout";
+@import "./components/MainVisual";
+@import "./components/Text";
+@import "./components/Text";
+@import "./components/ValidationErrorMessage";
 
 
 
@@ -17,6 +25,8 @@
 
 // pages
 @import "./pages/Top";
+@import "./pages/Login";
+@import "./pages/Signup";
 
 
 //util

@@ -12,7 +12,9 @@ Vue.use(VueObserveVisibility)
 
 import App from './App.vue'
 
-const createApp = () => {
+const createApp = async () => {
+  await store.dispatch('auth/currentCustomer')
+
   new Vue({
     el: '#app',
     router,

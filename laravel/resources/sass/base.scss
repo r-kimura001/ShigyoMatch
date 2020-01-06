@@ -9,12 +9,14 @@ body {
   background-color: $bgBaseColor;
   word-break: break-all;
   -webkit-text-size-adjust: 100%;
-  max-width: 1380px;
   @include media(){
     font-size: 1.6rem;
   }
 }
 
+*{
+  box-sizing: border-box;
+}
 a {
   color: inherit;
   text-decoration: none;

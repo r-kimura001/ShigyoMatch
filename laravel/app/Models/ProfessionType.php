@@ -14,7 +14,6 @@ class ProfessionType extends Model
 
   protected $table = 'profession_types';
 
-
   /**
    * リレーション - 資格と紐付けることが許されるスキル
    * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
@@ -23,4 +22,6 @@ class ProfessionType extends Model
   {
     return $this->belongsToMany(SkillType::class, 'selectables', 'profession_type_id', 'skill_type_id');
   }
+
+  protected $hidden = ['deleted_at'];
 }
