@@ -3,30 +3,29 @@
 @import "./base";
 
 // components
+@import "./components/AuthFormLayout";
 @import "./components/Button";
 @import "./components/ContentBox";
 @import "./components/Footer";
 @import "./components/Form";
 @import "./components/GlobalNav";
 @import "./components/Header";
+@import "./components/HorizontalLayout";
 @import "./components/Loader";
-@import "./components/LoginFormLayout";
 @import "./components/MainContent";
 @import "./components/MainLayout";
 @import "./components/MainVisual";
-@import "./components/Text";
+@import "./components/MypageContent";
+@import "./components/PageContent";
+@import "./components/Sidebar";
 @import "./components/Text";
 @import "./components/ValidationErrorMessage";
 
 
-
-
-
-
 // pages
-@import "./pages/Top";
 @import "./pages/Login";
 @import "./pages/Signup";
+@import "./pages/Top";
 
 
 //util

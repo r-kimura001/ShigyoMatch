@@ -1,0 +1,10 @@
+.PageContent{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  .PageContent_layout{
+    &.--flex{
+      flex-grow: 1;
+    }
+  }
+}

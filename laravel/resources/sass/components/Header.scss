@@ -1,3 +1,20 @@
 .Header{
-  background: $headerColor;
+  color: $black;
+
+  .Header_nav{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: $headerColor;
+    border-bottom: $basePartition;
+    box-shadow: 0 2px 5px $gray-3;
+
+  }
+  .Header_fix{
+    display: block;
+    width: 100px;
+    height: 0;
+    margin-top: $headerHeight;
+  }
 }

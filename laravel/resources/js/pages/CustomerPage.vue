@@ -1,8 +1,14 @@
 <template>
-  <div>
-    <Header v-if="!ignore('Header')"></Header>
-    <MainContent></MainContent>
-    <Footer v-if="!ignore('Footer')"></Footer>
+  <div class="PageContent">
+    <div class="PageContent_layout">
+      <Header v-if="!ignore('Header')"></Header>
+    </div>
+    <div class="PageContent_layout --flex">
+      <MainContent></MainContent>
+    </div>
+    <div class="PageContent_layout">
+      <Footer v-if="!ignore('Footer')"></Footer>
+    </div>
   </div>
 </template>
 <script>

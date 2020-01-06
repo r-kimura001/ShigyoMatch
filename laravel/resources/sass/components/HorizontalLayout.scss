@@ -1,0 +1,27 @@
+  .HorizontalLayout{
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+    .HorizontalLayout_col{
+      flex-shrink: 0;
+
+      &.--flex{
+        flex-grow: 1;
+        flex-shrink: 1;
+      }
+
+      &.--equal{
+        width: 100%;
+        flex-grow: 1;
+        flex-shrink: 1;
+      }
+    }
+
+    &.--vertical{
+      align-items: center;
+    }
+
+    &.--justifyCenter{
+      justify-content: center;
+    }
+  }

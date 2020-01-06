@@ -6,6 +6,15 @@
   }
 };
 
+@mixin iconFix($pdBase: 10px, $pdLeft: 35px, $iconSize: 20px) {
+  padding: $pdBase $pdBase $pdBase $pdLeft;
+  background-position: left $pdBase center;
+  background-size: $iconSize;
+  background-repeat: no-repeat;
+
+
+}
+
 @mixin media($breakpoint: md) {
   @media #{map-get($breakpoints, $breakpoint)} {
     @content;
