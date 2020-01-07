@@ -33,3 +33,33 @@ img {
   max-width: 100%;
   vertical-align: top;
 }
+
+input,
+textarea,
+select{
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 0;
+  border: 0;
+  outline: none;
+  background: transparent;
+}
+textarea{
+  resize: vertical;
+}
+button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+}
+input[type=checkbox], input[type=radio]{
+  &:checked{
+    // iOSでchekedの状態だと背景が黒くなるので解消
+    background: transparent;
+  }
+}

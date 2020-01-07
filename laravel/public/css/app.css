@@ -624,6 +624,37 @@ img {
   vertical-align: top;
 }
 
+input,
+textarea,
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 0;
+  border: 0;
+  outline: none;
+  background: transparent;
+}
+
+textarea {
+  resize: vertical;
+}
+
+button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+}
+
+input[type=checkbox]:checked,
+input[type=radio]:checked {
+  background: transparent;
+}
+
 .AuthFormLayout {
   width: 600px;
   max-width: 100%;
@@ -752,6 +783,60 @@ img {
   float: right;
 }
 
+.Checkbox input[type=checkbox] {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #a8a3a7;
+  vertical-align: top;
+  cursor: pointer;
+  position: relative;
+}
+
+.Checkbox input[type=checkbox][data-label=弁護士] {
+  color: #4379A9;
+  border-color: #4379A9;
+}
+
+.Checkbox input[type=checkbox][data-label=司法書士] {
+  color: #EC7211;
+  border-color: #EC7211;
+}
+
+.Checkbox input[type=checkbox][data-label=行政書士] {
+  color: #fb7272;
+  border-color: #fb7272;
+}
+
+.Checkbox input[type=checkbox][data-label=税理士] {
+  color: #69D9A1;
+  border-color: #69D9A1;
+}
+
+.Checkbox input[type=checkbox]::after {
+  content: attr(data-label);
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  left: 25px;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  min-width: 100px;
+}
+
+.Checkbox input[type=checkbox]:checked {
+  position: relative;
+}
+
+.Checkbox input[type=checkbox]:checked::before {
+  position: absolute;
+  top: -5px;
+  left: 0;
+  content: "\221A";
+  font-size: 24px;
+  font-weight: bold;
+  color: inherit;
+}
+
 .ContentBox {
   max-width: 1380px;
   margin: 0 auto;
@@ -839,6 +924,7 @@ img {
   background-size: 20px;
   background-repeat: no-repeat;
   background-position: left 10px center;
+  background-color: #fefefe;
 }
 
 .Form .Form_row .Form_button {
@@ -866,11 +952,6 @@ img {
   text-align: right;
 }
 
-.Form .Form_msgWrapper {
-  padding: 10px 0;
-  height: 65px;
-}
-
 .Form .Form_text {
   width: 100%;
   border: 0;
@@ -880,8 +961,10 @@ img {
   background-repeat: no-repeat;
   background-position: left 10px center;
   font-size: 1.6rem;
-  /* textareaの横伸縮禁止 */
-  resize: vertical;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  -webkit-transform-origin: center top 0;
+          transform-origin: center top 0;
 }
 
 .Form .Form_text::-webkit-input-placeholder {
@@ -914,12 +997,6 @@ img {
   border-color: #40aaf0;
 }
 
-.Form .Form_text.\--disable {
-  background: #dedede;
-  color: #dedede;
-  pointer-events: none;
-}
-
 .Form .Form_text.\--chat {
   border: none;
   border-radius: 0;
@@ -930,6 +1007,15 @@ img {
 
 .Form .Form_text.\--register-num {
   background-image: url(https://asset.shigyo-match.site/assets/icon-register-num.svg);
+  margin: 10px 0 20px;
+}
+
+.Form .Form_text.\--register-num.\--disable {
+  font-size: 0;
+  margin: 0;
+  -webkit-transform: scale3d(1, 0, 1);
+          transform: scale3d(1, 0, 1);
+  pointer-events: none;
 }
 
 .Form.\--login {
@@ -1041,6 +1127,11 @@ img {
 
 .GlobalNav .GlobalNav_menu .GlobalNav_item:hover {
   color: #cccccc;
+}
+
+.GlobalNav .GlobalNav_menu .GlobalNav_item.\--current {
+  color: #EC7211;
+  font-weight: bold;
 }
 
 .Header {

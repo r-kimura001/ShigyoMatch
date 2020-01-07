@@ -1892,6 +1892,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
@@ -2477,8 +2489,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _components_Loader__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/components/Loader */ "./resources/js/components/Loader.vue");
-/* harmony import */ var vue_loading_template__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-loading-template */ "./node_modules/vue-loading-template/dist/vueLoading.common.js");
-/* harmony import */ var vue_loading_template__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vue_loading_template__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _mixins_styles__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/mixins/styles */ "./resources/js/mixins/styles.js");
+/* harmony import */ var vue_loading_template__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue-loading-template */ "./node_modules/vue-loading-template/dist/vueLoading.common.js");
+/* harmony import */ var vue_loading_template__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(vue_loading_template__WEBPACK_IMPORTED_MODULE_4__);
 
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -2592,14 +2605,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     Loader: _components_Loader__WEBPACK_IMPORTED_MODULE_2__["default"],
-    VueLoading: vue_loading_template__WEBPACK_IMPORTED_MODULE_3__["VueLoading"]
+    VueLoading: vue_loading_template__WEBPACK_IMPORTED_MODULE_4__["VueLoading"]
   },
+  mixins: [_mixins_styles__WEBPACK_IMPORTED_MODULE_3__["default"]],
   data: function data() {
     return {
       customerData: {
@@ -4376,14 +4394,25 @@ var render = function() {
           "RouterLink",
           {
             staticClass: "GlobalNav_item",
-            attrs: { to: "/greeting", tag: "li" }
+            attrs: {
+              to: "/greeting",
+              tag: "li",
+              "exact-active-class": "--current"
+            }
           },
           [_vm._v("制作者紹介")]
         ),
         _vm._v(" "),
         _c(
           "RouterLink",
-          { staticClass: "GlobalNav_item", attrs: { to: "/works", tag: "li" } },
+          {
+            staticClass: "GlobalNav_item",
+            attrs: {
+              to: "/works",
+              tag: "li",
+              "exact-active-class": "--current"
+            }
+          },
           [_vm._v("案件検索")]
         ),
         _vm._v(" "),
@@ -4391,7 +4420,11 @@ var render = function() {
           "RouterLink",
           {
             staticClass: "GlobalNav_item",
-            attrs: { to: "/customers", tag: "li" }
+            attrs: {
+              to: "/customers",
+              tag: "li",
+              "exact-active-class": "--current"
+            }
           },
           [_vm._v("事務所検索")]
         )
@@ -5218,66 +5251,68 @@ var render = function() {
                           index
                         ) {
                           return _c("div", { key: index }, [
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.customerData.professionIds,
-                                  expression: "customerData.professionIds"
-                                }
-                              ],
-                              attrs: { type: "checkbox" },
-                              domProps: {
-                                value: professionType.id,
-                                checked: Array.isArray(
-                                  _vm.customerData.professionIds
-                                )
-                                  ? _vm._i(
-                                      _vm.customerData.professionIds,
-                                      professionType.id
-                                    ) > -1
-                                  : _vm.customerData.professionIds
-                              },
-                              on: {
-                                change: function($event) {
-                                  var $$a = _vm.customerData.professionIds,
-                                    $$el = $event.target,
-                                    $$c = $$el.checked ? true : false
-                                  if (Array.isArray($$a)) {
-                                    var $$v = professionType.id,
-                                      $$i = _vm._i($$a, $$v)
-                                    if ($$el.checked) {
-                                      $$i < 0 &&
-                                        _vm.$set(
-                                          _vm.customerData,
-                                          "professionIds",
-                                          $$a.concat([$$v])
-                                        )
+                            _c("div", { staticClass: "Checkbox" }, [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.customerData.professionIds,
+                                    expression: "customerData.professionIds"
+                                  }
+                                ],
+                                attrs: {
+                                  type: "checkbox",
+                                  "data-label": professionType.body
+                                },
+                                domProps: {
+                                  value: professionType.id,
+                                  checked: Array.isArray(
+                                    _vm.customerData.professionIds
+                                  )
+                                    ? _vm._i(
+                                        _vm.customerData.professionIds,
+                                        professionType.id
+                                      ) > -1
+                                    : _vm.customerData.professionIds
+                                },
+                                on: {
+                                  change: function($event) {
+                                    var $$a = _vm.customerData.professionIds,
+                                      $$el = $event.target,
+                                      $$c = $$el.checked ? true : false
+                                    if (Array.isArray($$a)) {
+                                      var $$v = professionType.id,
+                                        $$i = _vm._i($$a, $$v)
+                                      if ($$el.checked) {
+                                        $$i < 0 &&
+                                          _vm.$set(
+                                            _vm.customerData,
+                                            "professionIds",
+                                            $$a.concat([$$v])
+                                          )
+                                      } else {
+                                        $$i > -1 &&
+                                          _vm.$set(
+                                            _vm.customerData,
+                                            "professionIds",
+                                            $$a
+                                              .slice(0, $$i)
+                                              .concat($$a.slice($$i + 1))
+                                          )
+                                      }
                                     } else {
-                                      $$i > -1 &&
-                                        _vm.$set(
-                                          _vm.customerData,
-                                          "professionIds",
-                                          $$a
-                                            .slice(0, $$i)
-                                            .concat($$a.slice($$i + 1))
-                                        )
+                                      _vm.$set(
+                                        _vm.customerData,
+                                        "professionIds",
+                                        $$c
+                                      )
                                     }
-                                  } else {
-                                    _vm.$set(
-                                      _vm.customerData,
-                                      "professionIds",
-                                      $$c
-                                    )
                                   }
                                 }
-                              }
-                            }),
-                            _vm._v(
-                              _vm._s(professionType.body) +
-                                "\n                  "
-                            ),
+                              })
+                            ]),
+                            _vm._v(" "),
                             _c("div", { staticClass: "Form_msgWrapper" }, [
                               _c("input", {
                                 directives: [
@@ -26410,6 +26445,24 @@ __webpack_require__.r(__webpack_exports__);
       return {
         backgroundImage: "url(".concat(_util__WEBPACK_IMPORTED_MODULE_0__["BASE_STORAGE_URL"], "/").concat(dirType, "/").concat(imageSrc, ")")
       };
+    },
+    colorById: function colorById(id) {
+      switch (id) {
+        case 1:
+          return '#4379A9';
+
+        case 2:
+          return '#EC7211';
+
+        case 3:
+          return '#fb7272';
+
+        case 4:
+          return '#69D9A1';
+
+        default:
+          return '#a8a3a7';
+      }
     }
   }
 });
