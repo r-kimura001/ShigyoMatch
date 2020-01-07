@@ -1,7 +1,65 @@
 .Sidebar{
+  .Sidebar_listBody{
+    cursor: pointer;
+    transition: $transitionBasis;
+    padding: 10px;
+    border-color: transparent;
+    .Sidebar_listLabel{
+      @include iconFix();
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: inherit;
+      border-style: solid;
+      border-width: 0 3px 0 3px;
+      border-color: inherit;
+    }
 
-  .Sidebar_listItem{
-    @include iconFix(15px, 55px, 24px);
+    &:hover{
+      color: $orange;
+    }
+    &.--current{
+      color: $orange;
+      border-color: $orange;
+      pointer-events: none;
+    }
   }
 
+  @include media() {
+    .Sidebar_list {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+
+      .Sidebar_listItem {
+        flex: 1;
+        width: 100%;
+        max-width: 100px;
+
+        .Sidebar_listBody {
+          padding: 0;
+        }
+
+        .Sidebar_listLabel {
+          padding: 45px 5px 5px;
+          background-size: 2.4rem;
+          background-position: center;
+          border-width: 0 0 2px 0;
+          text-align: center;
+          @include media(sm){
+            padding: 15px 5px;
+            background-size: 2rem;
+          }
+
+        .Sidebar_listText {
+          font-size: 1rem;
+          @include media(sm-y){
+            display: none;
+          }
+        }
+
+      }
+    }
+  }
+
+  }
 }
