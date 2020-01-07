@@ -1,0 +1,47 @@
+.Checkbox{
+  input[type=checkbox]{
+    width: 20px;
+    height: 20px;
+    border: 2px solid $gray;
+    vertical-align: top;
+    cursor: pointer;
+    position: relative;
+    &[data-label='弁護士']{
+      color: $lawyerColor;
+      border-color: $lawyerColor;
+    }
+    &[data-label='司法書士']{
+      color: $judicialScrivenerColor;
+      border-color: $judicialScrivenerColor;
+    }
+    &[data-label='行政書士']{
+      color: $notaryScrivenerColor;
+      border-color: $notaryScrivenerColor;
+    }
+    &[data-label='税理士']{
+      color: $taxAccountantColor;
+      border-color: $taxAccountantColor;
+    }
+    &::after{
+      content: attr(data-label);
+      display: inline-block;
+      position: absolute;
+      top: 50%;
+      left: 25px;
+      transform: translateY(-50%);
+      min-width: 100px;
+    }
+    &:checked{
+      position: relative;
+      &::before{
+        position: absolute;
+        top: -5px;
+        left: 0;
+        content: '\0221A';
+        font-size: 24px;
+        font-weight: bold;
+        color: inherit;
+      }
+    }
+  }
+}

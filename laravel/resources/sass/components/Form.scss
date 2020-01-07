@@ -65,6 +65,7 @@
       background-size: 20px;
       background-repeat: no-repeat;
       background-position: left 10px center;
+      background-color: $white;
     }
     .Form_button{
       padding: 10px 12px;
@@ -89,10 +90,6 @@
     width: 100px;
     text-align: right;
   }
-  .Form_msgWrapper{
-    padding: 10px 0;
-    height: 65px;
-  }
   .Form_text{
     width: 100%;
     border: 0;
@@ -102,8 +99,8 @@
     background-repeat: no-repeat;
     background-position: left 10px center;
     font-size: 1.6rem;
-    /* textareaの横伸縮禁止 */
-    resize: vertical;
+    transition: $transitionBasis;
+    transform-origin: center top 0;
     &::placeholder{
       color: $gray-3;
       font-size: 1.4rem;
@@ -112,12 +109,6 @@
     &:focus{
       outline: none;
       border-color: $focusBlue;
-    }
-
-    &.--disable{
-      background: $gray-3;
-      color: $gray-3;
-      pointer-events: none;
     }
 
     &.--chat{
@@ -130,6 +121,13 @@
 
     &.--register-num{
       background-image: url(#{$assetPath}/icon-register-num.svg);
+      margin: 10px 0 20px;
+      &.--disable{
+        font-size: 0;
+        margin: 0;
+        transform: scale3d(1, 0, 1);
+        pointer-events: none;
+      }
     }
 
   }

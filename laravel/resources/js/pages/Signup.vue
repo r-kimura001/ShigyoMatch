@@ -65,11 +65,14 @@
                     v-for="(professionType, index) in professionTypes"
                     :key="index"
                   >
-                    <input
-                      v-model="customerData.professionIds"
-                      type="checkbox"
-                      :value="professionType.id"
-                    />{{ professionType.body }}
+                    <div class="Checkbox">
+                      <input
+                        v-model="customerData.professionIds"
+                        type="checkbox"
+                        :value="professionType.id"
+                        :data-label="professionType.body"
+                      />
+                    </div>
                     <div class="Form_msgWrapper">
                       <input
                         v-model="
@@ -106,6 +109,7 @@
 <script>
 import { mapState, mapGetters } from 'vuex'
 import Loader from '@/components/Loader'
+import styles from '@/mixins/styles'
 import { VueLoading } from 'vue-loading-template'
 
 export default {
@@ -113,6 +117,7 @@ export default {
     Loader,
     VueLoading,
   },
+  mixins: [styles],
   data() {
     return {
       customerData: {
