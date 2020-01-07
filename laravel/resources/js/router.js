@@ -88,58 +88,52 @@ const routes = [
   {
     path: '/mypage',
     component: MyPage,
-    beforeEnter (to, from, next) {
-      if (!store.getters['auth/isLogin']) {
-        next('/')
-      } else {
-        next()
-      }
-    },
     children: [
       {
         path: ':id',
         component: Base,
-        props: true,
+        props: route => ({
+          id: String(route.params.id)
+        }),
+        beforeEnter (to, from, next) {
+          if (!store.getters['auth/isLogin']) {
+            next('/')
+          } else {
+            next()
+          }
+        },
         children: [
           {
             path: '/',
             component: Home,
-            props: true
           },
           {
             path: 'applies',
             component: Applies,
-            props: true,
           },
           {
             path: 'chats',
             component: Chats,
-            props: true,
           },
           {
             path: 'favorites',
             component: Favorites,
-            props: true,
           },
           {
             path: 'matches',
             component: Matches,
-            props: true,
           },
           {
             path: 'messages',
             component: Messages,
-            props: true,
           },
           {
             path: 'profile',
             component: Profile,
-            props: true,
           },
           {
             path: 'scouts',
             component: Scouts,
-            props: true,
           },
         ]
       },
@@ -155,7 +149,7 @@ const routes = [
     component: ServerError,
   },
   {
-    path: '/not-found',
+    path: '/*',
     component: NotFound,
   },
 ]

@@ -1,4 +1,8 @@
 .GlobalNav{
+  z-index: 1;
+  .GlobalNav_toggle{
+    display: none;
+  }
   .GlobalNav_menu{
     display: flex;
     align-items: center;
@@ -19,6 +23,64 @@
       &.--current{
         color: $orange;
         font-weight: bold;
+      }
+    }
+  }
+
+  @include media(){
+    .GlobalNav_toggle{
+      position: fixed;
+      top: 5px;
+      right: 5px;
+      display: inline-block;
+      padding: 5px;
+      align-self: flex-end;
+      cursor: pointer;
+      z-index: 1;
+      .Globalnav_toggleLine{
+        transform-origin: center;
+        transition: $transitionBasis;
+        display: block;
+        width: 25px;
+        border-top: 1px solid $gray;
+        margin: 8px 5px;
+      }
+      &.--open {
+        .Globalnav_toggleLine {
+          &.--first {
+            transform: translateY(9px) rotate(45deg);
+          }
+          &.--second {
+            opacity: 0;
+          }
+          &.--third {
+            transform: translateY(-9px) rotate(-45deg);
+          }
+        }
+      }
+    }
+
+    .GlobalNav_menu{
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      background: $gray-5;
+      flex-direction: column;
+      padding: 30px 10px 0;
+      width: 100%;
+      transform: translateX(100%);
+      pointer-events: none;
+      transition: $transitionBasis;
+      .GlobalNav_item{
+        padding: 15px 10px;
+        max-width: initial;
+        border-bottom: 1px solid $gray-2;
+      }
+
+      &.--open{
+        transform: none;
+        pointer-events: initial;
       }
     }
   }

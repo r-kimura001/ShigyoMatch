@@ -9,6 +9,11 @@
     background: $headerColor;
     border-bottom: $basePartition;
     box-shadow: 0 2px 5px $gray-3;
+    z-index: $headerZIndex;
+
+    @include media(){
+      padding: 12px 0;
+    }
 
   }
   .Header_fix{

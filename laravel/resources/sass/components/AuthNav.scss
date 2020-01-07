@@ -1,0 +1,53 @@
+.AuthNav{
+  position: relative;
+  .AuthNav_toggle{
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid $gray-4;
+    overflow: hidden;
+    margin-right: 28px;
+    cursor: pointer;
+  }
+  .AuthNav_menu{
+    background: $deepGray;
+    color: $white;
+    font-size: 1.3rem;
+    position: absolute;
+    top: 42px;
+    right: 0;
+    white-space: nowrap;
+    transition: $transitionBasis;
+    transform-origin: center top;
+    transform: scale3d(0,0,1);
+    &::after{
+      content: '';
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 10px 5px 10px 5px;
+      border-color: transparent transparent $deepGray transparent;
+      transform: translateX(-50%);
+    }
+
+  }
+  .AuthNav_item{
+    padding: 10px 12px;
+    cursor: pointer;
+    transition: $transitionBasis;
+
+    &:hover{
+      background: $gray-2;
+    }
+  }
+
+  &.--open{
+    .AuthNav_menu{
+      transform: none;
+    }
+  }
+
+}

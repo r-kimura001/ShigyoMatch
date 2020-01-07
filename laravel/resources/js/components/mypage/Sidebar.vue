@@ -1,15 +1,21 @@
 <template>
   <div class="Sidebar">
-    <div v-for="(list, index) in lists" :key="index">
-      <RouterLink
-        :to="`/mypage/${id}/${list.path}/`"
-        tag="div"
-        class="Sidebar_listItem"
-        :style="bgImage('assets', list.iconSrc)"
-        >{{ list.name }}</RouterLink
-      >
+    <div class="Sidebar_list">
+      <div v-for="(list, index) in lists" :key="index" class="Sidebar_listItem">
+        <RouterLink
+          :to="`/mypage/${id}${list.path}`"
+          tag="div"
+          class="Sidebar_listBody"
+          exact-active-class="--current"
+          ><div
+            class="Sidebar_listLabel"
+            :style="bgImage('assets', list.iconSrc)"
+          >
+            <span class="Sidebar_listText">{{ list.name }}</span>
+          </div>
+        </RouterLink>
+      </div>
     </div>
-    <div>ログアウト</div>
   </div>
 </template>
 <script>
@@ -32,37 +38,37 @@ export default {
         },
         {
           name: 'プロフィール',
-          path: 'profiles',
+          path: '/profile',
           iconSrc: 'icon-profile.svg',
         },
         {
           name: 'マッチング履歴',
-          path: 'matches',
+          path: '/matches',
           iconSrc: 'icon-match.svg',
         },
         {
           name: 'スカウト',
-          path: 'scouts',
-          iconSrc: '',
+          path: '/scouts',
+          iconSrc: 'icon-scout.svg',
         },
         {
           name: '申込',
-          path: 'applies',
+          path: '/applies',
           iconSrc: '',
         },
         {
           name: '気になる',
-          path: 'favorites',
+          path: '/favorites',
           iconSrc: 'icon-favorite.svg',
         },
         {
           name: 'メッセージ',
-          path: 'messages',
+          path: '/messages',
           iconSrc: 'icon-mail-line.svg',
         },
         {
           name: 'チャットルーム',
-          path: 'chats',
+          path: '/chats',
           iconSrc: 'icon-chat.svg',
         },
       ],

@@ -7,23 +7,24 @@
             >士業のマッチングサイトです</RouterLink
           >
           <GlobalNav class="HorizontalLayout_col --flex"></GlobalNav>
+          <div v-if="isLogin" class="HorizontalLayout_col">
+            <AuthNav :customer="customer" @clickLogout="logout"></AuthNav>
+          </div>
           <div class="HorizontalLayout_col">
             <RouterLink
               v-if="!isLogin()"
-              tag="button"
               to="/login"
+              tag="button"
               class="Button --small --green --hasShadow"
               >ログイン</RouterLink
             >
             <RouterLink
+              v-if="!isLogin()"
               to="/signup"
               tag="button"
               class="Button --small --pink --hasShadow"
               >新規登録</RouterLink
             >
-            <button v-if="isLogin()" class="Button --small" @click="logout">
-              ログアウト
-            </button>
           </div>
         </div>
         <!-- HorizontalLayout -->
@@ -37,18 +38,24 @@
 </template>
 <script>
 import GlobalNav from '@/components/GlobalNav'
+import AuthNav from '@/components/AuthNav'
 import MainVisual from '@/components/MainVisual'
 import switchDisplay from '@/mixins/switchDisplay'
-import { mapGetters } from 'vuex'
+import { mapGetters, mapState } from 'vuex'
 export default {
   components: {
     GlobalNav,
     MainVisual,
+    AuthNav,
   },
   mixins: [switchDisplay],
   computed: {
+    ...mapState({
+      customer: state => state.auth.customer,
+    }),
     ...mapGetters({
       authCheck: 'auth/isLogin',
+      customerId: 'auth/customerId',
     }),
   },
   methods: {
@@ -59,6 +66,7 @@ export default {
         this.$router.push('/login')
       }
     },
+
     isLogin() {
       return this.authCheck
     },
