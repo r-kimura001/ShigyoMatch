@@ -679,10 +679,12 @@ input[type=radio]:checked {
 }
 
 .AuthNav .AuthNav_toggle {
-  width: 32px;
-  height: 32px;
+  width: 33px;
+  height: 33px;
   border-radius: 50%;
-  border: 1px solid #f0f0f0;
+  background: #dedede;
+  background-position: center;
+  background-size: cover;
   overflow: hidden;
   margin-right: 28px;
   cursor: pointer;
@@ -696,8 +698,8 @@ input[type=radio]:checked {
   top: 42px;
   right: 0;
   white-space: nowrap;
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
+  -webkit-transition: 0.15s;
+  transition: 0.15s;
   -webkit-transform-origin: center top;
           transform-origin: center top;
   -webkit-transform: scale3d(0, 0, 1);
@@ -741,7 +743,7 @@ input[type=radio]:checked {
   min-width: 110px;
   font-size: 1.6rem;
   cursor: pointer;
-  padding: 8px 12px;
+  padding: 10px 12px;
   text-align: center;
   -webkit-transition: 0.3s;
   transition: 0.3s;
@@ -771,7 +773,7 @@ input[type=radio]:checked {
 }
 
 .Button.\--green {
-  background: #62bfa3;
+  background: #4CAF93;
 }
 
 .Button.\--flex {
@@ -780,15 +782,19 @@ input[type=radio]:checked {
 }
 
 .Button.\--small {
-  font-size: 1.2rem;
-  padding: 6px 10px;
+  font-size: 1.4rem;
+  padding: 8px 10px;
   min-width: initial;
 }
 
 .Button.\--large {
   font-weight: bold;
   padding: 12px 16px;
-  font-size: 1.6rem;
+  font-size: 1.8rem;
+}
+
+.Button.\--secondary {
+  background: #cccccc;
 }
 
 .Button.\--hasShadow {
@@ -916,11 +922,6 @@ input[type=radio]:checked {
   }
 }
 
-.Form {
-  max-width: 600px;
-  margin: 0 auto;
-}
-
 .Form.\--noMaxWidth {
   max-width: inherit;
 }
@@ -981,26 +982,173 @@ input[type=radio]:checked {
   height: 18px;
 }
 
-.Form .Form_row .Form_text {
-  border: 0;
-  border-bottom: 2px solid #dedede;
-  border-radius: 0;
-  width: 100%;
-  padding: 10px 10px 10px 35px;
+.Form .Form_row .Form_label {
+  padding: 10px 10px 10px 38px;
+  background-position: left 10px center;
   background-size: 20px;
   background-repeat: no-repeat;
+  color: #dedede;
+  font-size: 1.4rem;
+}
+
+.Form .Form_row .Form_label.\--id {
+  background-image: url(https://asset.shigyo-match.site/assets/icon-man.svg);
+}
+
+.Form .Form_row .Form_label[type=password] {
+  background-image: url(https://asset.shigyo-match.site/assets/icon-password.svg);
+}
+
+.Form .Form_row .Form_label[type=email] {
+  background-image: url(https://asset.shigyo-match.site/assets/icon-mail.svg);
+}
+
+.Form .Form_row .Form_label[type=url] {
+  background-image: url(https://asset.shigyo-match.site/assets/icon-website.svg);
+}
+
+.Form .Form_row .Form_label[name=name] {
+  background-image: url(https://asset.shigyo-match.site/assets/icon-office.svg);
+}
+
+.Form .Form_row .Form_label[name=zip_code] {
+  background-image: url(https://asset.shigyo-match.site/assets/icon-post.svg);
+}
+
+.Form .Form_row .Form_label[name=building] {
+  background-image: url(https://asset.shigyo-match.site/assets/icon-building.svg);
+}
+
+.Form .Form_row .Form_label[name=greeting] {
+  background-image: url(https://asset.shigyo-match.site/assets/icon-pen.svg);
+}
+
+.Form .Form_row .Form_label.\--place {
+  background-image: url(https://asset.shigyo-match.site/assets/icon-map.svg);
+}
+
+.Form .Form_row .Form_text,
+.Form .Form_row .Form_textarea {
+  padding: 10px 10px 10px 38px;
   background-position: left 10px center;
+  background-size: 20px;
+  background-repeat: no-repeat;
+  width: 100%;
+  border: 0;
+  border-bottom: 2px solid #dedede;
   background-color: #fefefe;
+  font-size: 1.6rem;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  -webkit-transform-origin: center top 0;
+          transform-origin: center top 0;
+}
+
+.Form .Form_row .Form_text::-webkit-input-placeholder, .Form .Form_row .Form_textarea::-webkit-input-placeholder {
+  color: #dedede;
+  font-size: 1.4rem;
+}
+
+.Form .Form_row .Form_text::-moz-placeholder, .Form .Form_row .Form_textarea::-moz-placeholder {
+  color: #dedede;
+  font-size: 1.4rem;
+}
+
+.Form .Form_row .Form_text:-ms-input-placeholder, .Form .Form_row .Form_textarea:-ms-input-placeholder {
+  color: #dedede;
+  font-size: 1.4rem;
+}
+
+.Form .Form_row .Form_text::-ms-input-placeholder, .Form .Form_row .Form_textarea::-ms-input-placeholder {
+  color: #dedede;
+  font-size: 1.4rem;
+}
+
+.Form .Form_row .Form_text::placeholder,
+.Form .Form_row .Form_textarea::placeholder {
+  color: #dedede;
+  font-size: 1.4rem;
+}
+
+.Form .Form_row .Form_text:focus,
+.Form .Form_row .Form_textarea:focus {
+  outline: none;
+  border-color: #33ba7c;
+}
+
+.Form .Form_row .Form_text.\--short,
+.Form .Form_row .Form_textarea.\--short {
+  max-width: 300px;
+}
+
+.Form .Form_row .Form_text.\--id {
+  background-image: url(https://asset.shigyo-match.site/assets/icon-man.svg);
+}
+
+.Form .Form_row .Form_text[type=password] {
+  background-image: url(https://asset.shigyo-match.site/assets/icon-password.svg);
+}
+
+.Form .Form_row .Form_text[type=email] {
+  background-image: url(https://asset.shigyo-match.site/assets/icon-mail.svg);
+}
+
+.Form .Form_row .Form_text[type=url] {
+  background-image: url(https://asset.shigyo-match.site/assets/icon-website.svg);
+}
+
+.Form .Form_row .Form_text[name=name] {
+  background-image: url(https://asset.shigyo-match.site/assets/icon-office.svg);
+}
+
+.Form .Form_row .Form_text[name=zip_code] {
+  background-image: url(https://asset.shigyo-match.site/assets/icon-post.svg);
+}
+
+.Form .Form_row .Form_text[name=building] {
+  background-image: url(https://asset.shigyo-match.site/assets/icon-building.svg);
+}
+
+.Form .Form_row .Form_text[name=greeting] {
+  background-image: url(https://asset.shigyo-match.site/assets/icon-pen.svg);
+}
+
+.Form .Form_row .Form_text.\--place {
+  background-image: url(https://asset.shigyo-match.site/assets/icon-map.svg);
+}
+
+.Form .Form_row .Form_text.\--register-num {
+  background-image: url(https://asset.shigyo-match.site/assets/icon-license.svg);
+  margin: 10px 0 20px;
+}
+
+.Form .Form_row .Form_text.\--register-num.\--disable {
+  font-size: 0;
+  margin: 0;
+  -webkit-transform: scale3d(1, 0, 1);
+          transform: scale3d(1, 0, 1);
+  pointer-events: none;
+}
+
+.Form .Form_row .Form_textarea {
+  border: 2px solid #dedede;
+  padding: 10px;
 }
 
 .Form .Form_row .Form_button {
   padding: 10px 12px;
   width: 100%;
-  background: #e44963;
+  max-width: 300px;
+  background: #33ba7c;
   color: #fefefe;
   -webkit-transition: 0.3s;
   transition: 0.3s;
   cursor: pointer;
+  letter-spacing: 0.2rem;
+}
+
+.Form .Form_row .Form_button.\--radius {
+  border-radius: 9999px;
 }
 
 .Form .Form_row .Form_button:hover {
@@ -1011,77 +1159,17 @@ input[type=radio]:checked {
   outline: 0;
 }
 
-.Form .Form_label {
-  margin-right: 10px;
-  flex-shrink: 0;
-  width: 100px;
-  text-align: right;
-}
-
-.Form .Form_text {
-  width: 100%;
-  border: 0;
-  border-bottom: 2px solid #dedede;
-  padding: 10px 10px 10px 32px;
-  background-size: 20px;
-  background-repeat: no-repeat;
-  background-position: left 10px center;
-  font-size: 1.6rem;
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
-  -webkit-transform-origin: center top 0;
-          transform-origin: center top 0;
-}
-
-.Form .Form_text::-webkit-input-placeholder {
-  color: #dedede;
-  font-size: 1.4rem;
-}
-
-.Form .Form_text::-moz-placeholder {
-  color: #dedede;
-  font-size: 1.4rem;
-}
-
-.Form .Form_text:-ms-input-placeholder {
-  color: #dedede;
-  font-size: 1.4rem;
-}
-
-.Form .Form_text::-ms-input-placeholder {
-  color: #dedede;
-  font-size: 1.4rem;
-}
-
-.Form .Form_text::placeholder {
-  color: #dedede;
-  font-size: 1.4rem;
-}
-
-.Form .Form_text:focus {
-  outline: none;
-  border-color: #40aaf0;
-}
-
-.Form .Form_text.\--chat {
-  border: none;
-  border-radius: 0;
-  width: 100%;
-  max-height: 100px;
-  resize: none;
-}
-
-.Form .Form_text.\--register-num {
-  background-image: url(https://asset.shigyo-match.site/assets/icon-register-num.svg);
-  margin: 10px 0 20px;
-}
-
-.Form .Form_text.\--register-num.\--disable {
-  font-size: 0;
-  margin: 0;
-  -webkit-transform: scale3d(1, 0, 1);
-          transform: scale3d(1, 0, 1);
+.Form .Form_row .Form_file {
+  opacity: 0;
   pointer-events: none;
+  width: 0;
+  height: 0;
+}
+
+.Form .Form_row .Form_thumb {
+  display: block;
+  width: 100%;
+  max-width: 350px;
 }
 
 .Form.\--login {
@@ -1093,14 +1181,6 @@ input[type=radio]:checked {
   border-radius: 9999px;
   border: 2px solid transparent;
   box-shadow: 0 3px 10px #cccccc;
-}
-
-.Form.\--login .Form_text.\--id {
-  background-image: url(https://asset.shigyo-match.site/assets/icon-id.svg);
-}
-
-.Form.\--login .Form_text[type=password] {
-  background-image: url(https://asset.shigyo-match.site/assets/icon-password.svg);
 }
 
 .Form.\--login .Form_text:focus {
@@ -1118,43 +1198,6 @@ input[type=radio]:checked {
 .Form.\--signup {
   max-width: 300px;
   margin: 0 auto;
-}
-
-.Form.\--signup .Form_text[type=password] {
-  background-image: url(https://asset.shigyo-match.site/assets/icon-password.svg);
-}
-
-.Form.\--signup .Form_text[type=email] {
-  background-image: url(https://asset.shigyo-match.site/assets/icon-mail.svg);
-}
-
-.Form.\--signup .Form_text[name=name] {
-  background-image: url(https://asset.shigyo-match.site/assets/icon-office.svg);
-}
-
-.Form.\--signup .Form_text::-webkit-input-placeholder {
-  color: #dedede;
-  font-size: 1.4rem;
-}
-
-.Form.\--signup .Form_text::-moz-placeholder {
-  color: #dedede;
-  font-size: 1.4rem;
-}
-
-.Form.\--signup .Form_text:-ms-input-placeholder {
-  color: #dedede;
-  font-size: 1.4rem;
-}
-
-.Form.\--signup .Form_text::-ms-input-placeholder {
-  color: #dedede;
-  font-size: 1.4rem;
-}
-
-.Form.\--signup .Form_text::placeholder {
-  color: #dedede;
-  font-size: 1.4rem;
 }
 
 .Form.\--signup .Form_text:focus {
@@ -1412,7 +1455,7 @@ input[type=radio]:checked {
 }
 
 .MainVisual {
-  background: #62bfa3;
+  background: #4CAF93;
 }
 
 .MypageContent {
@@ -1423,11 +1466,18 @@ input[type=radio]:checked {
 
 .MypageContent .MypageContent_main {
   margin-left: 240px;
+  padding: 0 30px;
 }
 
 @media screen and (max-width: 768px) {
   .MypageContent .MypageContent_main {
     margin: 0;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .MypageContent .MypageContent_main {
+    padding: 0 10px;
   }
 }
 
@@ -1479,6 +1529,26 @@ input[type=radio]:checked {
 .PageContent .PageContent_layout.\--flex {
   -webkit-box-flex: 1;
           flex-grow: 1;
+}
+
+.ProfileFormLayout {
+  max-width: 840px;
+}
+
+.Selectbox {
+  border-bottom: 2px solid #dedede;
+  border-radius: 0;
+  padding: 10px;
+  width: 100%;
+  background-image: url(https://asset.shigyo-match.site/assets/icon-dropdown.svg);
+  background-size: 30px;
+  background-repeat: no-repeat;
+  background-position: bottom 5px right 10px;
+  cursor: pointer;
+}
+
+.Selectbox.\--short {
+  max-width: 300px;
 }
 
 .Sidebar .Sidebar_listBody {

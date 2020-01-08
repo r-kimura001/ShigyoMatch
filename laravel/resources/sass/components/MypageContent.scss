@@ -5,8 +5,13 @@
 
   .MypageContent_main{
     margin-left: 240px;
+    padding: 0 30px;
+
     @include media(){
       margin: 0;
+    }
+    @include media(sm){
+      padding: 0 10px;
     }
   }
   .MypageContent_sidebar{

@@ -22,7 +22,7 @@ class CreateCustomersTable extends Migration
       $table->string('address')->nullable();
       $table->string('building')->nullable();
       $table->string('url')->nullable();
-      $table->string('file_name', 12)->unique()->nullable();
+      $table->string('file_name', 80)->unique()->nullable();
       $table->text('greeting')->nullable();
       $table->timestamps();
       $table->softDeletes();

@@ -11,29 +11,13 @@
     </button>
     <ul class="GlobalNav_menu" :class="{ '--open': isOpen }">
       <RouterLink
-        to="/greeting"
+        v-for="(item, index) in navs"
+        :key="index"
+        :to="`${item.path}`"
         tag="li"
         class="GlobalNav_item"
         exact-active-class="--current"
-        @click="hideMenu()"
-        >制作者紹介</RouterLink
-      >
-      <RouterLink
-        to="/works"
-        tag="li"
-        class="GlobalNav_item"
-        a
-        exact-active-class="--current"
-        @click="hideMenu()"
-        >案件検索</RouterLink
-      >
-      <RouterLink
-        to="/customers"
-        tag="li"
-        class="GlobalNav_item"
-        exact-active-class="--current"
-        @click="hideMenu()"
-        >事務所検索</RouterLink
+        >{{ item.name }}</RouterLink
       >
     </ul>
   </nav>
@@ -43,6 +27,20 @@ export default {
   data() {
     return {
       isOpen: false,
+      navs: [
+        {
+          path: '/greeting',
+          name: '制作者紹介',
+        },
+        {
+          path: '/works',
+          name: '案件検索',
+        },
+        {
+          path: '/customers',
+          name: '事務所検索',
+        },
+      ],
     }
   },
   watch: {

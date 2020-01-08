@@ -9,7 +9,7 @@
           exact-active-class="--current"
           ><div
             class="Sidebar_listLabel"
-            :style="bgImage('assets', list.iconSrc)"
+            :style="bgImage(`assets/${list.iconSrc}`)"
           >
             <span class="Sidebar_listText">{{ list.name }}</span>
           </div>

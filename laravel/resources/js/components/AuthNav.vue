@@ -1,8 +1,10 @@
 <template>
   <div class="AuthNav" :class="{ '--open': isOpen }">
-    <button class="AuthNav_toggle" @click="toggleMenu">
-      <img src="" alt="" class="AuthNav_toggleSrc" />
-    </button>
+    <button
+      class="AuthNav_toggle"
+      :style="bgImage(authImageSrc)"
+      @click="toggleMenu"
+    ></button>
     <ul class="AuthNav_menu">
       <RouterLink :to="`/mypage/${customer.id}`" tag="li" class="AuthNav_item"
         >マイページ</RouterLink
@@ -12,7 +14,10 @@
   </div>
 </template>
 <script>
+import styles from '@/mixins/styles'
+import { BASE_STORAGE_URL } from '@/util'
 export default {
+  mixins: [styles],
   props: {
     customer: {
       type: Object,
@@ -24,12 +29,26 @@ export default {
       isOpen: false,
     }
   },
+  computed: {
+    authImageSrc() {
+      return this.customer.file_name
+        ? this.customer.file_name
+        : 'assets/icon-no-user-thumb.svg'
+    },
+  },
+  watch: {
+    // ルートが変更されたらfetchDataメソッドを再び呼び出します
+    $route: 'fetchData',
+  },
   methods: {
     clickLogout() {
       this.$emit('clickLogout')
     },
     toggleMenu() {
       this.isOpen = !this.isOpen
+    },
+    fetchData() {
+      this.isOpen = false
     },
   },
 }

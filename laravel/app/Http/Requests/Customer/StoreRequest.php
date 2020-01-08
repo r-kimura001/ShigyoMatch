@@ -27,7 +27,7 @@ class StoreRequest extends UpdateRequest
       return [
         'email' => 'required|email|unique:users,email',
         'name' => 'required|max:100',
-        'zipcode' => 'nullable|numeric|max:9999999',
+        'zip_code' => 'nullable|numeric|max:9999999',
         'pref_code' => 'nullable|numeric|max:47',
         'city' => 'nullable|string|max:50',
         'address' => 'nullable|string|max:255',

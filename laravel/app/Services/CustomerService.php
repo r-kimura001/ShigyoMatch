@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Repositories\CustomerRepository;
 use App\Models\Customer;
 use App\Models\User;
+
 class CustomerService extends Service
 {
   protected $customerRep;
@@ -13,7 +14,9 @@ class CustomerService extends Service
    * CustomerService constructor.
    * @param CustomerRepository $customerRep
    */
-  public function __construct(CustomerRepository $customerRep)
+  public function __construct(
+    CustomerRepository $customerRep
+  )
   {
     $this->customerRep = $customerRep;
   }
@@ -50,6 +53,22 @@ class CustomerService extends Service
 
     return $createdCustomer;
 
+  }
+
+
+  public function update(Customer $customer, array $data)
+  {
+    $customer->updateByUser($data);
+    $customer->user->updateByUser($data);
+
+    // customer_profession_typeの登録
+    $registerNumbers = json_decode($data['registerNumbers'], true);
+    $professionIds = explode(',', $data['professionIds']);
+
+    foreach($professionIds as $professionId){
+      $professionTypes[$professionId] = ['register_number' => $registerNumbers[$professionId]];
+    }
+    $customer->professionTypes()->sync($professionTypes);
   }
 
   /**

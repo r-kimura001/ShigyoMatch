@@ -1,7 +1,5 @@
 
 .Form{
-  max-width: 600px;
-  margin: 0 auto;
 
   &.--noMaxWidth{
     max-width: inherit;
@@ -56,24 +54,70 @@
     .Form_errorBox{
       height: 18px;
     }
-    .Form_text{
+    .Form_label{
+      @include iconFix(10px, 38px, 10px, 20px);
+      color: $gray-3;
+      font-size: 1.4rem;
+
+      @include formIcons();
+    }
+    .Form_text,
+    .Form_textarea{
+      @include iconFix(10px, 38px, 10px, 20px);
+
+      width: 100%;
       border: 0;
       border-bottom: 2px solid $gray-3;
-      border-radius: 0;
-      width: 100%;
-      padding: 10px 10px 10px 35px;
-      background-size: 20px;
-      background-repeat: no-repeat;
-      background-position: left 10px center;
       background-color: $white;
+      font-size: 1.6rem;
+      transition: $transitionBasis;
+      transform-origin: center top 0;
+      &::placeholder{
+        color: $gray-3;
+        font-size: 1.4rem;
+      }
+
+      &:focus{
+        outline: none;
+        border-color: $green;;
+      }
+      &.--short{
+        max-width: 300px;
+      }
     }
+    .Form_text{
+      // icons
+      @include formIcons();
+      &.--register-num{
+        background-image: url(#{$assetPath}/icon-license.svg);
+        margin: 10px 0 20px;
+        &.--disable{
+          font-size: 0;
+          margin: 0;
+          transform: scale3d(1, 0, 1);
+          pointer-events: none;
+        }
+      }
+    }
+
+    .Form_textarea{
+      border: 2px solid $gray-3;
+      padding: 10px;
+    }
+
     .Form_button{
       padding: 10px 12px;
       width: 100%;
-      background: $redPink;
+      max-width: 300px;
+      background: $green;
       color: $white;
       transition: $transitionBasis;
       cursor: pointer;
+      letter-spacing: 0.2rem;
+
+      &.--radius{
+        border-radius: 9999px;
+      }
 
       &:hover{
         opacity: 0.8;
@@ -82,54 +126,18 @@
         outline: 0;
       }
     }
-  }
 
-  .Form_label{
-    margin-right: 10px;
-    flex-shrink: 0;
-    width: 100px;
-    text-align: right;
-  }
-  .Form_text{
-    width: 100%;
-    border: 0;
-    border-bottom: 2px solid $gray-3;
-    padding: 10px 10px 10px 32px;
-    background-size: 20px;
-    background-repeat: no-repeat;
-    background-position: left 10px center;
-    font-size: 1.6rem;
-    transition: $transitionBasis;
-    transform-origin: center top 0;
-    &::placeholder{
-      color: $gray-3;
-      font-size: 1.4rem;
+    .Form_file{
+      opacity: 0;
+      pointer-events: none;
+      width: 0;
+      height: 0;
     }
-
-    &:focus{
-      outline: none;
-      border-color: $focusBlue;
-    }
-
-    &.--chat{
-      border: none;
-      border-radius: 0;
+    .Form_thumb{
+      display: block;
       width: 100%;
-      max-height: 100px;
-      resize: none;
+      max-width: 350px;
     }
-
-    &.--register-num{
-      background-image: url(#{$assetPath}/icon-register-num.svg);
-      margin: 10px 0 20px;
-      &.--disable{
-        font-size: 0;
-        margin: 0;
-        transform: scale3d(1, 0, 1);
-        pointer-events: none;
-      }
-    }
-
   }
 
   &.--login{
@@ -140,12 +148,6 @@
       border-radius: 9999px;
       border: 2px solid transparent;
       box-shadow: 0 3px 10px $gray-2;
-      &.--id{
-        background-image: url(#{$assetPath}/icon-id.svg);
-      }
-      &[type=password]{
-        background-image: url(#{$assetPath}/icon-password.svg);
-      }
       &:focus {
         border-color: $green;
       }
@@ -164,20 +166,6 @@
     margin: 0 auto;
 
     .Form_text{
-
-      &[type=password]{
-        background-image: url(#{$assetPath}/icon-password.svg);
-      }
-      &[type=email]{
-        background-image: url(#{$assetPath}/icon-mail.svg);
-      }
-      &[name=name]{
-        background-image: url(#{$assetPath}/icon-office.svg);
-      }
-      &::placeholder{
-        color: $gray-3;
-        font-size: 1.4rem;
-      }
       &:focus {
           border-color: $redPink;
       }
