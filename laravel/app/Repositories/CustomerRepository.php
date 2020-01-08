@@ -32,7 +32,7 @@ class CustomerRepository extends Repository
    */
   public function customerById(int $customerId)
   {
-    $customer = $this->getBuilder()->with(['professionTypes']);
+    $customer = $this->getBuilder()->with(['professionTypes', 'user']);
     return $customer->where('id', $customerId)->first();
   }
 

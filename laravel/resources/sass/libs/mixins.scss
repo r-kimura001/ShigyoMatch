@@ -14,10 +14,40 @@
   }
 };
 
+
 @mixin iconFix($pdBase: 5px, $pdLeft: 40px, $iconPosition: 10px, $iconSize: 20px) {
   padding: $pdBase $pdBase $pdBase $pdLeft;
   background-position: left $iconPosition center;
   background-size: $iconSize;
   background-repeat: no-repeat;
 
+}
+@mixin formIcons() {
+  &.--id{
+    background-image: url(#{$assetPath}/icon-man.svg);
+  }
+  &[type=password]{
+    background-image: url(#{$assetPath}/icon-password.svg);
+  }
+  &[type=email]{
+    background-image: url(#{$assetPath}/icon-mail.svg);
+  }
+  &[type=url]{
+    background-image: url(#{$assetPath}/icon-website.svg);
+  }
+  &[name=name]{
+    background-image: url(#{$assetPath}/icon-office.svg);
+  }
+  &[name=zip_code]{
+    background-image: url(#{$assetPath}/icon-post.svg);
+  }
+  &[name=building]{
+    background-image: url(#{$assetPath}/icon-building.svg);
+  }
+  &[name=greeting]{
+    background-image: url(#{$assetPath}/icon-pen.svg);
+  }
+  &.--place{
+    background-image: url(#{$assetPath}/icon-map.svg);
+  }
 }

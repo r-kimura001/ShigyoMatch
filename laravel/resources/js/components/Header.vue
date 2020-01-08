@@ -7,7 +7,7 @@
             >士業のマッチングサイトです</RouterLink
           >
           <GlobalNav class="HorizontalLayout_col --flex"></GlobalNav>
-          <div v-if="isLogin" class="HorizontalLayout_col">
+          <div v-if="isLogin()" class="HorizontalLayout_col">
             <AuthNav :customer="customer" @clickLogout="logout"></AuthNav>
           </div>
           <div class="HorizontalLayout_col">

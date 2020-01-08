@@ -3,21 +3,48 @@
 namespace App\Services;
 
 use Illuminate\Support\Facades\Storage;
-
 class FileUploadService extends Service
 {
   /** IDの桁数 */
   const ID_LENGTH = 12;
 
+  /**
+   * @param $fileData
+   */
   public function assetRegister($fileData)
   {
     $this->upload('assets', $fileData);
   }
 
-  protected function upload($putPath, $fileData)
+  /**
+   * @param string $putPath
+   * @param $fileData
+   */
+  protected function upload(string $putPath, $fileData)
   {
-    $fileName = $fileData->getClientOriginalName();
+    $fileName = $putPath === 'assets' ? $fileData->getClientOriginalName() : $this->getRandomId() . '.' . $fileData->extension();
     Storage::cloud()->putFileAs($putPath, $fileData, $fileName, 'public');
+  }
+
+  /**
+   * @param string $putPath
+   * @param $fileData
+   * @return string
+   */
+  public function uploadCustomerThumb(string $putPath, $fileData)
+  {
+    $fileName = $this->getRandomId().'.'.$fileData->extension();
+    Storage::cloud()->putFileAs($putPath, $fileData, $fileName, 'public');
+    $fileName = $putPath.'/'.$fileName;
+    return $fileName;
+  }
+
+  /**
+   * @param string $putPath
+   */
+  public function delete(string $putPath)
+  {
+    Storage::cloud()->delete($putPath);
   }
 
 

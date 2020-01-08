@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Traits\HandledByUser;
 use App\Models\ProfessionType;
+use App\Models\User;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Customer extends Model
@@ -32,6 +33,14 @@ class Customer extends Model
   public function professionTypes()
   {
     return $this->belongsToMany(ProfessionType::class, 'customer_profession_types', 'customer_id', 'profession_type_id')->withPivot('register_number');
+  }
+  /**
+   * リレーション - ユーザ情報
+   * @return \Illuminate\Database\Eloquent\Relations\HasOne
+   */
+  public function user()
+  {
+    return $this->hasOne(User::class, 'customer_id', 'id');
   }
 
 

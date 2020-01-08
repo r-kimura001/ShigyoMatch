@@ -1,9 +1,9 @@
 import { BASE_STORAGE_URL } from "@/util";
 export default {
   methods: {
-    bgImage(dirType = 'assets', imageSrc) {
+    bgImage(imageSrc) {
       return {
-        backgroundImage: `url(${BASE_STORAGE_URL}/${dirType}/${imageSrc})`,
+        backgroundImage: `url(${BASE_STORAGE_URL}/${imageSrc})`,
       }
     },
     colorById(id){
