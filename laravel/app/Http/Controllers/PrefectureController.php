@@ -16,6 +16,6 @@ class PrefectureController extends Controller
 
   public function index()
   {
-    return $this->prefectureService->all() ?? abort(404);
+    return $this->prefectureService->all();
   }
 }
