@@ -13,10 +13,13 @@
   </div>
 </template>
 <script>
+// components
 import Loader from '@/components/Loader'
 import ProfileFormLayout from '@/layouts/mypage/ProfileFormLayout'
 import ResultMessage from '@/components/ResultMessage'
+// mixins
 import customerUpdateData from '@/mixins/formData/customerUpdateData'
+// other
 import { mapState } from 'vuex'
 import { BASE_STORAGE_URL, OK, UNPROCESSABLE_ENTITY } from '@/util'
 

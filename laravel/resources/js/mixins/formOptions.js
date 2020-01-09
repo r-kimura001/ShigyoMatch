@@ -26,6 +26,7 @@ export default {
     })
   },
   watch: {
+    // 住所検索ボタンを押したときの挙動
     addrObj(addr) {
       if(addr === null){
         return false
@@ -38,6 +39,7 @@ export default {
       }
     },
   },
+
 
 
 }
