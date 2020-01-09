@@ -72,7 +72,9 @@ class CustomerController extends Controller
       DB::commit();
     }catch(\Exception $exception){
       DB::rollback();
-      $this->fileUploadService->delete($data['file_name']);
+      if(isset($data['file_name'])){
+        $this->fileUploadService->delete($data['file_name']);
+      }
       throw $exception;
     }
 
