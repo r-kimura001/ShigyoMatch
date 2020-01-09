@@ -43,7 +43,7 @@ class CustomerController extends Controller
       DB::rollback();
       throw $exception;
     }
-    return $this->customer();
+    return $createdCustomer;
   }
 
   /**

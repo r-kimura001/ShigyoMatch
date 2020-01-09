@@ -42,7 +42,6 @@ export default {
       customer: state => state.auth.customer,
     }),
   },
-
   watch: {
     // routeを監視してページが切り替わったときにfetchList()が実行されるよう記述
     // さらにimmediate: true にしているのでコンポーネントが生成されたタイミングでも実行される
@@ -56,6 +55,9 @@ export default {
       },
       immediate: true,
     },
+  },
+  beforeCreate() {
+    this.$store.dispatch('auth/currentCustomer')
   },
   methods: {
     boxChecked(id) {

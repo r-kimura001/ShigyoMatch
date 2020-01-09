@@ -3883,6 +3883,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       immediate: true
     }
   },
+  beforeCreate: function beforeCreate() {
+    this.$store.dispatch('auth/currentCustomer');
+  },
   methods: {
     boxChecked: function boxChecked(id) {
       return {
