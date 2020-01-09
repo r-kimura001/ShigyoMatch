@@ -74,12 +74,12 @@ export default {
   },
   props: {
     FormData: {
-      Type: Object,
+      type: Object,
       required: true,
       default: () => ({}),
     },
     errorMessages: {
-      Type: Object,
+      type: Object,
       required: true,
       default: () => ({}),
     },

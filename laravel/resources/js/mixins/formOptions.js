@@ -1,3 +1,4 @@
+import { mapGetters } from 'vuex'
 export default {
   props: {
     item: {
@@ -19,4 +20,22 @@ export default {
         : ''
     },
   },
+  computed: {
+    ...mapGetters({
+      addrObj: 'form/address'
+    })
+  },
+  watch: {
+    addrObj(addr) {
+      if(this.item.name === 'pref_code'){
+        this.item.value = addr.region_id
+      }else if(this.item.name === 'city'){
+        this.item.value = addr.locality
+      }else if(this.item.name === 'address'){
+        this.item.value = addr.street
+      }
+    },
+  },
+
+
 }

@@ -2379,9 +2379,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mixins: [_mixins_formOptions__WEBPACK_IMPORTED_MODULE_0__["default"]]
+  mixins: [_mixins_formOptions__WEBPACK_IMPORTED_MODULE_0__["default"]],
+  methods: {
+    setAddress: function setAddress() {
+      var _this = this;
+
+      new YubinBango.Core(_this.item.value, function (addr) {
+        _this.$store.commit('form/setAddress', addr);
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -2777,14 +2794,14 @@ __webpack_require__.r(__webpack_exports__);
   },
   props: {
     FormData: {
-      Type: Object,
+      type: Object,
       required: true,
       "default": function _default() {
         return {};
       }
     },
     errorMessages: {
-      Type: Object,
+      type: Object,
       required: true,
       "default": function _default() {
         return {};
@@ -5932,7 +5949,19 @@ var render = function() {
           _vm.$set(_vm.item, "value", $event.target.value)
         }
       }
-    })
+    }),
+    _vm._v(" "),
+    _vm.item.name === "zip_code"
+      ? _c(
+          "button",
+          {
+            staticClass: "Button --small --hasShadow --pink",
+            attrs: { type: "button" },
+            on: { click: _vm.setAddress }
+          },
+          [_vm._v("\n    住所検索\n  ")]
+        )
+      : _vm._e()
   ])
 }
 var staticRenderFns = []
@@ -29490,6 +29519,14 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     item: {
@@ -29509,6 +29546,20 @@ __webpack_require__.r(__webpack_exports__);
     },
     setClass: function setClass() {
       return Object.keys(this.item).indexOf('classOption') !== -1 ? this.item.classOption : '';
+    }
+  },
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])({
+    addrObj: 'form/address'
+  })),
+  watch: {
+    addrObj: function addrObj(addr) {
+      if (this.item.name === 'pref_code') {
+        this.item.value = addr.region_id;
+      } else if (this.item.name === 'city') {
+        this.item.value = addr.locality;
+      } else if (this.item.name === 'address') {
+        this.item.value = addr.street;
+      }
     }
   }
 });
@@ -31283,7 +31334,8 @@ var state = {
   apiStatus: null,
   loginErrorMessages: null,
   registerErrorMessages: null,
-  responseData: null
+  responseData: null,
+  address: null
 };
 var getters = {
   isLogin: function isLogin(state) {
@@ -31314,6 +31366,9 @@ var mutations = {
   },
   setResponse: function setResponse(state, data) {
     state.responseData = data;
+  },
+  setAddress: function setAddress(state, data) {
+    state.address = data;
   }
 };
 var actions = {
@@ -31535,6 +31590,46 @@ var actions = {
 
 /***/ }),
 
+/***/ "./resources/js/store/form.js":
+/*!************************************!*\
+  !*** ./resources/js/store/form.js ***!
+  \************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/util */ "./resources/js/util.js");
+
+var state = {
+  apiStatus: null,
+  responseData: null,
+  address: null
+};
+var getters = {
+  address: function address(state) {
+    return state.address;
+  }
+};
+var mutations = {
+  setResponse: function setResponse(state, data) {
+    state.responseData = data;
+  },
+  setAddress: function setAddress(state, data) {
+    state.address = data;
+  }
+};
+var actions = {};
+/* harmony default export */ __webpack_exports__["default"] = ({
+  namespaced: true,
+  state: state,
+  getters: getters,
+  mutations: mutations,
+  actions: actions
+});
+
+/***/ }),
+
 /***/ "./resources/js/store/index.js":
 /*!*************************************!*\
   !*** ./resources/js/store/index.js ***!
@@ -31548,6 +31643,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _auth__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./auth */ "./resources/js/store/auth.js");
 /* harmony import */ var _error__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./error */ "./resources/js/store/error.js");
+/* harmony import */ var _form__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./form */ "./resources/js/store/form.js");
+
 
 
 
@@ -31556,7 +31653,8 @@ vue__WEBPACK_IMPORTED_MODULE_0__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_1_
 var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   modules: {
     auth: _auth__WEBPACK_IMPORTED_MODULE_2__["default"],
-    error: _error__WEBPACK_IMPORTED_MODULE_3__["default"]
+    error: _error__WEBPACK_IMPORTED_MODULE_3__["default"],
+    form: _form__WEBPACK_IMPORTED_MODULE_4__["default"]
   }
 });
 /* harmony default export */ __webpack_exports__["default"] = (store);
