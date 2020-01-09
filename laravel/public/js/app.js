@@ -4075,11 +4075,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               }
 
               this.errorMessages = response.data.errors;
-              this.$scrollTo('.ValidationErrorMessage', 1500);
+              this.$scrollTo('.Header', 1500);
               return _context5.abrupt("return", false);
 
             case 16:
               if (response.status === _util__WEBPACK_IMPORTED_MODULE_6__["OK"]) {
+                this.errorMessages = null;
                 this.$store.commit('auth/setCustomer', response.data);
                 this.$scrollTo('.Header', 1500);
                 this.$store.commit('form/setSuccessMessage', '更新に成功しました');
