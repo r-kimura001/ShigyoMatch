@@ -4,10 +4,12 @@ const state = {
   apiStatus: null,
   responseData: null,
   address: null,
+  successMessage: null,
 }
 
 const getters = {
   address: state => state.address,
+  successMessage: state => state.successMessage,
 }
 
 
@@ -18,10 +20,12 @@ const mutations = {
   setAddress(state, data) {
     state.address = data
   },
+  setSuccessMessage(state, data) {
+    state.successMessage = data
+  },
 }
 
 const actions = {
-
 }
 
 export default {

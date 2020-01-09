@@ -1,0 +1,22 @@
+.ResultMessage{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: $modalZIndex;
+  background: $deepGreen;
+  transition: $transitionBasis;
+
+  .ResultMessage_text{
+    padding: 20px 0;
+    text-align: center;
+    color: $white;
+    font-size: 2.4rem;
+    font-weight: bold;
+  }
+
+  &.--hidden{
+    opacity: 0;
+    pointer-events: none;
+  }
+}

@@ -9,17 +9,19 @@
         @profileSubmit="update"
       ></ProfileFormLayout>
     </section>
+    <ResultMessage></ResultMessage>
   </div>
 </template>
 <script>
 import Loader from '@/components/Loader'
 import ProfileFormLayout from '@/layouts/mypage/ProfileFormLayout'
+import ResultMessage from '@/components/ResultMessage'
 import customerUpdateData from '@/mixins/formData/customerUpdateData'
 import { mapState } from 'vuex'
 import { BASE_STORAGE_URL, OK, UNPROCESSABLE_ENTITY } from '@/util'
 
 export default {
-  components: { ProfileFormLayout, Loader },
+  components: { ProfileFormLayout, Loader, ResultMessage },
   mixins: [customerUpdateData],
   props: {
     id: {
@@ -146,11 +148,16 @@ export default {
 
       if (response.status === UNPROCESSABLE_ENTITY) {
         this.errorMessages = response.data.errors
+        this.$scrollTo('.ValidationErrorMessage', 1500)
         return false
       }
-
       if (response.status === OK) {
         this.$store.commit('auth/setCustomer', response.data)
+        this.$scrollTo('.Header', 1500)
+        this.$store.commit('form/setSuccessMessage', '更新に成功しました')
+        setTimeout(() => {
+          this.$store.commit('form/setSuccessMessage', null)
+        }, 3000)
       }
     },
   },

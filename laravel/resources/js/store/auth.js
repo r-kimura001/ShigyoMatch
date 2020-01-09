@@ -68,7 +68,7 @@ const actions = {
     if (response.status === OK) {
       context.commit('setApiStatus', true)
       context.commit('setCustomer', response.data)
-      // context.commit('setResponse', response)
+      context.commit('setLoginErrorMessages', null)
       return false
     }
 
@@ -89,7 +89,7 @@ const actions = {
     if (response.status === OK) {
       context.commit('setApiStatus', true)
       context.commit('setCustomer', null)
-      context.commit('error/setStatus', response.status)
+      context.commit('error/setStatus', response.status, { root: true })
       return false
     }
 
