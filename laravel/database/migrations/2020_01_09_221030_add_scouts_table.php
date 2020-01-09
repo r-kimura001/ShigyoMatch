@@ -13,10 +13,17 @@ class AddScoutsTable extends Migration
      */
     public function up()
     {
-        Schema::table('scouts', function(Blueprint $table){
-          $table->string('title');
-          $table->text('body');
-        });
+      // SQLite対策のため一旦nullable
+      Schema::table('scouts', function(Blueprint $table){
+        $table->string('title')->nullable();
+        $table->text('body')->nullable();
+      });
+      Schema::table('scouts', function(Blueprint $table){
+        $table->string('title')->nullable(false)->change();
+      });
+      Schema::table('scouts', function(Blueprint $table){
+        $table->text('body')->nullable(false)->change();
+      });
     }
 
     /**
@@ -27,8 +34,10 @@ class AddScoutsTable extends Migration
     public function down()
     {
       Schema::table('scouts', function(Blueprint $table){
-        $table->dropColumn('title');
         $table->dropColumn('body');
+      });
+      Schema::table('scouts', function(Blueprint $table){
+        $table->dropColumn('title');
       });
 
     }
