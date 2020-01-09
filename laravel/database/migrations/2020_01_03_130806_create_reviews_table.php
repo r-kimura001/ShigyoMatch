@@ -18,6 +18,8 @@ class CreateReviewsTable extends Migration
         $table->bigInteger('work_id');
         $table->bigInteger('reviewer_id');
         $table->bigInteger('reviewee_id');
+        $table->integer('point');
+        $table->text('comment');
         $table->timestamps();
         $table->softDeletes();
 
