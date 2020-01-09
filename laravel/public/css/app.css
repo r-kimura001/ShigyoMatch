@@ -1541,10 +1541,11 @@ input[type=radio]:checked {
   padding: 10px;
   width: 100%;
   background-image: url(https://asset.shigyo-match.site/assets/icon-dropdown.svg);
-  background-size: 30px;
+  background-size: 26px;
   background-repeat: no-repeat;
   background-position: bottom 5px right 10px;
   cursor: pointer;
+  font-size: 1.6rem;
 }
 
 .Selectbox.\--short {

@@ -10,11 +10,27 @@
       :required="isRequired()"
       :autofocus="isAutoFocus()"
     />
+    <button
+      v-if="item.name === 'zip_code'"
+      type="button"
+      class="Button --small --hasShadow --pink"
+      @click="setAddress"
+    >
+      住所検索
+    </button>
   </div>
 </template>
 <script>
 import formOptions from '@/mixins/formOptions'
 export default {
   mixins: [formOptions],
+  methods: {
+    setAddress() {
+      let _this = this
+      new YubinBango.Core(_this.item.value, function(addr) {
+        _this.$store.commit('form/setAddress', addr)
+      })
+    },
+  },
 }
 </script>

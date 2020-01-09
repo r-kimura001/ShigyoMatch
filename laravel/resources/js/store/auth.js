@@ -7,6 +7,7 @@ const state = {
   loginErrorMessages: null,
   registerErrorMessages: null,
   responseData: null,
+  address: null,
 }
 
 const getters = {
@@ -32,6 +33,9 @@ const mutations = {
   },
   setResponse(state, data) {
     state.responseData = data
+  },
+  setAddress(state, data) {
+    state.address = data
   },
 }
 
