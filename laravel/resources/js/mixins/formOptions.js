@@ -27,7 +27,9 @@ export default {
   },
   watch: {
     addrObj(addr) {
-      if(this.item.name === 'pref_code'){
+      if(addr === null){
+        return false
+      }else if(this.item.name === 'pref_code'){
         this.item.value = addr.region_id
       }else if(this.item.name === 'city'){
         this.item.value = addr.locality

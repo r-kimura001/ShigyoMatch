@@ -1458,6 +1458,30 @@ input[type=radio]:checked {
   background: #4CAF93;
 }
 
+.ResultMessage {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 130;
+  background: #349d9d;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.ResultMessage .ResultMessage_text {
+  padding: 20px 0;
+  text-align: center;
+  color: #fefefe;
+  font-size: 2.4rem;
+  font-weight: bold;
+}
+
+.ResultMessage.\--hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
 .MypageContent {
   max-width: 1380px;
   margin: 0 auto;
