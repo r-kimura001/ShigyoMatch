@@ -148,10 +148,11 @@ export default {
 
       if (response.status === UNPROCESSABLE_ENTITY) {
         this.errorMessages = response.data.errors
-        this.$scrollTo('.ValidationErrorMessage', 1500)
+        this.$scrollTo('.Header', 1500)
         return false
       }
       if (response.status === OK) {
+        this.errorMessages = null
         this.$store.commit('auth/setCustomer', response.data)
         this.$scrollTo('.Header', 1500)
         this.$store.commit('form/setSuccessMessage', '更新に成功しました')
