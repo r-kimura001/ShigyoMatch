@@ -19,10 +19,27 @@
         exact-active-class="--current"
         >{{ item.name }}</RouterLink
       >
+      <RouterLink
+        v-if="!isLogin()"
+        to="/login"
+        tag="li"
+        class="GlobalNav_item --u-md"
+        exact-active-class="--current"
+        >ログイン</RouterLink
+      >
+      <RouterLink
+        v-if="!isLogin()"
+        to="/signup"
+        tag="li"
+        class="GlobalNav_item --u-md"
+        exact-active-class="--current"
+        >新規登録</RouterLink
+      >
     </ul>
   </nav>
 </template>
 <script>
+import { mapGetters } from 'vuex'
 export default {
   data() {
     return {
@@ -47,6 +64,11 @@ export default {
     // ルートが変更されたらfetchDataメソッドを再び呼び出します
     $route: 'fetchData',
   },
+  computed: {
+    ...mapGetters({
+      authCheck: 'auth/isLogin',
+    }),
+  },
   methods: {
     toggleMenu() {
       this.isOpen = !this.isOpen
@@ -56,6 +78,9 @@ export default {
     },
     fetchData() {
       this.isOpen = false
+    },
+    isLogin() {
+      return this.authCheck
     },
   },
 }

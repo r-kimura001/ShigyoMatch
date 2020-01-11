@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-
+use App\Models\Customer;
 class UsersTableSeeder extends Seeder
 {
     /**
@@ -15,7 +15,7 @@ class UsersTableSeeder extends Seeder
       DB::table('users')->truncate();
       DB::table('customers')->truncate();
 
-      $customers = factory('App\Models\Customer', 5)->create();
+      $customers = factory(Customer::class, 15)->create();
       $customers->each(function($customer){
         factory('App\Models\User')->create(['customer_id' => $customer->id]);
       });

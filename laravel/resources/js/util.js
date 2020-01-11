@@ -31,3 +31,4 @@ export const BASE_STORAGE_URL = 'https://asset.shigyo-match.site'
 export const BASE_URL = window.location.origin
 export const MQL = window.matchMedia('(max-width: 768px)')
 export const CLIENT_HEIGHT = document.documentElement.clientHeight
+export const CLIENT_WIDTH = document.documentElement.clientWidth

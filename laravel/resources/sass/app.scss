@@ -5,9 +5,13 @@
 // components
 @import "./components/AuthFormLayout";
 @import "./components/AuthNav";
+@import "./components/BorderButton";
 @import "./components/Button";
+@import "./components/Card";
 @import "./components/Checkbox";
 @import "./components/ContentBox";
+@import "./components/CustomerInfoLayout";
+@import "./components/CustomerListLayout";
 @import "./components/Footer";
 @import "./components/Form";
 @import "./components/GlobalNav";
@@ -20,11 +24,16 @@
 @import "./components/ResultMessage";
 @import "./components/MypageContent";
 @import "./components/PageContent";
+@import "./components/Pager";
 @import "./components/ProfileFormLayout";
+@import "./components/Review";
 @import "./components/Selectbox.scss";
 @import "./components/Sidebar";
+@import "./components/Tag";
 @import "./components/Text";
 @import "./components/ValidationErrorMessage";
+@import "./components/WorkCard";
+@import "./components/WorkListLayout";
 
 
 // pages

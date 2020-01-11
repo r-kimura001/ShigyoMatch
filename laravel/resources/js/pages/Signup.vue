@@ -1,6 +1,5 @@
 <template>
   <div class="p-signup">
-    <Loader :class="{ '--show': isLoading }" />
     <div class="MainLayout">
       <div class="MainLayout_boxList">
         <section class="MainLayout_box">
@@ -86,6 +85,36 @@
                     </div>
                   </div>
                 </div>
+                <div class="Form_row">
+                  <div class="Form_errorBox">
+                    <div v-if="hasError('password')">
+                      <small
+                        v-for="(errorMessage, index) in errorMessages.password"
+                        :key="index"
+                        class="ValidationErrorMessage"
+                        >{{ errorMessage }}</small
+                      >
+                    </div>
+                  </div>
+                  <input
+                    v-model="customerData.password"
+                    type="password"
+                    name="password_confirm"
+                    class="Form_text"
+                    placeholder="PASSWORD"
+                    required
+                  />
+                </div>
+                <div class="Form_row">
+                  <input
+                    v-model="customerData.password_confirmation"
+                    type="password"
+                    name="password_confirmation"
+                    class="Form_text"
+                    placeholder="PASSWORD(confirm)"
+                    required
+                  />
+                </div>
                 <div class="Form_row u-alignCenter">
                   <button
                     class="Form_button"
@@ -108,13 +137,11 @@
 </template>
 <script>
 import { mapState, mapGetters } from 'vuex'
-import Loader from '@/components/Loader'
 import styles from '@/mixins/styles'
 import { VueLoading } from 'vue-loading-template'
 
 export default {
   components: {
-    Loader,
     VueLoading,
   },
   mixins: [styles],
@@ -123,11 +150,12 @@ export default {
       customerData: {
         email: '',
         name: '',
+        password: '',
+        password_confirmation: '',
         professionIds: [],
         registerNumbers: {},
       },
       professionTypes: null,
-      isLoading: false,
       isWaiting: false,
     }
   },
@@ -170,7 +198,7 @@ export default {
     },
 
     async register() {
-      this.isLoading = true
+      this.$store.commit('form/setIsLoading', true)
       //フォームデータの整形
       const formData = new FormData()
       formData.append('email', this.customerData.email)
@@ -181,9 +209,14 @@ export default {
         JSON.stringify(this.customerData.registerNumbers)
       )
       formData.append('professionTypes', this.customerData.professionTypes)
+      formData.append('password', this.customerData.password)
+      formData.append(
+        'password_confirmation',
+        this.customerData.password_confirmation
+      )
 
       await this.$store.dispatch('auth/register', formData)
-      this.isLoading = false
+      this.$store.commit('form/setIsLoading', false)
 
       if (this.apiStatus) {
         // マイページに移動する

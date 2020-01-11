@@ -15,7 +15,7 @@ class PrefecturesTableSeeder extends Seeder
   {
     $now = Carbon::now();
 
-    DB::table('prefectures')->delete();
+    DB::table('prefectures')->truncate();
 
     DB::table('prefectures')->insert([
       ['name' => '北海道','created_at' => $now,'updated_at' => $now],

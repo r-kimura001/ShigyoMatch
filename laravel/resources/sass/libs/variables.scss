@@ -20,6 +20,7 @@ $orange: #EC7211;
 $green: #33ba7c;
 $deepGreen: #349d9d;
 $paleGreen: #4CAF93;
+$yellowGreen: #7BBB5E;
 $gray: #a8a3a7;
 $deepGray: #626d78;
 $paleGray: #cad9e1;
@@ -28,11 +29,12 @@ $gray-3: #dedede;
 $gray-4: #f0f0f0;
 $gray-5: #fcfcfc;
 $black: #333333;
+$paleBlack: #444444;
 $white: #fefefe;
 
 
 // セマンティックな名前
-$textBaseColor: $black;
+$textBaseColor: $paleBlack;
 $textDangerColor: $red;
 $textWarnColor: $yellow;
 $textSafeColor: $green;
@@ -43,6 +45,10 @@ $bgSafeColor: $green;
 $receiveColor: $pink;
 $sendColor: $blue;
 $authBg: #e9e9e9;
+$customersBg: #F6F9FE;
+$customerDetailBg: #F4F4F4;
+$headerColor: $white;
+$mainVisualBg: $paleGreen;
 
 // 弁護士
 $lawyerColor: #4379A9;
@@ -52,10 +58,6 @@ $judicialScrivenerColor: $orange;
 $notaryScrivenerColor: #fb7272;
 // 税理士
 $taxAccountantColor: #69D9A1;
-
-
-// font
-$mainFontFamily: 'Noto Sans JP', sans-serif;
 
 // duration
 $transitionBasis: .3s;
@@ -69,14 +71,17 @@ $breakpoints: (
   'sm': 'screen and (max-width: 480px)',
   'sm-y': 'screen and (max-width: 670px)',
   'md': 'screen and (max-width: 768px)',
-  'lg': 'screen and (max-width: 1000px)',
+  'lg': 'screen and (max-width: 1180px)',
 )!default;
-
-$headerColor: $white;
-$mainVisualBg: $paleGreen;
 
 $baseWidth: 1380px;
 $headerHeight: 56px;
 $footerHeight: 93px;
 $basePartition: 1px solid $gray-2;
+$buttonMinWidth: 110px;
+$cardMaxWidth: 350px;
 $assetPath: "https://asset.shigyo-match.site/assets";
+
+// font
+$mainFontFamily: YakuHanJP, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", Meiryo, sans-serif;
+

@@ -124,8 +124,17 @@
 .u-pr30 {
   padding-right: 30px;
 }
+.u-px10{
+  padding: 0 10px;
+}
 .u-px20{
   padding: 0 20px;
+}
+.u-py10{
+  padding: 10px 0;
+}
+.u-py20{
+  padding: 10px 0;
 }
 
 // font
@@ -146,7 +155,9 @@
 .u-alignRight {
   text-align: right;
 }
-
+.u-h20{
+  height: 20px;
+}
 // width
 .u-minWidth300 {
   min-width: 300px;

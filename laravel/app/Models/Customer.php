@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Traits\HandledByUser;
 use App\Models\ProfessionType;
+use App\Models\Prefecture;
 use App\Models\User;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -12,6 +13,8 @@ class Customer extends Model
 {
   use HandledByUser;
   use SoftDeletes;
+
+  const COUNT_PER_PAGE = 12;
 
   protected $fillable = [
     'name',
@@ -24,6 +27,17 @@ class Customer extends Model
     'file_name',
     'greeting',
   ];
+
+  public function getPref(int $id)
+  {
+    $prefecture = Prefecture::find($id);
+    return $prefecture->name;
+  }
+
+  public function getFullAddressAttribute()
+  {
+    return $this->getPref($this->pref_code) . $this->city . $this->address . $this->building;
+  }
 
 
   /**
@@ -42,6 +56,8 @@ class Customer extends Model
   {
     return $this->hasOne(User::class, 'customer_id', 'id');
   }
+
+  protected $appends = [ 'full_address' ];
 
 
 }

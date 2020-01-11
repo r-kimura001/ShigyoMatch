@@ -1,9 +1,9 @@
 .Footer{
-  border-top: $basePartition;
   padding: 40px 20px;
   font-size: 1.2rem;
-  color: $gray-2;
+  color: $white;
   text-align: center;
+  background: $green;
 
   @include media(){
     padding: 30px 10px;

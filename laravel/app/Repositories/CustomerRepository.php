@@ -24,7 +24,10 @@ class CustomerRepository extends Repository
   {
     return $this->getBuilder()->latest()->get();
   }
-
+  public function paginate()
+  {
+    return $this->getBuilder()->with(['professionTypes'])->latest()->paginate(Customer::COUNT_PER_PAGE);
+  }
 
   /**
    * @param int $customerId

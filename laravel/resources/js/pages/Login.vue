@@ -1,6 +1,5 @@
 <template>
   <div class="p-login">
-    <Loader :class="{ '--show': isLoading }" />
     <div class="MainLayout">
       <div class="MainLayout_boxList">
         <section class="MainLayout_box u-mt50">
@@ -66,18 +65,13 @@
 </template>
 <script>
 import { mapState, mapGetters } from 'vuex'
-import Loader from '@/components/Loader'
 export default {
-  components: {
-    Loader,
-  },
   data() {
     return {
       loginForm: {
         login_id: '',
         password: '',
       },
-      isLoading: false,
     }
   },
   computed: {
@@ -98,13 +92,13 @@ export default {
     },
 
     async login() {
-      this.isLoading = true
+      this.$store.commit('form/setIsLoading', true)
       const formData = new FormData()
       formData.append('login_id', this.loginForm.login_id)
       formData.append('password', this.loginForm.password)
       await this.$store.dispatch('auth/login', formData)
 
-      this.isLoading = false
+      this.$store.commit('form/setIsLoading', false)
 
       if (this.apiStatus) {
         this.$router.push(`mypage/${this.customerId}`)

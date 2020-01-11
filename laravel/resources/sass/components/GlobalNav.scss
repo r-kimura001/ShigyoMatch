@@ -23,6 +23,10 @@
       &.--current{
         color: $orange;
         font-weight: bold;
+        pointer-events: none;
+      }
+      &.--u-md{
+        display: none;
       }
     }
   }
@@ -72,10 +76,16 @@
       transform: translateX(100%);
       pointer-events: none;
       transition: $transitionBasis;
+      height: 100%;
+      justify-content: flex-start;
       .GlobalNav_item{
         padding: 15px 10px;
         max-width: initial;
         border-bottom: 1px solid $gray-2;
+        flex-grow: 0;
+        &.--u-md{
+          display: initial;
+        }
       }
 
       &.--open{

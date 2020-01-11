@@ -5,11 +5,13 @@ const state = {
   responseData: null,
   address: null,
   successMessage: null,
+  isLoading: false,
 }
 
 const getters = {
   address: state => state.address,
   successMessage: state => state.successMessage,
+  isLoading: state => state.isLoading,
 }
 
 
@@ -22,6 +24,9 @@ const mutations = {
   },
   setSuccessMessage(state, data) {
     state.successMessage = data
+  },
+  setIsLoading(state, data) {
+    state.isLoading = data
   },
 }
 

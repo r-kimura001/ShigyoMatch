@@ -29,7 +29,7 @@
       top: 50%;
       left: 25px;
       transform: translateY(-50%);
-      min-width: 100px;
+      word-break: keep-all;
     }
     &:checked{
       position: relative;
