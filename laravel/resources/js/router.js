@@ -75,15 +75,17 @@ const routes = [
   {
     path: '/customers',
     component: Customers,
-    children: [
-      {
-        path: ':id',
-        component: CustomerDetail,
-        props: route => ({
-          id: Number(route.params.id)
-        }),
-      }
-    ]
+    props: route => {
+      const page = route.query.page
+      return {page: /^[1-9[0-9]*$/.test(page) ? page * 1 : 1}
+    },
+  },
+  {
+    path: '/customers/:id',
+    component: CustomerDetail,
+    props: route => ({
+      id: Number(route.params.id)
+    }),
   },
   {
     path: '/mypage',

@@ -11,20 +11,22 @@
             <AuthNav :customer="customer" @clickLogout="logout"></AuthNav>
           </div>
           <div class="HorizontalLayout_col">
-            <RouterLink
-              v-if="!isLogin()"
-              to="/login"
-              tag="button"
-              class="Button --small --green --hasShadow"
-              >ログイン</RouterLink
-            >
-            <RouterLink
-              v-if="!isLogin()"
-              to="/signup"
-              tag="button"
-              class="Button --small --pink --hasShadow"
-              >新規登録</RouterLink
-            >
+            <div class="Header_buttons">
+              <RouterLink
+                v-if="!isLogin()"
+                to="/login"
+                tag="button"
+                class="Button --small --green --hasShadow"
+                >ログイン</RouterLink
+              >
+              <RouterLink
+                v-if="!isLogin()"
+                to="/signup"
+                tag="button"
+                class="Button --small --pink --hasShadow u-ml10"
+                >新規登録</RouterLink
+              >
+            </div>
           </div>
         </div>
         <!-- HorizontalLayout -->

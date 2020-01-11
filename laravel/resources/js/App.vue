@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Loader :class="{ '--show': isLoading }" />
     <CustomerPage v-if="!isAdmin" />
     <AdminPage v-else />
   </div>
@@ -10,12 +11,14 @@ import { INTERNAL_SERVER_ERROR, UNAUTHORIZED, NOT_FOUND } from '@/util'
 import { mapGetters } from 'vuex'
 import CustomerPage from '@/pages/CustomerPage'
 import AdminPage from '@/admin/AdminPage'
+import Loader from '@/components/Loader'
 export default {
-  components: { CustomerPage, AdminPage },
+  components: { CustomerPage, AdminPage, Loader },
   computed: {
     ...mapGetters({
       errorCode: 'error/getStatus',
       isAdmin: 'auth/isAdmin',
+      isLoading: 'form/isLoading',
     }),
   },
   watch: {

@@ -1,0 +1,90 @@
+.Card{
+  box-shadow: 10px 10px 0 $gray-3;
+  max-width: $cardMaxWidth;
+
+  .Card_thumb{
+    position: relative;
+    padding-top: 67%;
+    overflow: hidden;
+    z-index: 1;
+    &:hover{
+      .Card_overlay{
+        opacity: 0.6;
+      }
+      .Card_decription{
+        opacity: 1;
+      }
+      .Card_thumbSrc{
+        transform: translate(-50%, -50%) scale3d(1.1, 1.1, 1);
+      }
+    }
+  }
+
+  .Card_overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: $black;
+    opacity: 0;
+    transition: $transitionBasis;
+  }
+
+  .Card_decription{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 12px 10px;
+    opacity: 0;
+    transition: $transitionBasis;
+  }
+
+  .Card_greeting{
+    font-size: 1.4rem;
+    color: $white;
+    padding: 10px 15px;
+  }
+
+  .Card_moreLink{
+    text-align: center;
+    padding: 10px;
+  }
+
+  .Card_thumbSrc{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    transition: 0.6s;
+    z-index: -1;
+    img {
+      width: 100%;
+    }
+  }
+
+  .Card_summary{
+    padding: 15px;
+    background: $white;
+  }
+  .Card_name{
+    text-align: center;
+    font-size: 1.6rem;
+    line-height: 1.25;
+    min-height: 38px;
+  }
+  .Card_tags{
+    margin: 10px 0;
+    display: flex;
+  }
+  .Card_tag{
+    cursor: pointer;
+    margin: 5px;
+
+    &:hover{
+      opacity: 0.8;
+    }
+  }
+}

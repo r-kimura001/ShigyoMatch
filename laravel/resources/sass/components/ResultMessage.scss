@@ -13,6 +13,11 @@
     color: $white;
     font-size: 2.4rem;
     font-weight: bold;
+
+    @include media(){
+      padding: 14px 0;
+      font-size: 1.8rem;
+    }
   }
 
   &.--hidden{

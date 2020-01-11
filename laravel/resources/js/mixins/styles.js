@@ -19,6 +19,19 @@ export default {
         default:
           return '#a8a3a7'
       }
-    }
+    },
+    thumbSrc(fileName) {
+      if (fileName) {
+        return `${BASE_STORAGE_URL}/${fileName}`
+      } else {
+        return `${BASE_STORAGE_URL}/assets/icon-no-image.png`
+      }
+    },
+    bgColor(id) {
+      return {
+        backgroundColor: this.colorById(id),
+      }
+    },
+
   }
 }

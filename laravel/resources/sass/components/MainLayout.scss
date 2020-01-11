@@ -12,10 +12,18 @@
   }
 
   .MainLayout_heading{
-
+    max-width: $baseWidth;
+    margin: 0 auto;
   }
   .MainLayout_boxList{
     max-width: $baseWidth;
     margin: 0 auto;
+  }
+
+  &.--customers{
+    background: $customersBg;
+  }
+  &.--customerDetail{
+    background: $customerDetailBg;
   }
 }

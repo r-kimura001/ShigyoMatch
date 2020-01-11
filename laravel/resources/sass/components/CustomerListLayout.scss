@@ -1,0 +1,27 @@
+.CustomerListLayout{
+  .CustomerList_list{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    .CustomerList_item{
+      margin: 15px;
+      width: 100%;
+      max-width: calc((100% / 4) - 30px);
+      flex-grow: 1;
+      @include media(lg){
+        max-width: calc((100% / 3) - 30px);
+      }
+      @include media(){
+        max-width: calc((100% / 2) - 30px);
+      }
+      @include media(sm-y){
+        max-width: calc((100% / 2) - 30px);
+      }
+      @include media(sm) {
+        max-width: 280px;
+        margin: 20px;
+      }
+    }
+  }
+
+}

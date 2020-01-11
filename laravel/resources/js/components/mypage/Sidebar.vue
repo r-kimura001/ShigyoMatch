@@ -1,5 +1,5 @@
 <template>
-  <div class="Sidebar">
+  <aside class="Sidebar">
     <div class="Sidebar_list">
       <div v-for="(list, index) in lists" :key="index" class="Sidebar_listItem">
         <RouterLink
@@ -16,7 +16,7 @@
         </RouterLink>
       </div>
     </div>
-  </div>
+  </aside>
 </template>
 <script>
 import styles from '@/mixins/styles'

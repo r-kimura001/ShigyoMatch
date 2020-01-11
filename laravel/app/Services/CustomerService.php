@@ -5,7 +5,8 @@ namespace App\Services;
 use App\Repositories\CustomerRepository;
 use App\Models\Customer;
 use App\Models\User;
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Auth\Events\Registered;
 class CustomerService extends Service
 {
   protected $customerRep;
@@ -26,21 +27,28 @@ class CustomerService extends Service
     return $this->customerRep->all();
   }
 
+  public function paginate()
+  {
+    return $this->customerRep->paginate();
+  }
+
   public function firstRegister($data)
   {
     // customersへの登録
     $customer = new Customer();
     $createdCustomer = $customer->createByUser($data);
+
     // usersへの登録
-    $password = str_random(8);
     $data['login_id'] = str_random(12);
     $data['customer_id'] = $createdCustomer->id;
-    $data['password'] = \Hash::make($password);
+    $data['password'] = \Hash::make($data['password']);
+    $newUser = new User();
+    event(new Registered($user = $newUser->createByUser($data)));
 
-    $user = new User();
-    $createdUser = $user->createByUser($data);
+    // ログイン
+    Auth::guard()->login($user);
 
-    // customer_profession_typeの登録
+    // customerと資格の紐付け
     $registerNumbers = json_decode($data['registerNumbers'], true);
     $professionIds = explode(',', $data['professionIds']);
 
@@ -48,7 +56,6 @@ class CustomerService extends Service
       $professionTypes[$professionId] = ['register_number' => $registerNumbers[$professionId]];
     }
     $createdCustomer->professionTypes()->sync($professionTypes);
-    $createdCustomer->origin = $password;
     $createdCustomer->login_id = $data['login_id'];
 
     return $createdCustomer;

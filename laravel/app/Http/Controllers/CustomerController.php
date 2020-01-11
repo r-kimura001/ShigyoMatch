@@ -25,6 +25,11 @@ class CustomerController extends Controller
     $this->fileUploadService = $fileUploadService;
   }
 
+  public function index()
+  {
+    return $this->customerService->paginate();
+  }
+
   /**
    * @param StoreRequest $request
    * @return CustomerService
@@ -43,7 +48,7 @@ class CustomerController extends Controller
       DB::rollback();
       throw $exception;
     }
-    return $createdCustomer;
+    return response($this->customerService->customerById($createdCustomer->id), 201);
   }
 
   /**
@@ -82,8 +87,12 @@ class CustomerController extends Controller
       $this->fileUploadService->delete($deleteSrc);
     }
 
-    return $this->customer();
+    return $this->customerService->customerById($id);
+  }
 
+  public function show(int $id)
+  {
+    return $this->customerService->customerById($id);
   }
 
 

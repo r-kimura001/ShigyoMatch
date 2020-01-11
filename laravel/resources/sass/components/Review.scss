@@ -1,0 +1,35 @@
+.Review{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .Review_label{
+    font-size: 1.2rem;
+    color: $gray;
+
+  }
+
+  .Review_rating{
+    position: relative;
+    width: 5em;
+    height: 1em;
+    font-size: 1.8rem;
+  }
+  .Review_ratingFront{
+    position: absolute;
+    top: 0;
+    left: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    color: $yellow;
+  }
+  .Review_ratingBack{
+    color: $gray-2;
+  }
+  .Review_score{
+    font-size: 1.8rem;
+    color: $deepBlue;
+    font-weight: bold;
+    margin-left: 5px;
+  }
+}

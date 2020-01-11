@@ -44,11 +44,12 @@ const actions = {
   async register(context, data) {
     context.commit('setApiStatus', null)
     const response = await axios.post('/api/register', data)
-    // context.commit('setResponse', response)
+    context.commit('setResponse', response)
 
     if (response.status === CREATED) {
       context.commit('setApiStatus', true)
       context.commit('setCustomer', response.data)
+      context.commit('setRegisterErrorMessages', null)
       return false
     }
 
@@ -90,6 +91,7 @@ const actions = {
       context.commit('setApiStatus', true)
       context.commit('setCustomer', null)
       context.commit('error/setStatus', response.status, { root: true })
+      context.commit('error/setResponse', response.data)
       return false
     }
 
@@ -103,6 +105,7 @@ const actions = {
     context.commit('setApiStatus', null)
     const response = await axios.get('/api/customer')
     const customer = response.data || null
+    context.commit('setResponse', response)
 
     if (response.status === OK) {
       context.commit('setApiStatus', true)

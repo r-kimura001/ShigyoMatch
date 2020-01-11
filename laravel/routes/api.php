@@ -17,11 +17,13 @@ use Illuminate\Http\Request;
 Route::post('/register', 'CustomerController@register')->name('register');
 Route::post('/login', 'Auth\LoginController@login')->name('login');
 Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
-
-// customers
 // ログインユーザー
 Route::get('/customer', 'CustomerController@customer')->name('customer');
+
+// customers
+Route::get('/customers', 'CustomerController@index')->name('customer.index');
 Route::put('/customers/{id}', 'CustomerController@update')->name('customer.update');
+Route::get('/customers/{id}', 'CustomerController@show')->name('customer.show');
 
 // profession_types
 Route::get('/professions', 'ProfessionTypeController@index')->name('professionType.index');
@@ -29,5 +31,5 @@ Route::get('/professions', 'ProfessionTypeController@index')->name('professionTy
 // prefectures
 Route::get('/prefectures', 'PrefectureController@index')->name('prefecture.index');
 
-//画像アップロード
+//アセット画像アップロード
 Route::post('/asset/register', 'AssetController@register')->name('asset.register');

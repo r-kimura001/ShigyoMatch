@@ -1,0 +1,85 @@
+.WorkCard{
+  max-width: $cardMaxWidth;
+  padding: 10px;
+  background: $white;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 5px $gray-4;
+  &::before{
+    content: "¥"attr(data-fee);
+    position: absolute;
+    top: 10px;
+    right: 5px;
+    font-size: 1.2rem;
+    color: $white;
+    font-weight: bold;
+    z-index: 1;
+    transition: $transitionBasis;
+  }
+  &::after{
+    content: '';
+    position: absolute;
+    top: -22px;
+    right: -18px;
+    width: 0;
+    height: 0;
+    transform: rotate(25deg);
+    border-style: solid;
+    border-width: 0 25px 55px 120px;
+    border-color: transparent transparent $pink transparent;
+    transition: $transitionBasis;
+  }
+  .WorkCard_face{
+    position: relative;
+    overflow: hidden;
+    padding-top: 67%;
+    cursor: pointer;
+  }
+  .WorkCard_thumb{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    transform: translate(-50%, -50%);
+    transition: 0.6s;
+    img {
+      width: 100%;
+    }
+  }
+  .WorkCard_cover{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: $white;
+    padding: 5px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: $transitionBasis;
+    transform: translate(0, 100%);
+  }
+  .WorkCard_title{
+    font-size: 1.6rem;
+    font-weight: bold;
+    padding: 5px 0;
+  }
+  .WorkCard_time{
+    font-size: 1rem;
+    color: $gray-2;
+  }
+  &:hover{
+    &::after{
+      opacity: 0.4;
+    }
+    &::after{
+      opacity: 0.4;
+    }
+    .WorkCard_thumb{
+      transform: translate(-50%, -50%) scale3d(1.1, 1.1, 1);
+    }
+    .WorkCard_cover{
+      transform: none;
+    }
+  }
+}

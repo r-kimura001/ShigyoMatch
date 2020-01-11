@@ -1,6 +1,5 @@
 <template>
   <div class="p-profiles">
-    <Loader :class="{ '--show': isLoading }" />
     <section class="">
       <h1>Profile</h1>
       <ProfileFormLayout
@@ -14,7 +13,6 @@
 </template>
 <script>
 // components
-import Loader from '@/components/Loader'
 import ProfileFormLayout from '@/layouts/mypage/ProfileFormLayout'
 import ResultMessage from '@/components/ResultMessage'
 // mixins
@@ -24,7 +22,7 @@ import { mapState } from 'vuex'
 import { BASE_STORAGE_URL, OK, UNPROCESSABLE_ENTITY } from '@/util'
 
 export default {
-  components: { ProfileFormLayout, Loader, ResultMessage },
+  components: { ProfileFormLayout, ResultMessage },
   mixins: [customerUpdateData],
   props: {
     id: {
@@ -36,7 +34,6 @@ export default {
     return {
       professionTypes: null,
       prefectures: null,
-      isLoading: false,
       test: [],
       errorMessages: {},
     }
@@ -52,17 +49,14 @@ export default {
     // さらにimmediate: true にしているのでコンポーネントが生成されたタイミングでも実行される
     $route: {
       async handler() {
-        this.isLoading = true
+        this.$store.commit('form/setIsLoading', true)
         await this.fetchProfessions()
         await this.fetchPrefectures()
         await this.bindCustomerData()
-        this.isLoading = false
+        this.$store.commit('form/setIsLoading', false)
       },
       immediate: true,
     },
-  },
-  beforeCreate() {
-    this.$store.dispatch('auth/currentCustomer')
   },
   methods: {
     boxChecked(id) {
@@ -75,6 +69,10 @@ export default {
         this.errorMessages !== null &&
         Object.keys(this.errorMessages).indexOf(prop) >= -1
       )
+    },
+    async fetchCustomer() {
+      const response = await axios.get('api/customer')
+      this.customer = response.data
     },
     async fetchProfessions() {
       const response = await axios.get(`/api/professions`)
@@ -101,16 +99,16 @@ export default {
         } else if (key === 'email' || key === 'login_id') {
           this.formData[key].value = this.customer.user[key]
         } else if (key === 'file_name') {
-          this.formData[
-            key
-          ].srcPath = `${BASE_STORAGE_URL}/${this.customer.file_name}`
+          this.formData[key].srcPath = this.customer.file_name
+            ? `${BASE_STORAGE_URL}/${this.customer.file_name}`
+            : null
         } else {
           this.formData[key].value = this.customer[key]
         }
       })
     },
     async update() {
-      this.isLoading = true
+      this.$store.commit('form/setIsLoading', true)
 
       const customerData = new FormData()
       const keys = Object.keys(this.formData).filter(
@@ -145,7 +143,7 @@ export default {
         config
       )
 
-      this.isLoading = false
+      this.$store.commit('form/setIsLoading', false)
 
       this.$store.commit('auth/setResponse', response)
 
@@ -157,7 +155,6 @@ export default {
       if (response.status === OK) {
         this.errorMessages = null
         this.$store.commit('auth/setCustomer', response.data)
-        this.$scrollTo('.Header', 1500)
         this.$store.commit('form/setSuccessMessage', '更新に成功しました')
         setTimeout(() => {
           this.$store.commit('form/setSuccessMessage', null)

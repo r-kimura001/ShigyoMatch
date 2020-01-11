@@ -1,0 +1,37 @@
+.BorderButton{
+  padding: 8px 10px;
+  color: $white;
+  font-size: 1.6rem;
+  font-weight: bold;
+  display: inline-block;
+  border: 2px solid $white;
+  min-width: $buttonMinWidth;
+  cursor: pointer;
+  transition: $transitionBasis;
+  &:hover{
+    color: $black;
+    background: $white;
+  }
+  &.--minimum{
+    font-size: 1.2rem;
+    border-radius: 6px;
+    padding: 4px 9px;
+    min-width: initial;
+    border: 1px solid $blue;
+    color: $blue;
+    font-weight: normal;
+    &:hover{
+      color: $white;
+      background: $blue;
+    }
+  }
+  &.--yellow{
+    color: $yellow;
+    border-color: $yellow;
+    &:hover{
+      color: $white;
+      background: $yellow;
+    }
+  }
+
+}

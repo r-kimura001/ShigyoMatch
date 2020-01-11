@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\Services\CustomerService;
 
 class RegisterController extends Controller
 {
@@ -29,15 +31,20 @@ class RegisterController extends Controller
      * @var string
      */
     protected $redirectTo = '/home';
+    /**
+     * @var
+     */
+    protected $customerService;
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(CustomerService $customerService)
     {
-        $this->middleware('guest');
+      $this->middleware('guest');
+      $this->customerService = $customerService;
     }
 
     /**
@@ -50,6 +57,7 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'login_id' => ['required', 'string', 'max:100', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -64,8 +72,17 @@ class RegisterController extends Controller
     {
         return User::create([
             'email' => $data['email'],
+            'login_id' => $data['login_id'],
+            'customer_id' => $data['customer_id'],
             'password' => Hash::make($data['password']),
         ]);
     }
+
+    protected function registered(Request $request, $user)
+    {
+      return $user;
+    }
+
+
 
 }

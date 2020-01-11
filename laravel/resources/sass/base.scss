@@ -7,15 +7,21 @@ body {
   font-family: $mainFontFamily;
   color: $textBaseColor;
   background-color: $bgBaseColor;
-  word-break: break-all;
   -webkit-text-size-adjust: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  overflow-x: hidden;
   @include media(){
     font-size: 1.6rem;
   }
 }
 
-*{
+*,
+*::before,
+*::after {
   box-sizing: border-box;
+  // iOSでリンクやボタンをクリックしたときに背景が青くハイライトするのを消去
+  -webkit-tap-highlight-color: transparent;
 }
 a {
   color: inherit;
@@ -31,7 +37,7 @@ a {
 
 img {
   max-width: 100%;
-  vertical-align: top;
+  vertical-align: middle;
 }
 
 input,

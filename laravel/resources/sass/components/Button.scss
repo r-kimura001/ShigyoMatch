@@ -2,7 +2,7 @@
     border-radius: 9999px;
     color: $white;
     display: inline-block;
-    min-width: 110px;
+    min-width: $buttonMinWidth;
     font-size: 1.6rem;
     cursor: pointer;
     padding: 10px 12px;
@@ -34,6 +34,9 @@
     &.--green{
         background: $paleGreen;
     }
+    &.--yellowGreen{
+        background: $yellowGreen;
+    }
     &.--flex{
         width: 100%;
         max-width: 240px;
@@ -41,6 +44,12 @@
     &.--small{
       font-size: 1.4rem;
       padding: 8px 10px;
+      min-width: initial;
+    }
+    &.--minimum{
+      font-size: 1.2rem;
+      border-radius: 6px;
+      padding: 5px 10px;
       min-width: initial;
     }
     &.--large{
