@@ -28,7 +28,7 @@ class Customer extends Model
     'greeting',
   ];
 
-  public function getPref(int $id)
+  public function getPref($id)
   {
     $prefecture = Prefecture::find($id);
     return $prefecture->name;
@@ -36,7 +36,11 @@ class Customer extends Model
 
   public function getFullAddressAttribute()
   {
-    return $this->getPref($this->pref_code) . $this->city . $this->address . $this->building;
+    if($this->pref_code === null){
+      return '';
+    }else{
+      return $this->getPref($this->pref_code) . $this->city . $this->address . $this->building;
+    }
   }
 
 
