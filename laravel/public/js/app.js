@@ -5545,7 +5545,7 @@ __webpack_require__.r(__webpack_exports__);
               };
               config.headers['X-HTTP-Method-Override'] = 'PUT';
               _context5.next = 9;
-              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(axios.post("/api/customers/".concat(this.id), customerData, config));
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(axios.post("/api/customers/".concat(this.customer.id), customerData, config));
 
             case 9:
               response = _context5.sent;
