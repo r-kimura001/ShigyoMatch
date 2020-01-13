@@ -116,7 +116,7 @@ export default {
       config.headers['X-HTTP-Method-Override'] = 'PUT'
 
       const response = await axios.post(
-        `/api/customers/${this.id}`,
+        `/api/customers/${this.customer.id}`,
         customerData,
         config
       )
