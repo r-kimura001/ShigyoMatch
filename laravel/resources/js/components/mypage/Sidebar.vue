@@ -28,7 +28,7 @@ export default {
   mixins: [styles],
   props: {
     id: {
-      type: String,
+      type: Number,
       required: true,
     },
   },

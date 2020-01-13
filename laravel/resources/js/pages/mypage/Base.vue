@@ -16,7 +16,7 @@ export default {
   components: { Sidebar },
   props: {
     id: {
-      type: String,
+      type: Number,
       required: true,
     },
   },

@@ -3297,7 +3297,7 @@ __webpack_require__.r(__webpack_exports__);
   mixins: [_mixins_styles__WEBPACK_IMPORTED_MODULE_0__["default"]],
   props: {
     id: {
-      type: String,
+      type: Number,
       required: true
     }
   },
@@ -5073,7 +5073,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   props: {
     id: {
-      type: String,
+      type: Number,
       required: true
     }
   },
@@ -35121,7 +35121,7 @@ var routes = [{
     component: _pages_mypage_Base_vue__WEBPACK_IMPORTED_MODULE_12__["default"],
     props: function props(route) {
       return {
-        id: String(route.params.id)
+        id: Number(route.params.id)
       };
     },
     beforeEnter: function beforeEnter(to, from, next) {
