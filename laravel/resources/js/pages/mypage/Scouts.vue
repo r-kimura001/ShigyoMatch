@@ -6,9 +6,10 @@
 <script>
 export default {
   props: {
-    id: {
-      type: String,
+    customer: {
+      type: Object,
       required: true,
+      default: () => ({}),
     },
   },
 }

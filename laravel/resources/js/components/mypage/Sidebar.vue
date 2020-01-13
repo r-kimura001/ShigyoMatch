@@ -1,7 +1,11 @@
 <template>
   <aside class="Sidebar">
     <div class="Sidebar_list">
-      <div v-for="(list, index) in lists" :key="index" class="Sidebar_listItem">
+      <div
+        v-for="(list, index) in menuList"
+        :key="index"
+        class="Sidebar_listItem"
+      >
         <RouterLink
           :to="`/mypage/${id}${list.path}`"
           tag="div"
@@ -30,7 +34,7 @@ export default {
   },
   data() {
     return {
-      lists: [
+      menuList: [
         {
           name: 'HOME',
           path: '',

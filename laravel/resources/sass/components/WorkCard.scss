@@ -8,7 +8,7 @@
   &::before{
     content: "¥"attr(data-fee);
     position: absolute;
-    top: 10px;
+    top: 5px;
     right: 5px;
     font-size: 1.2rem;
     color: $white;
@@ -19,14 +19,13 @@
   &::after{
     content: '';
     position: absolute;
-    top: -22px;
-    right: -18px;
+    top: 0;
+    right: 0;
     width: 0;
     height: 0;
-    transform: rotate(25deg);
     border-style: solid;
-    border-width: 0 25px 55px 120px;
-    border-color: transparent transparent $pink transparent;
+    border-width: 40px 0 0 110px;
+    border-color: $pink transparent transparent transparent;
     transition: $transitionBasis;
   }
   .WorkCard_face{
@@ -60,13 +59,20 @@
     transform: translate(0, 100%);
   }
   .WorkCard_title{
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     font-weight: bold;
     padding: 5px 0;
   }
   .WorkCard_time{
     font-size: 1rem;
     color: $gray-2;
+  }
+  .WorkCard_button{
+    flex-shrink: 0;
+  }
+  .WorkCard_text{
+    line-height: 1.1;
+    padding: 0 3px;
   }
   &:hover{
     &::after{

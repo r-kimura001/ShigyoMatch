@@ -660,6 +660,11 @@ input[type=radio]:checked {
   background: transparent;
 }
 
+th,
+td {
+  vertical-align: middle;
+}
+
 .AuthFormLayout {
   width: 600px;
   max-width: 100%;
@@ -709,7 +714,7 @@ input[type=radio]:checked {
           transform-origin: center top;
   -webkit-transform: scale3d(0, 0, 1);
           transform: scale3d(0, 0, 1);
-  width: 130px;
+  min-width: 130px;
   text-align: center;
 }
 
@@ -725,6 +730,7 @@ input[type=radio]:checked {
   border-color: transparent transparent #626d78 transparent;
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
+  pointer-events: none;
 }
 
 .AuthNav .AuthNav_item {
@@ -786,6 +792,26 @@ input[type=radio]:checked {
   background: #fabd3e;
 }
 
+.BorderButton.\--danger {
+  color: #e44963;
+  border-color: #e44963;
+}
+
+.BorderButton.\--danger:hover {
+  color: #fefefe;
+  background: #e44963;
+}
+
+.BorderButton.\--green {
+  color: #33ba7c;
+  border-color: #33ba7c;
+}
+
+.BorderButton.\--green:hover {
+  color: #fefefe;
+  background: #33ba7c;
+}
+
 .Button {
   border-radius: 9999px;
   color: #fefefe;
@@ -808,16 +834,6 @@ input[type=radio]:checked {
   opacity: 0.8;
 }
 
-.Button.\--fixed {
-  position: fixed;
-  bottom: 15px;
-  left: 10px;
-  right: 10px;
-  max-width: 480px;
-  margin: 0 auto;
-  z-index: 1;
-}
-
 .Button.\--pink {
   background: #f65ca4;
 }
@@ -830,9 +846,22 @@ input[type=radio]:checked {
   background: #7BBB5E;
 }
 
+.Button.\--danger {
+  background: #e44963;
+}
+
 .Button.\--flex {
   width: 100%;
   max-width: 240px;
+}
+
+.Button.\--fixed {
+  position: fixed;
+  bottom: 10px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  width: 250px;
 }
 
 .Button.\--small {
@@ -1311,10 +1340,6 @@ input[type=radio]:checked {
   font-size: 1.4rem;
 }
 
-.Form .Form_row .Form_label.\--id {
-  background-image: url(https://asset.shigyo-match.site/assets/icon-man.svg);
-}
-
 .Form .Form_row .Form_label[type=password] {
   background-image: url(https://asset.shigyo-match.site/assets/icon-password.svg);
 }
@@ -1335,6 +1360,14 @@ input[type=radio]:checked {
   background-image: url(https://asset.shigyo-match.site/assets/icon-post.svg);
 }
 
+.Form .Form_row .Form_label[name=title] {
+  background-image: url(https://asset.shigyo-match.site/assets/icon-post.svg);
+}
+
+.Form .Form_row .Form_label[name=fee] {
+  background-image: url(https://asset.shigyo-match.site/assets/icon-money.svg);
+}
+
 .Form .Form_row .Form_label[name=building] {
   background-image: url(https://asset.shigyo-match.site/assets/icon-building.svg);
 }
@@ -1343,8 +1376,16 @@ input[type=radio]:checked {
   background-image: url(https://asset.shigyo-match.site/assets/icon-pen.svg);
 }
 
+.Form .Form_row .Form_label[name=body] {
+  background-image: url(https://asset.shigyo-match.site/assets/icon-pen.svg);
+}
+
 .Form .Form_row .Form_label.\--place {
   background-image: url(https://asset.shigyo-match.site/assets/icon-map.svg);
+}
+
+.Form .Form_row .Form_label.\--id {
+  background-image: url(https://asset.shigyo-match.site/assets/icon-man.svg);
 }
 
 .Form .Form_row .Form_text,
@@ -1401,10 +1442,6 @@ input[type=radio]:checked {
   max-width: 300px;
 }
 
-.Form .Form_row .Form_text.\--id {
-  background-image: url(https://asset.shigyo-match.site/assets/icon-man.svg);
-}
-
 .Form .Form_row .Form_text[type=password] {
   background-image: url(https://asset.shigyo-match.site/assets/icon-password.svg);
 }
@@ -1425,6 +1462,14 @@ input[type=radio]:checked {
   background-image: url(https://asset.shigyo-match.site/assets/icon-post.svg);
 }
 
+.Form .Form_row .Form_text[name=title] {
+  background-image: url(https://asset.shigyo-match.site/assets/icon-post.svg);
+}
+
+.Form .Form_row .Form_text[name=fee] {
+  background-image: url(https://asset.shigyo-match.site/assets/icon-money.svg);
+}
+
 .Form .Form_row .Form_text[name=building] {
   background-image: url(https://asset.shigyo-match.site/assets/icon-building.svg);
 }
@@ -1433,8 +1478,16 @@ input[type=radio]:checked {
   background-image: url(https://asset.shigyo-match.site/assets/icon-pen.svg);
 }
 
+.Form .Form_row .Form_text[name=body] {
+  background-image: url(https://asset.shigyo-match.site/assets/icon-pen.svg);
+}
+
 .Form .Form_row .Form_text.\--place {
   background-image: url(https://asset.shigyo-match.site/assets/icon-map.svg);
+}
+
+.Form .Form_row .Form_text.\--id {
+  background-image: url(https://asset.shigyo-match.site/assets/icon-man.svg);
 }
 
 .Form .Form_row .Form_text.\--register-num {
@@ -1456,7 +1509,7 @@ input[type=radio]:checked {
 }
 
 .Form .Form_row .Form_button {
-  padding: 10px 12px;
+  padding: 12px;
   width: 100%;
   max-width: 300px;
   background: #33ba7c;
@@ -1728,6 +1781,11 @@ input[type=radio]:checked {
           justify-content: center;
 }
 
+.HorizontalLayout.\--justifyEnd {
+  -webkit-box-pack: end;
+          justify-content: flex-end;
+}
+
 .Loader {
   -webkit-transition: 0.3s;
   transition: 0.3s;
@@ -1809,7 +1867,7 @@ input[type=radio]:checked {
   background: #F6F9FE;
 }
 
-.MainLayout.\--customerDetail {
+.MainLayout.\--hasWorks {
   background: #F4F4F4;
 }
 
@@ -1832,14 +1890,14 @@ input[type=radio]:checked {
   padding: 20px 0;
   text-align: center;
   color: #fefefe;
-  font-size: 2.4rem;
+  font-size: 2rem;
   font-weight: bold;
 }
 
 @media screen and (max-width: 768px) {
   .ResultMessage .ResultMessage_text {
     padding: 14px 0;
-    font-size: 1.8rem;
+    font-size: 1.6rem;
   }
 }
 
@@ -1953,10 +2011,80 @@ input[type=radio]:checked {
 .Pager .Pager_link.\--edge {
   pointer-events: none;
   color: #cccccc;
+  border-color: #cccccc;
 }
 
 .ProfileFormLayout {
   max-width: 840px;
+}
+
+.Radio {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #a8a3a7;
+  border-radius: 9999px;
+  vertical-align: top;
+  cursor: pointer;
+}
+
+.Radio + .Radio_label {
+  cursor: pointer;
+}
+
+.Radio[data-label=弁護士] {
+  color: #4379A9;
+  border-color: #4379A9;
+}
+
+.Radio[data-label=弁護士] + .Radio_label {
+  color: #4379A9;
+}
+
+.Radio[data-label=司法書士] {
+  color: #EC7211;
+  border-color: #EC7211;
+}
+
+.Radio[data-label=司法書士] + .Radio_label {
+  color: #EC7211;
+}
+
+.Radio[data-label=行政書士] {
+  color: #fb7272;
+  border-color: #fb7272;
+}
+
+.Radio[data-label=行政書士] + .Radio_label {
+  color: #fb7272;
+}
+
+.Radio[data-label=税理士] {
+  color: #69D9A1;
+  border-color: #69D9A1;
+}
+
+.Radio[data-label=税理士] + .Radio_label {
+  color: #69D9A1;
+}
+
+.Radio:checked {
+  position: relative;
+}
+
+.Radio:checked::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  content: "";
+  width: 0;
+  height: 0;
+  border-color: inherit;
+  border-style: solid;
+  border-width: 6px;
+  border-radius: inherit;
 }
 
 .Review {
@@ -2096,6 +2224,70 @@ input[type=radio]:checked {
   }
 }
 
+.Table {
+  min-width: 100%;
+  overflow-x: scroll;
+  white-space: nowrap;
+}
+
+.Table table {
+  width: 100%;
+  border: 1px solid #f0f0f0;
+}
+
+.Table th,
+.Table td {
+  text-align: center;
+  padding: 15px;
+}
+
+.Table th.\--operation,
+.Table td.\--operation {
+  width: 170px;
+}
+
+.Table th {
+  background: #349d9d;
+  color: #fefefe;
+}
+
+.Table tbody tr {
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.Table tbody tr:nth-of-type(even) {
+  background: #f0f0f0;
+}
+
+.Table tbody tr:hover {
+  background: #cccccc;
+}
+
+.Table .Table_icon {
+  display: inline-block;
+  background-position: center;
+  background-size: cover;
+  margin-right: 8px;
+  border-radius: 9999px;
+  width: 35px;
+  height: 35px;
+}
+
+.Table .Table_headText {
+  font-size: 1.4rem;
+}
+
+.Table .Table_dataText {
+  font-size: 1.4rem;
+}
+
+.Table .Table_dataText.\--link {
+  cursor: pointer;
+  color: #2992d9;
+  font-weight: bold;
+}
+
 .Tag {
   padding: 6px;
   font-weight: bold;
@@ -2190,7 +2382,7 @@ input[type=radio]:checked {
 .WorkCard::before {
   content: "\A5" attr(data-fee);
   position: absolute;
-  top: 10px;
+  top: 5px;
   right: 5px;
   font-size: 1.2rem;
   color: #fefefe;
@@ -2203,15 +2395,13 @@ input[type=radio]:checked {
 .WorkCard::after {
   content: "";
   position: absolute;
-  top: -22px;
-  right: -18px;
+  top: 0;
+  right: 0;
   width: 0;
   height: 0;
-  -webkit-transform: rotate(25deg);
-          transform: rotate(25deg);
   border-style: solid;
-  border-width: 0 25px 55px 120px;
-  border-color: transparent transparent #f65ca4 transparent;
+  border-width: 40px 0 0 110px;
+  border-color: #f65ca4 transparent transparent transparent;
   -webkit-transition: 0.3s;
   transition: 0.3s;
 }
@@ -2258,7 +2448,7 @@ input[type=radio]:checked {
 }
 
 .WorkCard .WorkCard_title {
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   font-weight: bold;
   padding: 5px 0;
 }
@@ -2266,6 +2456,15 @@ input[type=radio]:checked {
 .WorkCard .WorkCard_time {
   font-size: 1rem;
   color: #cccccc;
+}
+
+.WorkCard .WorkCard_button {
+  flex-shrink: 0;
+}
+
+.WorkCard .WorkCard_text {
+  line-height: 1.1;
+  padding: 0 3px;
 }
 
 .WorkCard:hover::after {
@@ -2338,6 +2537,62 @@ input[type=radio]:checked {
 }
 
 .WorkListLayout.\--scroll .WorkListLayout_item {
+  flex-shrink: 0;
+  margin: 0 10px;
+}
+
+.WorkTableLayout {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: start;
+          justify-content: flex-start;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.WorkTableLayout .WorkTableLayout_body {
+  width: 100%;
+  max-width: calc(100% / 3 - 20px);
+  margin: 10px;
+  -webkit-box-flex: 1;
+          flex-grow: 1;
+}
+
+@media screen and (max-width: 768px) {
+  .WorkTableLayout .WorkTableLayout_body {
+    max-width: calc(100% / 2 - 20px);
+  }
+}
+
+@media screen and (max-width: 670px) {
+  .WorkTableLayout .WorkTableLayout_body {
+    max-width: 350px;
+    margin: 20px auto;
+  }
+}
+
+.WorkTableLayout.\--scroll {
+  flex-wrap: nowrap;
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+
+.WorkTableLayout.\--scroll::-webkit-scrollbar {
+  width: 8px;
+}
+
+.WorkTableLayout.\--scroll::-webkit-scrollbar-track {
+  background: transparent;
+  border-left: 0;
+}
+
+.WorkTableLayout.\--scroll::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 10px;
+  box-shadow: none;
+}
+
+.WorkTableLayout.\--scroll .WorkTableLayout_body {
   flex-shrink: 0;
   margin: 0 10px;
 }
@@ -2533,7 +2788,15 @@ input[type=radio]:checked {
 }
 
 .u-py20 {
-  padding: 10px 0;
+  padding: 20px 0;
+}
+
+.u-pa10 {
+  padding: 10px;
+}
+
+.u-pa20 {
+  padding: 20px;
 }
 
 .u-fontMedium {

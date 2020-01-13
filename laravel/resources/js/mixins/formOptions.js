@@ -15,9 +15,19 @@ export default {
       return 'options' in this.item && 'required' in this.item.options
     },
     setClass() {
-      return Object.keys(this.item).indexOf('classOption') !== -1
+      return 'classOption' in this.item !== -1
         ? this.item.classOption
         : ''
+    },
+    maxLength(){
+      if( 'options' in this.item && 'maxLength' in this.item.options ){
+        return this.item.options.maxLength
+      }
+    },
+    maxNumber(){
+      if( 'options' in this.item && 'maxNumber' in this.item.options ){
+        return this.item.options.maxNumber
+      }
     },
   },
   computed: {

@@ -1,0 +1,54 @@
+.Radio{
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid $gray;
+  border-radius: 9999px;
+  vertical-align: top;
+  cursor: pointer;
+
+  &+.Radio_label{
+    cursor: pointer;
+  }
+  &[data-label='弁護士']{
+    color: $lawyerColor;
+    border-color: $lawyerColor;
+    &+.Radio_label{
+      color: $lawyerColor;
+    }
+  }
+  &[data-label='司法書士']{
+    color: $judicialScrivenerColor;
+    border-color: $judicialScrivenerColor;
+    &+.Radio_label{
+      color: $judicialScrivenerColor;
+    }
+  }
+  &[data-label='行政書士']{
+    color: $notaryScrivenerColor;
+    border-color: $notaryScrivenerColor;
+    &+.Radio_label{
+      color: $notaryScrivenerColor;
+    }
+  }
+  &[data-label='税理士']{
+    color: $taxAccountantColor;
+    border-color: $taxAccountantColor;
+    &+.Radio_label{
+      color: $taxAccountantColor;
+    }
+  }
+  &:checked{
+    position: relative;
+    &::after{
+      @include centerPosition();
+      content: '';
+      width: 0;
+      height: 0;
+      border-color: inherit;
+      border-style: solid;
+      border-width: 6px;
+      border-radius: inherit;
+    }
+  }
+}

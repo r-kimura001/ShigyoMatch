@@ -24,4 +24,7 @@
     &.--justifyCenter{
       justify-content: center;
     }
+    &.--justifyEnd{
+      justify-content: flex-end;
+    }
   }

@@ -4,30 +4,27 @@
       <h1>Profile</h1>
       <ProfileFormLayout
         :form-data="formData"
-        :error-messages="errorMessages"
         @profileSubmit="update"
       ></ProfileFormLayout>
     </section>
-    <ResultMessage></ResultMessage>
   </div>
 </template>
 <script>
 // components
 import ProfileFormLayout from '@/layouts/mypage/ProfileFormLayout'
-import ResultMessage from '@/components/ResultMessage'
 // mixins
 import customerUpdateData from '@/mixins/formData/customerUpdateData'
 // other
-import { mapState } from 'vuex'
 import { BASE_STORAGE_URL, OK, UNPROCESSABLE_ENTITY } from '@/util'
 
 export default {
-  components: { ProfileFormLayout, ResultMessage },
+  components: { ProfileFormLayout },
   mixins: [customerUpdateData],
   props: {
-    id: {
-      type: String,
+    customer: {
+      type: Object,
       required: true,
+      default: () => ({}),
     },
   },
   data() {
@@ -35,14 +32,7 @@ export default {
       professionTypes: null,
       prefectures: null,
       test: [],
-      errorMessages: {},
     }
-  },
-  computed: {
-    ...mapState({
-      apiStatus: state => state.auth.apiStatus,
-      customer: state => state.auth.customer,
-    }),
   },
   watch: {
     // routeを監視してページが切り替わったときにfetchList()が実行されるよう記述
@@ -64,12 +54,6 @@ export default {
         '--disable': this.customerData.professionIds.indexOf(id) === -1,
       }
     },
-    hasError(prop) {
-      return (
-        this.errorMessages !== null &&
-        Object.keys(this.errorMessages).indexOf(prop) >= -1
-      )
-    },
     async fetchCustomer() {
       const response = await axios.get('api/customer')
       this.customer = response.data
@@ -78,12 +62,6 @@ export default {
       const response = await axios.get(`/api/professions`)
       if (response.status === OK) {
         this.formData.profession_types.list = response.data
-      }
-    },
-    async fetchPrefectures() {
-      const response = await axios.get(`/api/prefectures`)
-      if (response.status === OK) {
-        this.formData.pref_code.list = response.data
       }
     },
     async bindCustomerData() {
@@ -148,7 +126,7 @@ export default {
       this.$store.commit('auth/setResponse', response)
 
       if (response.status === UNPROCESSABLE_ENTITY) {
-        this.errorMessages = response.data.errors
+        this.$store.commit('error/setMessage', response.data.errors)
         this.$scrollTo('.Header', 1500)
         return false
       }
@@ -156,9 +134,6 @@ export default {
         this.errorMessages = null
         this.$store.commit('auth/setCustomer', response.data)
         this.$store.commit('form/setSuccessMessage', '更新に成功しました')
-        setTimeout(() => {
-          this.$store.commit('form/setSuccessMessage', null)
-        }, 3000)
       }
     },
   },

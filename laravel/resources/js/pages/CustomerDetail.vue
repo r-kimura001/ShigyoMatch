@@ -1,6 +1,6 @@
 <template>
   <div class="p-customer-details">
-    <div class="MainLayout --customerDetail">
+    <div class="MainLayout --hasWorks">
       <div class="MainLayout_boxList">
         <section class="MainLayout_box">
           <CustomerInfoLayout :customer="customer"></CustomerInfoLayout>
@@ -24,7 +24,7 @@ export default {
   },
   data() {
     return {
-      customer: null,
+      customer: {},
     }
   },
   computed: {

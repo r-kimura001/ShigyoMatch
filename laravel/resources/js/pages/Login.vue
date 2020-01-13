@@ -47,7 +47,7 @@
                   />
                 </div>
                 <div class="Form_row u-alignCenter">
-                  <button class="Form_button u-mt20">
+                  <button class="Form_button --radius u-mt20">
                     Log in
                   </button>
                 </div>

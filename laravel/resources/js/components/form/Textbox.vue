@@ -9,6 +9,7 @@
       :placeholder="item.placeholder"
       :required="isRequired()"
       :autofocus="isAutoFocus()"
+      :maxlength="maxLength()"
     />
   </div>
 </template>

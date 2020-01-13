@@ -9,6 +9,7 @@
       :placeholder="item.placeholder"
       :required="isRequired()"
       :autofocus="isAutoFocus()"
+      :max="maxNumber()"
     />
     <button
       v-if="item.name === 'zip_code'"

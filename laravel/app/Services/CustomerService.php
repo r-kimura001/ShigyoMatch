@@ -7,6 +7,7 @@ use App\Models\Customer;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\Events\Registered;
+
 class CustomerService extends Service
 {
   protected $customerRep;
@@ -22,16 +23,26 @@ class CustomerService extends Service
     $this->customerRep = $customerRep;
   }
 
+  /**
+   * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
+   */
   public function all()
   {
     return $this->customerRep->all();
   }
 
+  /**
+   * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+   */
   public function paginate()
   {
     return $this->customerRep->paginate();
   }
 
+  /**
+   * @param $data
+   * @return Customer
+   */
   public function firstRegister($data)
   {
     // customersへの登録
@@ -52,7 +63,7 @@ class CustomerService extends Service
     $registerNumbers = json_decode($data['registerNumbers'], true);
     $professionIds = explode(',', $data['professionIds']);
 
-    foreach($professionIds as $professionId){
+    foreach ($professionIds as $professionId) {
       $professionTypes[$professionId] = ['register_number' => $registerNumbers[$professionId]];
     }
     $createdCustomer->professionTypes()->sync($professionTypes);
@@ -62,7 +73,10 @@ class CustomerService extends Service
 
   }
 
-
+  /**
+   * @param Customer $customer
+   * @param array $data
+   */
   public function update(Customer $customer, array $data)
   {
     $customer->updateByUser($data);
@@ -72,7 +86,7 @@ class CustomerService extends Service
     $registerNumbers = json_decode($data['registerNumbers'], true);
     $professionIds = explode(',', $data['professionIds']);
 
-    foreach($professionIds as $professionId){
+    foreach ($professionIds as $professionId) {
       $professionTypes[$professionId] = ['register_number' => $registerNumbers[$professionId]];
     }
     $customer->professionTypes()->sync($professionTypes);
@@ -87,5 +101,15 @@ class CustomerService extends Service
     return $this->customerRep->customerById($customerId);
   }
 
+  /**
+   * @param int $customerId
+   * @return mixed
+   */
+  public function worksByOwner(int $customerId)
+  {
+    return $this->customerRep->worksByOwner($customerId);
+  }
+
 
 }
+

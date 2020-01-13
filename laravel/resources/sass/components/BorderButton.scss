@@ -33,5 +33,22 @@
       background: $yellow;
     }
   }
+  &.--danger{
+    color: $redPink;
+    border-color: $redPink;
+    &:hover{
+      color: $white;
+      background: $redPink;
+    }
+  }
+  &.--green{
+    color: $green;
+    border-color: $green;
+    &:hover{
+      color: $white;
+      background: $green;
+    }
+  }
+
 
 }

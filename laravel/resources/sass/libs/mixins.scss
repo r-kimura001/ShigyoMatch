@@ -6,26 +6,26 @@
   }
 };
 
-
-
 @mixin media($breakpoint: md) {
   @media #{map-get($breakpoints, $breakpoint)} {
     @content;
   }
-};
-
+}
 
 @mixin iconFix($pdBase: 5px, $pdLeft: 40px, $iconPosition: 10px, $iconSize: 20px) {
   padding: $pdBase $pdBase $pdBase $pdLeft;
   background-position: left $iconPosition center;
   background-size: $iconSize;
   background-repeat: no-repeat;
+}
 
+@mixin centerPosition(){
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 @mixin formIcons() {
-  &.--id{
-    background-image: url(#{$assetPath}/icon-man.svg);
-  }
   &[type=password]{
     background-image: url(#{$assetPath}/icon-password.svg);
   }
@@ -41,13 +41,25 @@
   &[name=zip_code]{
     background-image: url(#{$assetPath}/icon-post.svg);
   }
+  &[name=title]{
+    background-image: url(#{$assetPath}/icon-post.svg);
+  }
+  &[name=fee]{
+    background-image: url(#{$assetPath}/icon-money.svg);
+  }
   &[name=building]{
     background-image: url(#{$assetPath}/icon-building.svg);
   }
   &[name=greeting]{
     background-image: url(#{$assetPath}/icon-pen.svg);
   }
+  &[name=body]{
+    background-image: url(#{$assetPath}/icon-pen.svg);
+  }
   &.--place{
     background-image: url(#{$assetPath}/icon-map.svg);
+  }
+  &.--id{
+    background-image: url(#{$assetPath}/icon-man.svg);
   }
 }

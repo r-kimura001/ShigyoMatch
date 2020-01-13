@@ -6,6 +6,7 @@ const state = {
   address: null,
   successMessage: null,
   isLoading: false,
+  deleteReview: false,
 }
 
 const getters = {
@@ -27,6 +28,9 @@ const mutations = {
   },
   setIsLoading(state, data) {
     state.isLoading = data
+  },
+  setDeleteReview(state, data) {
+    state.deleteReview = data
   },
 }
 

@@ -1,4 +1,5 @@
 import styles from '@/mixins/styles'
+import { OK } from '@/util'
 export default {
   mixins: [styles],
   data(){
@@ -12,7 +13,7 @@ export default {
           options: {
             required: true,
             autofocus: true,
-            maxlength: 50,
+            maxLength: 50,
           },
           classOption: {
             '--id': true,
@@ -147,6 +148,12 @@ export default {
   methods: {
     hasKey(key){
       return Object.keys(this.formData).indexOf(key) !== -1
-    }
+    },
+    async fetchPrefectures() {
+      const response = await axios.get(`/api/prefectures`)
+      if (response.status === OK) {
+        this.formData.pref_code.list = response.data
+      }
+    },
   }
 }

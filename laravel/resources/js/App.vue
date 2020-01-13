@@ -1,6 +1,7 @@
 <template>
   <div>
     <Loader :class="{ '--show': isLoading }" />
+    <ResultMessage></ResultMessage>
     <CustomerPage v-if="!isAdmin" />
     <AdminPage v-else />
   </div>
@@ -12,11 +13,18 @@ import { mapGetters } from 'vuex'
 import CustomerPage from '@/pages/CustomerPage'
 import AdminPage from '@/admin/AdminPage'
 import Loader from '@/components/Loader'
+import ResultMessage from '@/components/ResultMessage'
+
 export default {
-  components: { CustomerPage, AdminPage, Loader },
+  components: {
+    CustomerPage,
+    AdminPage,
+    Loader,
+    ResultMessage,
+  },
   computed: {
     ...mapGetters({
-      errorCode: 'error/getStatus',
+      errorCode: 'error/status',
       isAdmin: 'auth/isAdmin',
       isLoading: 'form/isLoading',
     }),
