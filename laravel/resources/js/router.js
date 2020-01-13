@@ -102,7 +102,7 @@ const routes = [
         path: ':id',
         component: Base,
         props: route => ({
-          id: String(route.params.id)
+          id: Number(route.params.id)
         }),
         beforeEnter (to, from, next) {
           if (!store.getters['auth/isLogin']) {

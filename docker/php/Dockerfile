@@ -19,4 +19,4 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
   composer global require hirak/prestissimo && \
   composer install && \
   php artisan config:cache && \
-  chmod -R a+w storage/ bootstrap/cache
+  chmod -R a+rw storage/ bootstrap/cache
