@@ -6,6 +6,18 @@
 <script>
 import { mapGetters } from 'vuex'
 export default {
+  watch: {
+    message: {
+      async handler(val) {
+        if (val) {
+          setTimeout(() => {
+            this.$store.commit('form/setSuccessMessage', null)
+          }, 4000)
+        }
+      },
+      immediate: true,
+    },
+  },
   methods: {
     hasMessage() {
       return !!this.message

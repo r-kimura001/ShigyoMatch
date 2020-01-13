@@ -10,6 +10,7 @@ import CustomerDetail from '@/pages/CustomerDetail.vue'
 import Greeting from '@/pages/Greeting.vue'
 import Works from '@/pages/Works.vue'
 import WorkDetail from '@/pages/WorkDetail.vue'
+import WorkCreate from '@/pages/WorkCreate.vue'
 
 // mypage
 import MyPage from '@/pages/mypage/MyPage.vue'
@@ -62,15 +63,21 @@ const routes = [
   {
     path: '/works',
     component: Works,
-    children: [
-      {
-        path: ':id',
-        component: WorkDetail,
-        props: route => ({
-          id: Number(route.params.id)
-        }),
-      }
-    ]
+    props: route => {
+      const page = route.query.page
+      return {page: /^[1-9[0-9]*$/.test(page) ? page * 1 : 1}
+    }
+  },
+  {
+    path: '/works/create',
+    component: WorkCreate,
+  },
+  {
+    path: '/works/:id',
+    component: WorkDetail,
+    props: route => ({
+      id: Number(route.params.id)
+    }),
   },
   {
     path: '/customers',

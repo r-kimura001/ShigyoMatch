@@ -20,7 +20,7 @@ class CreateWorksTable extends Migration
         $table->string('title');
         $table->text('body');
         $table->integer('fee')->nullable();
-        $table->string('file_name', 12)->unique()->nullable();
+        $table->string('file_name')->unique()->nullable();
         $table->timestamps();
         $table->softDeletes();
 

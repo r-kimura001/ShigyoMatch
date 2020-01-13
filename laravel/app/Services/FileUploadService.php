@@ -31,7 +31,7 @@ class FileUploadService extends Service
    * @param $fileData
    * @return string
    */
-  public function uploadCustomerThumb(string $putPath, $fileData)
+  public function uploadThumb(string $putPath, $fileData)
   {
     $fileName = $this->getRandomId().'.'.$fileData->extension();
     Storage::cloud()->putFileAs($putPath, $fileData, $fileName, 'public');

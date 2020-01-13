@@ -6,6 +6,7 @@
       @click="toggleMenu"
     ></button>
     <ul class="AuthNav_menu">
+      <li class="AuthNav_item">{{ customer.name }}様</li>
       <RouterLink :to="`/mypage/${customer.id}`" tag="li" class="AuthNav_item"
         >マイページ</RouterLink
       >

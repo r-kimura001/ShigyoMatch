@@ -20,7 +20,7 @@
         <button
           type="button"
           class="Button --small --secondary"
-          @click="reset()"
+          @click="clear()"
         >
           クリア
         </button>
@@ -39,6 +39,7 @@
 </template>
 <script>
 import formOptions from '@/mixins/formOptions'
+import { mapState } from 'vuex'
 export default {
   mixins: [formOptions],
   data() {
@@ -47,6 +48,9 @@ export default {
     }
   },
   computed: {
+    ...mapState({
+      deleteReview: state => state.form.deleteReview,
+    }),
     previewUrl() {
       if (this.preview) {
         return this.preview
@@ -55,6 +59,17 @@ export default {
       } else {
         return null
       }
+    },
+  },
+  watch: {
+    deleteReview: {
+      async handler(val) {
+        if (val) {
+          await this.reset()
+          this.$store.commit('form/setDeleteReview', false)
+        }
+      },
+      immediate: true,
     },
   },
   methods: {
@@ -84,8 +99,11 @@ export default {
       this.preview = ''
       this.item.value = ''
       this.item.srcPath = ''
-      this.item.deleteFlag = 1
       this.$el.querySelector('.Form_file').value = null
+    },
+    clear() {
+      this.reset()
+      this.item.deleteFlag = 1
     },
     async upload() {
       const formData = new FormData()

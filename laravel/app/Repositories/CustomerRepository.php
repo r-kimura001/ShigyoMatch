@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Repositories;
@@ -13,7 +14,8 @@ class CustomerRepository extends Repository
     $this->builder = new Customer();
   }
 
-  public function createByUser($customerData) {
+  public function createByUser($customerData)
+  {
     return $this->builder->createByUser($customerData);
   }
 
@@ -24,6 +26,7 @@ class CustomerRepository extends Repository
   {
     return $this->getBuilder()->latest()->get();
   }
+
   public function paginate()
   {
     return $this->getBuilder()->with(['professionTypes'])->latest()->paginate(Customer::COUNT_PER_PAGE);
@@ -37,6 +40,20 @@ class CustomerRepository extends Repository
   {
     $customer = $this->getBuilder()->with(['professionTypes', 'user']);
     return $customer->where('id', $customerId)->first();
+  }
+
+  /**
+   * @param int $customerId
+   * @return mixed
+   */
+  public function worksByOwner(int $customerId)
+  {
+    $customer = $this->getBuilder()
+      ->with(['works.professionType'])
+      ->where('id', $customerId)
+      ->first();
+
+    return $customer->works;
   }
 
 }

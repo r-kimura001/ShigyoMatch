@@ -15,8 +15,8 @@ class AddScoutsTable extends Migration
     {
       // SQLite対策のため一旦nullable
       Schema::table('scouts', function(Blueprint $table){
-        $table->string('title')->nullable();
-        $table->text('body')->nullable();
+        $table->string('title')->nullable()->after('scouted_id');
+        $table->text('body')->nullable()->after('title');
       });
       Schema::table('scouts', function(Blueprint $table){
         $table->string('title')->nullable(false)->change();

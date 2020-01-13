@@ -51,11 +51,11 @@ export default {
         },
         {
           path: '/works',
-          name: '案件検索',
+          name: '案件を探す',
         },
         {
           path: '/customers',
-          name: '事務所検索',
+          name: '人材を探す',
         },
       ],
     }

@@ -1,0 +1,56 @@
+.Table{
+  min-width: 100%;
+  overflow-x: scroll;
+  white-space: nowrap;
+  table{
+    width: 100%;
+    border: 1px solid $gray-4;
+  }
+
+  th,td{
+    text-align: center;
+    padding: 15px;
+    &.--operation{
+      width: 170px;
+    }
+  }
+  th{
+    background: $deepGreen;
+    color: $white;
+  }
+
+  tbody{
+    tr{
+      transition: $transitionBasis;
+      &:nth-of-type(even){
+        background: $gray-4;
+      }
+      &:hover{
+        background: $gray-2;
+      }
+    }
+  }
+
+  .Table_icon{
+    display: inline-block;
+    background-position: center;
+    background-size: cover;
+    margin-right: 8px;
+    border-radius: 9999px;
+    width: 35px;
+    height: 35px;
+  }
+
+  .Table_headText{
+    font-size: 1.4rem;
+  }
+  .Table_dataText{
+    font-size: 1.4rem;
+    &.--link{
+      cursor: pointer;
+      color: $paleBlue;
+      font-weight: bold;
+    }
+  }
+
+}

@@ -1,7 +1,7 @@
 <template>
   <div class="p-works">
     <div class="MainLayout --customers">
-      <h1 class="MainLayout_title">
+      <h1 class="MainLayout_heading">
         事務所一覧
       </h1>
       <div class="MainLayout_boxList">
@@ -20,6 +20,7 @@
                   v-if="lastPage > 1"
                   :current-page="currentPage"
                   :last-page="lastPage"
+                  path="customers"
                 ></Pager>
               </div>
               <CustomerListLayout :customers="customers"></CustomerListLayout>
@@ -46,7 +47,7 @@ export default {
   },
   data() {
     return {
-      customers: null,
+      customers: [],
       from: null,
       to: null,
       currentPage: null,

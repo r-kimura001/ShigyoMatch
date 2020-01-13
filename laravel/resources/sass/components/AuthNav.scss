@@ -22,7 +22,7 @@
     transition: .15s;
     transform-origin: center top;
     transform: scale3d(0,0,1);
-    width: 130px;
+    min-width: 130px;
     text-align: center;
     &::after{
       content: '';
@@ -35,6 +35,7 @@
       border-width: 10px 5px 10px 5px;
       border-color: transparent transparent $deepGray transparent;
       transform: translateX(-50%);
+      pointer-events: none;
     }
 
   }

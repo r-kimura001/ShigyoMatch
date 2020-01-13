@@ -3,63 +3,70 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\Customer\UpdateRequest;
-use App\Http\Requests\Customer\StoreRequest;
-use App\Services\CustomerService;
+use App\Http\Requests\Work\UpdateRequest;
+use App\Http\Requests\Work\StoreRequest;
+use App\Services\WorkService;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Services\FileUploadService;
 
-class CustomerController extends Controller
+class WorkController extends Controller
 {
-  protected $customerService;
+  protected $workService;
   protected $fileUploadService;
 
   public function __construct(
-    CustomerService $customerService,
+    WorkService $workService,
     FileUploadService $fileUploadService
   )
   {
-    $this->customerService = $customerService;
+    $this->workService = $workService;
     $this->fileUploadService = $fileUploadService;
   }
 
   public function index()
   {
-    return $this->customerService->paginate();
+    return response($this->workService->paginate(), 200);
   }
 
   /**
    * @param StoreRequest $request
-   * @return CustomerService
+   * @return WorkService
    * @throws \Exception
    */
-  public function register(StoreRequest $request)
+  public function store(StoreRequest $request)
   {
     $data = $request->all();
 
     DB::beginTransaction();
 
     try{
-      $createdCustomer = $this->customerService->firstRegister($data);
+      if(!empty($data['file_name']??'')){
+        $putPath = 'works';
+        $data['file_name'] = $this->fileUploadService->uploadThumb($putPath, $data['file_name']);
+      }
+      $work = $this->workService->store($data);
       DB::commit();
     }catch(\Exception $exception){
       DB::rollback();
+      if(!empty($data['file_name']??'')){
+        $this->fileUploadService->delete($data['file_name']);
+      }
       throw $exception;
     }
-    return response($this->customerService->customerById($createdCustomer->id), 201);
+    return response($this->workService->workById($work->id), 201);
   }
 
   /**
    * @param UpdateRequest $request
    * @param int $id
-   * @return CustomerService
+   * @return WorkService
    * @throws \Exception
    */
   public function update(UpdateRequest $request, int $id)
   {
-    $customer = $this->customerService->customerById($id);
+    $work = $this->workService->workById($id);
     $data = $request->all();
     $putPath = 'customers/'.$id;
 
@@ -70,10 +77,10 @@ class CustomerController extends Controller
         $data['file_name'] = $this->fileUploadService->uploadThumb($putPath, $data['file_name']);
       }
       if($data['deleteFlag'] === '1'){
-        $deleteSrc = $customer->file_name;
+        $deleteSrc = $work->file_name;
         $data['file_name'] = '';
       }
-      $this->customerService->update($customer, $data);
+      $this->workService->update($work, $data);
       DB::commit();
     }catch(\Exception $exception){
       DB::rollback();
@@ -87,28 +94,11 @@ class CustomerController extends Controller
       $this->fileUploadService->delete($deleteSrc);
     }
 
-    return $this->customerService->customerById($id);
+    return $this->workService->workById($id);
   }
 
-  /**
-   * @param int $id
-   * @return mixed
-   */
   public function show(int $id)
   {
-    return $this->customerService->customerById($id);
-  }
-
-  /**
-   * @param int $id
-   */
-  public function worksByOwner(int $id)
-  {
-    return $this->customerService->worksByOwner($id);
-  }
-
-  public function customer()
-  {
-    return Auth::check() ? $this->customerService->customerById(Auth::user()->customer_id) : '';
+    return $this->workService->workById($id);
   }
 }

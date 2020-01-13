@@ -7,6 +7,7 @@ use App\Models\Traits\HandledByUser;
 use App\Models\ProfessionType;
 use App\Models\Prefecture;
 use App\Models\User;
+use App\Models\Work;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Customer extends Model
@@ -39,7 +40,10 @@ class Customer extends Model
     if($this->pref_code === null){
       return '';
     }else{
-      return $this->getPref($this->pref_code) . $this->city . $this->address . $this->building;
+      return $this->getPref($this->attributes['pref_code'])
+        .$this->attributes['city']
+        .$this->attributes['address']
+        .$this->attributes['building'];
     }
   }
 
@@ -59,6 +63,11 @@ class Customer extends Model
   public function user()
   {
     return $this->hasOne(User::class, 'customer_id', 'id');
+  }
+
+  public function works()
+  {
+    return $this->hasMany(Work::class, 'customer_id', 'id');
   }
 
   protected $appends = [ 'full_address' ];

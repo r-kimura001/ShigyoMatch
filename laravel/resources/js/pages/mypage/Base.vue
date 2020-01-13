@@ -4,12 +4,13 @@
       <Sidebar :id="id"></Sidebar>
     </div>
     <div class="MypageContent_main">
-      <RouterView :id="id"></RouterView>
+      <h1>{{ customer.name }}様</h1>
+      <RouterView :customer="customer"></RouterView>
     </div>
   </div>
 </template>
 <script>
-import { mapGetters } from 'vuex'
+import { mapState } from 'vuex'
 import Sidebar from '@/components/mypage/Sidebar.vue'
 export default {
   components: { Sidebar },
@@ -20,18 +21,18 @@ export default {
     },
   },
   computed: {
-    ...mapGetters({
-      customerId: 'auth/customerId',
+    ...mapState({
+      customer: state => state.auth.customer,
     }),
     self() {
-      return this.customerId == this.id
+      return this.customer.id == this.id
     },
   },
   watch: {
     self: {
       async handler(val) {
         if (!val) {
-          this.$router.push(`/mypage/${this.customerId}`)
+          this.$router.push(`/mypage/${this.customer.id}`)
         }
       },
       immediate: true,

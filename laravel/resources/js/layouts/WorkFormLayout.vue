@@ -1,11 +1,10 @@
 <template>
-  <div class="ProfileFormLayout">
-    <h2 class="ProfileFormLayout_title">プロフィール編集</h2>
-    <div class="ProfileFormLayout_body">
+  <div class="WorkFormLayout">
+    <div class="WorkFormLayout_body">
       <FormLayout
         :form-data="formData"
         :submit-button-data="submitButtonData"
-        @send="$emit('profileSubmit')"
+        @send="$emit('workSubmit')"
       ></FormLayout>
     </div>
   </div>

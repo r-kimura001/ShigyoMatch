@@ -20,6 +20,7 @@
           v-if="formItem.type === 'checkbox'"
           :item="formItem"
         ></Checkbox>
+        <Radio v-if="formItem.type === 'radio'" :item="formItem"></Radio>
         <Selectbox
           v-if="formItem.type === 'select'"
           :item="formItem"
@@ -53,11 +54,13 @@ import Number from '@/components/form/Number'
 import Password from '@/components/form/Password'
 import Email from '@/components/form/Email'
 import Checkbox from '@/components/form/Checkbox'
+import Radio from '@/components/form/Radio'
 import Selectbox from '@/components/form/Selectbox'
 import TextareaBox from '@/components/form/TextareaBox'
 import Url from '@/components/form/Url'
 import Filebox from '@/components/form/Filebox'
 import ProfessionTypes from '@/components/form/ProfessionTypes'
+import { mapGetters } from 'vuex'
 export default {
   components: {
     ErrorMessage,
@@ -66,6 +69,7 @@ export default {
     Password,
     Email,
     Checkbox,
+    Radio,
     Selectbox,
     TextareaBox,
     Url,
@@ -78,11 +82,6 @@ export default {
       required: true,
       default: () => ({}),
     },
-    errorMessages: {
-      type: Object,
-      required: true,
-      default: () => ({}),
-    },
     submitButtonData: {
       type: Object,
       required: true,
@@ -91,6 +90,11 @@ export default {
         class: {},
       }),
     },
+  },
+  computed: {
+    ...mapGetters({
+      errorMessages: 'error/message',
+    }),
   },
   methods: {
     hasError(prop) {

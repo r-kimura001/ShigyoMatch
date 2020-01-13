@@ -17,8 +17,8 @@ const mutations = {
 }
 
 const getters = {
-  getStatus: state => state.status,
-  getMessage: state => state.message,
+  status: state => state.status,
+  message: state => state.message,
 }
 
 const actions = {
