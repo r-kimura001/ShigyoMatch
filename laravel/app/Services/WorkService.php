@@ -29,7 +29,7 @@ class WorkService extends Service
 
   public function paginate()
   {
-    return $this->workRep->paginate();
+    return $this->workRep->paginate(Work::RELATIONS_ARRAY);
   }
 
   public function store($data)
@@ -44,6 +44,7 @@ class WorkService extends Service
 
   public function update(Work $work, array $data)
   {
+    $work->updateByUser($data);
   }
 
   /**
@@ -52,7 +53,7 @@ class WorkService extends Service
    */
   public function workById(int $workId)
   {
-    return $this->workRep->workById($workId);
+    return $this->workRep->findById(Work::RELATIONS_ARRAY, $workId);
   }
 
 

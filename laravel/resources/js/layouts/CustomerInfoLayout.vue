@@ -72,7 +72,7 @@
                 class="u-mr5"
                 alt="icon_follower"
               />
-              <span>マッチ数</span>
+              <span>受託件数</span>
             </h4>
             <p class="Text -deepGreen -bold u-alignCenter">
               2
@@ -116,7 +116,7 @@
         :last-page="lastPage"
         path="works"
       ></Pager>
-      <WorkListLayout :works="works"></WorkListLayout>
+      <WorkListLayout :works="list"></WorkListLayout>
     </div>
     <!-- CustomerInfoLayout_main -->
   </div>
@@ -125,7 +125,7 @@
 <script>
 import { BASE_STORAGE_URL } from '@/util'
 import styles from '@/mixins/styles'
-import worksData from '@/mixins/worksData'
+import apiIndexHandler from '@/mixins/apiIndexHandler'
 import WorkListLayout from '@/layouts/WorkListLayout'
 import Pager from '@/components/Pager'
 export default {
@@ -133,7 +133,7 @@ export default {
     WorkListLayout,
     Pager,
   },
-  mixins: [styles, worksData],
+  mixins: [styles, apiIndexHandler],
   props: {
     customer: {
       type: Object,

@@ -21,6 +21,7 @@ class WorkController extends Controller
     FileUploadService $fileUploadService
   )
   {
+    $this->middleware('auth')->except(['index', 'show']);
     $this->workService = $workService;
     $this->fileUploadService = $fileUploadService;
   }
@@ -68,23 +69,24 @@ class WorkController extends Controller
   {
     $work = $this->workService->workById($id);
     $data = $request->all();
-    $putPath = 'customers/'.$id;
+    $putPath = 'works';
+    if($data['deleteFlag'] === '1'){
+      $deleteSrc = $work->file_name;
+      $data['file_name'] = '';
+    }
 
     DB::beginTransaction();
 
     try{
-      if(isset($data['file_name'])){
+      if(!empty($data['file_name']??'')){
+        $this->fileUploadService->delete($data['file_name']);
         $data['file_name'] = $this->fileUploadService->uploadThumb($putPath, $data['file_name']);
-      }
-      if($data['deleteFlag'] === '1'){
-        $deleteSrc = $work->file_name;
-        $data['file_name'] = '';
       }
       $this->workService->update($work, $data);
       DB::commit();
     }catch(\Exception $exception){
       DB::rollback();
-      if(isset($data['file_name'])){
+      if(!empty($data['file_name']??'')){
         $this->fileUploadService->delete($data['file_name']);
       }
       throw $exception;
@@ -99,6 +101,26 @@ class WorkController extends Controller
 
   public function show(int $id)
   {
-    return $this->workService->workById($id);
+    return $this->workService->workById($id) ?? abort(404);
   }
+
+  public function destroy(int $id)
+  {
+    DB::beginTransaction();
+
+    try{
+      $work = $this->workService->workById($id);
+      $fileName = $work->file_name;
+      $work->deleteByUser();
+      DB::commit();
+    }catch(\Exception $exception){
+      DB::rollback();
+      throw $exception;
+    }
+    if(!empty($fileName??'')){
+      $this->fileUploadService->delete($fileName);
+    }
+    return response('', 204);
+  }
+
 }

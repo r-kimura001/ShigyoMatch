@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Repositories\CustomerRepository;
+use App\Repositories\WorkRepository;
 use App\Models\Customer;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -11,16 +12,19 @@ use Illuminate\Auth\Events\Registered;
 class CustomerService extends Service
 {
   protected $customerRep;
+  protected $workRep;
 
   /**
    * CustomerService constructor.
    * @param CustomerRepository $customerRep
    */
   public function __construct(
-    CustomerRepository $customerRep
+    CustomerRepository $customerRep,
+    WorkRepository $workRep
   )
   {
     $this->customerRep = $customerRep;
+    $this->workRep = $workRep;
   }
 
   /**
@@ -36,7 +40,7 @@ class CustomerService extends Service
    */
   public function paginate()
   {
-    return $this->customerRep->paginate();
+    return $this->customerRep->paginate(Customer::RELATIONS_ARRAY);
   }
 
   /**
@@ -98,7 +102,7 @@ class CustomerService extends Service
    */
   public function customerById(int $customerId)
   {
-    return $this->customerRep->customerById($customerId);
+    return $this->customerRep->findById(Customer::RELATIONS_ARRAY, $customerId);
   }
 
   /**
@@ -107,7 +111,7 @@ class CustomerService extends Service
    */
   public function worksByOwner(int $customerId)
   {
-    return $this->customerRep->worksByOwner($customerId);
+    return $this->workRep->worksByOwner($customerId);
   }
 
 

@@ -9,13 +9,15 @@ use App\Models\Prefecture;
 use App\Models\User;
 use App\Models\Work;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Interfaces\CanDeleteRelationInterface;
 
-class Customer extends Model
+class Customer extends Model implements CanDeleteRelationInterface
 {
   use HandledByUser;
   use SoftDeletes;
 
   const COUNT_PER_PAGE = 12;
+  const RELATIONS_ARRAY = [ 'professionTypes', 'user', 'works' ];
 
   protected $fillable = [
     'name',
@@ -35,6 +37,9 @@ class Customer extends Model
     return $prefecture->name;
   }
 
+  /**
+   * @return string
+   */
   public function getFullAddressAttribute()
   {
     if($this->pref_code === null){
@@ -71,6 +76,11 @@ class Customer extends Model
   }
 
   protected $appends = [ 'full_address' ];
+
+  public function getDeleteRelations()
+  {
+    return [$this->user, $this->works];
+  }
 
 
 }

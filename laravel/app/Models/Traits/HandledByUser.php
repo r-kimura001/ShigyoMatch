@@ -21,9 +21,6 @@ trait HandledByUser
     return $this;
   }
 
-  /**
-   * @param User $user
-   */
   public function updateByUser(array $attributes)
   {
     $this->fill($attributes);
@@ -34,20 +31,19 @@ trait HandledByUser
    * @param User $user
    * @throws \Exception
    */
-  public function deleteByUser(User $user)
+  public function deleteByUser()
   {
-    $this->deleted_by = $user->id;
     $this->deleted_at = Carbon::now();
     $this->save();
 
     if ($this instanceof CanDeleteRelationInterface) {
       foreach ($this->getDeleteRelations() as $relation) {
         if ($relation instanceof Collection) {
-          $relation->each(function (Model $model) use ($user) {
-            $model->deleteByUser($user);
+          $relation->each(function (Model $model) {
+            $model->deleteByUser();
           });
         } else {
-          $relation->deleteByUser($user);
+          $relation->deleteByUser();
         }
       }
     }

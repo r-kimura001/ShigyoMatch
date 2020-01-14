@@ -23,7 +23,7 @@
                   path="customers"
                 ></Pager>
               </div>
-              <CustomerListLayout :customers="customers"></CustomerListLayout>
+              <CustomerListLayout :customers="list"></CustomerListLayout>
             </div>
           </div>
         </section>
@@ -32,55 +32,11 @@
   </div>
 </template>
 <script>
-import Pager from '@/components/Pager'
 import CustomerListLayout from '@/layouts/CustomerListLayout'
-import { OK } from '@/util'
+import apiIndexHandler from '@/mixins/apiIndexHandler'
+
 export default {
-  components: {
-    Pager,
-    CustomerListLayout,
-  },
-  props: {
-    page: {
-      type: Number,
-    },
-  },
-  data() {
-    return {
-      customers: [],
-      from: null,
-      to: null,
-      currentPage: null,
-      lastPage: null,
-      hasData: true,
-    }
-  },
-  watch: {
-    $route: {
-      async handler() {
-        await this.index()
-      },
-      immediate: true,
-    },
-  },
-  methods: {
-    async index() {
-      this.$store.commit('form/setIsLoading', true)
-      const response = await axios.get(`/api/customers`, {
-        params: {
-          page: this.page,
-        },
-      })
-      if (response.status === OK) {
-        this.customers = response.data.data
-        this.hasData = this.customers.length
-        this.from = response.data.from
-        this.to = response.data.to
-        this.currentPage = response.data.current_page
-        this.lastPage = response.data.last_page
-      }
-      this.$store.commit('form/setIsLoading', false)
-    },
-  },
+  components: { CustomerListLayout },
+  mixins: [apiIndexHandler],
 }
 </script>

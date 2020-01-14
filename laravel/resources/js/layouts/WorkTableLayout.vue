@@ -1,6 +1,12 @@
 <template>
   <div class="WorkTableLayout">
-    <BaseTable :list="works" :labels="labels" :operation="true"></BaseTable>
+    <BaseTable
+      :list="works"
+      :labels="labels"
+      :operation="true"
+      @onClickEdit="toEdit"
+      @onClickDelete="sendDelete"
+    ></BaseTable>
   </div>
 </template>
 <script>
@@ -34,9 +40,21 @@ export default {
           key: 'profession_type',
           key2: 'body',
           name: '資格',
+          tag: {
+            bgColorKey: 'id',
+          },
         },
       ],
+      test: '',
     }
+  },
+  methods: {
+    toEdit(id) {
+      this.$router.push(`/works/${id}/edit`)
+    },
+    sendDelete(id) {
+      this.$emit('sendDelete', id)
+    },
   },
 }
 </script>

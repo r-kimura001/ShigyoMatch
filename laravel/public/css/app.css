@@ -1833,6 +1833,7 @@ td {
 
 .MainLayout {
   padding: 40px 60px;
+  background: #F4F4F4;
 }
 
 @media screen and (max-width: 1180px) {
@@ -1863,16 +1864,79 @@ td {
   margin: 0 auto;
 }
 
+.MainLayout .MainLayout_box {
+  background: #fcfcfc;
+  border-radius: 6px;
+  padding: 30px;
+}
+
+.MainLayout .MainLayout_box:not(:first-of-type) {
+  margin-top: 30px;
+}
+
+@media screen and (max-width: 768px) {
+  .MainLayout .MainLayout_box {
+    padding: 10px;
+  }
+}
+
 .MainLayout.\--customers {
   background: #F6F9FE;
 }
 
-.MainLayout.\--hasWorks {
-  background: #F4F4F4;
+.MainLayout.\--customers .MainLayout_box {
+  background: inherit;
+}
+
+.MainLayout.\--login {
+  background: #fcfcfc;
+}
+
+.MainLayout.\--signup .MainLayout_box {
+  background: inherit;
+}
+
+.MainLayout.\--hasWorks .MainLayout_box {
+  background: inherit;
 }
 
 .MainVisual {
   background: #4CAF93;
+}
+
+.Modal {
+  z-index: 130;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.Modal .Modal_overlay {
+  z-index: 130;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #333333;
+  opacity: 0.5;
+}
+
+.Modal .Modal_content {
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 1px 20px #626d78;
+  background: #fefefe;
+  z-index: 9999;
+}
+
+.Modal.\--hidden {
+  pointer-events: none;
+  opacity: 0;
 }
 
 .ResultMessage {
@@ -1896,7 +1960,7 @@ td {
 
 @media screen and (max-width: 768px) {
   .ResultMessage .ResultMessage_text {
-    padding: 14px 0;
+    padding: 12px 0;
     font-size: 1.6rem;
   }
 }
@@ -1906,15 +1970,19 @@ td {
   pointer-events: none;
 }
 
+.ResultMessage.\--delete {
+  background: #e44963;
+}
+
 .MypageContent {
   max-width: 1380px;
   margin: 0 auto;
-  padding: 30px 0;
 }
 
 .MypageContent .MypageContent_main {
   margin-left: 240px;
-  padding: 0 30px;
+  padding: 0 30px 30px;
+  background: #F4F4F4;
 }
 
 @media screen and (max-width: 768px) {
@@ -1931,7 +1999,6 @@ td {
 
 .MypageContent .MypageContent_sidebar {
   width: 240px;
-  max-height: calc(100vh - 56px - 93px);
   overflow-y: scroll;
   position: fixed;
   top: 56px;
@@ -1962,6 +2029,22 @@ td {
     padding: 5px;
     background: #fefefe;
     border-top: 1px solid #333333;
+  }
+}
+
+.MypageContent .MypageContent_box {
+  background: #fefefe;
+  border-radius: 6px;
+  padding: 30px;
+}
+
+.MypageContent .MypageContent_box:not(:first-of-type) {
+  margin-top: 30px;
+}
+
+@media screen and (max-width: 768px) {
+  .MypageContent .MypageContent_box {
+    padding: 10px;
   }
 }
 
@@ -2228,17 +2311,33 @@ td {
   min-width: 100%;
   overflow-x: scroll;
   white-space: nowrap;
+  background: #fefefe;
+}
+
+.Table::-webkit-scrollbar {
+  width: 8px;
+}
+
+.Table::-webkit-scrollbar-track {
+  background: transparent;
+  border-left: 0;
+}
+
+.Table::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 10px;
+  box-shadow: none;
 }
 
 .Table table {
   width: 100%;
-  border: 1px solid #f0f0f0;
+  border: 1px solid #dedede;
 }
 
 .Table th,
 .Table td {
   text-align: center;
-  padding: 15px;
+  padding: 10px 15px;
 }
 
 .Table th.\--operation,
@@ -2483,6 +2582,11 @@ td {
 .WorkCard:hover .WorkCard_cover {
   -webkit-transform: none;
           transform: none;
+}
+
+.WorkFormLayout {
+  max-width: 840px;
+  margin: 0 auto;
 }
 
 .WorkListLayout {

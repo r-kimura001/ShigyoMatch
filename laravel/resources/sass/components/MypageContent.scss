@@ -1,11 +1,11 @@
 .MypageContent{
   max-width: $baseWidth;
   margin: 0 auto;
-  padding: 30px 0;
 
   .MypageContent_main{
     margin-left: 240px;
-    padding: 0 30px;
+    padding: 0 30px 30px;
+    background: $customerDetailBg;
 
     @include media(){
       margin: 0;
@@ -16,15 +16,15 @@
   }
   .MypageContent_sidebar{
     width: 240px;
-    max-height: calc(100vh - #{$headerHeight} - #{$footerHeight});
     overflow-y: scroll;
     position: fixed;
     top: $headerHeight;
     padding: 30px 10px;
+
     &::-webkit-scrollbar{
       width: 10px;
-
     }
+
     &::-webkit-scrollbar-track{
       background: transparent;
       border-left: 0;
@@ -43,6 +43,20 @@
       padding: 5px;
       background: $white;
       border-top: 1px solid $black;
+    }
+  }
+
+  .MypageContent_box{
+    background: $white;
+    border-radius: 6px;
+    padding: 30px;
+
+    &:not(:first-of-type){
+      margin-top: 30px;
+    }
+
+    @include media(){
+      padding: 10px;
     }
   }
 }

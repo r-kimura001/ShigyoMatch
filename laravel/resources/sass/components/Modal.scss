@@ -1,0 +1,30 @@
+.Modal{
+  z-index: $modalZIndex;
+  transition: $transitionBasis;
+  .Modal_overlay{
+    z-index: $modalZIndex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: $black;
+    opacity: 0.5;
+  }
+  .Modal_content{
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 1px 20px $deepGray;
+    background: $white;
+    z-index: 9999;
+  }
+
+  &.--hidden{
+    pointer-events: none;
+    opacity: 0;
+  }
+}

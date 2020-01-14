@@ -4,6 +4,7 @@ import Vuex from 'vuex'
 import auth from './auth'
 import error from './error'
 import form from './form'
+import api from './api'
 
 Vue.use(Vuex)
 
@@ -12,6 +13,7 @@ const store = new Vuex.Store({
     auth,
     error,
     form,
+    api,
   },
 })
 

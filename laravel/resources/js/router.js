@@ -8,9 +8,13 @@ import Login from '@/pages/Login.vue'
 import Customers from '@/pages/Customers.vue'
 import CustomerDetail from '@/pages/CustomerDetail.vue'
 import Greeting from '@/pages/Greeting.vue'
-import Works from '@/pages/Works.vue'
-import WorkDetail from '@/pages/WorkDetail.vue'
-import WorkCreate from '@/pages/WorkCreate.vue'
+
+// works
+import Works from '@/pages/works/Works.vue'
+import WorkDetail from '@/pages/works/WorkDetail.vue'
+import WorkShow from '@/pages/works/WorkShow.vue'
+import WorkCreate from '@/pages/works/WorkCreate.vue'
+import WorkEdit from '@/pages/works/WorkEdit.vue'
 
 // mypage
 import MyPage from '@/pages/mypage/MyPage.vue'
@@ -65,7 +69,10 @@ const routes = [
     component: Works,
     props: route => {
       const page = route.query.page
-      return {page: /^[1-9[0-9]*$/.test(page) ? page * 1 : 1}
+      return {
+        page: /^[1-9[0-9]*$/.test(page) ? page * 1 : 1,
+        paramPath: 'works'
+      }
     }
   },
   {
@@ -76,22 +83,37 @@ const routes = [
     path: '/works/:id',
     component: WorkDetail,
     props: route => ({
-      id: Number(route.params.id)
+      id: Number(route.params.id),
+      paramPath: 'works'
     }),
+    children: [
+      {
+        path: '/',
+        component: WorkShow,
+      },
+      {
+        path: 'edit',
+        component: WorkEdit,
+      },
+    ]
   },
   {
     path: '/customers',
     component: Customers,
     props: route => {
       const page = route.query.page
-      return {page: /^[1-9[0-9]*$/.test(page) ? page * 1 : 1}
+      return {
+        page: /^[1-9[0-9]*$/.test(page) ? page * 1 : 1,
+        paramPath: 'customers'
+      }
     },
   },
   {
     path: '/customers/:id',
     component: CustomerDetail,
     props: route => ({
-      id: Number(route.params.id)
+      id: Number(route.params.id),
+      paramPath: 'customers'
     }),
   },
   {

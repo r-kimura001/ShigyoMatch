@@ -15,7 +15,7 @@
     font-weight: bold;
 
     @include media(){
-      padding: 14px 0;
+      padding: 12px 0;
       font-size: 1.6rem;
     }
   }
@@ -23,5 +23,9 @@
   &.--hidden{
     opacity: 0;
     pointer-events: none;
+  }
+
+  &.--delete{
+    background: $redPink;
   }
 }

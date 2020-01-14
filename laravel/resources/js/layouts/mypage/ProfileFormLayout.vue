@@ -1,6 +1,5 @@
 <template>
   <div class="ProfileFormLayout">
-    <h2 class="ProfileFormLayout_title">プロフィール編集</h2>
     <div class="ProfileFormLayout_body">
       <FormLayout
         :form-data="formData"

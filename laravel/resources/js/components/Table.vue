@@ -16,10 +16,13 @@
       <tbody>
         <tr v-for="(record, index) in list" :key="index">
           <td v-if="operation">
-            <div class="Button --minimum --green">
-              <i class="far fa-edit"></i>編集
+            <div class="Button --minimum --green" @click="editClick(record.id)">
+              <i class="far fa-edit u-mr5"></i>編集
             </div>
-            <div class="Button --minimum --danger">
+            <div
+              class="Button --minimum --danger"
+              @click="deleteClick(record.id)"
+            >
               <i class="fas fa-trash-alt u-mr5"></i>削除
             </div>
           </td>
@@ -51,6 +54,20 @@
                     )
                   }}
                 </RouterLink>
+                <span
+                  v-else-if="hasTag(labelObj)"
+                  class="Tag"
+                  :style="
+                    bgColor(record[labelObj.key][labelObj.tag.bgColorKey])
+                  "
+                >
+                  {{
+                    dataFormat(
+                      record[labelObj.key][labelObj.key2],
+                      labelObj.key2
+                    )
+                  }}
+                </span>
                 <span v-else class="Table_dataText">{{
                   dataFormat(record[labelObj.key][labelObj.key2], labelObj.key2)
                 }}</span>
@@ -79,6 +96,20 @@
                 >
                   {{ dataFormat(record[labelObj.key], labelObj.key) }}
                 </RouterLink>
+                <span
+                  v-else-if="hasTag(labelObj)"
+                  class="Tag"
+                  :style="
+                    bgColor(record[labelObj.key][labelObj.tag.bgColorKey])
+                  "
+                >
+                  {{
+                    dataFormat(
+                      record[labelObj.key][labelObj.key2],
+                      labelObj.key2
+                    )
+                  }}
+                </span>
                 <span v-else class="Table_dataText">{{
                   dataFormat(record[labelObj.key], labelObj.key)
                 }}</span>
@@ -122,6 +153,9 @@ export default {
     hasLink(obj) {
       return 'link' in obj
     },
+    hasTag(obj) {
+      return 'tag' in obj
+    },
     dataFormat(text, key) {
       if (key === 'fee') {
         return `${text.toLocaleString()}円`
@@ -133,6 +167,12 @@ export default {
       return {
         '--justifyCenter': !this.hasLink(obj),
       }
+    },
+    editClick(id) {
+      this.$emit('onClickEdit', id)
+    },
+    deleteClick(id) {
+      this.$emit('onClickDelete', id)
     },
   },
 }

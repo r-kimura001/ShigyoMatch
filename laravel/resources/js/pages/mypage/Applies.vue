@@ -1,6 +1,6 @@
 <template>
   <div class="p-applies">
-    <section class="MainLayout_box">Applies</section>
+    <section class="MypageContent_box">Applies</section>
   </div>
 </template>
 <script>

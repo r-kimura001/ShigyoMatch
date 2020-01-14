@@ -5,14 +5,21 @@ const state = {
   responseData: null,
   address: null,
   successMessage: null,
+  deleteMessage: null,
   isLoading: false,
-  deleteReview: false,
+  deleteImageReview: false,
+  confirmModal: {
+    isShow: false,
+    exeText: null
+  },
 }
 
 const getters = {
   address: state => state.address,
   successMessage: state => state.successMessage,
+  deleteMessage: state => state.deleteMessage,
   isLoading: state => state.isLoading,
+  confirmModal: state => state.confirmModal,
 }
 
 
@@ -26,11 +33,18 @@ const mutations = {
   setSuccessMessage(state, data) {
     state.successMessage = data
   },
+  setDeleteMessage(state, data) {
+    state.deleteMessage = data
+  },
   setIsLoading(state, data) {
     state.isLoading = data
   },
   setDeleteReview(state, data) {
-    state.deleteReview = data
+    state.deleteImageReview = data
+  },
+  setConfirmModal(state, data) {
+    state.confirmModal.isShow = data.isShow
+    state.confirmModal.exeText = data.exeText
   },
 }
 
