@@ -101,7 +101,7 @@ class WorkController extends Controller
 
   public function show(int $id)
   {
-    return $this->workService->workById($id) ?? abort(404);
+    return $this->workService->workById($id);
   }
 
   public function destroy(int $id)
