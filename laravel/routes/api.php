@@ -31,6 +31,7 @@ Route::get('/works', 'WorkController@index')->name('work.index');
 Route::post('/works/store', 'WorkController@store')->name('work.store');
 Route::put('/works/{id}', 'WorkController@update')->name('work.update');
 Route::get('/works/{id}', 'WorkController@show')->name('work.show');
+Route::delete('/works/{id}', 'WorkController@destroy')->name('work.show');
 // profession_types
 Route::get('/professions', 'ProfessionTypeController@index')->name('professionType.index');
 

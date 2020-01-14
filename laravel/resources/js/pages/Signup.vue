@@ -1,6 +1,6 @@
 <template>
   <div class="p-signup">
-    <div class="MainLayout">
+    <div class="MainLayout --signup">
       <div class="MainLayout_boxList">
         <section class="MainLayout_box">
           <div class="AuthFormLayout">

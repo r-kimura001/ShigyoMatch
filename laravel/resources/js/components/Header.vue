@@ -58,13 +58,15 @@ export default {
     ...mapGetters({
       authCheck: 'auth/isLogin',
       customerId: 'auth/customerId',
+      apiStatus: 'auth/apiStatus',
     }),
   },
   methods: {
     async logout() {
+      this.$store.commit('form/setIsLoading', true)
       await this.$store.dispatch('auth/logout')
-
       if (this.apiStatus) {
+        this.$store.commit('form/setIsLoading', false)
         this.$router.push('/login')
       }
     },

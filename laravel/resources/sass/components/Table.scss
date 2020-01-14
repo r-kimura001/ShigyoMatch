@@ -2,14 +2,30 @@
   min-width: 100%;
   overflow-x: scroll;
   white-space: nowrap;
+  background: $white;
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+    border-left: 0;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 10px;
+    box-shadow: none;
+  }
+
   table{
     width: 100%;
-    border: 1px solid $gray-4;
+    border: 1px solid $gray-3;
   }
 
   th,td{
     text-align: center;
-    padding: 15px;
+    padding: 10px 15px;
     &.--operation{
       width: 170px;
     }

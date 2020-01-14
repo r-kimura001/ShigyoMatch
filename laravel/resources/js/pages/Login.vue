@@ -1,6 +1,6 @@
 <template>
   <div class="p-login">
-    <div class="MainLayout">
+    <div class="MainLayout --login">
       <div class="MainLayout_boxList">
         <section class="MainLayout_box u-mt50">
           <div class="AuthFormLayout --login">

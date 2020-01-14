@@ -7,12 +7,12 @@ const state = {
   loginErrorMessages: null,
   registerErrorMessages: null,
   responseData: null,
-  address: null,
 }
 
 const getters = {
   isLogin: state => !!state.customer,
   isAdmin: state => !!state.admin,
+  apiStatus: state => state.apiStatus,
   customerName: state => (state.customer ? state.customer.name : ''),
   customerId: state => (state.customer ? state.customer.id : ''),
 }
@@ -91,7 +91,7 @@ const actions = {
       context.commit('setApiStatus', true)
       context.commit('setCustomer', null)
       context.commit('error/setStatus', response.status, { root: true })
-      context.commit('error/setResponse', response.data)
+      context.commit('setResponse', response.data)
       return false
     }
 

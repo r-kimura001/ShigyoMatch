@@ -82,6 +82,9 @@ export default {
         this.formData[key].value = ''
       })
       this.formData.file_name.deleteFlag = 0
+    },
+    fetchProfessions() {
+      this.formData.profession_type_id.list = this.customer.profession_types
     }
   }
 }

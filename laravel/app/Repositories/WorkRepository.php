@@ -1,5 +1,4 @@
 <?php
-declare(strict_types=1);
 
 namespace App\Repositories;
 
@@ -16,27 +15,17 @@ class WorkRepository extends Repository
   public function createByUser($workData) {
     return $this->builder->createByUser($workData);
   }
-
   /**
-   * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
+   * @param int $customerId
+   * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
    */
-  public function all()
+  public function WorksByOwner(int $customerId)
   {
-    return $this->getBuilder()->latest()->get();
-  }
-  public function paginate()
-  {
-    return $this->getBuilder()->with(['professionType'])->latest()->paginate(Work::COUNT_PER_PAGE);
-  }
-
-  /**
-   * @param int $workId
-   * @return \Illuminate\Database\Eloquent\Builder
-   */
-  public function workById(int $workId)
-  {
-    $work = $this->getBuilder()->with(['professionType']);
-    return $work->where('id', $workId)->first();
+    return $this->getBuilder()
+      ->with(['professionType'])
+      ->where('customer_id', $customerId)
+      ->latest()
+      ->paginate(Work::COUNT_PER_PAGE);
   }
 
 }

@@ -55,10 +55,7 @@ export default {
       workData.append('customer_id', this.customer.id)
 
       const response = await axios.post(`/api/works/store`, workData)
-
       this.$store.commit('form/setIsLoading', false)
-
-      this.$store.commit('auth/setResponse', response)
 
       if (response.status === UNPROCESSABLE_ENTITY) {
         this.$store.commit('error/setMessage', response.data.errors)

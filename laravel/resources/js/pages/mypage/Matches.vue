@@ -1,6 +1,6 @@
 <template>
   <div class="p-matches">
-    <section class="MainLayout_box">matches</section>
+    <section class="MypageContent_box">matches</section>
   </div>
 </template>
 <script>

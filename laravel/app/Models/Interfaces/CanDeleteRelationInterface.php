@@ -10,7 +10,7 @@ interface CanDeleteRelationInterface{
    * @param User $user
    * @return void
    */
-  public function deleteByUser(User $user);
+  public function deleteByUser();
 
   public function getDeleteRelations();
 

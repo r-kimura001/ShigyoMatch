@@ -49,7 +49,7 @@ export default {
   },
   computed: {
     ...mapState({
-      deleteReview: state => state.form.deleteReview,
+      deleteImageReview: state => state.form.deleteImageReview,
     }),
     previewUrl() {
       if (this.preview) {
@@ -62,7 +62,7 @@ export default {
     },
   },
   watch: {
-    deleteReview: {
+    deleteImageReview: {
       async handler(val) {
         if (val) {
           await this.reset()
@@ -109,7 +109,6 @@ export default {
       const formData = new FormData()
       formData.append('asset', this.item.value)
       const response = await axios.post('/api/asset/register', formData)
-      this.$store.commit('auth/setResponse', response)
       this.reset()
       this.$emit('input', false)
     },

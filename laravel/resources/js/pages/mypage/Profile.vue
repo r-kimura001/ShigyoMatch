@@ -1,12 +1,15 @@
 <template>
   <div class="p-profiles">
-    <section class="">
-      <h1>Profile</h1>
-      <ProfileFormLayout
-        :form-data="formData"
-        @profileSubmit="update"
-      ></ProfileFormLayout>
-    </section>
+    <div>
+      <h2>Profile</h2>
+      <section class="MypageContent_box">
+        <h3>プロフィールの編集</h3>
+        <ProfileFormLayout
+          :form-data="formData"
+          @profileSubmit="update"
+        ></ProfileFormLayout>
+      </section>
+    </div>
   </div>
 </template>
 <script>
@@ -49,15 +52,6 @@ export default {
     },
   },
   methods: {
-    boxChecked(id) {
-      return {
-        '--disable': this.customerData.professionIds.indexOf(id) === -1,
-      }
-    },
-    async fetchCustomer() {
-      const response = await axios.get('api/customer')
-      this.customer = response.data
-    },
     async fetchProfessions() {
       const response = await axios.get(`/api/professions`)
       if (response.status === OK) {
@@ -123,15 +117,13 @@ export default {
 
       this.$store.commit('form/setIsLoading', false)
 
-      this.$store.commit('auth/setResponse', response)
-
       if (response.status === UNPROCESSABLE_ENTITY) {
         this.$store.commit('error/setMessage', response.data.errors)
         this.$scrollTo('.Header', 1500)
         return false
       }
       if (response.status === OK) {
-        this.errorMessages = null
+        this.$store.commit('error/setMessage', null)
         this.$store.commit('auth/setCustomer', response.data)
         this.$store.commit('form/setSuccessMessage', '更新に成功しました')
       }

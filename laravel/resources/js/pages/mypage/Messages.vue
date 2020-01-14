@@ -1,6 +1,6 @@
 <template>
   <div class="p-messages">
-    <section class="MainLayout_box">Messages</section>
+    <section class="MypageContent_box">Messages</section>
   </div>
 </template>
 <script>

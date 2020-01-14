@@ -1,6 +1,6 @@
 <template>
   <div class="p-favorites">
-    <section class="MainLayout_box">Favorites</section>
+    <section class="MypageContent_box">Favorites</section>
   </div>
 </template>
 <script>
