@@ -114,6 +114,27 @@ class CustomerService extends Service
     return $this->workRep->worksByOwner($customerId);
   }
 
+  /**
+   * @param int $customerId
+   * @return mixed
+   */
+  public function favoritedWorks(int $customerId)
+  {
+    return $this->workRep->favoritedWorks($customerId);
+  }
+
+  /**
+   * @param int $customerId
+   * @return mixed
+   */
+  public function favoriteWorks(int $customerId)
+  {
+    $customer = $this->customerById($customerId);
+    return $customer->favorites;
+  }
+
+
+
 
 }
 

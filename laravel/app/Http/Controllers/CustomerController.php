@@ -107,6 +107,11 @@ class CustomerController extends Controller
     return $this->customerService->worksByOwner($id);
   }
 
+  public function favoriteWorks(int $id)
+  {
+    return $this->customerService->favoriteWorks($id);
+  }
+
   public function customer()
   {
     return Auth::check() ? $this->customerService->customerById(Auth::user()->customer_id) : '';

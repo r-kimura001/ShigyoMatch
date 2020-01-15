@@ -27,6 +27,12 @@
       pointer-events: none;
     }
 
+    &:hover{
+      background: $green;
+      color: $white;
+      border-color: $green;
+    }
+
     &.--edge{
       pointer-events: none;
       color: $gray-2;

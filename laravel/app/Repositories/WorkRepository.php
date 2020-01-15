@@ -28,4 +28,15 @@ class WorkRepository extends Repository
       ->paginate(Work::COUNT_PER_PAGE);
   }
 
+  public function favoritedWorks(int $customerId)
+  {
+    $works = $this->getBuilder()
+      ->with(['professionType'])
+      ->where('customer_id', $customerId)
+      ->latest()
+      ->get();
+
+    return $works->where('favorite_count', '>', 0);
+  }
+
 }

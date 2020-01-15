@@ -28,6 +28,23 @@
     border-color: $pink transparent transparent transparent;
     transition: $transitionBasis;
   }
+  .WorkCard_mark{
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    width: 22px;
+    height: 22px;
+    background-image: url(#{$assetPath}/icon-star-border.svg);
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+    cursor: pointer;
+    transition: $transitionBasis;
+    &.--favorite,
+    &:hover{
+      background-image: url(#{$assetPath}/icon-star-basic.svg);
+    }
+  }
   .WorkCard_face{
     position: relative;
     overflow: hidden;

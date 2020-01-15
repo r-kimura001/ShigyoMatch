@@ -70,9 +70,22 @@ class Customer extends Model implements CanDeleteRelationInterface
     return $this->hasOne(User::class, 'customer_id', 'id');
   }
 
+  /**
+   * リレーション - 投稿した募集案件
+   * @return \Illuminate\Database\Eloquent\Relations\HasMany
+   */
   public function works()
   {
     return $this->hasMany(Work::class, 'customer_id', 'id');
+  }
+
+  /**
+   * リレーション - カスタマーが気になるした案件
+   * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+   */
+  public function favorites()
+  {
+    return $this->belongsToMany(Work::class, 'favorites', 'customer_id', 'work_id')->withTimestamps();
   }
 
   protected $appends = [ 'full_address' ];
@@ -81,6 +94,8 @@ class Customer extends Model implements CanDeleteRelationInterface
   {
     return [$this->user, $this->works];
   }
+
+
 
 
 }
