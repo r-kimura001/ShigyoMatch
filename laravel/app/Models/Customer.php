@@ -4,12 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Traits\HandledByUser;
-use App\Models\ProfessionType;
-use App\Models\Prefecture;
-use App\Models\User;
-use App\Models\Work;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Interfaces\CanDeleteRelationInterface;
+use Illuminate\Support\Facades\Auth;
 
 class Customer extends Model implements CanDeleteRelationInterface
 {
@@ -51,6 +48,32 @@ class Customer extends Model implements CanDeleteRelationInterface
         .$this->attributes['building'];
     }
   }
+  /**
+   * アクセサ - follower_count
+   * @return int
+   */
+  public function getFollowerCountAttribute()
+  {
+    return $this->followers->count();
+  }
+  /**
+   * アクセサ - followee_count
+   * @return int
+   */
+  public function getFolloweeCountAttribute()
+  {
+    return $this->followees->count();
+  }
+  /**
+   * アクセサ - is_follow
+   * @return int
+   */
+  public function getIsFollowAttribute()
+  {
+    return $this->followers->contains(function($customer){
+      return $customer->id === Auth::user()->customer_id;
+    });
+  }
 
 
   /**
@@ -69,13 +92,32 @@ class Customer extends Model implements CanDeleteRelationInterface
   {
     return $this->hasOne(User::class, 'customer_id', 'id');
   }
-
+  /**
+   * リレーション - 募集案件
+   * @return \Illuminate\Database\Eloquent\Relations\HasMany
+   */
   public function works()
   {
     return $this->hasMany(Work::class, 'customer_id', 'id');
   }
+  /**
+   * リレーション - フォロワー
+   * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+   */
+  public function followers()
+  {
+    return $this->belongsToMany(Customer::class, 'follows', 'followee_id', 'follower_id')->withTimestamps();
+  }
+  /**
+   * リレーション - フォロー
+   * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+   */
+  public function followees()
+  {
+    return $this->belongsToMany(Customer::class, 'follows', 'follower_id', 'followee_id')->withTimestamps();
+  }
 
-  protected $appends = [ 'full_address' ];
+  protected $appends = [ 'full_address', 'follower_count', 'followee_count', 'is_follow' ];
 
   public function getDeleteRelations()
   {

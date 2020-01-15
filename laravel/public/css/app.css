@@ -1832,7 +1832,7 @@ td {
 }
 
 .MainLayout {
-  padding: 40px 60px;
+  padding: 40px 30px;
   background: #F4F4F4;
 }
 
@@ -2077,6 +2077,8 @@ td {
   text-align: center;
   font-size: 12px;
   cursor: pointer;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
 }
 
 .Pager .Pager_link:first-of-type,
@@ -2089,6 +2091,12 @@ td {
   color: #fefefe;
   border-color: #33ba7c;
   pointer-events: none;
+}
+
+.Pager .Pager_link:hover {
+  background: #33ba7c;
+  color: #fefefe;
+  border-color: #33ba7c;
 }
 
 .Pager .Pager_link.\--edge {
@@ -2503,6 +2511,26 @@ td {
   border-color: #f65ca4 transparent transparent transparent;
   -webkit-transition: 0.3s;
   transition: 0.3s;
+}
+
+.WorkCard .WorkCard_mark {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  width: 22px;
+  height: 22px;
+  background-image: url(https://asset.shigyo-match.site/assets/icon-star-border.svg);
+  background-size: cover;
+  background-position: center;
+  z-index: 1;
+  cursor: pointer;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.WorkCard .WorkCard_mark.\--favorite,
+.WorkCard .WorkCard_mark:hover {
+  background-image: url(https://asset.shigyo-match.site/assets/icon-star-basic.svg);
 }
 
 .WorkCard .WorkCard_face {

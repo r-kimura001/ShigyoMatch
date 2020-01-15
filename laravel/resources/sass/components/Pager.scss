@@ -14,6 +14,7 @@
     text-align: center;
     font-size: 12px;
     cursor: pointer;
+    transition: $transitionBasis;
 
     &:first-of-type,
     &:last-of-type{
@@ -25,6 +26,12 @@
       color: $white;
       border-color: $green;
       pointer-events: none;
+    }
+
+    &:hover{
+      background: $green;
+      color: $white;
+      border-color: $green;
     }
 
     &.--edge{

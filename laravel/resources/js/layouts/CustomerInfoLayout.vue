@@ -18,7 +18,9 @@
           <button class="Button --green --minimum">
             スカウト
           </button>
-          <button class="BorderButton --minimum">フォロー</button>
+          <button class="BorderButton --minimum" @click="onClickFollow">
+            フォロー
+          </button>
         </div>
       </div>
       <!-- CustomerInfoLayout_headingBox -->
@@ -61,7 +63,7 @@
               <span>フォロワー</span>
             </h4>
             <p class="Text -deepGreen -bold u-alignCenter">
-              12
+              {{ customer.follower_count }}
             </p>
           </li>
           <li class="HorizontalLayout_col --equal">
@@ -123,7 +125,8 @@
   <!-- CustomerInfoLayout -->
 </template>
 <script>
-import { BASE_STORAGE_URL } from '@/util'
+import { BASE_STORAGE_URL, OK } from '@/util'
+import { mapGetters } from 'vuex'
 import styles from '@/mixins/styles'
 import apiIndexHandler from '@/mixins/apiIndexHandler'
 import WorkListLayout from '@/layouts/WorkListLayout'
@@ -142,6 +145,9 @@ export default {
     },
   },
   computed: {
+    ...mapGetters({
+      isLogin: 'auth/isLogin',
+    }),
     professionTypes() {
       return this.customer.profession_types
     },
@@ -149,6 +155,47 @@ export default {
   methods: {
     imageSrc(src) {
       return `${BASE_STORAGE_URL}/assets/${src}`
+    },
+    onClickFollow() {
+      if (!this.isLogin) {
+        alert('フォローするにはログインしてください')
+      } else if (this.customer.is_follow) {
+        this.unfollow()
+      } else {
+        this.follow()
+      }
+    },
+
+    async follow() {
+      const response = await axios.put(
+        `/api/customers/${this.customer.id}/follow`
+      )
+      this.$store.commit('form/setResponse', response)
+      if (response.status === OK) {
+        this.customer.is_follow = response.data.is_follow
+        this.customer.follower_count = response.data.follower_count
+      } else {
+        this.$store.commit('error/setErrors', {
+          message: response,
+          status: response.status,
+        })
+      }
+    },
+    async unfollow() {
+      const response = await axios.delete(
+        `/api/customers/${this.customer.id}/unfollow`
+      )
+      this.$store.commit('form/setResponse', response)
+
+      if (response.status === OK) {
+        this.customer.is_follow = response.data.is_follow
+        this.customer.follower_count = response.data.follower_count
+      } else {
+        this.$store.commit('error/setErrors', {
+          message: response,
+          status: response.status,
+        })
+      }
     },
   },
 }

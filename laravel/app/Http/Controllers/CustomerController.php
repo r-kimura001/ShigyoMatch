@@ -107,6 +107,29 @@ class CustomerController extends Controller
     return $this->customerService->worksByOwner($id);
   }
 
+  /**
+   * @param int $id
+   * @return mixed
+   */
+  public function follow(int $id)
+  {
+    $customer = $this->customerService->customerById($id);
+    $customer->followers()->sync([Auth::user()->customer_id]);
+    return $customer;
+  }
+
+  /**
+   * @param int $id
+   * @return mixed
+   */
+  public function unfollow(int $id)
+  {
+    $customer = $this->customerService->customerById($id);
+    $customer->followers()->detach(Auth::user()->customer_id);
+    return $customer;
+  }
+
+
   public function customer()
   {
     return Auth::check() ? $this->customerService->customerById(Auth::user()->customer_id) : '';
