@@ -12,7 +12,7 @@
               :last-page="lastPage"
               path="works"
             ></Pager>
-            <WorkListLayout :works="list"></WorkListLayout>
+            <WorkListLayout :works="list" @fetch="index()"></WorkListLayout>
           </div>
         </section>
       </div>

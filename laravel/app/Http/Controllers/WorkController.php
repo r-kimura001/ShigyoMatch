@@ -99,11 +99,41 @@ class WorkController extends Controller
     return $this->workService->workById($id);
   }
 
+  /**
+   * @param int $id
+   * @return mixed
+   */
   public function show(int $id)
   {
     return $this->workService->workById($id);
   }
 
+  /**
+   * @param int $id
+   * @return mixed
+   */
+  public function favorite(int $id)
+  {
+    $work = $this->workService->workById($id);
+    $work->favorites()->sync([Auth::user()->customer_id]);
+    return $work;
+  }
+
+  /**
+   * @param int $id
+   */
+  public function unfavorite(int $id)
+  {
+    $work = $this->workService->workById($id);
+    $work->favorites()->detach(Auth::user()->customer_id);
+    return $work;
+  }
+
+  /**
+   * @param int $id
+   * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+   * @throws \Exception
+   */
   public function destroy(int $id)
   {
     DB::beginTransaction();

@@ -2729,7 +2729,24 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _mixins_styles__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/mixins/styles */ "./resources/js/mixins/styles.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/util */ "./resources/js/util.js");
+/* harmony import */ var _mixins_styles__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/mixins/styles */ "./resources/js/mixins/styles.js");
+
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2749,8 +2766,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mixins: [_mixins_styles__WEBPACK_IMPORTED_MODULE_0__["default"]],
+  mixins: [_mixins_styles__WEBPACK_IMPORTED_MODULE_3__["default"]],
   props: {
     work: {
       type: Object,
@@ -2758,6 +2777,77 @@ __webpack_require__.r(__webpack_exports__);
       "default": function _default() {
         return {};
       }
+    }
+  },
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])({
+    isLogin: 'auth/isLogin'
+  })),
+  methods: {
+    onClickStar: function onClickStar() {
+      if (!this.isLogin) {
+        alert('気になる機能を使うにはログインしてください');
+        return false;
+      } else if (this.work.is_favorite) {
+        this.unfavorite();
+      } else {
+        this.favorite();
+      }
+    },
+    favorite: function favorite() {
+      var response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function favorite$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(axios.put("/api/works/".concat(this.work.id, "/favorite")));
+
+            case 2:
+              response = _context.sent;
+
+              if (response.status === _util__WEBPACK_IMPORTED_MODULE_2__["OK"]) {
+                this.work.is_favorite = response.data.is_favorite;
+              } else {
+                this.$store.commit('error/setErrors', {
+                  message: response,
+                  status: response.status
+                });
+              }
+
+            case 4:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, null, this);
+    },
+    unfavorite: function unfavorite() {
+      var response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function unfavorite$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.next = 2;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(axios["delete"]("/api/works/".concat(this.work.id, "/unfavorite")));
+
+            case 2:
+              response = _context2.sent;
+
+              if (response.status === _util__WEBPACK_IMPORTED_MODULE_2__["OK"]) {
+                this.work.is_favorite = response.data.is_favorite;
+              } else {
+                this.$store.commit('error/setErrors', {
+                  message: response,
+                  status: response.status
+                });
+              }
+
+            case 4:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, null, this);
     }
   }
 });
@@ -3478,11 +3568,22 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/util */ "./resources/js/util.js");
-/* harmony import */ var _mixins_styles__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/mixins/styles */ "./resources/js/mixins/styles.js");
-/* harmony import */ var _mixins_apiIndexHandler__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/mixins/apiIndexHandler */ "./resources/js/mixins/apiIndexHandler.js");
-/* harmony import */ var _layouts_WorkListLayout__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/layouts/WorkListLayout */ "./resources/js/layouts/WorkListLayout.vue");
-/* harmony import */ var _components_Pager__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/components/Pager */ "./resources/js/components/Pager.vue");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/util */ "./resources/js/util.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _mixins_styles__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/mixins/styles */ "./resources/js/mixins/styles.js");
+/* harmony import */ var _mixins_apiIndexHandler__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/mixins/apiIndexHandler */ "./resources/js/mixins/apiIndexHandler.js");
+/* harmony import */ var _layouts_WorkListLayout__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/layouts/WorkListLayout */ "./resources/js/layouts/WorkListLayout.vue");
+/* harmony import */ var _components_Pager__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/components/Pager */ "./resources/js/components/Pager.vue");
+
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -3607,6 +3708,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+
 
 
 
@@ -3614,10 +3718,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    WorkListLayout: _layouts_WorkListLayout__WEBPACK_IMPORTED_MODULE_3__["default"],
-    Pager: _components_Pager__WEBPACK_IMPORTED_MODULE_4__["default"]
+    WorkListLayout: _layouts_WorkListLayout__WEBPACK_IMPORTED_MODULE_5__["default"],
+    Pager: _components_Pager__WEBPACK_IMPORTED_MODULE_6__["default"]
   },
-  mixins: [_mixins_styles__WEBPACK_IMPORTED_MODULE_1__["default"], _mixins_apiIndexHandler__WEBPACK_IMPORTED_MODULE_2__["default"]],
+  mixins: [_mixins_styles__WEBPACK_IMPORTED_MODULE_3__["default"], _mixins_apiIndexHandler__WEBPACK_IMPORTED_MODULE_4__["default"]],
   props: {
     customer: {
       type: Object,
@@ -3627,14 +3731,85 @@ __webpack_require__.r(__webpack_exports__);
       }
     }
   },
-  computed: {
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])({
+    isLogin: 'auth/isLogin'
+  }), {
     professionTypes: function professionTypes() {
       return this.customer.profession_types;
     }
-  },
+  }),
   methods: {
     imageSrc: function imageSrc(src) {
-      return "".concat(_util__WEBPACK_IMPORTED_MODULE_0__["BASE_STORAGE_URL"], "/assets/").concat(src);
+      return "".concat(_util__WEBPACK_IMPORTED_MODULE_1__["BASE_STORAGE_URL"], "/assets/").concat(src);
+    },
+    onClickFollow: function onClickFollow() {
+      if (!this.isLogin) {
+        alert('フォローするにはログインしてください');
+      } else if (this.customer.is_follow) {
+        this.unfollow();
+      } else {
+        this.follow();
+      }
+    },
+    follow: function follow() {
+      var response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function follow$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(axios.put("/api/customers/".concat(this.customer.id, "/follow")));
+
+            case 2:
+              response = _context.sent;
+              this.$store.commit('form/setResponse', response);
+
+              if (response.status === _util__WEBPACK_IMPORTED_MODULE_1__["OK"]) {
+                this.customer.is_follow = response.data.is_follow;
+                this.customer.follower_count = response.data.follower_count;
+              } else {
+                this.$store.commit('error/setErrors', {
+                  message: response,
+                  status: response.status
+                });
+              }
+
+            case 5:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, null, this);
+    },
+    unfollow: function unfollow() {
+      var response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function unfollow$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.next = 2;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(axios["delete"]("/api/customers/".concat(this.customer.id, "/unfollow")));
+
+            case 2:
+              response = _context2.sent;
+              this.$store.commit('form/setResponse', response);
+
+              if (response.status === _util__WEBPACK_IMPORTED_MODULE_1__["OK"]) {
+                this.customer.is_follow = response.data.is_follow;
+                this.customer.follower_count = response.data.follower_count;
+              } else {
+                this.$store.commit('error/setErrors', {
+                  message: response,
+                  status: response.status
+                });
+              }
+
+            case 5:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, null, this);
     }
   }
 });
@@ -3878,6 +4053,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_WorkCard__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/components/WorkCard */ "./resources/js/components/WorkCard.vue");
+//
 //
 //
 //
@@ -8064,6 +8240,12 @@ var render = function() {
       attrs: { "data-fee": _vm.work.fee.toLocaleString() }
     },
     [
+      _c("div", {
+        staticClass: "WorkCard_mark",
+        class: { "--favorite": _vm.work.is_favorite },
+        on: { click: _vm.onClickStar }
+      }),
+      _vm._v(" "),
       _c(
         "RouterLink",
         {
@@ -9032,7 +9214,20 @@ var render = function() {
           _vm._v("\n        " + _vm._s(_vm.customer.greeting) + "\n      ")
         ]),
         _vm._v(" "),
-        _vm._m(0)
+        _c("div", { staticClass: "u-alignCenter" }, [
+          _c("button", { staticClass: "Button --green --minimum" }, [
+            _vm._v("\n          スカウト\n        ")
+          ]),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "BorderButton --minimum",
+              on: { click: _vm.onClickFollow }
+            },
+            [_vm._v("\n          フォロー\n        ")]
+          )
+        ])
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "CustomerInfoLayout_headingBox" }, [
@@ -9096,7 +9291,11 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("p", { staticClass: "Text -deepGreen -bold u-alignCenter" }, [
-              _vm._v("\n            12\n          ")
+              _vm._v(
+                "\n            " +
+                  _vm._s(_vm.customer.follower_count) +
+                  "\n          "
+              )
             ])
           ]),
           _vm._v(" "),
@@ -9181,22 +9380,7 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "u-alignCenter" }, [
-      _c("button", { staticClass: "Button --green --minimum" }, [
-        _vm._v("\n          スカウト\n        ")
-      ]),
-      _vm._v(" "),
-      _c("button", { staticClass: "BorderButton --minimum" }, [
-        _vm._v("フォロー")
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -9431,7 +9615,15 @@ var render = function() {
     _vm._l(_vm.works, function(work, index) {
       return _c(
         "div",
-        { key: index, staticClass: "WorkListLayout_item" },
+        {
+          key: index,
+          staticClass: "WorkListLayout_item",
+          on: {
+            fetch: function($event) {
+              return _vm.$emit("fetch")
+            }
+          }
+        },
         [_c("WorkCard", { attrs: { work: work } })],
         1
       )
@@ -10973,7 +11165,14 @@ var render = function() {
                         })
                       : _vm._e(),
                     _vm._v(" "),
-                    _c("WorkListLayout", { attrs: { works: _vm.list } })
+                    _c("WorkListLayout", {
+                      attrs: { works: _vm.list },
+                      on: {
+                        fetch: function($event) {
+                          return _vm.index()
+                        }
+                      }
+                    })
                   ],
                   1
                 )

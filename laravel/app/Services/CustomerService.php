@@ -67,6 +67,13 @@ class CustomerService extends Service
     $registerNumbers = json_decode($data['registerNumbers'], true);
     $professionIds = explode(',', $data['professionIds']);
 
+    /**
+     * [
+     *   $professionId => [ 'register_number' => $registerNumber ],
+     *   $professionId => [ 'register_number' => $registerNumber ],
+     *   $professionId => [ 'register_number' => $registerNumber ],
+     * ]
+     */
     foreach ($professionIds as $professionId) {
       $professionTypes[$professionId] = ['register_number' => $registerNumbers[$professionId]];
     }

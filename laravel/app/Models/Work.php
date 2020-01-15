@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Traits\HandledByUser;
-use App\Models\ProfessionType;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Interfaces\CanDeleteRelationInterface;
@@ -30,6 +29,18 @@ class Work extends Model implements CanDeleteRelationInterface
     }
     return $this->attributes['customer_id'] === Auth::user()->customer_id;
   }
+  /**
+   * @return bool
+   */
+  public function getIsFavoriteAttribute()
+  {
+    if(Auth::guest() || count($this->favorites) === 0){
+      return false;
+    }
+    return $this->favorites->contains( function($customer) {
+      return $customer->id === Auth::user()->customer_id;
+    });
+  }
 
   /**
    * リレーション　- 募集案件に紐付いている資格
@@ -40,7 +51,15 @@ class Work extends Model implements CanDeleteRelationInterface
     return $this->belongsTo(ProfessionType::class, 'profession_type_id', 'id');
   }
 
-  protected $appends = ['is_owner'];
+  /**
+   * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+   */
+  public function favorites()
+  {
+    return $this->belongsToMany(Customer::class, 'favorites', 'work_id', 'customer_id')->withTimestamps();
+  }
+
+  protected $appends = ['is_owner', 'is_favorite'];
 
   public function getDeleteRelations()
   {

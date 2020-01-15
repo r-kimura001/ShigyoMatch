@@ -4,6 +4,7 @@
       v-for="(work, index) in works"
       :key="index"
       class="WorkListLayout_item"
+      @fetch="$emit('fetch')"
     >
       <WorkCard :work="work"></WorkCard>
     </div>
