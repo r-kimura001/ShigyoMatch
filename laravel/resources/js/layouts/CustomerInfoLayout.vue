@@ -165,6 +165,7 @@ export default {
         this.follow()
       }
     },
+    
 
     async follow() {
       const response = await axios.put(
