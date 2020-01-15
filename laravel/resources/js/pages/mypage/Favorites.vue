@@ -1,24 +1,40 @@
 <template>
   <div class="p-favorites">
     <h2>Favorites</h2>
-    <section class="MypageContent_box">
-      <h3>気になる</h3>
       <section class="MypageContent_box">
-        <h3 class="">気になる案件</h3>
-        <p v-if="!hasData">気になるした案件はありません</p>
-        <WorkListLayout
-          v-else
-          :works="works"
-          @sendDelete="openDeleteModal"
-        ></WorkListLayout>
+        <div class="HorizontalLayout">
+          <div class="HorizontalLayout_col">
+            <h3 class="Tab" @click="change(favoriteFlag)">気になるした</h3>
+          </div>
+          <div class="HorizontalLayout_col">
+            <h3 class="Tab" @click="change(favoritedFlag)">気になるされた</h3>
+          </div>
+        </div>
+        <div>
+          <div v-if="currentFlag===favoriteFlag" class="">
+            <p v-if="!hasFavorite">気になるした募集案件はありません</p>
+            <WorkListLayout
+              v-else
+              :works="favorite_works"
+            ></WorkListLayout>
+          </div>
+          <div v-if="currentFlag===favoritedFlag">
+            <p v-if="!hasFavorited">気になるされた募集案件はありません</p>
+            <WorkTableLayout
+              v-else
+              :works="favorited_works"
+            ></WorkTableLayout>
+          </div>
+        </div>
       </section>
-    </section>
   </div>
 </template>
 <script>
   import { OK } from '@/util'
   import WorkListLayout from '@/layouts/WorkListLayout'
+  import WorkTableLayout from '@/layouts/WorkTableLayout'
 export default {
+  components: { WorkListLayout, WorkTableLayout },
   props: {
     customer: {
       type: Object,
@@ -28,8 +44,13 @@ export default {
   },
   data() {
     return {
-      works: [],
-      hasData: true,
+      favorite_works: [],
+      favorited_works: [],
+      hasFavorite: true,
+      hasFavorited: true,
+      favoriteFlag: 0,
+      favoritedFlag: 1,
+      currentFlag: 0
     }
   },
   watch: {
@@ -37,25 +58,39 @@ export default {
       async handler() {
         this.$store.commit('form/setIsLoading', true)
         await this.favoriteWorks()
+        await this.worksByOwner()
         this.$store.commit('form/setIsLoading', false)
       },
       immediate: true,
     },
   },
-  components: { WorkListLayout },
   methods: {
     async favoriteWorks() {
       const response = await axios.get(
         `/api/customers/${this.customer.id}/favoriteWorks`
       )
-      this.$store.commit('form/setResponse', response)
       if (response.status !== OK) {
-        this.hasData = false
+        this.hasFavorite = false
       } else {
-        this.works = response.data
-        this.hasData = !!this.works.length
+        this.favorite_works = response.data
+        this.hasFavorite = !!this.favorite_works.length
       }
     },
-  }
+    async worksByOwner() {
+      const response = await axios.get(
+        `/api/customers/${this.customer.id}/works`
+      )
+      this.$store.commit('form/setResponse', response)
+      if (response.status !== OK) {
+        this.hasFavorited = false
+      } else {
+        this.favorited_works = response.data.data
+        this.hasFavorited = !!this.favorited_works.length
+      }
+    },
+    change(flag){
+      this.currentFlag = flag
+    }
+  },
 }
 </script>

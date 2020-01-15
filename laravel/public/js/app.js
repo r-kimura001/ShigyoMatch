@@ -5042,6 +5042,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/util */ "./resources/js/util.js");
 /* harmony import */ var _layouts_WorkListLayout__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/layouts/WorkListLayout */ "./resources/js/layouts/WorkListLayout.vue");
+/* harmony import */ var _layouts_WorkTableLayout__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/layouts/WorkTableLayout */ "./resources/js/layouts/WorkTableLayout.vue");
 
 //
 //
@@ -5060,9 +5061,28 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    WorkListLayout: _layouts_WorkListLayout__WEBPACK_IMPORTED_MODULE_2__["default"],
+    WorkTableLayout: _layouts_WorkTableLayout__WEBPACK_IMPORTED_MODULE_3__["default"]
+  },
   props: {
     customer: {
       type: Object,
@@ -5074,8 +5094,13 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      works: [],
-      hasData: true
+      favorite_works: [],
+      favorited_works: [],
+      hasFavorite: true,
+      hasFavorited: true,
+      favoriteFlag: 0,
+      favoritedFlag: 1,
+      currentFlag: 0
     };
   },
   watch: {
@@ -5090,9 +5115,13 @@ __webpack_require__.r(__webpack_exports__);
                 return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(this.favoriteWorks());
 
               case 3:
+                _context.next = 5;
+                return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(this.worksByOwner());
+
+              case 5:
                 this.$store.commit('form/setIsLoading', false);
 
-              case 4:
+              case 6:
               case "end":
                 return _context.stop();
             }
@@ -5101,9 +5130,6 @@ __webpack_require__.r(__webpack_exports__);
       },
       immediate: true
     }
-  },
-  components: {
-    WorkListLayout: _layouts_WorkListLayout__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   methods: {
     favoriteWorks: function favoriteWorks() {
@@ -5117,21 +5143,50 @@ __webpack_require__.r(__webpack_exports__);
 
             case 2:
               response = _context2.sent;
-              this.$store.commit('form/setResponse', response);
 
               if (response.status !== _util__WEBPACK_IMPORTED_MODULE_1__["OK"]) {
-                this.hasData = false;
+                this.hasFavorite = false;
               } else {
-                this.works = response.data;
-                this.hasData = !!this.works.length;
+                this.favorite_works = response.data;
+                this.hasFavorite = !!this.favorite_works.length;
               }
 
-            case 5:
+            case 4:
             case "end":
               return _context2.stop();
           }
         }
       }, null, this);
+    },
+    worksByOwner: function worksByOwner() {
+      var response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function worksByOwner$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              _context3.next = 2;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(axios.get("/api/customers/".concat(this.customer.id, "/works")));
+
+            case 2:
+              response = _context3.sent;
+              this.$store.commit('form/setResponse', response);
+
+              if (response.status !== _util__WEBPACK_IMPORTED_MODULE_1__["OK"]) {
+                this.hasFavorited = false;
+              } else {
+                this.favorited_works = response.data.data;
+                this.hasFavorited = !!this.favorited_works.length;
+              }
+
+            case 5:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, null, this);
+    },
+    change: function change(flag) {
+      this.currentFlag = flag;
     }
   }
 });
@@ -10809,23 +10864,68 @@ var render = function() {
     _c("h2", [_vm._v("Favorites")]),
     _vm._v(" "),
     _c("section", { staticClass: "MypageContent_box" }, [
-      _c("h3", [_vm._v("気になる")]),
+      _c("div", { staticClass: "HorizontalLayout" }, [
+        _c("div", { staticClass: "HorizontalLayout_col" }, [
+          _c(
+            "h3",
+            {
+              staticClass: "Tab",
+              on: {
+                click: function($event) {
+                  return _vm.change(_vm.favoriteFlag)
+                }
+              }
+            },
+            [_vm._v("気になるした")]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "HorizontalLayout_col" }, [
+          _c(
+            "h3",
+            {
+              staticClass: "Tab",
+              on: {
+                click: function($event) {
+                  return _vm.change(_vm.favoritedFlag)
+                }
+              }
+            },
+            [_vm._v("気になるされた")]
+          )
+        ])
+      ]),
       _vm._v(" "),
-      _c(
-        "section",
-        { staticClass: "MypageContent_box" },
-        [
-          _c("h3", {}, [_vm._v("気になる案件")]),
-          _vm._v(" "),
-          !_vm.hasData
-            ? _c("p", [_vm._v("気になるした案件はありません")])
-            : _c("WorkListLayout", {
-                attrs: { works: _vm.works },
-                on: { sendDelete: _vm.openDeleteModal }
-              })
-        ],
-        1
-      )
+      _c("div", [
+        _vm.currentFlag === _vm.favoriteFlag
+          ? _c(
+              "div",
+              {},
+              [
+                !_vm.hasFavorite
+                  ? _c("p", [_vm._v("気になるした募集案件はありません")])
+                  : _c("WorkListLayout", {
+                      attrs: { works: _vm.favorite_works }
+                    })
+              ],
+              1
+            )
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.currentFlag === _vm.favoritedFlag
+          ? _c(
+              "div",
+              [
+                !_vm.hasFavorited
+                  ? _c("p", [_vm._v("気になるされた募集案件はありません")])
+                  : _c("WorkTableLayout", {
+                      attrs: { works: _vm.favorited_works }
+                    })
+              ],
+              1
+            )
+          : _vm._e()
+      ])
     ])
   ])
 }
