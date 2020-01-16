@@ -17,11 +17,10 @@ class SkillTypeRepository extends Repository
     return $this->builder->createByUser($professionTypeData);
   }
 
-  public function all()
-  {
-    return $this->getBuilder()->latest()->get();
-  }
-
+  /**
+   * @param $body
+   * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model|object|null
+   */
   public function idByBody($body)
   {
     return $this->getBuilder()->where('body', $body)->first(['id']);

@@ -73,14 +73,13 @@ export default {
         this.hasFavorite = false
       } else {
         this.favorite_works = response.data
-        this.hasFavorite = !!this.favorite_works.length
+        this.hasFavorite = !!Object.keys(this.favorite_works).length
       }
     },
     async worksByOwner() {
       const response = await axios.get(
         `/api/customers/${this.customer.id}/works`
       )
-      this.$store.commit('form/setResponse', response)
       if (response.status !== OK) {
         this.hasFavorited = false
       } else {

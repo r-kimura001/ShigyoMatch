@@ -43,7 +43,26 @@ export default {
           list: [],
           valueKey: 'id',
           labelKey: 'body',
-          options: {}
+          options: {
+            required: true,
+          }
+        },
+        skill_types: {
+          name: 'skill_types',
+          type: 'checkbox',
+          value: [],
+          list: [
+
+          ],
+          valueKey: 'id',
+          labelKey: 'body',
+          formLabel: {
+            name: '分野タグ',
+            style: this.bgImage('assets/icon-license-card.svg'),
+          },
+          classOption: {
+            '--tag': true
+          }
         },
         file_name: {
           name: 'file_name',
@@ -69,6 +88,9 @@ export default {
           classOption: {
             '--greeting': true,
           },
+          options: {
+            required: true,
+          }
         },
       },
     }

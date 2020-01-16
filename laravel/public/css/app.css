@@ -637,6 +637,7 @@ select {
   appearance: none;
   padding: 0;
   border: 0;
+  border-radius: 0;
   outline: none;
   background: transparent;
 }
@@ -1095,6 +1096,40 @@ td {
   color: inherit;
 }
 
+.Checkbox.\--tag input[type=checkbox] {
+  border: 0;
+  width: initial;
+  height: initial;
+}
+
+.Checkbox.\--tag input[type=checkbox]:hover + .Checkbox_label {
+  background: #33ba7c;
+  color: #fefefe;
+}
+
+.Checkbox.\--tag input[type=checkbox]:checked + .Checkbox_label {
+  background: #33ba7c;
+  color: #fefefe;
+}
+
+.Checkbox.\--tag input[type=checkbox]:checked::before {
+  content: "";
+  width: 0;
+  height: 0;
+  font-size: 0;
+}
+
+.Checkbox.\--tag label {
+  display: inline-block;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  border: 2px solid #33ba7c;
+  color: #33ba7c;
+  font-size: 1.2rem;
+  text-align: center;
+  padding: 5px 8px;
+}
+
 .ContentBox {
   max-width: 1380px;
   margin: 0 auto;
@@ -1386,6 +1421,12 @@ td {
 
 .Form .Form_row .Form_label.\--id {
   background-image: url(https://asset.shigyo-match.site/assets/icon-man.svg);
+}
+
+.Form .Form_row .Form_note {
+  font-size: 1.4rem;
+  color: #cccccc;
+  font-style: italic;
 }
 
 .Form .Form_row .Form_text,
@@ -1776,6 +1817,11 @@ td {
           align-items: center;
 }
 
+.HorizontalLayout.\--stretch {
+  -webkit-box-align: stretch;
+          align-items: stretch;
+}
+
 .HorizontalLayout.\--justifyCenter {
   -webkit-box-pack: center;
           justify-content: center;
@@ -1784,6 +1830,10 @@ td {
 .HorizontalLayout.\--justifyEnd {
   -webkit-box-pack: end;
           justify-content: flex-end;
+}
+
+.HorizontalLayout.\--wrap {
+  flex-wrap: wrap;
 }
 
 .Loader {
@@ -1939,41 +1989,6 @@ td {
   opacity: 0;
 }
 
-.ResultMessage {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 130;
-  background: #349d9d;
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
-}
-
-.ResultMessage .ResultMessage_text {
-  padding: 20px 0;
-  text-align: center;
-  color: #fefefe;
-  font-size: 2rem;
-  font-weight: bold;
-}
-
-@media screen and (max-width: 768px) {
-  .ResultMessage .ResultMessage_text {
-    padding: 12px 0;
-    font-size: 1.6rem;
-  }
-}
-
-.ResultMessage.\--hidden {
-  opacity: 0;
-  pointer-events: none;
-}
-
-.ResultMessage.\--delete {
-  background: #e44963;
-}
-
 .MypageContent {
   max-width: 1380px;
   margin: 0 auto;
@@ -2029,6 +2044,7 @@ td {
     padding: 5px;
     background: #fefefe;
     border-top: 1px solid #333333;
+    z-index: 100;
   }
 }
 
@@ -2046,6 +2062,21 @@ td {
   .MypageContent .MypageContent_box {
     padding: 10px;
   }
+}
+
+.Number {
+  display: -webkit-box;
+  display: flex;
+}
+
+.Number .Number_form {
+  position: relative;
+}
+
+.Number .Number_button {
+  position: absolute;
+  bottom: 10px;
+  right: 0;
 }
 
 .PageContent {
@@ -2174,6 +2205,41 @@ td {
   border-style: solid;
   border-width: 6px;
   border-radius: inherit;
+}
+
+.ResultMessage {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 130;
+  background: #349d9d;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.ResultMessage .ResultMessage_text {
+  padding: 20px 0;
+  text-align: center;
+  color: #fefefe;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+@media screen and (max-width: 768px) {
+  .ResultMessage .ResultMessage_text {
+    padding: 12px 0;
+    font-size: 1.6rem;
+  }
+}
+
+.ResultMessage.\--hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.ResultMessage.\--delete {
+  background: #e44963;
 }
 
 .Review {
@@ -2505,7 +2571,7 @@ td {
   width: 0;
   height: 0;
   border-style: solid;
-  border-width: 40px 0 0 110px;
+  border-width: 45px 0 0 115px;
   border-color: #f65ca4 transparent transparent transparent;
   -webkit-transition: 0.3s;
   transition: 0.3s;
@@ -2558,14 +2624,7 @@ td {
   bottom: 0;
   left: 0;
   width: 100%;
-  background: #fefefe;
   padding: 5px 10px;
-  display: -webkit-box;
-  display: flex;
-  -webkit-box-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-          justify-content: space-between;
   -webkit-transition: 0.3s;
   transition: 0.3s;
   -webkit-transform: translate(0, 100%);
@@ -2583,11 +2642,15 @@ td {
   color: #cccccc;
 }
 
-.WorkCard .WorkCard_button {
+.WorkCard .WorkCard_professionType {
+  background: #fefefe;
   flex-shrink: 0;
+  padding: 5px 3px;
+  height: 100%;
 }
 
 .WorkCard .WorkCard_text {
+  background: #fefefe;
   line-height: 1.1;
   padding: 0 3px;
 }
@@ -2857,6 +2920,10 @@ td {
   margin-left: 20px;
 }
 
+.u-ma5 {
+  margin: 5px;
+}
+
 .u-pt10 {
   padding-top: 10px;
 }
@@ -2955,6 +3022,14 @@ td {
 
 .u-minWidth300 {
   min-width: 300px;
+}
+
+.u-op5 {
+  opacity: 0.5;
+}
+
+.u-op7 {
+  opacity: 0.7;
 }
 
 .u-clearfix::after {

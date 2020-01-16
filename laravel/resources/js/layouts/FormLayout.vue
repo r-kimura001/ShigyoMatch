@@ -20,7 +20,7 @@
           v-if="formItem.type === 'checkbox'"
           :item="formItem"
         ></Checkbox>
-        <Radio v-if="formItem.type === 'radio'" :item="formItem"></Radio>
+        <Radio v-if="formItem.type === 'radio'" :item="formItem" @onCheck="sendRadioData"></Radio>
         <Selectbox
           v-if="formItem.type === 'select'"
           :item="formItem"
@@ -91,6 +91,11 @@ export default {
       }),
     },
   },
+  data(){
+    return {
+      val: null
+    }
+  },
   computed: {
     ...mapGetters({
       errorMessages: 'error/message',
@@ -103,6 +108,9 @@ export default {
         Object.keys(this.errorMessages).indexOf(prop) >= -1
       )
     },
+    sendRadioData(id){
+      this.$emit('onRadioCheck', id)
+    }
   },
 }
 </script>

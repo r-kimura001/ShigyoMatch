@@ -24,9 +24,9 @@ class Repository
   /**
    * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
    */
-  public function all()
+  public function all(array $relations)
   {
-    return $this->getBuilder()->latest()->get();
+    return $this->getBuilder()->with($relations)->latest()->get();
   }
 
   /**

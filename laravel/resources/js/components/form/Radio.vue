@@ -12,10 +12,13 @@
         <input
           :id="`profession_type_${listItem[item.valueKey]}`"
           v-model="item.value"
+          :name="item.name"
           type="radio"
           class="Radio"
           :value="listItem[item.valueKey]"
+          :required="isRequired()"
           :data-label="listItem[item.labelKey]"
+          @change="$emit('onCheck', item.value)"
         /><label
           :for="`profession_type_${listItem[item.valueKey]}`"
           class="Radio_label"

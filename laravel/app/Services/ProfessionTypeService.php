@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\ProfessionType;
 use App\Repositories\ProfessionTypeRepository;
 
 class ProfessionTypeService extends Service
@@ -19,15 +20,24 @@ class ProfessionTypeService extends Service
 
   public function all()
   {
-    return $this->professionTypeRep->all();
+    return $this->professionTypeRep->all(ProfessionType::RELATIONS_ARRAY);
   }
 
   /**
    * @return ProfessionTypeRepository
    */
-  public function idByBody($body)
+  public function idByBody(string $body)
   {
     return $this->professionTypeRep->idByBody($body);
+  }
+
+  /**
+   * @param int $id
+   * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model|object|null
+   */
+  public function findById(int $id)
+  {
+    return $this->professionTypeRep->findById(['selectables'], $id);
   }
 
 

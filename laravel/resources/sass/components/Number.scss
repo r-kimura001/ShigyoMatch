@@ -1,0 +1,11 @@
+.Number{
+  display: flex;
+  .Number_form{
+    position: relative;
+  }
+  .Number_button{
+    position: absolute;
+    bottom: 10px;
+    right: 0;
+  }
+}

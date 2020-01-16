@@ -13,7 +13,7 @@ class Work extends Model implements CanDeleteRelationInterface
   use SoftDeletes;
 
   const COUNT_PER_PAGE = 12;
-  const RELATIONS_ARRAY = ['professionType'];
+  const RELATIONS_ARRAY = ['professionType', 'skills'];
 
   protected $table = 'works';
 
@@ -57,6 +57,14 @@ class Work extends Model implements CanDeleteRelationInterface
   public function professionType()
   {
     return $this->belongsTo(ProfessionType::class, 'profession_type_id', 'id');
+  }
+
+  /**
+   * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+   */
+  public function skills()
+  {
+    return $this->belongsToMany(SkillType::class, 'work_skills', 'work_id', 'skill_type_id')->withTimestamps();
   }
 
   /**

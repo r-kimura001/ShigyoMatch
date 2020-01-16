@@ -18,7 +18,7 @@
           <button class="Button --green --minimum">
             スカウト
           </button>
-          <button class="BorderButton --minimum" @click="onClickFollow">
+          <button class="BorderButton --minimum">
             フォロー
           </button>
         </div>
@@ -155,48 +155,6 @@ export default {
   methods: {
     imageSrc(src) {
       return `${BASE_STORAGE_URL}/assets/${src}`
-    },
-    onClickFollow() {
-      if (!this.isLogin) {
-        alert('フォローするにはログインしてください')
-      } else if (this.customer.is_follow) {
-        this.unfollow()
-      } else {
-        this.follow()
-      }
-    },
-
-
-    async follow() {
-      const response = await axios.put(
-        `/api/customers/${this.customer.id}/follow`
-      )
-      this.$store.commit('form/setResponse', response)
-      if (response.status === OK) {
-        this.customer.is_follow = response.data.is_follow
-        this.customer.follower_count = response.data.follower_count
-      } else {
-        this.$store.commit('error/setErrors', {
-          message: response,
-          status: response.status,
-        })
-      }
-    },
-    async unfollow() {
-      const response = await axios.delete(
-        `/api/customers/${this.customer.id}/unfollow`
-      )
-      this.$store.commit('form/setResponse', response)
-
-      if (response.status === OK) {
-        this.customer.is_follow = response.data.is_follow
-        this.customer.follower_count = response.data.follower_count
-      } else {
-        this.$store.commit('error/setErrors', {
-          message: response,
-          status: response.status,
-        })
-      }
     },
   },
 }

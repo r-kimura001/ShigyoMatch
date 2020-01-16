@@ -5,6 +5,7 @@
         :form-data="formData"
         :submit-button-data="submitButtonData"
         @send="$emit('workSubmit')"
+        @onRadioCheck="sendRadioData"
       ></FormLayout>
     </div>
   </div>
@@ -31,5 +32,10 @@ export default {
       test: null,
     }
   },
+  methods: {
+    sendRadioData(id){
+      this.$emit('onRadioCheck', id)
+    }
+  }
 }
 </script>

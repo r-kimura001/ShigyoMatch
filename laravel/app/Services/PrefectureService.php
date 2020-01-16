@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Prefecture;
 use App\Repositories\PrefectureRepository;
 
 class PrefectureService extends Service
@@ -19,7 +20,7 @@ class PrefectureService extends Service
 
   public function all()
   {
-    return $this->prefectureRep->all();
+    return $this->prefectureRep->all(Prefecture::RELATIONS_ARRAY);
   }
 
 

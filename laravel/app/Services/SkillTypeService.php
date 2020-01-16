@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\SkillType;
 use App\Repositories\SkillTypeRepository;
 
 class SkillTypeService extends Service
@@ -19,7 +20,7 @@ class SkillTypeService extends Service
 
   public function all()
   {
-    return $this->skillTypeRep->all();
+    return $this->skillTypeRep->all(SkillType::RELATIONS_ARRAY);
   }
 
   /**

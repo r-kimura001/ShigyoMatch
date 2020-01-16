@@ -17,11 +17,6 @@ class ProfessionTypeRepository extends Repository
     return $this->builder->createByUser($professionTypeData);
   }
 
-  public function all()
-  {
-    return $this->getBuilder()->orderBy('id')->get();
-  }
-
   public function idByBody($body)
   {
     return $this->getBuilder()->where('body', $body)->first(['id']);

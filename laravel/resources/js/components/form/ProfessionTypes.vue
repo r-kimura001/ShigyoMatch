@@ -7,6 +7,7 @@
       <div class="Checkbox u-pl20">
         <input
           v-model="item.value"
+          name="item.name"
           type="checkbox"
           :value="professionType[item.valueKey]"
           :data-label="professionType[item.labelKey]"

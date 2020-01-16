@@ -15,11 +15,13 @@ class ProfessionType extends Model
 
   protected $table = 'profession_types';
 
+  const RELATIONS_ARRAY = [];
+
   /**
    * リレーション - 資格と紐付けることが許されるスキル
    * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
    */
-  public function selectableSkills()
+  public function selectables()
   {
     return $this->belongsToMany(SkillType::class, 'selectables', 'profession_type_id', 'skill_type_id');
   }

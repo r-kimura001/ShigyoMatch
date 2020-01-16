@@ -20,11 +20,18 @@
     &.--vertical{
       align-items: center;
     }
+    &.--stretch{
+      align-items: stretch;
+    }
 
     &.--justifyCenter{
       justify-content: center;
     }
     &.--justifyEnd{
       justify-content: flex-end;
+    }
+
+    &.--wrap{
+      flex-wrap: wrap;
     }
   }

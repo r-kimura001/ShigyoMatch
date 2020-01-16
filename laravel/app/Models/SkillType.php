@@ -11,4 +11,7 @@ class SkillType extends Model
   use HandledByUser;
   use SoftDeletes;
 
+  protected $table = 'skill_types';
+  const RELATIONS_ARRAY = [];
+
 }

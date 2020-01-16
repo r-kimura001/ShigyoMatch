@@ -61,6 +61,11 @@
 
       @include formIcons();
     }
+    .Form_note{
+      font-size: 1.4rem;
+      color: $gray-2;
+      font-style: italic;
+    }
     .Form_text,
     .Form_textarea{
       @include iconFix(10px, 38px, 10px, 20px);

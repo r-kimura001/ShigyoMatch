@@ -44,4 +44,39 @@
       }
     }
   }
+
+  &.--tag{
+    input[type=checkbox] {
+      border: 0;
+      width: initial;
+      height: initial;
+      &:hover{
+        + .Checkbox_label {
+          background: $green;
+          color: $white;
+        }
+      }
+      &:checked{
+        + .Checkbox_label {
+          background: $green;
+          color: $white;
+        }
+        &::before{
+          content: '';
+          width: 0;
+          height: 0;
+          font-size: 0;
+        }
+      }
+    }
+    label {
+      display: inline-block;
+      transition: $transitionBasis;
+      border: 2px solid $green;
+      color: $green;
+      font-size: 1.2rem;
+      text-align: center;
+      padding: 5px 8px;
+    }
+  }
 }

@@ -40,6 +40,7 @@ Route::delete('/works/{id}/unfavorite', 'WorkController@unfavorite')->name('work
 
 // profession_types
 Route::get('/professions', 'ProfessionTypeController@index')->name('professionType.index');
+Route::get('/professions/{id}/selectables', 'ProfessionTypeController@selectables')->name('professionType.selectables');
 
 // prefectures
 Route::get('/prefectures', 'PrefectureController@index')->name('prefecture.index');

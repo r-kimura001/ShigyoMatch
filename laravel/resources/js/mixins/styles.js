@@ -1,4 +1,4 @@
-import { BASE_STORAGE_URL } from "@/util";
+import { BASE_STORAGE_URL, PROFESSIONS } from "@/util";
 export default {
   methods: {
     bgImage(imageSrc) {
@@ -8,13 +8,13 @@ export default {
     },
     colorById(id){
       switch(id){
-        case 1:
+        case PROFESSIONS.bengoshi:
           return '#4379A9'
-        case 2:
+        case PROFESSIONS.shihoushoshi:
           return '#EC7211'
-        case 3:
+        case PROFESSIONS.gyoseishoshi:
           return '#fb7272'
-        case 4:
+        case PROFESSIONS.zeirishi:
           return '#69D9A1'
         default:
           return '#a8a3a7'

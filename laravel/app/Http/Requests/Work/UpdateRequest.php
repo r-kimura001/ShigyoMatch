@@ -31,6 +31,8 @@ class UpdateRequest extends FormRequest
       'fee' => 'nullable|integer|max:999999',
       'file_name' => 'nullable|image|max:'.self::MAX_FILE_SIZE,
       'body' => 'required|string',
+      'skill_types' => 'nullable|string',
+      'profession_type_id' => 'required|integer'
     ];
   }
 

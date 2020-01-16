@@ -7,6 +7,7 @@
           <WorkFormLayout
             :form-data="formData"
             @workSubmit="update"
+            @onRadioCheck="clearSkill"
           ></WorkFormLayout>
         </section>
       </div>
@@ -118,11 +119,39 @@ export default {
           this.formData[key].srcPath = this.work.file_name
             ? `${BASE_STORAGE_URL}/${this.work.file_name}`
             : null
+        } else if(key === 'skill_types'){
+          this.formData[key].value = this.work.skills.map( skill => skill.id )
+          this.fetchSelectables()
         } else {
           this.formData[key].value = this.work[key]
         }
       })
     },
+    async fetchSelectables(){
+      const response = await axios.get(`/api/professions/${this.work.profession_type_id}/selectables`)
+      this.$store.commit('form/setResponse', response)
+      if(response.status !== OK){
+        this.$store.commit('error/setErrors', {
+          status: response.status,
+          message: response.data.errors,
+        })
+      }else{
+        this.formData.skill_types.list = response.data
+      }
+    },
+    async clearSkill(id){
+      this.formData.skill_types.value = []
+      const response = await axios.get(`/api/professions/${id}/selectables`)
+      this.$store.commit('form/setResponse', response)
+      if(response.status !== OK){
+        this.$store.commit('error/setErrors', {
+          status: response.status,
+          message: response.data.errors,
+        })
+      }else{
+        this.formData.skill_types.list = response.data
+      }
+    }
   },
 }
 </script>

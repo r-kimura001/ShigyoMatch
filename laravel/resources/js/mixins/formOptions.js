@@ -12,7 +12,7 @@ export default {
       return 'options' in this.item && 'required' in this.item.options
     },
     isAutoFocus() {
-      return 'options' in this.item && 'required' in this.item.options
+      return 'options' in this.item && 'autofocus' in this.item.options
     },
     setClass() {
       return 'classOption' in this.item !== -1

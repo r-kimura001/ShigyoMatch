@@ -7,6 +7,7 @@
           <WorkFormLayout
             :form-data="formData"
             @workSubmit="store"
+            @onRadioCheck="fetchSkill"
           ></WorkFormLayout>
         </section>
       </div>
@@ -19,7 +20,7 @@ import WorkFormLayout from '@/layouts/WorkFormLayout'
 import workFormData from '@/mixins/formData/workFormData'
 // other
 import { mapState } from 'vuex'
-import { CREATED, UNPROCESSABLE_ENTITY } from '@/util'
+import { CREATED, UNPROCESSABLE_ENTITY, OK } from '@/util'
 
 export default {
   components: {
@@ -72,6 +73,19 @@ export default {
     fetchProfessions() {
       this.formData.profession_type_id.list = this.customer.profession_types
     },
+    async fetchSkill(id){
+      this.formData.skill_types.value = []
+      const response = await axios.get(`/api/professions/${id}/selectables`)
+      this.$store.commit('form/setResponse', response)
+      if(response.status !== OK){
+        this.$store.commit('error/setErrors', {
+          status: response.status,
+          message: response.data.errors,
+        })
+      }else{
+        this.formData.skill_types.list = response.data
+      }
+    }
   },
 }
 </script>

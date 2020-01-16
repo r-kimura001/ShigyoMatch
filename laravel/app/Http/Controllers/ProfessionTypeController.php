@@ -18,4 +18,14 @@ class ProfessionTypeController extends Controller
   {
     return $this->professionTypeService->all();
   }
+
+  /**
+   * @param int $id
+   */
+  public function selectables($id)
+  {
+    $professionType = $this->professionTypeService->findById($id);
+    return $professionType->selectables;
+
+  }
 }

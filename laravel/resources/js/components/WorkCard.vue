@@ -12,13 +12,24 @@
       </div>
     </RouterLink>
     <div class="WorkCard_cover">
-      <div class="WorkCard_text">
-        <p class="WorkCard_title">{{ work.title }}</p>
-        <p class="WorkCard_time">2020年1月20日</p>
+      <div class="HorizontalLayout --wrap">
+        <div class="HorizontalLayout_col u-ma5" v-for="(skill, index) in work.skills" :key="index">
+          <span class="Tag u-op7" :style="bgColor(work.profession_type_id)">{{ skill.body }}</span>
+        </div>
       </div>
-      <div class="WorkCard_button">
-        <button class="BorderButton --minimum --yellow">気になる</button>
-      </div>
+      <ul class="HorizontalLayout --stretch">
+        <li class="HorizontalLayout_col --flex">
+          <div class="WorkCard_text">
+            <p class="WorkCard_title">{{ work.title }}</p>
+            <p class="WorkCard_time">2020年1月20日</p>
+          </div>
+        </li>
+        <li class="HorizontalLayout_col">
+          <div class="WorkCard_professionType">
+            <span class="Tag" :style="bgColor(work.profession_type_id)">{{ work.profession_type.body }}</span>
+          </div>
+        </li>
+      </ul>
     </div>
   </div>
 </template>

@@ -2766,6 +2766,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2864,10 +2875,34 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _mixins_formOptions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/mixins/formOptions */ "./resources/js/mixins/formOptions.js");
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  mixins: [_mixins_formOptions__WEBPACK_IMPORTED_MODULE_0__["default"]]
+});
 
 /***/ }),
 
@@ -3143,6 +3178,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mixins: [_mixins_formOptions__WEBPACK_IMPORTED_MODULE_0__["default"]],
@@ -3226,6 +3265,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mixins: [_mixins_formOptions__WEBPACK_IMPORTED_MODULE_0__["default"]],
@@ -3250,6 +3290,9 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _mixins_formOptions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/mixins/formOptions */ "./resources/js/mixins/formOptions.js");
+//
+//
+//
 //
 //
 //
@@ -3569,16 +3612,12 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/util */ "./resources/js/util.js");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _mixins_styles__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/mixins/styles */ "./resources/js/mixins/styles.js");
-/* harmony import */ var _mixins_apiIndexHandler__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/mixins/apiIndexHandler */ "./resources/js/mixins/apiIndexHandler.js");
-/* harmony import */ var _layouts_WorkListLayout__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/layouts/WorkListLayout */ "./resources/js/layouts/WorkListLayout.vue");
-/* harmony import */ var _components_Pager__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/components/Pager */ "./resources/js/components/Pager.vue");
-
-
+/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/util */ "./resources/js/util.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _mixins_styles__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/mixins/styles */ "./resources/js/mixins/styles.js");
+/* harmony import */ var _mixins_apiIndexHandler__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/mixins/apiIndexHandler */ "./resources/js/mixins/apiIndexHandler.js");
+/* harmony import */ var _layouts_WorkListLayout__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/layouts/WorkListLayout */ "./resources/js/layouts/WorkListLayout.vue");
+/* harmony import */ var _components_Pager__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/components/Pager */ "./resources/js/components/Pager.vue");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -3719,10 +3758,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    WorkListLayout: _layouts_WorkListLayout__WEBPACK_IMPORTED_MODULE_5__["default"],
-    Pager: _components_Pager__WEBPACK_IMPORTED_MODULE_6__["default"]
+    WorkListLayout: _layouts_WorkListLayout__WEBPACK_IMPORTED_MODULE_4__["default"],
+    Pager: _components_Pager__WEBPACK_IMPORTED_MODULE_5__["default"]
   },
-  mixins: [_mixins_styles__WEBPACK_IMPORTED_MODULE_3__["default"], _mixins_apiIndexHandler__WEBPACK_IMPORTED_MODULE_4__["default"]],
+  mixins: [_mixins_styles__WEBPACK_IMPORTED_MODULE_2__["default"], _mixins_apiIndexHandler__WEBPACK_IMPORTED_MODULE_3__["default"]],
   props: {
     customer: {
       type: Object,
@@ -3732,7 +3771,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     }
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])({
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])({
     isLogin: 'auth/isLogin'
   }), {
     professionTypes: function professionTypes() {
@@ -3741,76 +3780,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   }),
   methods: {
     imageSrc: function imageSrc(src) {
-      return "".concat(_util__WEBPACK_IMPORTED_MODULE_1__["BASE_STORAGE_URL"], "/assets/").concat(src);
-    },
-    onClickFollow: function onClickFollow() {
-      if (!this.isLogin) {
-        alert('フォローするにはログインしてください');
-      } else if (this.customer.is_follow) {
-        this.unfollow();
-      } else {
-        this.follow();
-      }
-    },
-    follow: function follow() {
-      var response;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function follow$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              _context.next = 2;
-              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(axios.put("/api/customers/".concat(this.customer.id, "/follow")));
-
-            case 2:
-              response = _context.sent;
-              this.$store.commit('form/setResponse', response);
-
-              if (response.status === _util__WEBPACK_IMPORTED_MODULE_1__["OK"]) {
-                this.customer.is_follow = response.data.is_follow;
-                this.customer.follower_count = response.data.follower_count;
-              } else {
-                this.$store.commit('error/setErrors', {
-                  message: response,
-                  status: response.status
-                });
-              }
-
-            case 5:
-            case "end":
-              return _context.stop();
-          }
-        }
-      }, null, this);
-    },
-    unfollow: function unfollow() {
-      var response;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function unfollow$(_context2) {
-        while (1) {
-          switch (_context2.prev = _context2.next) {
-            case 0:
-              _context2.next = 2;
-              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(axios["delete"]("/api/customers/".concat(this.customer.id, "/unfollow")));
-
-            case 2:
-              response = _context2.sent;
-              this.$store.commit('form/setResponse', response);
-
-              if (response.status === _util__WEBPACK_IMPORTED_MODULE_1__["OK"]) {
-                this.customer.is_follow = response.data.is_follow;
-                this.customer.follower_count = response.data.follower_count;
-              } else {
-                this.$store.commit('error/setErrors', {
-                  message: response,
-                  status: response.status
-                });
-              }
-
-            case 5:
-            case "end":
-              return _context2.stop();
-          }
-        }
-      }, null, this);
+      return "".concat(_util__WEBPACK_IMPORTED_MODULE_0__["BASE_STORAGE_URL"], "/assets/").concat(src);
     }
   }
 });
@@ -3982,12 +3952,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     }
   },
+  data: function data() {
+    return {
+      val: null
+    };
+  },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_12__["mapGetters"])({
     errorMessages: 'error/message'
   })),
   methods: {
     hasError: function hasError(prop) {
       return this.errorMessages !== null && Object.keys(this.errorMessages).indexOf(prop) >= -1;
+    },
+    sendRadioData: function sendRadioData(id) {
+      this.$emit('onRadioCheck', id);
     }
   }
 });
@@ -4004,6 +3982,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _layouts_FormLayout__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/layouts/FormLayout */ "./resources/js/layouts/FormLayout.vue");
+//
 //
 //
 //
@@ -4039,6 +4018,11 @@ __webpack_require__.r(__webpack_exports__);
       },
       test: null
     };
+  },
+  methods: {
+    sendRadioData: function sendRadioData(id) {
+      this.$emit('onRadioCheck', id);
+    }
   }
 });
 
@@ -5148,7 +5132,7 @@ __webpack_require__.r(__webpack_exports__);
                 this.hasFavorite = false;
               } else {
                 this.favorite_works = response.data;
-                this.hasFavorite = !!this.favorite_works.length;
+                this.hasFavorite = !!Object.keys(this.favorite_works).length;
               }
 
             case 4:
@@ -5169,7 +5153,6 @@ __webpack_require__.r(__webpack_exports__);
 
             case 2:
               response = _context3.sent;
-              this.$store.commit('form/setResponse', response);
 
               if (response.status !== _util__WEBPACK_IMPORTED_MODULE_1__["OK"]) {
                 this.hasFavorited = false;
@@ -5178,7 +5161,7 @@ __webpack_require__.r(__webpack_exports__);
                 this.hasFavorited = !!this.favorited_works.length;
               }
 
-            case 5:
+            case 4:
             case "end":
               return _context3.stop();
           }
@@ -5712,6 +5695,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
  // mixins
 
  // other
@@ -5803,6 +5787,36 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     fetchProfessions: function fetchProfessions() {
       this.formData.profession_type_id.list = this.customer.profession_types;
+    },
+    fetchSkill: function fetchSkill(id) {
+      var response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function fetchSkill$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              this.formData.skill_types.value = [];
+              _context3.next = 3;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(axios.get("/api/professions/".concat(id, "/selectables")));
+
+            case 3:
+              response = _context3.sent;
+              this.$store.commit('form/setResponse', response);
+
+              if (response.status !== _util__WEBPACK_IMPORTED_MODULE_4__["OK"]) {
+                this.$store.commit('error/setErrors', {
+                  status: response.status,
+                  message: response.data.errors
+                });
+              } else {
+                this.formData.skill_types.list = response.data;
+              }
+
+            case 6:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, null, this);
     }
   }
 });
@@ -5856,6 +5870,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
 //
 //
 //
@@ -6031,10 +6046,75 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       Object.keys(this.formData).forEach(function (key) {
         if (key === 'file_name') {
           _this2.formData[key].srcPath = _this2.work.file_name ? "".concat(_util__WEBPACK_IMPORTED_MODULE_3__["BASE_STORAGE_URL"], "/").concat(_this2.work.file_name) : null;
+        } else if (key === 'skill_types') {
+          _this2.formData[key].value = _this2.work.skills.map(function (skill) {
+            return skill.id;
+          });
+
+          _this2.fetchSelectables();
         } else {
           _this2.formData[key].value = _this2.work[key];
         }
       });
+    },
+    fetchSelectables: function fetchSelectables() {
+      var response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function fetchSelectables$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              _context4.next = 2;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(axios.get("/api/professions/".concat(this.work.profession_type_id, "/selectables")));
+
+            case 2:
+              response = _context4.sent;
+              this.$store.commit('form/setResponse', response);
+
+              if (response.status !== _util__WEBPACK_IMPORTED_MODULE_3__["OK"]) {
+                this.$store.commit('error/setErrors', {
+                  status: response.status,
+                  message: response.data.errors
+                });
+              } else {
+                this.formData.skill_types.list = response.data;
+              }
+
+            case 5:
+            case "end":
+              return _context4.stop();
+          }
+        }
+      }, null, this);
+    },
+    clearSkill: function clearSkill(id) {
+      var response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function clearSkill$(_context5) {
+        while (1) {
+          switch (_context5.prev = _context5.next) {
+            case 0:
+              this.formData.skill_types.value = [];
+              _context5.next = 3;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(axios.get("/api/professions/".concat(id, "/selectables")));
+
+            case 3:
+              response = _context5.sent;
+              this.$store.commit('form/setResponse', response);
+
+              if (response.status !== _util__WEBPACK_IMPORTED_MODULE_3__["OK"]) {
+                this.$store.commit('error/setErrors', {
+                  status: response.status,
+                  message: response.data.errors
+                });
+              } else {
+                this.formData.skill_types.list = response.data;
+              }
+
+            case 6:
+            case "end":
+              return _context5.stop();
+          }
+        }
+      }, null, this);
     }
   }
 });
@@ -8400,32 +8480,60 @@ var render = function() {
       ),
       _vm._v(" "),
       _c("div", { staticClass: "WorkCard_cover" }, [
-        _c("div", { staticClass: "WorkCard_text" }, [
-          _c("p", { staticClass: "WorkCard_title" }, [
-            _vm._v(_vm._s(_vm.work.title))
+        _c(
+          "div",
+          { staticClass: "HorizontalLayout --wrap" },
+          _vm._l(_vm.work.skills, function(skill, index) {
+            return _c(
+              "div",
+              { key: index, staticClass: "HorizontalLayout_col u-ma5" },
+              [
+                _c(
+                  "span",
+                  {
+                    staticClass: "Tag u-op7",
+                    style: _vm.bgColor(_vm.work.profession_type_id)
+                  },
+                  [_vm._v(_vm._s(skill.body))]
+                )
+              ]
+            )
+          }),
+          0
+        ),
+        _vm._v(" "),
+        _c("ul", { staticClass: "HorizontalLayout --stretch" }, [
+          _c("li", { staticClass: "HorizontalLayout_col --flex" }, [
+            _c("div", { staticClass: "WorkCard_text" }, [
+              _c("p", { staticClass: "WorkCard_title" }, [
+                _vm._v(_vm._s(_vm.work.title))
+              ]),
+              _vm._v(" "),
+              _c("p", { staticClass: "WorkCard_time" }, [
+                _vm._v("2020年1月20日")
+              ])
+            ])
           ]),
           _vm._v(" "),
-          _c("p", { staticClass: "WorkCard_time" }, [_vm._v("2020年1月20日")])
-        ]),
-        _vm._v(" "),
-        _vm._m(0)
+          _c("li", { staticClass: "HorizontalLayout_col" }, [
+            _c("div", { staticClass: "WorkCard_professionType" }, [
+              _c(
+                "span",
+                {
+                  staticClass: "Tag",
+                  style: _vm.bgColor(_vm.work.profession_type_id)
+                },
+                [_vm._v(_vm._s(_vm.work.profession_type.body))]
+              )
+            ])
+          ])
+        ])
       ])
     ],
     1
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "WorkCard_button" }, [
-      _c("button", { staticClass: "BorderButton --minimum --yellow" }, [
-        _vm._v("気になる")
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -8447,7 +8555,86 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div")
+  return _c("div", [
+    _c("div", { staticClass: "Form_label", style: _vm.item.formLabel.style }, [
+      _vm._v("\n    " + _vm._s(_vm.item.formLabel.name) + "\n  ")
+    ]),
+    _vm._v(" "),
+    !_vm.item.list.length
+      ? _c("p", { staticClass: "Form_note" }, [
+          _vm._v("業務分野を選択すると関連タグが表示されます")
+        ])
+      : _c(
+          "ul",
+          { staticClass: "HorizontalLayout --wrap" },
+          _vm._l(_vm.item.list, function(boxData, index) {
+            return _c(
+              "li",
+              { key: index, staticClass: "HorizontalLayout_col u-ma5" },
+              [
+                _c("div", { staticClass: "Checkbox", class: _vm.setClass() }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.item.value,
+                        expression: "item.value"
+                      }
+                    ],
+                    attrs: {
+                      type: "checkbox",
+                      id: "data_" + boxData[_vm.item.valueKey],
+                      name: _vm.item.name
+                    },
+                    domProps: {
+                      value: boxData[_vm.item.valueKey],
+                      checked: Array.isArray(_vm.item.value)
+                        ? _vm._i(_vm.item.value, boxData[_vm.item.valueKey]) >
+                          -1
+                        : _vm.item.value
+                    },
+                    on: {
+                      change: function($event) {
+                        var $$a = _vm.item.value,
+                          $$el = $event.target,
+                          $$c = $$el.checked ? true : false
+                        if (Array.isArray($$a)) {
+                          var $$v = boxData[_vm.item.valueKey],
+                            $$i = _vm._i($$a, $$v)
+                          if ($$el.checked) {
+                            $$i < 0 &&
+                              _vm.$set(_vm.item, "value", $$a.concat([$$v]))
+                          } else {
+                            $$i > -1 &&
+                              _vm.$set(
+                                _vm.item,
+                                "value",
+                                $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                              )
+                          }
+                        } else {
+                          _vm.$set(_vm.item, "value", $$c)
+                        }
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "label",
+                    {
+                      staticClass: "Checkbox_label",
+                      attrs: { for: "data_" + boxData[_vm.item.valueKey] }
+                    },
+                    [_vm._v(_vm._s(boxData[_vm.item.labelKey]))]
+                  )
+                ])
+              ]
+            )
+          }),
+          0
+        )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -8646,48 +8833,52 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("input", {
-      directives: [
-        {
-          name: "model",
-          rawName: "v-model",
-          value: _vm.item.value,
-          expression: "item.value"
-        }
-      ],
-      staticClass: "Form_text",
-      class: _vm.setClass(),
-      attrs: {
-        type: "number",
-        name: _vm.item.name,
-        placeholder: _vm.item.placeholder,
-        required: _vm.isRequired(),
-        autofocus: _vm.isAutoFocus(),
-        max: _vm.maxNumber()
-      },
-      domProps: { value: _vm.item.value },
-      on: {
-        input: function($event) {
-          if ($event.target.composing) {
-            return
-          }
-          _vm.$set(_vm.item, "value", $event.target.value)
-        }
-      }
-    }),
-    _vm._v(" "),
-    _vm.item.name === "zip_code"
-      ? _c(
-          "button",
+  return _c("div", { staticClass: "Number" }, [
+    _c("div", { staticClass: "Number_form" }, [
+      _c("input", {
+        directives: [
           {
-            staticClass: "Button --small --hasShadow --pink",
-            attrs: { type: "button" },
-            on: { click: _vm.setAddress }
-          },
-          [_vm._v("\n    住所検索\n  ")]
-        )
-      : _vm._e()
+            name: "model",
+            rawName: "v-model",
+            value: _vm.item.value,
+            expression: "item.value"
+          }
+        ],
+        staticClass: "Form_text",
+        class: _vm.setClass(),
+        attrs: {
+          type: "number",
+          name: _vm.item.name,
+          placeholder: _vm.item.placeholder,
+          required: _vm.isRequired(),
+          autofocus: _vm.isAutoFocus(),
+          max: _vm.maxNumber()
+        },
+        domProps: { value: _vm.item.value },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.$set(_vm.item, "value", $event.target.value)
+          }
+        }
+      }),
+      _vm._v(" "),
+      _c("div", { staticClass: "Number_button" }, [
+        _vm.item.name === "zip_code"
+          ? _c(
+              "button",
+              {
+                staticClass: "Button --minimum --hasShadow --pink",
+                attrs: { type: "button" },
+                on: { click: _vm.setAddress }
+              },
+              [_vm._v("\n        住所検索\n      ")]
+            )
+          : _vm._e()
+      ])
+    ])
   ])
 }
 var staticRenderFns = []
@@ -8791,6 +8982,7 @@ var render = function() {
                 }
               ],
               attrs: {
+                name: "item.name",
                 type: "checkbox",
                 "data-label": professionType[_vm.item.labelKey]
               },
@@ -8908,7 +9100,9 @@ var render = function() {
               staticClass: "Radio",
               attrs: {
                 id: "profession_type_" + listItem[_vm.item.valueKey],
+                name: _vm.item.name,
                 type: "radio",
+                required: _vm.isRequired(),
                 "data-label": listItem[_vm.item.labelKey]
               },
               domProps: {
@@ -8916,13 +9110,18 @@ var render = function() {
                 checked: _vm._q(_vm.item.value, listItem[_vm.item.valueKey])
               },
               on: {
-                change: function($event) {
-                  return _vm.$set(
-                    _vm.item,
-                    "value",
-                    listItem[_vm.item.valueKey]
-                  )
-                }
+                change: [
+                  function($event) {
+                    return _vm.$set(
+                      _vm.item,
+                      "value",
+                      listItem[_vm.item.valueKey]
+                    )
+                  },
+                  function($event) {
+                    return _vm.$emit("onCheck", _vm.item.value)
+                  }
+                ]
               }
             }),
             _c(
@@ -9352,20 +9551,7 @@ var render = function() {
           _vm._v("\n        " + _vm._s(_vm.customer.greeting) + "\n      ")
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "u-alignCenter" }, [
-          _c("button", { staticClass: "Button --green --minimum" }, [
-            _vm._v("\n          スカウト\n        ")
-          ]),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "BorderButton --minimum",
-              on: { click: _vm.onClickFollow }
-            },
-            [_vm._v("\n          フォロー\n        ")]
-          )
-        ])
+        _vm._m(0)
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "CustomerInfoLayout_headingBox" }, [
@@ -9518,7 +9704,22 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "u-alignCenter" }, [
+      _c("button", { staticClass: "Button --green --minimum" }, [
+        _vm._v("\n          スカウト\n        ")
+      ]),
+      _vm._v(" "),
+      _c("button", { staticClass: "BorderButton --minimum" }, [
+        _vm._v("\n          フォロー\n        ")
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -9635,7 +9836,10 @@ var render = function() {
                 : _vm._e(),
               _vm._v(" "),
               formItem.type === "radio"
-                ? _c("Radio", { attrs: { item: formItem } })
+                ? _c("Radio", {
+                    attrs: { item: formItem },
+                    on: { onCheck: _vm.sendRadioData }
+                  })
                 : _vm._e(),
               _vm._v(" "),
               formItem.type === "select"
@@ -9717,7 +9921,8 @@ var render = function() {
           on: {
             send: function($event) {
               return _vm.$emit("workSubmit")
-            }
+            },
+            onRadioCheck: _vm.sendRadioData
           }
         })
       ],
@@ -11183,7 +11388,7 @@ var render = function() {
           [
             _c("WorkFormLayout", {
               attrs: { "form-data": _vm.formData },
-              on: { workSubmit: _vm.store }
+              on: { workSubmit: _vm.store, onRadioCheck: _vm.fetchSkill }
             })
           ],
           1
@@ -11261,7 +11466,7 @@ var render = function() {
           [
             _c("WorkFormLayout", {
               attrs: { "form-data": _vm.formData },
-              on: { workSubmit: _vm.update }
+              on: { workSubmit: _vm.update, onRadioCheck: _vm.clearSkill }
             })
           ],
           1
@@ -34241,7 +34446,24 @@ __webpack_require__.r(__webpack_exports__);
           list: [],
           valueKey: 'id',
           labelKey: 'body',
-          options: {}
+          options: {
+            required: true
+          }
+        },
+        skill_types: {
+          name: 'skill_types',
+          type: 'checkbox',
+          value: [],
+          list: [],
+          valueKey: 'id',
+          labelKey: 'body',
+          formLabel: {
+            name: '分野タグ',
+            style: this.bgImage('assets/icon-license-card.svg')
+          },
+          classOption: {
+            '--tag': true
+          }
         },
         file_name: {
           name: 'file_name',
@@ -34266,6 +34488,9 @@ __webpack_require__.r(__webpack_exports__);
           rows: 10,
           classOption: {
             '--greeting': true
+          },
+          options: {
+            required: true
           }
         }
       }
@@ -34323,7 +34548,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return 'options' in this.item && 'required' in this.item.options;
     },
     isAutoFocus: function isAutoFocus() {
-      return 'options' in this.item && 'required' in this.item.options;
+      return 'options' in this.item && 'autofocus' in this.item.options;
     },
     setClass: function setClass() {
       return 'classOption' in this.item !== -1 ? this.item.classOption : '';
@@ -34380,16 +34605,16 @@ __webpack_require__.r(__webpack_exports__);
     },
     colorById: function colorById(id) {
       switch (id) {
-        case 1:
+        case _util__WEBPACK_IMPORTED_MODULE_0__["PROFESSIONS"].bengoshi:
           return '#4379A9';
 
-        case 2:
+        case _util__WEBPACK_IMPORTED_MODULE_0__["PROFESSIONS"].shihoushoshi:
           return '#EC7211';
 
-        case 3:
+        case _util__WEBPACK_IMPORTED_MODULE_0__["PROFESSIONS"].gyoseishoshi:
           return '#fb7272';
 
-        case 4:
+        case _util__WEBPACK_IMPORTED_MODULE_0__["PROFESSIONS"].zeirishi:
           return '#69D9A1';
 
         default:
@@ -36791,7 +37016,7 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 /*!******************************!*\
   !*** ./resources/js/util.js ***!
   \******************************/
-/*! exports provided: getCookieValue, OK, CREATED, DELETED, INTERNAL_SERVER_ERROR, UNPROCESSABLE_ENTITY, UNAUTHORIZED, NOT_FOUND, BASE_STORAGE_URL, BASE_URL, MQL, CLIENT_HEIGHT, CLIENT_WIDTH */
+/*! exports provided: getCookieValue, OK, CREATED, DELETED, INTERNAL_SERVER_ERROR, UNPROCESSABLE_ENTITY, UNAUTHORIZED, NOT_FOUND, BASE_STORAGE_URL, BASE_URL, MQL, CLIENT_HEIGHT, CLIENT_WIDTH, PROFESSIONS */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -36809,6 +37034,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MQL", function() { return MQL; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CLIENT_HEIGHT", function() { return CLIENT_HEIGHT; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CLIENT_WIDTH", function() { return CLIENT_WIDTH; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PROFESSIONS", function() { return PROFESSIONS; });
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
@@ -36852,6 +37078,12 @@ var BASE_URL = window.location.origin;
 var MQL = window.matchMedia('(max-width: 768px)');
 var CLIENT_HEIGHT = document.documentElement.clientHeight;
 var CLIENT_WIDTH = document.documentElement.clientWidth;
+var PROFESSIONS = {
+  bengoshi: 1,
+  shihoushoshi: 2,
+  gyoseishoshi: 3,
+  zeirishi: 4
+};
 
 /***/ }),
 

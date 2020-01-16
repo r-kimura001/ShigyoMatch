@@ -13,12 +13,5 @@ class PrefectureRepository extends Repository
     $this->builder = new Prefecture();
   }
 
-  /**
-   * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
-   */
-  public function all()
-  {
-    return $this->getBuilder()->get();
-  }
 
 }

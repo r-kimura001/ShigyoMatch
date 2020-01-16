@@ -24,7 +24,7 @@ class WorkService extends Service
 
   public function all()
   {
-    return $this->workRep->all();
+    return $this->workRep->all(Work::RELATIONS_ARRAY);
   }
 
   public function paginate()
@@ -37,7 +37,10 @@ class WorkService extends Service
     // worksへの登録
     $work = new Work();
     $createdWork = $work->createByUser($data);
-
+    if(!empty($data['skill_types']??'')){
+      $skill_types = explode(',', $data['skill_types']);
+      $createdWork->skills()->sync($skill_types);
+    }
     return $createdWork;
   }
 
@@ -45,6 +48,13 @@ class WorkService extends Service
   public function update(Work $work, array $data)
   {
     $work->updateByUser($data);
+    if(!empty($data['skill_types']??'')){
+      $skill_types = explode(',', $data['skill_types']);
+
+    }else{
+      $skill_types = [];
+    }
+    $work->skills()->sync($skill_types);
   }
 
   /**

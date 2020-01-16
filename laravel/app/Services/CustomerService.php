@@ -6,6 +6,7 @@ use App\Repositories\CustomerRepository;
 use App\Repositories\WorkRepository;
 use App\Models\Customer;
 use App\Models\User;
+use App\Models\Work;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\Events\Registered;
 
@@ -32,7 +33,7 @@ class CustomerService extends Service
    */
   public function all()
   {
-    return $this->customerRep->all();
+    return $this->customerRep->all(Customer::RELATIONS_ARRAY);
   }
 
   /**
@@ -125,12 +126,12 @@ class CustomerService extends Service
 
   /**
    * @param int $customerId
-   * @return mixed
+   * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
    */
   public function favoriteWorks(int $customerId)
   {
-    $customer = $this->customerById($customerId);
-    return $customer->favorites;
+    $works = $this->workRep->all(Work::RELATIONS_ARRAY);
+    return $works->where('is_favorite', true)->toArray();
   }
 
 
