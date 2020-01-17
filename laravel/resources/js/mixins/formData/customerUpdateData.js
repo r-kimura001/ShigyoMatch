@@ -95,7 +95,7 @@ export default {
           name: 'address',
           type: 'text',
           value: '',
-          placeholder: '以降の住所',
+          placeholder: '以降の所在場所',
           classOption: {
             '--place': true,
           },

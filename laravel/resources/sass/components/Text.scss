@@ -41,8 +41,17 @@
   &.-deepGreen{
     color: $deepGreen;
   }
+  &.-deepGray{
+    color: $deepGray;
+  }
   &.-link{
 
+  }
+  &.-danger{
+    padding: 12px;
+    color: $shadowPink;
+    text-align: center;
+    background: $paleRed;
   }
 
   &.--hasIcon{

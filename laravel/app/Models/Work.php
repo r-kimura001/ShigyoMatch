@@ -13,7 +13,7 @@ class Work extends Model implements CanDeleteRelationInterface
   use SoftDeletes;
 
   const COUNT_PER_PAGE = 12;
-  const RELATIONS_ARRAY = ['professionType', 'skills'];
+  const RELATIONS_ARRAY = ['professionType', 'customer.user', 'customer.professionTypes', 'appliers', 'skills'];
 
   protected $table = 'works';
 
@@ -28,6 +28,18 @@ class Work extends Model implements CanDeleteRelationInterface
       return false;
     }
     return $this->attributes['customer_id'] === Auth::user()->customer_id;
+  }
+  /**
+   * @return bool
+   */
+  public function getIsApplierAttribute()
+  {
+    if(Auth::guest()){
+      return false;
+    }
+    return $this->appliers->contains(function($applier){
+      return $applier->id === Auth::user()->customer_id;
+    });
   }
   /**
    * @return bool
@@ -60,6 +72,15 @@ class Work extends Model implements CanDeleteRelationInterface
   }
 
   /**
+   * リレーション　- 投稿したカスタマー
+   * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+   */
+  public function customer()
+  {
+    return $this->belongsTo(Customer::class, 'customer_id', 'id');
+  }
+
+  /**
    * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
    */
   public function skills()
@@ -75,7 +96,13 @@ class Work extends Model implements CanDeleteRelationInterface
     return $this->belongsToMany(Customer::class, 'favorites', 'work_id', 'customer_id')->withTimestamps();
   }
 
-  protected $appends = ['is_owner', 'is_favorite', 'favorite_count'];
+  public function appliers()
+  {
+    return $this->belongsToMany(Customer::class, 'applies', 'work_id', 'applier_id')->withPivot('pr', 'match_flag')->withTimestamps();
+  }
+
+  protected $appends = ['is_owner', 'is_favorite', 'is_applier', 'favorite_count'];
+  protected $hidden = ['customer_id'];
 
   public function getDeleteRelations()
   {

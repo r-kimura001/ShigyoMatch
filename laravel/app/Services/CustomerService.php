@@ -112,7 +112,7 @@ class CustomerService extends Service
    */
   public function worksByOwner(int $customerId)
   {
-    return $this->workRep->worksByOwner($customerId);
+    return $this->workRep->worksByOwner(Work::RELATIONS_ARRAY, $customerId);
   }
 
   /**
@@ -126,12 +126,22 @@ class CustomerService extends Service
 
   /**
    * @param int $customerId
-   * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
+   * @return array
    */
   public function favoriteWorks(int $customerId)
   {
     $works = $this->workRep->all(Work::RELATIONS_ARRAY);
     return $works->where('is_favorite', true)->toArray();
+  }
+
+  /**
+   * @param int $customerId
+   * @return array
+   */
+  public function applyWorks(int $customerId)
+  {
+    $works = $this->workRep->all(Work::RELATIONS_ARRAY);
+    return $works->where('is_applier', true)->toArray();
   }
 
 

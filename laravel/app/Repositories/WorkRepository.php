@@ -19,13 +19,13 @@ class WorkRepository extends Repository
    * @param int $customerId
    * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
    */
-  public function WorksByOwner(int $customerId)
+  public function WorksByOwner(array $relations, int $customerId)
   {
     return $this->getBuilder()
-      ->with(['professionType'])
+      ->with($relations)
       ->where('customer_id', $customerId)
       ->latest()
-      ->paginate(Work::COUNT_PER_PAGE);
+      ->get();
   }
 
   public function favoritedWorks(int $customerId)

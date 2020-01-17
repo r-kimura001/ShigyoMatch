@@ -1,0 +1,26 @@
+.DefinitionLayout{
+  display: flex;
+  justify-content: flex-start;
+  font-size: 1.5rem;
+  line-height: 1.3;
+  .DefinitionLayout_term{
+    flex-shrink: 0;
+    width: 150px;
+    text-align: right;
+    font-weight: bold;
+    color: $deepGreen;
+  }
+  .DefinitionLayout_desc{
+    padding-left: 15px;
+    white-space: pre-line;
+  }
+  @include media(sm){
+    flex-direction: column;
+    .DefinitionLayout_term{
+      text-align: left;
+      width: 100%;
+      margin-bottom: 12px;
+    }
+  }
+
+}

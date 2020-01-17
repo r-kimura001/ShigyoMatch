@@ -1,38 +1,38 @@
 <template>
   <div class="p-favorites">
     <h2>Favorites</h2>
-      <section class="MypageContent_box">
-        <div class="HorizontalLayout">
-          <div class="HorizontalLayout_col">
-            <h3 class="Tab" @click="change(favoriteFlag)">気になるした</h3>
-          </div>
-          <div class="HorizontalLayout_col">
-            <h3 class="Tab" @click="change(favoritedFlag)">気になるされた</h3>
-          </div>
+    <section class="MypageContent_box">
+      <div class="HorizontalLayout">
+        <div class="HorizontalLayout_col">
+          <h3 class="Tab" @click="change(favoriteFlag)">気になるした</h3>
         </div>
-        <div>
-          <div v-if="currentFlag===favoriteFlag" class="">
-            <p v-if="!hasFavorite">気になるした募集案件はありません</p>
-            <WorkListLayout
-              v-else
-              :works="favorite_works"
-            ></WorkListLayout>
-          </div>
-          <div v-if="currentFlag===favoritedFlag">
-            <p v-if="!hasFavorited">気になるされた募集案件はありません</p>
-            <WorkTableLayout
-              v-else
-              :works="favorited_works"
-            ></WorkTableLayout>
-          </div>
+        <div class="HorizontalLayout_col">
+          <h3 class="Tab" @click="change(favoritedFlag)">気になるされた</h3>
         </div>
-      </section>
+      </div>
+      <div>
+        <div v-if="currentFlag===favoriteFlag" class="">
+          <p v-if="!hasFavorite">気になるした募集案件はありません</p>
+          <WorkListLayout
+            v-else
+            :works="favorite_works"
+          ></WorkListLayout>
+        </div>
+        <div v-if="currentFlag===favoritedFlag">
+          <p v-if="!hasFavorited">気になるされた募集案件はありません</p>
+          <WorkTableLayout
+            v-else
+            :works="favorited_works"
+          ></WorkTableLayout>
+        </div>
+      </div>
+    </section>
   </div>
 </template>
 <script>
-  import { OK } from '@/util'
-  import WorkListLayout from '@/layouts/WorkListLayout'
-  import WorkTableLayout from '@/layouts/WorkTableLayout'
+import { OK } from '@/util'
+import WorkListLayout from '@/layouts/WorkListLayout'
+import WorkTableLayout from '@/layouts/WorkTableLayout'
 export default {
   components: { WorkListLayout, WorkTableLayout },
   props: {
@@ -83,7 +83,7 @@ export default {
       if (response.status !== OK) {
         this.hasFavorited = false
       } else {
-        this.favorited_works = response.data.data
+        this.favorited_works = response.data
         this.hasFavorited = !!this.favorited_works.length
       }
     },

@@ -66,5 +66,31 @@ class WorkService extends Service
     return $this->workRep->findById(Work::RELATIONS_ARRAY, $workId);
   }
 
+  /**
+   * @param int $workId
+   * @param array $data
+   * @return mixed
+   */
+  public function apply(int $workId, array $data)
+  {
+    $work = $this->workById($workId);
+    if($work->is_owner){
+      return [
+        'error' => '自分の募集案件に申し込むことはできません'
+      ];
+    }
+    if(!empty($data['pr']??'')){
+      $applierData = [
+        $data['applier_id'] => ['pr' => $data['pr']]
+      ];
+    }else{
+      $applierData = [ $data['applier_id'] ];
+    }
+
+    $work->appliers()->sync($applierData);
+
+    return $work;
+  }
+
 
 }

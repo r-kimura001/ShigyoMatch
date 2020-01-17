@@ -48,7 +48,7 @@ class UpdateRequest extends FormRequest
       'zip_code' => '郵便番号',
       'pref_code' => '都道府県',
       'city' => '市区町村',
-      'address' => '市区町村以降の住所',
+      'address' => '市区町村以降の所在場所',
       'building' => 'ビル名',
       'url' => 'ホームページURL',
       'file_name' => '画像データ',

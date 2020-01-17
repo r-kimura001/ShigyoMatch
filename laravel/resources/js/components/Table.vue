@@ -16,7 +16,7 @@
       <tbody>
         <tr v-for="(record, index) in list" :key="index">
           <td v-if="operation">
-            <div class="Button --minimum --green" @click="editClick(record.id)">
+            <div class="Button --minimum" @click="editClick(record.id)">
               <i class="far fa-edit u-mr5"></i>編集
             </div>
             <div

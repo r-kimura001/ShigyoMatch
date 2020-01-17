@@ -72,9 +72,13 @@
     transform: translate(0, 100%);
   }
   .WorkCard_title{
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     font-weight: bold;
     padding: 5px 0;
+
+    @include media(sm){
+      font-size: 1.3rem;
+    }
   }
   .WorkCard_time{
     font-size: 1rem;

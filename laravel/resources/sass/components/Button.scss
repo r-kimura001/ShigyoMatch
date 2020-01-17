@@ -8,7 +8,7 @@
     padding: 10px 12px;
     text-align: center;
     transition: $transitionBasis;
-    background: $paleBlue;
+    background: $paleGreen;
 
     &:focus{
       outline: none;
@@ -21,8 +21,8 @@
     &.--pink{
         background: $pink;
     }
-    &.--green{
-        background: $paleGreen;
+    &.--blue{
+        background: $paleBlue;
     }
     &.--yellowGreen{
         background: $yellowGreen;
@@ -39,7 +39,7 @@
       bottom: 10px;
       left: 50%;
       transform: translateX(-50%);
-      width: 250px;
+      width: 280px;
     }
 
     &.--small{
@@ -65,13 +65,13 @@
       max-width: 150px;
       padding: 8px 12px;
       border-radius: 10px;
-      box-shadow: 0 4px 0 $shadowBlue;
+      box-shadow: 0 4px 0 $deepGreen;
       transition: none;
       &.--pink{
         box-shadow: 0 4px 0 $shadowPink;
       }
-      &.--green{
-        box-shadow: 0 4px 0 $deepGreen;
+      &.--blue{
+        box-shadow: 0 4px 0 $shadowBlue;
       }
       &:active{
           box-shadow: none;
