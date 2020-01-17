@@ -121,8 +121,7 @@ export default {
         this.$store.commit('error/setMessage', response.data.errors)
         this.$scrollTo('.Header', 1500)
         return false
-      }
-      if (response.status === OK) {
+      } else if (response.status === OK) {
         this.$store.commit('error/setMessage', null)
         this.$store.commit('auth/setCustomer', response.data)
         this.$store.commit('form/setSuccessMessage', '更新に成功しました')

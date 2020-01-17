@@ -100,7 +100,7 @@
         >
           URL
         </h3>
-        <a :href="customer.url" class="CustomerInfoLayout_link">{{
+        <a :href="customer.url" target="_blank" class="CustomerInfoLayout_link">{{
           customer.url
         }}</a>
       </div>

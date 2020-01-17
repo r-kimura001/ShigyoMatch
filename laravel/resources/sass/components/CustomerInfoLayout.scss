@@ -47,8 +47,12 @@
     font-size: 1.2rem;
     color: $gray;
     line-height: 1.5;
-    word-break: break-all;
-    padding: 5px 20px 15px;
+    white-space: pre-line;
+    padding: 5px 40px 15px;
+
+    @include media(sm){
+      padding: 5px 20px 15px;
+    }
   }
   .CustomerInfoLayout_label{
     margin-bottom: 10px;

@@ -120,6 +120,10 @@
       cursor: pointer;
       letter-spacing: 0.2rem;
 
+      &.--blue{
+        background: $paleBlue;
+      }
+
       &.--radius{
         border-radius: 9999px;
       }

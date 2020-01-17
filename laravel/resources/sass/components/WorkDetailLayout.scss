@@ -1,0 +1,104 @@
+.WorkDetailLayout{
+  .WorkDetailLayout_box{
+    padding: 30px 0;
+  }
+  .WorkDetailLayout_heading{
+    background-size: cover;
+    background-position: center;
+    background-color: $paleGray;
+    position: relative;
+    max-width: 480px;
+    margin: 0 auto;
+    padding-top: 67%;
+    overflow: hidden;
+    .WorkDetailLayout_title{
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      color: $white;
+      font-weight: bold;
+    }
+    .WorkDetailLayout_customer{
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      color: $white;
+      font-weight: bold;
+    }
+  }
+  .WorkDetailLayout_mark{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 28px;
+    height: 28px;
+    background-image: url(#{$assetPath}/icon-star-border.svg);
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
+    transition: $transitionBasis;
+    &.--favorite,
+    &:hover{
+      background-image: url(#{$assetPath}/icon-star-basic.svg);
+    }
+  }
+  .WorkDetailLayout_body{
+    border: 1px solid $gray;
+    margin-top: 40px;
+  }
+  .WorkDetailLayout_list{
+    display: flex;
+    font-size: 1.4rem;
+
+    @include media(sm-y){
+      font-size: 1.2rem;
+    }
+    &:not(:last-of-type){
+      border-bottom: 1px solid $gray;
+    }
+    .WorkDetailLayout_listTerm{
+      padding: 15px 20px 15px 10px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      min-width: 110px;
+      background: $paleGreen;
+      color: $white;
+      justify-content: flex-end;
+
+      @include media(sm-y){
+        padding: 10px;
+        min-width: 80px;
+      }
+    }
+    .WorkDetailLayout_listDesc{
+      flex-grow: 1;
+      padding: 15px 10px;
+      display: flex;
+      align-items: center;
+      white-space: pre-line;
+      line-height: 1.3;
+
+      &.--column{
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      @include media(sm-y){
+        padding: 10px;
+      }
+    }
+    .WorkDetailLayout_customerThumb{
+      max-width: 350px;
+    }
+  }
+  .WorkDetailLayout_customerList{
+    display: flex;
+    align-items: flex-start;
+
+    .WorkDetailLayout_customerTitle{
+      padding-right: 10px;
+      flex-shrink: 0;
+    }
+  }
+}

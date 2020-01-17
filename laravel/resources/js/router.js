@@ -15,6 +15,7 @@ import WorkDetail from '@/pages/works/WorkDetail.vue'
 import WorkShow from '@/pages/works/WorkShow.vue'
 import WorkCreate from '@/pages/works/WorkCreate.vue'
 import WorkEdit from '@/pages/works/WorkEdit.vue'
+import WorkApply from '@/pages/works/WorkApply.vue'
 
 // mypage
 import MyPage from '@/pages/mypage/MyPage.vue'
@@ -94,6 +95,10 @@ const routes = [
       {
         path: 'edit',
         component: WorkEdit,
+      },
+      {
+        path: 'apply',
+        component: WorkApply,
       },
     ]
   },

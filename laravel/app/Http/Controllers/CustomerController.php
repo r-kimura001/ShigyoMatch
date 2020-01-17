@@ -101,16 +101,32 @@ class CustomerController extends Controller
 
   /**
    * @param int $id
+   * @return mixed
    */
   public function worksByOwner(int $id)
   {
     return $this->customerService->worksByOwner($id);
   }
 
+  /**
+   * @param int $id
+   * @return array
+   */
   public function favoriteWorks(int $id)
   {
     return $this->customerService->favoriteWorks($id);
   }
+
+  /**
+   * @param int $id
+   * @return array
+   */
+  public function applyWorks(int $id)
+  {
+    return $this->customerService->applyWorks($id);
+  }
+
+
 
   public function customer()
   {

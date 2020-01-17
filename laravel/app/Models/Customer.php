@@ -17,7 +17,7 @@ class Customer extends Model implements CanDeleteRelationInterface
   use SoftDeletes;
 
   const COUNT_PER_PAGE = 12;
-  const RELATIONS_ARRAY = [ 'professionTypes', 'user', 'works.skills', 'works.professionType' ];
+  const RELATIONS_ARRAY = [ 'professionTypes', 'user', 'works.skills', 'works.professionType',  ];
 
   protected $fillable = [
     'name',

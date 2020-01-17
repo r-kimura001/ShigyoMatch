@@ -15,6 +15,10 @@
         flex-grow: 1;
         flex-shrink: 1;
       }
+
+      &.--w60{
+        width: 60px;
+      }
     }
 
     &.--vertical{
@@ -33,5 +37,10 @@
 
     &.--wrap{
       flex-wrap: wrap;
+    }
+    &.--smCol{
+      @include media(sm){
+        flex-direction: column;
+      }
     }
   }

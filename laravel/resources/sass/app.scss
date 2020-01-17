@@ -3,6 +3,7 @@
 @import "./base";
 
 // components
+@import "./components/ApplyFormLayout";
 @import "./components/AuthFormLayout";
 @import "./components/AuthNav";
 @import "./components/BorderButton";
@@ -12,6 +13,7 @@
 @import "./components/ContentBox";
 @import "./components/CustomerInfoLayout";
 @import "./components/CustomerListLayout";
+@import "./components/DefinitionLayout";
 @import "./components/Footer";
 @import "./components/Form";
 @import "./components/GlobalNav";
@@ -37,6 +39,7 @@
 @import "./components/Text";
 @import "./components/ValidationErrorMessage";
 @import "./components/WorkCard";
+@import "./components/WorkDetailLayout";
 @import "./components/WorkFormLayout";
 @import "./components/WorkListLayout";
 @import "./components/WorkTableLayout";

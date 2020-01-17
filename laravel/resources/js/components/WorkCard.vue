@@ -1,7 +1,7 @@
 <template>
   <div class="WorkCard" :data-fee="work.fee.toLocaleString()">
     <div
-      v-if="!work.is_owner"
+      v-if="showable"
       class="WorkCard_mark"
       :class="{ '--favorite': work.is_favorite }"
       @click="onClickStar"
@@ -34,23 +34,11 @@
   </div>
 </template>
 <script>
-import { mapGetters } from 'vuex'
 import { OK } from '@/util'
 import styles from '@/mixins/styles'
+import worksData from '@/mixins/worksData'
 export default {
-  mixins: [styles],
-  props: {
-    work: {
-      type: Object,
-      required: true,
-      default: () => ({}),
-    },
-  },
-  computed: {
-    ...mapGetters({
-      isLogin: 'auth/isLogin',
-    }),
-  },
+  mixins: [styles, worksData],
   methods: {
     onClickStar() {
       if (!this.isLogin) {

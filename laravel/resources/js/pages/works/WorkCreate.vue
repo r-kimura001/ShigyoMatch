@@ -64,7 +64,10 @@ export default {
         return false
       }
       if (response.status === CREATED) {
-        this.errorMessages = null
+        this.$store.commit('error/setErrors', {
+          message: null,
+          status: null,
+        })
         this.clearFormValue()
         this.$store.commit('form/setDeleteReview', true)
         this.$store.commit('form/setSuccessMessage', '投稿に成功しました')
