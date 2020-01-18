@@ -3,13 +3,13 @@
   background: $customerDetailBg;
 
   @include media(lg){
-    padding: 40px;
+    padding: 40px 10px;
   }
   @include media(){
-    padding: 20px;
+    padding: 20px 0;
   }
   @include media(sm){
-    padding: 10px;
+    padding: 10px 0;
   }
 
   .MainLayout_heading{
@@ -23,14 +23,17 @@
   .MainLayout_box{
     background: $gray-5;
     border-radius: 6px;
-    padding: 30px;
+    padding: 20px;
 
     &:not(:first-of-type){
       margin-top: 30px;
     }
 
     @include media(){
-      padding: 10px;
+      padding: 40px 20px;
+    }
+    @include media(sm){
+      padding: 30px 20px;
     }
   }
 

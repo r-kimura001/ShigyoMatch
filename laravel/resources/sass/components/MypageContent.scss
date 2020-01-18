@@ -59,5 +59,14 @@
     @include media(){
       padding: 10px;
     }
+
+    &.--color{
+      background: inherit;
+    }
+  }
+  .MypageContent_tabs{
+  }
+  .MypageContent_body{
+    padding: 30px 10px;
   }
 }

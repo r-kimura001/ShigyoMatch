@@ -1286,41 +1286,40 @@ td {
 .CustomerListLayout .CustomerList_list {
   display: -webkit-box;
   display: flex;
-  -webkit-box-pack: center;
-          justify-content: center;
   flex-wrap: wrap;
 }
 
 .CustomerListLayout .CustomerList_list .CustomerList_item {
-  margin: 15px;
+  margin: 20px 10px;
   width: 100%;
-  max-width: calc((100% / 4) - 30px);
+  min-width: 230px;
+  max-width: calc((100% / 4) - 20px);
   -webkit-box-flex: 1;
           flex-grow: 1;
 }
 
 @media screen and (max-width: 1180px) {
   .CustomerListLayout .CustomerList_list .CustomerList_item {
-    max-width: calc((100% / 3) - 30px);
+    max-width: calc((100% / 3) - 20px);
   }
 }
 
 @media screen and (max-width: 768px) {
   .CustomerListLayout .CustomerList_list .CustomerList_item {
-    max-width: calc((100% / 2) - 30px);
+    max-width: calc((100% / 2) - 20px);
   }
 }
 
 @media screen and (max-width: 670px) {
   .CustomerListLayout .CustomerList_list .CustomerList_item {
-    max-width: calc((100% / 2) - 30px);
+    max-width: calc((100% / 2) - 20px);
   }
 }
 
 @media screen and (max-width: 480px) {
   .CustomerListLayout .CustomerList_list .CustomerList_item {
-    max-width: 280px;
-    margin: 20px;
+    max-width: 300px;
+    margin: 20px auto;
   }
 }
 
@@ -1372,6 +1371,11 @@ td {
   .Footer {
     padding: 30px 10px;
   }
+}
+
+.Form {
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .Form.\--noMaxWidth {
@@ -1441,6 +1445,7 @@ td {
   background-repeat: no-repeat;
   color: #dedede;
   font-size: 1.4rem;
+  display: block;
 }
 
 .Form .Form_row .Form_label[type=password] {
@@ -1615,6 +1620,7 @@ td {
 .Form .Form_row .Form_textarea {
   border: 2px solid #dedede;
   padding: 10px;
+  line-height: 1.35;
 }
 
 .Form .Form_row .Form_button {
@@ -1631,6 +1637,10 @@ td {
 
 .Form .Form_row .Form_button.\--blue {
   background: #2992d9;
+}
+
+.Form .Form_row .Form_button.\--pink {
+  background: #f65ca4;
 }
 
 .Form .Form_row .Form_button.\--radius {
@@ -1972,19 +1982,19 @@ td {
 
 @media screen and (max-width: 1180px) {
   .MainLayout {
-    padding: 40px;
+    padding: 40px 10px;
   }
 }
 
 @media screen and (max-width: 768px) {
   .MainLayout {
-    padding: 20px;
+    padding: 20px 0;
   }
 }
 
 @media screen and (max-width: 480px) {
   .MainLayout {
-    padding: 10px;
+    padding: 10px 0;
   }
 }
 
@@ -2001,7 +2011,7 @@ td {
 .MainLayout .MainLayout_box {
   background: #fcfcfc;
   border-radius: 6px;
-  padding: 30px;
+  padding: 20px;
 }
 
 .MainLayout .MainLayout_box:not(:first-of-type) {
@@ -2010,7 +2020,13 @@ td {
 
 @media screen and (max-width: 768px) {
   .MainLayout .MainLayout_box {
-    padding: 10px;
+    padding: 40px 20px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .MainLayout .MainLayout_box {
+    padding: 30px 20px;
   }
 }
 
@@ -2146,6 +2162,14 @@ td {
   .MypageContent .MypageContent_box {
     padding: 10px;
   }
+}
+
+.MypageContent .MypageContent_box.\--color {
+  background: inherit;
+}
+
+.MypageContent .MypageContent_body {
+  padding: 30px 10px;
 }
 
 .Number {
@@ -2367,6 +2391,36 @@ td {
   margin-left: 5px;
 }
 
+.ScoutList .ScoutList_scoutInfo {
+  padding: 10px;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+}
+
+.ScoutList .ScoutList_scoutInfo .ScoutList_scoutThumb {
+  width: 60px;
+  height: 60px;
+  overflow: hidden;
+  background-position: center;
+  background-size: cover;
+}
+
+.ScoutList .ScoutList_targetInfo {
+  font-size: 1.2rem;
+  padding-left: 10px;
+}
+
+.ScoutList .ScoutList_text {
+  font-size: 1.4rem;
+  color: #2992d9;
+}
+
+.ScoutList .ScoutListitem:hover .ScoutList_text {
+  text-decoration: underline;
+}
+
 .Selectbox {
   border-bottom: 2px solid #dedede;
   border-radius: 0;
@@ -2463,6 +2517,37 @@ td {
   }
 }
 
+.Tab {
+  padding: 8px 20px;
+  text-align: center;
+  font-size: 1.4rem;
+  position: relative;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  max-width: 140px;
+}
+
+.Tab.\--applier {
+  color: #177cc0;
+}
+
+.Tab.\--applier.\--show {
+  border-color: #177cc0;
+}
+
+.Tab.\--recruiter {
+  color: #e4406f;
+}
+
+.Tab.\--recruiter.\--show {
+  border-color: #e4406f;
+}
+
+.Tab.\--show {
+  pointer-events: none;
+  font-weight: bold;
+}
+
 .Table {
   min-width: 100%;
   overflow-x: scroll;
@@ -2547,7 +2632,7 @@ td {
   padding: 6px;
   font-weight: bold;
   font-size: 1.2rem;
-  background: #dedede;
+  background: #cccccc;
   color: #fefefe;
   -webkit-transition: 0.3s;
   transition: 0.3s;
@@ -2621,6 +2706,13 @@ td {
   background: #ffb8bf;
 }
 
+.Text.-success {
+  padding: 12px;
+  color: #33ba7c;
+  text-align: center;
+  background: #d2f1e2;
+}
+
 .Text.\--hasIcon {
   padding: 10px 10px 10px 10px;
   background-position: left 10px center;
@@ -2638,6 +2730,7 @@ td {
 
 .WorkCard {
   max-width: 350px;
+  margin: 0 auto;
   padding: 10px;
   background: #fefefe;
   position: relative;
@@ -2916,14 +3009,13 @@ td {
 .WorkListLayout {
   display: -webkit-box;
   display: flex;
-  -webkit-box-pack: start;
-          justify-content: flex-start;
   flex-wrap: wrap;
   width: 100%;
 }
 
 .WorkListLayout .WorkListLayout_item {
   width: 100%;
+  min-width: 230px;
   max-width: calc(100% / 3 - 20px);
   margin: 10px;
   -webkit-box-flex: 1;
@@ -2936,9 +3028,9 @@ td {
   }
 }
 
-@media screen and (max-width: 670px) {
+@media screen and (max-width: 480px) {
   .WorkListLayout .WorkListLayout_item {
-    max-width: 350px;
+    max-width: 300px;
     margin: 20px auto;
   }
 }
@@ -3223,6 +3315,10 @@ td {
   padding: 20px 0;
 }
 
+.u-py40 {
+  padding: 40px 0;
+}
+
 .u-pa10 {
   padding: 10px;
 }
@@ -3257,6 +3353,14 @@ td {
 
 .u-minWidth300 {
   min-width: 300px;
+}
+
+.u-bgBlue {
+  background: #F6F9FE;
+}
+
+.u-bgGray {
+  background: #F4F4F4;
 }
 
 .u-op5 {

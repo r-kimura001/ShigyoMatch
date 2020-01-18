@@ -2,8 +2,14 @@ import { BASE_STORAGE_URL, PROFESSIONS } from "@/util";
 export default {
   methods: {
     bgImage(imageSrc) {
-      return {
-        backgroundImage: `url(${BASE_STORAGE_URL}/${imageSrc})`,
+      if(imageSrc){
+        return {
+          backgroundImage: `url(${BASE_STORAGE_URL}/${imageSrc})`,
+        }
+      }else{
+        return {
+          backgroundImage: `url(${BASE_STORAGE_URL}/assets/icon-no-image.png)`,
+        }
       }
     },
     colorById(id){

@@ -56,7 +56,7 @@ export default {
       if (response.status !== OK) {
         this.hasData = false
       } else {
-        this.works = response.data
+        this.works = response.data.data
         this.hasData = !!this.works.length
       }
     },

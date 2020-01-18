@@ -1,0 +1,29 @@
+.ScoutList{
+  .ScoutList_scoutInfo{
+    padding: 10px;
+    display: flex;
+    align-items: center;
+
+    .ScoutList_scoutThumb{
+      width: 60px;
+      height: 60px;
+      overflow: hidden;
+      background-position: center;
+      background-size: cover;
+    }
+  }
+  .ScoutList_targetInfo{
+    font-size: 1.2rem;
+    padding-left: 10px;
+  }
+  .ScoutList_text{
+    font-size: 1.4rem;
+    color: $paleBlue;
+  }
+
+  .ScoutListitem:hover{
+    .ScoutList_text{
+      text-decoration: underline;
+    }
+  }
+}

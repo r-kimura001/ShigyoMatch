@@ -39,7 +39,7 @@ class UpdateRequest extends FormRequest
   public function attributes()
   {
     return [
-      'タイトル' => 'メールアドレス',
+      'title' => 'タイトル',
       'fee' => '金額',
       'file_name' => '画像データ',
       'body' => '募集要項',

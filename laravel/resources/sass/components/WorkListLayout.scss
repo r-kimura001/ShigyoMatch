@@ -1,11 +1,11 @@
 .WorkListLayout{
   display: flex;
-  justify-content: flex-start;
   flex-wrap: wrap;
   width: 100%;
 
   .WorkListLayout_item{
     width: 100%;
+    min-width: 230px;
     max-width: calc(100% / 3 - 20px);
     margin: 10px;
     flex-grow: 1;
@@ -13,8 +13,8 @@
     @include media(){
       max-width: calc(100% / 2 - 20px);
     }
-    @include media(sm-y){
-      max-width: $cardMaxWidth;
+    @include media(sm) {
+      max-width: 300px;
       margin: 20px auto;
     }
   }

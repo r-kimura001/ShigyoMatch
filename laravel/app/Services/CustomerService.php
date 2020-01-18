@@ -108,11 +108,11 @@ class CustomerService extends Service
 
   /**
    * @param int $customerId
-   * @return mixed
+   * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
    */
   public function worksByOwner(int $customerId)
   {
-    return $this->workRep->worksByOwner(Work::RELATIONS_ARRAY, $customerId);
+    return $this->workRep->worksByOwner(Work::RELATIONS_ARRAY, $customerId, Work::COUNT_PER_PAGE);
   }
 
   /**
@@ -131,7 +131,7 @@ class CustomerService extends Service
   public function favoriteWorks(int $customerId)
   {
     $works = $this->workRep->all(Work::RELATIONS_ARRAY);
-    return $works->where('is_favorite', true)->toArray();
+    return $works->where('is_favorite', true);
   }
 
   /**
@@ -141,7 +141,22 @@ class CustomerService extends Service
   public function applyWorks(int $customerId)
   {
     $works = $this->workRep->all(Work::RELATIONS_ARRAY);
-    return $works->where('is_applier', true)->toArray();
+    return $works->where('is_applier', true);
+  }
+
+  /**
+   * @param int $customerId
+   * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
+   */
+  public function pagelessWorks(int $customerId)
+  {
+    return $this->workRep->WorksByOwnerWithoutPaginate(Work::RELATIONS_ARRAY, $customerId);
+  }
+
+  public function scoutedWorks(int $customerId)
+  {
+    $customer = $this->customerById($customerId);
+    return $customer->scoutedWorks;
   }
 
 

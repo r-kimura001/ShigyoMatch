@@ -7,9 +7,9 @@
       class="Form_text"
       :class="setClass()"
       :placeholder="item.placeholder"
-      :required="isRequired()"
-      :autofocus="isAutoFocus()"
-      :maxlength="maxLength()"
+      :required="isRequired"
+      :autofocus="isAutoFocus"
+      :maxlength="maxLength"
     />
   </div>
 </template>

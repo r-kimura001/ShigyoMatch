@@ -4,7 +4,7 @@
       {{ item.formLabel.name }}
     </div>
     <output v-if="previewUrl" class="Form_thumb u-mt20">
-      <img :src="previewUrl" alt="" />
+      <img :src="previewUrl" alt="preview" />
     </output>
     <div class="HorizontalLayout u-mt20">
       <div class="HorizontalLayou_col">
@@ -31,8 +31,8 @@
       :name="item.name"
       class="Form_file"
       :class="setClass()"
-      :required="isRequired()"
-      :autofocus="isAutoFocus()"
+      :required="isRequired"
+      :autofocus="isAutoFocus"
       @change="onFileChange"
     />
   </div>

@@ -9,8 +9,8 @@
       :name="item.name"
       class="Selectbox"
       :class="setClass()"
-      :required="isRequired()"
-      :autofocus="isAutoFocus()"
+      :required="isRequired"
+      :autofocus="isAutoFocus"
     >
       <option
         v-for="(listItem, idx) in item.list"

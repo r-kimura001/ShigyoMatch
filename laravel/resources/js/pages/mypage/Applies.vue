@@ -79,7 +79,7 @@
       },
       async appliedWork() {
         const response = await axios.get(
-          `/api/customers/${this.customer.id}/works`
+          `/api/customers/${this.customer.id}/pageless_works`
         )
         if (response.status !== OK) {
           this.hasAppliedWorks = false

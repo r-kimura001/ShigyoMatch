@@ -139,6 +139,9 @@
 .u-py20{
   padding: 20px 0;
 }
+.u-py40{
+  padding: 40px 0;
+}
 .u-pa10{
   padding: 10px;
 }
@@ -172,6 +175,13 @@
   min-width: 300px;
 }
 
+.u-bgBlue{
+  background: $customersBg;
+}
+.u-bgGray{
+  background: $customerDetailBg;
+}
+
 // opacity
 .u-op5{
   opacity: 0.5;
@@ -179,7 +189,6 @@
 .u-op7{
   opacity: 0.7;
 }
-
 .u-icon{
   width: 18px;
 }

@@ -92,5 +92,24 @@ class WorkService extends Service
     return $work;
   }
 
+  public function scout(array $data)
+  {
+    $work = $this->workById($data['work_id']);
+    if(!$work->is_owner){
+      return [
+        'error' => '募集案件が不正です'
+      ];
+    }
+    $scoutData = [
+      $data['scouted_id'] => [
+        'title' => $data['title'],
+        'body' => $data['body'],
+      ]
+    ];
+    $work->scouts()->sync($scoutData);
+
+    return $work;
+  }
+
 
 }

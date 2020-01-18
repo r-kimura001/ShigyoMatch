@@ -8,9 +8,9 @@
         class="Form_text"
         :class="setClass()"
         :placeholder="item.placeholder"
-        :required="isRequired()"
-        :autofocus="isAutoFocus()"
-        :max="maxNumber()"
+        :required="isRequired"
+        :autofocus="isAutoFocus"
+        :max="maxNumber"
       />
       <div class="Number_button">
         <button

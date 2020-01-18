@@ -27,6 +27,11 @@ Route::get('/customers/{id}', 'CustomerController@show')->name('customer.show');
 Route::get('/customers/{id}/works', 'CustomerController@worksByOwner')->name('customer.worksByOwner');
 Route::get('/customers/{id}/favoriteWorks', 'CustomerController@favoriteWorks')->name('customer.favoriteWorks');
 Route::get('/customers/{id}/applyWorks', 'CustomerController@applyWorks')->name('customer.applyWorks');
+Route::get('/customers/{id}/pageless_works', 'CustomerController@pagelessWorks')->name('customer.pagelessWorks');
+Route::get('/customers/{id}/scouted', 'CustomerController@scoutedWorks')->name('customer.scoutedWorks');
+
+// スカウト
+Route::post('/scout', 'ScoutController@store')->name('scout.store');
 
 // works
 Route::get('/works', 'WorkController@index')->name('work.index');
@@ -37,6 +42,7 @@ Route::delete('/works/{id}', 'WorkController@destroy')->name('work.destroy');
 
 // 申込
 Route::post('/works/{id}/apply', 'ApplyController@store')->name('work.apply');
+
 // 気になる機能
 Route::put('/works/{id}/favorite', 'WorkController@favorite')->name('work.favorite');
 Route::delete('/works/{id}/unfavorite', 'WorkController@unfavorite')->name('work.unfavorite');

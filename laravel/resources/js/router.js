@@ -5,8 +5,6 @@ import VueRouter from 'vue-router'
 import Top from '@/pages/Top.vue'
 import Signup from '@/pages/Signup.vue'
 import Login from '@/pages/Login.vue'
-import Customers from '@/pages/Customers.vue'
-import CustomerDetail from '@/pages/CustomerDetail.vue'
 import Greeting from '@/pages/Greeting.vue'
 
 // works
@@ -16,6 +14,12 @@ import WorkShow from '@/pages/works/WorkShow.vue'
 import WorkCreate from '@/pages/works/WorkCreate.vue'
 import WorkEdit from '@/pages/works/WorkEdit.vue'
 import WorkApply from '@/pages/works/WorkApply.vue'
+
+// customers
+import Customers from '@/pages/customers/Customers.vue'
+import CustomerDetail from '@/pages/customers/CustomerDetail.vue'
+import CustomerShow from '@/pages/customers/CustomerShow.vue'
+import CustomerScout from '@/pages/customers/CustomerScout.vue'
 
 // mypage
 import MyPage from '@/pages/mypage/MyPage.vue'
@@ -118,8 +122,19 @@ const routes = [
     component: CustomerDetail,
     props: route => ({
       id: Number(route.params.id),
-      paramPath: 'customers'
+      paramPath: 'customers',
+      paramPathOfWork: `customers/${route.params.id}`,
     }),
+    children: [
+      {
+        path: '/',
+        component: CustomerShow,
+      },
+      {
+        path: 'scout',
+        component: CustomerScout,
+      },
+    ]
   },
   {
     path: '/mypage',
