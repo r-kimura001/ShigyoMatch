@@ -15,12 +15,7 @@
           {{ customer.greeting }}
         </p>
         <div class="u-alignCenter">
-          <button class="Button --green --minimum">
-            スカウト
-          </button>
-          <button class="BorderButton --minimum">
-            フォロー
-          </button>
+          <ScoutButton :id="customer.id" v-if="!self"></ScoutButton>
         </div>
       </div>
       <!-- CustomerInfoLayout_headingBox -->
@@ -126,15 +121,17 @@
 </template>
 <script>
 import { BASE_STORAGE_URL, OK } from '@/util'
-import { mapGetters } from 'vuex'
+import { mapGetters, mapState } from 'vuex'
 import styles from '@/mixins/styles'
 import apiIndexHandler from '@/mixins/apiIndexHandler'
 import WorkListLayout from '@/layouts/WorkListLayout'
 import Pager from '@/components/Pager'
+import ScoutButton from '@/components/ScoutButton'
 export default {
   components: {
     WorkListLayout,
     Pager,
+    ScoutButton
   },
   mixins: [styles, apiIndexHandler],
   props: {
@@ -148,9 +145,15 @@ export default {
     ...mapGetters({
       isLogin: 'auth/isLogin',
     }),
+    ...mapState({
+      author: state => state.auth.customer
+    }),
     professionTypes() {
       return this.customer.profession_types
     },
+    self(){
+      return this.customer.id === this.author.id
+    }
   },
   methods: {
     imageSrc(src) {

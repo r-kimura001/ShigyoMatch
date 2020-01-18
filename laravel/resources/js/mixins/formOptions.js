@@ -1,4 +1,6 @@
 import { mapGetters } from 'vuex'
+import templates from '@/mixins/templates'
+
 export default {
   props: {
     item: {
@@ -7,17 +9,29 @@ export default {
       default: () => ({}),
     },
   },
+  mixins: [templates],
   methods: {
+    setClass() {
+      return 'classOption' in this.item !== -1
+        ? this.item.classOption
+        : ''
+    },
+    setTemplate(){
+      this.item.value = this.templates[this.item.options.template]
+    }
+  },
+  computed: {
+    ...mapGetters({
+      addrObj: 'form/address'
+    }),
     isRequired() {
       return 'options' in this.item && 'required' in this.item.options
     },
     isAutoFocus() {
       return 'options' in this.item && 'autofocus' in this.item.options
     },
-    setClass() {
-      return 'classOption' in this.item !== -1
-        ? this.item.classOption
-        : ''
+    hasTemplate(){
+      return 'options' in this.item && 'template' in this.item.options
     },
     maxLength(){
       if( 'options' in this.item && 'maxLength' in this.item.options ){
@@ -29,11 +43,6 @@ export default {
         return this.item.options.maxNumber
       }
     },
-  },
-  computed: {
-    ...mapGetters({
-      addrObj: 'form/address'
-    })
   },
   watch: {
     // 住所検索ボタンを押したときの挙動

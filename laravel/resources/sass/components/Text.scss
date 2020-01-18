@@ -45,6 +45,8 @@
     color: $deepGray;
   }
   &.-link{
+    $color: $paleBlue;
+
 
   }
   &.-danger{
@@ -52,6 +54,12 @@
     color: $shadowPink;
     text-align: center;
     background: $paleRed;
+  }
+  &.-success{
+    padding: 12px;
+    color: $green;
+    text-align: center;
+    background: $bgSafeColor;
   }
 
   &.--hasIcon{

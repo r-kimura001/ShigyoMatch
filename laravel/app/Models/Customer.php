@@ -17,7 +17,7 @@ class Customer extends Model implements CanDeleteRelationInterface
   use SoftDeletes;
 
   const COUNT_PER_PAGE = 12;
-  const RELATIONS_ARRAY = [ 'professionTypes', 'user', 'works.skills', 'works.professionType',  ];
+  const RELATIONS_ARRAY = [ 'professionTypes', 'user', 'works.skills', 'works.professionType'];
 
   protected $fillable = [
     'name',
@@ -77,6 +77,15 @@ class Customer extends Model implements CanDeleteRelationInterface
   public function works()
   {
     return $this->hasMany(Work::class, 'customer_id', 'id');
+  }
+
+  /**
+   * リレーション - スカウトを受けた案件
+   * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+   */
+  public function scoutedWorks()
+  {
+    return $this->belongsToMany(Work::class, 'scouts', 'scouted_id', 'work_id')->withPivot('title', 'body');
   }
 
   /**

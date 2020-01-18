@@ -13,7 +13,7 @@ class Work extends Model implements CanDeleteRelationInterface
   use SoftDeletes;
 
   const COUNT_PER_PAGE = 12;
-  const RELATIONS_ARRAY = ['professionType', 'customer.user', 'customer.professionTypes', 'appliers', 'skills'];
+  const RELATIONS_ARRAY = ['professionType', 'customer.user', 'customer.professionTypes', 'appliers', 'scouts.user', 'skills'];
 
   protected $table = 'works';
 
@@ -41,6 +41,7 @@ class Work extends Model implements CanDeleteRelationInterface
       return $applier->id === Auth::user()->customer_id;
     });
   }
+
   /**
    * @return bool
    */
@@ -55,11 +56,32 @@ class Work extends Model implements CanDeleteRelationInterface
   }
 
   /**
+   * @return bool
+   */
+  public function getIsScoutedAttribute()
+  {
+    if(Auth::guest()){
+      return false;
+    }
+    return $this->scouts->contains(function($scoutMember){
+      return $scoutMember->id === Auth::user()->customer_id;
+    });
+  }
+
+  /**
    * @return mixed
    */
   public function getFavoriteCountAttribute()
   {
     return $this->favorites->count();
+  }
+
+  /**
+   * @return mixed
+   */
+  public function getCustomerNameAttribute()
+  {
+    return $this->customer->name;
   }
 
   /**
@@ -96,12 +118,25 @@ class Work extends Model implements CanDeleteRelationInterface
     return $this->belongsToMany(Customer::class, 'favorites', 'work_id', 'customer_id')->withTimestamps();
   }
 
+  /**
+   * リレーション - 申込者
+   * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+   */
   public function appliers()
   {
     return $this->belongsToMany(Customer::class, 'applies', 'work_id', 'applier_id')->withPivot('pr', 'match_flag')->withTimestamps();
   }
 
-  protected $appends = ['is_owner', 'is_favorite', 'is_applier', 'favorite_count'];
+  /**
+   * リレーション - スカウトした人たち
+   * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+   */
+  public function scouts()
+  {
+    return $this->belongsToMany(Customer::class, 'scouts', 'work_id', 'scouted_id')->withPivot('title', 'body')->withTimestamps();
+  }
+
+  protected $appends = ['is_owner', 'is_favorite', 'is_applier', 'is_scouted', 'favorite_count', 'customer_name'];
   protected $hidden = ['customer_id'];
 
   public function getDeleteRelations()

@@ -100,7 +100,7 @@ class CustomerController extends Controller
   }
 
   /**
-   * @param int $id
+   * @param $id
    * @return mixed
    */
   public function worksByOwner(int $id)
@@ -124,6 +124,20 @@ class CustomerController extends Controller
   public function applyWorks(int $id)
   {
     return $this->customerService->applyWorks($id);
+  }
+
+  /**
+   * @param int $id
+   * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
+   */
+  public function pagelessWorks(int $id)
+  {
+    return $this->customerService->pagelessWorks($id);
+  }
+
+  public function scoutedWorks(int $id)
+  {
+    return $this->customerService->scoutedWorks($id);
   }
 
 

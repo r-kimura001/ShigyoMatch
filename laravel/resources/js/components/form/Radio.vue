@@ -16,7 +16,7 @@
           type="radio"
           class="Radio"
           :value="listItem[item.valueKey]"
-          :required="isRequired()"
+          :required="isRequired"
           :data-label="listItem[item.labelKey]"
           @change="$emit('onCheck', item.value)"
         /><label

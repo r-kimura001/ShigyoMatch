@@ -1,7 +1,7 @@
 <template>
   <div class="p-works">
     <div class="MainLayout --hasWorks">
-      <h1 class="MainLayout_heading"></h1>
+      <h1 class="MainLayout_heading">募集案件一覧</h1>
       <div class="MainLayout_boxList">
         <section class="MainLayout_box">
           <div v-if="!hasData">現在募集中の案件はありません</div>

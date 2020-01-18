@@ -1,0 +1,26 @@
+.Tab{
+  padding: 8px 20px;
+  text-align: center;
+  font-size: 1.4rem;
+  position: relative;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  max-width: 140px;
+  &.--applier{
+    color: $shadowBlue;
+    &.--show{
+      border-color: $shadowBlue;
+    }
+  }
+  &.--recruiter{
+    color: $shadowPink;
+    &.--show{
+      border-color: $shadowPink;
+    }
+  }
+
+  &.--show{
+    pointer-events: none;
+    font-weight: bold;
+  }
+}

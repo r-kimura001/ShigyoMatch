@@ -75,8 +75,8 @@
 <script>
   import FormLayout from '@/layouts/FormLayout'
   import applyFormData from '@/mixins/formData/applyFormData'
-  import { CREATED, UNPROCESSABLE_ENTITY } from "@/util";
-  import { mapState } from "vuex";
+  import { CREATED, UNPROCESSABLE_ENTITY } from "@/util"
+  import { mapState } from "vuex"
   export default {
     props:{
       work: {

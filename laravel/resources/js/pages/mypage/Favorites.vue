@@ -2,15 +2,15 @@
   <div class="p-favorites">
     <h2>Favorites</h2>
     <section class="MypageContent_box">
-      <div class="HorizontalLayout">
-        <div class="HorizontalLayout_col">
-          <h3 class="Tab" @click="change(favoriteFlag)">気になるした</h3>
-        </div>
-        <div class="HorizontalLayout_col">
-          <h3 class="Tab" @click="change(favoritedFlag)">気になるされた</h3>
-        </div>
+      <div class="MypageContent_tabs">
+        <Tab
+          :current-flag="currentFlag"
+          :apply-flag="favoriteFlag"
+          :recruit-flag="favoritedFlag"
+          @tabClick="change"
+        ></Tab>
       </div>
-      <div>
+      <div class="MypageContent_body">
         <div v-if="currentFlag===favoriteFlag" class="">
           <p v-if="!hasFavorite">気になるした募集案件はありません</p>
           <WorkListLayout
@@ -33,8 +33,10 @@
 import { OK } from '@/util'
 import WorkListLayout from '@/layouts/WorkListLayout'
 import WorkTableLayout from '@/layouts/WorkTableLayout'
+import Tab from '@/components/Tab'
+
 export default {
-  components: { WorkListLayout, WorkTableLayout },
+  components: { WorkListLayout, WorkTableLayout, Tab },
   props: {
     customer: {
       type: Object,
@@ -83,7 +85,7 @@ export default {
       if (response.status !== OK) {
         this.hasFavorited = false
       } else {
-        this.favorited_works = response.data
+        this.favorited_works = response.data.data
         this.hasFavorited = !!this.favorited_works.length
       }
     },

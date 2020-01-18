@@ -1,5 +1,7 @@
 
 .Form{
+  max-width: 800px;
+  margin: 0 auto;
 
   &.--noMaxWidth{
     max-width: inherit;
@@ -58,7 +60,7 @@
       @include iconFix(10px, 38px, 10px, 20px);
       color: $gray-3;
       font-size: 1.4rem;
-
+      display: block;
       @include formIcons();
     }
     .Form_note{
@@ -108,6 +110,7 @@
     .Form_textarea{
       border: 2px solid $gray-3;
       padding: 10px;
+      line-height: 1.35;
     }
 
     .Form_button{
@@ -122,6 +125,9 @@
 
       &.--blue{
         background: $paleBlue;
+      }
+      &.--pink{
+        background: $pink;
       }
 
       &.--radius{

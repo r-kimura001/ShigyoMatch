@@ -17,6 +17,9 @@ export default {
     isApplied(){
       return this.work.is_applier
     },
+    isScouted(){
+      return this.work.is_scouted
+    },
     showable(){
       return !this.work.is_owner
     }
