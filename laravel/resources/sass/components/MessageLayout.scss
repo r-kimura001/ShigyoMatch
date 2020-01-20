@@ -9,6 +9,7 @@
   font-size: 1.5rem;
   padding: 5px 0;
   background: $white;
+  overflow-x: scroll;
   .MessageLayout_sidebar{
     flex-shrink: 0;
     display: flex;
@@ -111,6 +112,14 @@
     }
     .MessageLayout_room{
       border-left: 0;
+    }
+    .MessageLayout_footer{
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #fefefe;
+      z-index: $headerZIndex + 1;
     }
   }
   @include media(sm-y){

@@ -2274,6 +2274,7 @@ td {
   font-size: 1.5rem;
   padding: 5px 0;
   background: #fefefe;
+  overflow-x: scroll;
 }
 
 .MessageLayout .MessageLayout_sidebar {
@@ -2407,6 +2408,15 @@ td {
 
   .MessageLayout .MessageLayout_room {
     border-left: 0;
+  }
+
+  .MessageLayout .MessageLayout_footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #fefefe;
+    z-index: 101;
   }
 }
 
