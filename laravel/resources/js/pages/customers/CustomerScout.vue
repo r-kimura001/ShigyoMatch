@@ -94,7 +94,6 @@
 
         const response = await axios.post(`/api/scout`, scoutData)
 
-        this.$store.commit('form/setResponse', response)
         this.$store.commit('form/setIsLoading', false)
 
         if (response.status === UNPROCESSABLE_ENTITY) {

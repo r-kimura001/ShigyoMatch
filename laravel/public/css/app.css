@@ -2414,6 +2414,10 @@ td {
   .MessageLayout {
     bottom: 43px;
   }
+
+  .MessageLayout .MessageLayout_item {
+    padding: 15px 10px;
+  }
 }
 
 .Modal {
@@ -2575,6 +2579,9 @@ td {
           flex-grow: 1;
   display: -webkit-box;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-direction: column;
   width: 100%;
   max-width: 1380px;
   margin: 0 auto;

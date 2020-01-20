@@ -115,5 +115,9 @@
   }
   @include media(sm-y){
     bottom: 43px;
+    .MessageLayout_item{
+      padding: 15px 10px;
+    }
+
   }
 }

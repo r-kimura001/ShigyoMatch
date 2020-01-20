@@ -5337,11 +5337,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
             case 12:
               response = _context3.sent;
-              this.$store.commit('form/setResponse', response);
               this.$store.commit('form/setIsLoading', false);
 
               if (!(response.status === _util__WEBPACK_IMPORTED_MODULE_3__["UNPROCESSABLE_ENTITY"])) {
-                _context3.next = 21;
+                _context3.next = 20;
                 break;
               }
 
@@ -5349,7 +5348,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               this.$scrollTo('.Header', 1500);
               return _context3.abrupt("return", false);
 
-            case 21:
+            case 20:
               if (response.status === _util__WEBPACK_IMPORTED_MODULE_3__["CREATED"]) {
                 this.$store.commit('error/setErrors', {
                   message: null,
@@ -5365,7 +5364,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 });
               }
 
-            case 22:
+            case 21:
             case "end":
               return _context3.stop();
           }
@@ -5944,7 +5943,6 @@ __webpack_require__.r(__webpack_exports__);
             case 7:
               response = _context.sent;
               this.$store.commit('form/setIsLoading', false);
-              this.$store.commit('form/setResponse', response);
 
               if (response.status === _util__WEBPACK_IMPORTED_MODULE_1__["CREATED"]) {
                 this.$store.commit('form/successMessage', 'メッセージを送信しました。');
@@ -5956,7 +5954,7 @@ __webpack_require__.r(__webpack_exports__);
                 });
               }
 
-            case 11:
+            case 10:
             case "end":
               return _context.stop();
           }
@@ -6652,10 +6650,9 @@ __webpack_require__.r(__webpack_exports__);
 
             case 2:
               response = _context3.sent;
-              this.$store.commit('form/setResponse', response);
 
               if (!(response.status === _util__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
-                _context3.next = 6;
+                _context3.next = 5;
                 break;
               }
 
@@ -6663,7 +6660,7 @@ __webpack_require__.r(__webpack_exports__);
                 return response.data[key];
               }));
 
-            case 6:
+            case 5:
             case "end":
               return _context3.stop();
           }
@@ -6681,10 +6678,9 @@ __webpack_require__.r(__webpack_exports__);
 
             case 2:
               response = _context4.sent;
-              this.$store.commit('form/setResponse', response);
 
               if (!(response.status === _util__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
-                _context4.next = 6;
+                _context4.next = 5;
                 break;
               }
 
@@ -6692,7 +6688,7 @@ __webpack_require__.r(__webpack_exports__);
                 return work.applies;
               }).flat());
 
-            case 6:
+            case 5:
             case "end":
               return _context4.stop();
           }
@@ -6724,7 +6720,6 @@ __webpack_require__.r(__webpack_exports__);
 
             case 10:
               response = _context5.sent;
-              this.$store.commit('form/setResponse', response);
 
               if (response.status === _util__WEBPACK_IMPORTED_MODULE_1__["CREATED"]) {
                 this.pushMessage(this.currentRoom.id, response.data);
@@ -6736,7 +6731,7 @@ __webpack_require__.r(__webpack_exports__);
                 });
               }
 
-            case 13:
+            case 12:
             case "end":
               return _context5.stop();
           }
@@ -7393,11 +7388,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
             case 9:
               response = _context.sent;
-              this.$store.commit('form/setResponse', response);
               this.$store.commit('form/setIsLoading', false);
 
               if (!(response.status === _util__WEBPACK_IMPORTED_MODULE_3__["UNPROCESSABLE_ENTITY"])) {
-                _context.next = 18;
+                _context.next = 17;
                 break;
               }
 
@@ -7405,7 +7399,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               this.$scrollTo('.Header', 1500);
               return _context.abrupt("return", false);
 
-            case 18:
+            case 17:
               if (response.status === _util__WEBPACK_IMPORTED_MODULE_3__["CREATED"]) {
                 this.$store.commit('error/setErrors', {
                   message: null,
@@ -7421,7 +7415,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 });
               }
 
-            case 19:
+            case 18:
             case "end":
               return _context.stop();
           }
@@ -7579,7 +7573,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
             case 3:
               response = _context3.sent;
-              this.$store.commit('form/setResponse', response);
 
               if (response.status !== _util__WEBPACK_IMPORTED_MODULE_4__["OK"]) {
                 this.$store.commit('error/setErrors', {
@@ -7590,7 +7583,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 this.formData.skill_types.list = response.data;
               }
 
-            case 6:
+            case 5:
             case "end":
               return _context3.stop();
           }
@@ -7847,7 +7840,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
             case 2:
               response = _context4.sent;
-              this.$store.commit('form/setResponse', response);
 
               if (response.status !== _util__WEBPACK_IMPORTED_MODULE_3__["OK"]) {
                 this.$store.commit('error/setErrors', {
@@ -7858,7 +7850,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 this.formData.skill_types.list = response.data;
               }
 
-            case 5:
+            case 4:
             case "end":
               return _context4.stop();
           }
@@ -7877,7 +7869,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
             case 3:
               response = _context5.sent;
-              this.$store.commit('form/setResponse', response);
 
               if (response.status !== _util__WEBPACK_IMPORTED_MODULE_3__["OK"]) {
                 this.$store.commit('error/setErrors', {
@@ -7888,7 +7879,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 this.formData.skill_types.list = response.data;
               }
 
-            case 6:
+            case 5:
             case "end":
               return _context5.stop();
           }

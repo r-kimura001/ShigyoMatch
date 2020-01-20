@@ -130,7 +130,6 @@
 
         const response = await axios.post(`/api/works/${this.work.id}/apply`, applyData)
 
-        this.$store.commit('form/setResponse', response)
         this.$store.commit('form/setIsLoading', false)
 
         if (response.status === UNPROCESSABLE_ENTITY) {

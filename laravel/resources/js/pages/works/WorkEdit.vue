@@ -129,7 +129,6 @@ export default {
     },
     async fetchSelectables(){
       const response = await axios.get(`/api/professions/${this.work.profession_type_id}/selectables`)
-      this.$store.commit('form/setResponse', response)
       if(response.status !== OK){
         this.$store.commit('error/setErrors', {
           status: response.status,
@@ -142,7 +141,7 @@ export default {
     async clearSkill(id){
       this.formData.skill_types.value = []
       const response = await axios.get(`/api/professions/${id}/selectables`)
-      this.$store.commit('form/setResponse', response)
+
       if(response.status !== OK){
         this.$store.commit('error/setErrors', {
           status: response.status,
