@@ -107,13 +107,16 @@
       <h2 class="CustomerInfoLayout_mainTitle">
         募集中の案件
       </h2>
-      <Pager
-        v-if="lastPage > 1"
-        :current-page="currentPage"
-        :last-page="lastPage"
-        path="works"
-      ></Pager>
-      <WorkListLayout :works="list"></WorkListLayout>
+      <p v-if="!hasData">募集中の案件はありません</p>
+      <div v-else>
+        <Pager
+          v-if="lastPage > 1"
+          :current-page="currentPage"
+          :last-page="lastPage"
+          path="works"
+        ></Pager>
+        <WorkListLayout :works="list"></WorkListLayout>
+      </div>
     </div>
     <!-- CustomerInfoLayout_main -->
   </div>

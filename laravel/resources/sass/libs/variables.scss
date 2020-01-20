@@ -20,6 +20,7 @@ $orange: #EC7211;
 $green: #33ba7c;
 $deepGreen: #349d9d;
 $paleGreen: #4CAF93;
+$highGreen: #5BCED8;
 $lightGreen: #d2f1e2;
 $yellowGreen: #7BBB5E;
 $gray: #a8a3a7;
@@ -76,6 +77,7 @@ $breakpoints: (
 )!default;
 
 $baseWidth: 1380px;
+$sidebarWidth: 240px;
 $headerHeight: 56px;
 $footerHeight: 92px;
 $basePartition: 1px solid $gray-2;

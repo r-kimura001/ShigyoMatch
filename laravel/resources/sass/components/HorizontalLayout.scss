@@ -19,6 +19,10 @@
       &.--w60{
         width: 60px;
       }
+
+      &.--disable{
+        background: $gray-2;
+      }
     }
 
     &.--vertical{

@@ -1,5 +1,5 @@
 <template>
-  <div class="p-favorites">
+  <div class="p-favorites u-pa20">
     <h2>Favorites</h2>
     <section class="MypageContent_box">
       <div class="MypageContent_tabs">

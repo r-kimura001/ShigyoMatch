@@ -1,5 +1,5 @@
 <template>
-  <div class="p-scouts">
+  <div class="p-scouts u-pa20">
     <h2>Scouts</h2>
     <section class="MypageContent_box">
       <div class="MypageContent_tabs">
@@ -14,9 +14,10 @@
         <div v-if="currentFlag===scoutedFlag" class="u-bgGray u-py40">
           <p v-if="!hasScouted">スカウトを受けた案件はありません</p>
           <div v-else>
+            <h3>スカウトを受けた案件</h3>
             <ul v-for="(work, index) in scouted_works" :key="index" class="ScoutList">
               <li class="ScoutList_item">
-                <div class="ScoutList_targetInfo">{{ work.customer_name }}</div>
+                <div class="ScoutList_targetInfo">{{ work.customer.name }}</div>
                 <div class="ScoutList_scoutInfo">
                   <div class="ScoutList_scoutThumb" :style="bgImage(work.file_name)"></div>
                   <p class="ScoutList_text u-ml20">{{ work.pivot.title }}</p>
@@ -28,6 +29,7 @@
         <div v-if="currentFlag===scoutFlag" class="u-bgBlue u-py40">
           <p v-if="!hasScout">スカウトした案件はありません</p>
           <div v-else>
+            <h3>スカウトした案件</h3>
             <ul v-for="(work, index) in scout_works" :key="index" class="ScoutList">
               <li v-for="(targetCustomer, idx) in work.scouts" :key="idx" class="ScoutList_item">
                 <div class="ScoutList_targetInfo">{{ targetCustomer.name }}</div>

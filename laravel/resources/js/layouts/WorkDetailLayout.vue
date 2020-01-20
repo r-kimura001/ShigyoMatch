@@ -16,7 +16,7 @@
             <span class="WorkDetailLayout_listText">資格</span>
           </dt>
           <dd class="WorkDetailLayout_listDesc">
-            <div class="Tag -ma5" :style="bgColor(work.profession_type.id)">{{ work.profession_type.body }}</div>
+            <div class="Tag u-ma5" :style="bgColor(work.profession_type.id)">{{ work.profession_type.body }}</div>
           </dd>
         </dl>
         <dl class="WorkDetailLayout_list">

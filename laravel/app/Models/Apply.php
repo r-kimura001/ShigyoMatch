@@ -13,8 +13,33 @@ class Apply extends Model implements CanDeleteRelationInterface
   use SoftDeletes;
 
   const COUNT_PER_PAGE = 12;
+  const RELATIONS_ARRAY = ['messages', 'work.customer', 'applier'];
 
   protected $table = 'applies';
+
+  /**
+   * @return \Illuminate\Database\Eloquent\Relations\HasMany
+   */
+  public function messages()
+  {
+    return $this->hasMany(Message::class, 'apply_id', 'id');
+  }
+  /**
+   * @return \Illuminate\Database\Eloquent\Relations\HasOne
+   */
+  public function work()
+  {
+    return $this->hasOne(Work::class, 'id', 'work_id');
+  }
+  /**
+   * @return \Illuminate\Database\Eloquent\Relations\HasOne
+   */
+  public function applier()
+  {
+    return $this->hasOne(Customer::class, 'id', 'applier_id');
+  }
+
+  protected $hidden = ['applier_id', 'work_id'];
 
   public function getDeleteRelations()
   {

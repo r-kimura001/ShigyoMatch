@@ -46,7 +46,7 @@
           background-position: center;
           border-width: 0 0 2px 0;
           text-align: center;
-          @include media(sm){
+          @include media(sm-y){
             padding: 15px 5px;
             background-size: 2rem;
           }

@@ -40,7 +40,7 @@ class WorkRepository extends Repository
    * @param int $customerId
    * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
    */
-  public function WorksByOwnerWithoutPaginate(array $relations, int $customerId)
+  public function worksByOwnerWithoutPaginate(array $relations, int $customerId)
   {
     return $this->getBuilder()
       ->with($relations)

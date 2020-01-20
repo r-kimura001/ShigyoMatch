@@ -146,14 +146,54 @@ class CustomerService extends Service
 
   /**
    * @param int $customerId
+   * @return array
+   */
+  public function appliedWorks(int $customerId)
+  {
+    $works = $this->workRep->worksByOwnerWithoutPaginate(Work::RELATIONS_ARRAY, $customerId);
+    return $works->filter(function($work){
+      return $work->appliers->count() > 0;
+    })->all();
+  }
+
+  /**
+   * カスタマーが応募した案件に関するメッセージ
+   *
+   * @param int $customerId
+   * @return mixed
+   */
+  public function applies(int $customerId)
+  {
+    $customer = $this->customerById($customerId);
+    return $customer->applies()->with(['messages', 'applier', 'work.customer'])->get();
+  }
+  /**
+   * カスタマーが応募した案件に関するメッセージ
+   *
+   * @param int $customerId
+   * @return mixed
+   */
+  public function worksByOwnerWithoutPaginate(int $customerId)
+  {
+    return $this->workRep->worksByOwnerWithoutPaginate(Work::RELATIONS_ARRAY, $customerId);
+  }
+
+  /**
+   * @param int $customerId
    * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
    */
   public function pagelessWorks(int $customerId)
   {
-    return $this->workRep->WorksByOwnerWithoutPaginate(Work::RELATIONS_ARRAY, $customerId);
+    return $this->workRep->worksByOwnerWithoutPaginate(Work::RELATIONS_ARRAY, $customerId);
   }
 
   public function scoutedWorks(int $customerId)
+  {
+    $customer = $this->customerById($customerId);
+    return $customer->scoutedWorks()->with(Work::RELATIONS_ARRAY)->get();
+  }
+
+  public function scoutWorks(int $customerId)
   {
     $customer = $this->customerById($customerId);
     return $customer->scoutedWorks;

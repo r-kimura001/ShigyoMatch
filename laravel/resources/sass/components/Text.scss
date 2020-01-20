@@ -35,6 +35,9 @@
   &.-bold {
     font-weight: bold;
   }
+  &.-pre{
+    white-space: pre-line;
+  }
   &.-gray{
     color: $gray;
   }
@@ -45,9 +48,7 @@
     color: $deepGray;
   }
   &.-link{
-    $color: $paleBlue;
-
-
+    color: $green;
   }
   &.-danger{
     padding: 12px;

@@ -46,7 +46,7 @@ class Repository
    */
   public function findById(array $relations,int $id)
   {
-    $customer = $this->getBuilder()->with($relations);
-    return $customer->where('id', $id)->first();
+    $eloquent = $this->getBuilder()->with($relations);
+    return $eloquent->where('id', $id)->first();
   }
 }
