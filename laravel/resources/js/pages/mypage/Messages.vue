@@ -143,7 +143,6 @@
       async msgByApplyWorks()
       {
         const response = await axios.get(`/api/messages/${this.customer.id}/show_apply`)
-        this.$store.commit('form/setResponse', response)
         if (response.status === OK) {
           return Object.keys(response.data).map( key => response.data[key] )
         }
@@ -151,7 +150,6 @@
       async msgByAppliedWorks()
       {
         const response = await axios.get(`/api/messages/${this.customer.id}/show_applied`)
-        this.$store.commit('form/setResponse', response)
         if (response.status === OK) {
           return response.data.map( work => work.applies).flat()
         }
@@ -169,7 +167,6 @@
         this.body = ''
 
         const response = await axios.post('/api/messages/store', messageData)
-        this.$store.commit('form/setResponse', response)
 
         if(response.status === CREATED){
           this.pushMessage(this.currentRoom.id, response.data)

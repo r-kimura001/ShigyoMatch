@@ -122,7 +122,6 @@
         const response = await axios.post('/api/messages/store', messageData)
 
         this.$store.commit('form/setIsLoading', false)
-        this.$store.commit('form/setResponse', response)
 
         if(response.status === CREATED){
           this.$store.commit('form/successMessage', 'メッセージを送信しました。')
