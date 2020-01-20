@@ -8,7 +8,8 @@ export default {
           '/500'
         ],
         Footer: [
-          '/500'
+          '/500',
+          '/mypage/16/messages',
         ],
       },
       // 記載のパスでだけ表示してほしい

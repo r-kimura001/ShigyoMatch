@@ -666,6 +666,85 @@ td {
   vertical-align: middle;
 }
 
+::-webkit-scrollbar {
+  width: 8px;
+  background: transparent;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+  border-left: 0;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 10px;
+  box-shadow: inset 0 0 0 2px transparent;
+}
+
+.ApplyDetail {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background: #fcfcfc;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  -webkit-transition: -webkit-transform 0.3s;
+  transform: translateX(100%);
+  -webkit-transform: translateX(100%);
+  overflow-y: scroll;
+  z-index: 130;
+}
+
+.ApplyDetail .ApplyDetail_content {
+  padding: 40px 0;
+  max-width: 840px;
+  margin: 0 auto;
+}
+
+.ApplyDetail .ApplyDetail_pr {
+  padding: 12px;
+  white-space: pre-line;
+  border: 1px solid #dedede;
+  border-radius: 4px;
+  font-size: 1.5rem;
+}
+
+.ApplyDetail.\--show {
+  transform: none;
+  -webkit-transform: none;
+}
+
+.ApplyDetail .ApplyDetail_close {
+  position: absolute;
+  top: 30px;
+  right: 20px;
+  width: 40px;
+  cursor: pointer;
+}
+
+.ApplyDetail .ApplyDetail_close::before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 0;
+  border-top: 2px solid #a8a3a7;
+  -webkit-transform: rotate(45deg) translate(1px, 2px);
+          transform: rotate(45deg) translate(1px, 2px);
+}
+
+.ApplyDetail .ApplyDetail_close::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 0;
+  border-top: 2px solid #a8a3a7;
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+}
+
 .ApplyFormLayout {
   padding: 25px 10px;
 }
@@ -737,8 +816,8 @@ td {
   white-space: nowrap;
   -webkit-transition: 0.15s;
   transition: 0.15s;
-  -webkit-transform-origin: center top;
-          transform-origin: center top;
+  -webkit-transform-origin: calc(100% - 40px) top;
+          transform-origin: calc(100% - 40px) top;
   -webkit-transform: scale3d(0, 0, 1);
           transform: scale3d(0, 0, 1);
   min-width: 130px;
@@ -912,6 +991,13 @@ td {
 
 .Button.\--secondary {
   background: #cccccc;
+}
+
+.Button.\--send {
+  padding: 8px 10px;
+  min-width: initial;
+  border-radius: 0;
+  font-size: 1.2rem;
 }
 
 .Button.\--hasShadow {
@@ -1329,7 +1415,7 @@ td {
   -webkit-box-pack: start;
           justify-content: flex-start;
   font-size: 1.5rem;
-  line-height: 1.3;
+  line-height: 1.5;
 }
 
 .DefinitionLayout .DefinitionLayout_term {
@@ -1512,7 +1598,7 @@ td {
   border: 0;
   border-bottom: 2px solid #dedede;
   background-color: #fefefe;
-  font-size: 1.6rem;
+  font-size: 1.6rem !important;
   -webkit-transition: 0.3s;
   transition: 0.3s;
   -webkit-transform-origin: center top 0;
@@ -1898,6 +1984,10 @@ td {
   width: 60px;
 }
 
+.HorizontalLayout .HorizontalLayout_col.\--disable {
+  background: #cccccc;
+}
+
 .HorizontalLayout.\--vertical {
   -webkit-box-align: center;
           align-items: center;
@@ -1975,6 +2065,11 @@ td {
   text-align: center;
 }
 
+.MainContent {
+  -webkit-box-flex: 1;
+          flex-grow: 1;
+}
+
 .MainLayout {
   padding: 40px 60px;
   background: #F4F4F4;
@@ -2026,7 +2121,8 @@ td {
 
 @media screen and (max-width: 480px) {
   .MainLayout .MainLayout_box {
-    padding: 30px 20px;
+    padding: 30px 10px;
+    margin: 15px 10px;
   }
 }
 
@@ -2054,10 +2150,276 @@ td {
   background: #4CAF93;
 }
 
-.Modal {
-  z-index: 130;
+.Message {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: start;
+          align-items: flex-start;
+  padding-right: 120px;
+}
+
+.Message .Message_senderIcon {
+  width: 36px;
+  height: 36px;
+  border-radius: 9999px;
+  background-size: cover;
+  background-position: center;
+  flex-shrink: 0;
+}
+
+.Message .Message_date {
+  display: block;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #a8a3a7;
+  padding: 5px 15px 5px 25px;
+}
+
+.Message .Message_text {
+  white-space: pre-line;
+  font-size: 1.2rem;
+  line-height: 1.5;
+  padding: 8px 10px;
+  border-radius: 5px;
+  background: #f0f0f0;
+  margin-left: 16px;
+  position: relative;
+}
+
+.Message .Message_text::after {
+  position: absolute;
+  top: 10px;
+  left: -16px;
+  content: "";
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-color: transparent #f0f0f0 transparent transparent;
+  border-width: 0 16px 12px 0;
+}
+
+.Message.\--self {
+  padding-right: 0;
+  padding-left: 120px;
+  -webkit-box-pack: end;
+          justify-content: flex-end;
+}
+
+.Message.\--self .Message_senderIcon {
+  -webkit-box-ordinal-group: 3;
+          order: 2;
+}
+
+.Message.\--self .Message_text {
+  margin-left: 0;
+  margin-right: 16px;
+  background: #349d9d;
+  color: #fefefe;
+}
+
+.Message.\--self .Message_text::after {
+  left: initial;
+  right: -16px;
+  border-color: transparent transparent transparent #349d9d;
+  border-width: 0 0 12px 16px;
+}
+
+.Message.\--self .Message_date {
+  text-align: right;
+  padding: 5px 25px 5px 15px;
+}
+
+@media screen and (max-width: 1180px) {
+  .Message {
+    padding-right: 80px;
+  }
+
+  .Message.\--self {
+    padding-right: 0;
+    padding-left: 80px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .Message {
+    padding-right: 40px;
+  }
+
+  .Message.\--self {
+    padding-right: 0;
+    padding-left: 40px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .Message {
+    padding-right: 20px;
+  }
+
+  .Message.\--self {
+    padding-right: 0;
+    padding-left: 20px;
+  }
+}
+
+.MessageLayout {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: calc(100% - 240px);
+  max-width: 1140px;
+  display: -webkit-box;
+  display: flex;
+  font-size: 1.5rem;
+  padding: 5px 0;
+  background: #fefefe;
+}
+
+.MessageLayout .MessageLayout_sidebar {
+  flex-shrink: 0;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-direction: column;
+  width: 240px;
+}
+
+.MessageLayout .MessageLayout_roomList {
+  -webkit-box-flex: 1;
+          flex-grow: 1;
+  overflow-y: scroll;
+}
+
+.MessageLayout .MessageLayout_room {
+  width: 100%;
+  padding: 10px 15px;
+  background: #fefefe;
+  border-bottom: 1px solid #cccccc;
+  cursor: pointer;
   -webkit-transition: 0.3s;
   transition: 0.3s;
+}
+
+.MessageLayout .MessageLayout_room:hover {
+  background: #d2f1e2;
+}
+
+.MessageLayout .MessageLayout_room.\--current {
+  background: #d2f1e2;
+}
+
+.MessageLayout .MessageLayout_icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 9999px;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+}
+
+.MessageLayout .MessageLayout_main {
+  -webkit-box-flex: 1;
+          flex-grow: 1;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-direction: column;
+}
+
+.MessageLayout .MessageLayout_heading {
+  padding: 10px;
+  background: #5BCED8;
+  color: #fefefe;
+  min-height: 56px;
+}
+
+.MessageLayout .MessageLayout_box {
+  -webkit-box-flex: 1;
+          flex-grow: 1;
+  background: #fcfcfc;
+  overflow-y: scroll;
+}
+
+.MessageLayout .MessageLayout_noRoom {
+  text-align: center;
+  padding: 30px 15px;
+  display: block;
+  color: #cccccc;
+}
+
+.MessageLayout .MessageLayout_item {
+  padding: 15px 20px;
+}
+
+.MessageLayout .MessageLayout_item.\--end {
+  margin-bottom: 40px;
+}
+
+.MessageLayout .MessageLayout_footer {
+  border-top: 1px solid #f0f0f0;
+}
+
+.MessageLayout .MessageLayout_footer .MessageLayout_formText {
+  padding: 0 10px;
+  width: 100%;
+  margin-right: 10px;
+  overflow-y: initial;
+  max-height: 100px;
+  line-height: 1.25;
+  font-size: 1.6rem;
+}
+
+.MessageLayout .MessageLayout_footer .MessageLayout_formText::-webkit-scrollbar {
+  width: 5px;
+}
+
+.MessageLayout .MessageLayout_strCounter {
+  display: block;
+  width: 60px;
+  text-align: right;
+  padding: 3px 3px 3px 0;
+  font-size: 1rem;
+  color: #dedede;
+}
+
+@media screen and (max-width: 768px) {
+  .MessageLayout {
+    bottom: 78px;
+    width: 100%;
+    max-width: initial;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+            flex-direction: column;
+    padding: 5px 0 0;
+  }
+
+  .MessageLayout .MessageLayout_sidebar {
+    max-width: initial;
+    width: 100%;
+  }
+
+  .MessageLayout .MessageLayout_roomList {
+    display: none;
+  }
+
+  .MessageLayout .MessageLayout_room {
+    border-left: 0;
+  }
+}
+
+@media screen and (max-width: 670px) {
+  .MessageLayout {
+    bottom: 43px;
+  }
+}
+
+.Modal {
+  z-index: 130;
+  transition: 0.3s;
+  -webkit-transition: 0.3s;
 }
 
 .Modal .Modal_overlay {
@@ -2073,15 +2435,24 @@ td {
 
 .Modal .Modal_content {
   position: fixed;
-  top: 30%;
+  top: 50%;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
+  width: 680px;
+  max-width: 90%;
+  margin: 0 auto;
   padding: 30px;
   border-radius: 8px;
   box-shadow: 0 1px 20px #626d78;
   background: #fefefe;
   z-index: 9999;
+}
+
+@media screen and (max-width: 480px) {
+  .Modal .Modal_content {
+    padding: 30px 10px;
+  }
 }
 
 .Modal.\--hidden {
@@ -2096,7 +2467,6 @@ td {
 
 .MypageContent .MypageContent_main {
   margin-left: 240px;
-  padding: 0 30px 30px;
   background: #F4F4F4;
 }
 
@@ -2168,8 +2538,12 @@ td {
   background: inherit;
 }
 
+.MypageContent .MypageContent_tabs {
+  padding: 0 10px 30px;
+}
+
 .MypageContent .MypageContent_body {
-  padding: 30px 10px;
+  padding: 0 10px;
 }
 
 .Number {
@@ -2199,6 +2573,12 @@ td {
 .PageContent .PageContent_layout.\--flex {
   -webkit-box-flex: 1;
           flex-grow: 1;
+  display: -webkit-box;
+  display: flex;
+  width: 100%;
+  max-width: 1380px;
+  margin: 0 auto;
+  position: relative;
 }
 
 .Pager .Pager_links {
@@ -2498,7 +2878,7 @@ td {
   }
 }
 
-@media screen and (max-width: 768px) and (max-width: 480px) {
+@media screen and (max-width: 768px) and (max-width: 670px) {
   .Sidebar .Sidebar_list .Sidebar_listItem .Sidebar_listLabel {
     padding: 15px 5px;
     background-size: 2rem;
@@ -2625,7 +3005,21 @@ td {
 .Table .Table_dataText.\--link {
   cursor: pointer;
   color: #2992d9;
+  font-size: 1.4rem;
   font-weight: bold;
+}
+
+.Table .Table_dataText.\--link:hover {
+  text-decoration: underline;
+}
+
+.Table .Table_dataText.\--hasIcon {
+  display: block;
+  text-align: left;
+  padding: 10px 10px 10px 50px;
+  background-position: left 0px center;
+  background-size: 40px;
+  background-repeat: no-repeat;
 }
 
 .Tag {
@@ -2687,6 +3081,10 @@ td {
   font-weight: bold;
 }
 
+.Text.-pre {
+  white-space: pre-line;
+}
+
 .Text.-gray {
   color: #a8a3a7;
 }
@@ -2697,6 +3095,10 @@ td {
 
 .Text.-deepGray {
   color: #626d78;
+}
+
+.Text.-link {
+  color: #33ba7c;
 }
 
 .Text.-danger {
@@ -2880,6 +3282,17 @@ td {
   margin: 0 auto;
   padding-top: 67%;
   overflow: hidden;
+}
+
+.WorkDetailLayout .WorkDetailLayout_heading::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #333333;
+  opacity: 0.2;
 }
 
 .WorkDetailLayout .WorkDetailLayout_heading .WorkDetailLayout_title {

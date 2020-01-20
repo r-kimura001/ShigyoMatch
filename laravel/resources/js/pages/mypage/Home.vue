@@ -1,5 +1,5 @@
 <template>
-  <div class="p-home">
+  <div class="p-home u-pa20">
     <div>
       <h2>Home</h2>
       <section class="MypageContent_box">

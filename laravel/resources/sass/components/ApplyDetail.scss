@@ -1,0 +1,52 @@
+.ApplyDetail{
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background: $gray-5;
+  transition: $transitionBasis;
+  -webkit-transition: -webkit-transform $transitionBasis;
+  transform: translateX(100%);
+  -webkit-transform: translateX(100%);
+  overflow-y: scroll;
+  z-index: $modalZIndex;
+  .ApplyDetail_content{
+    padding: 40px 0;
+    max-width: 840px;
+    margin: 0 auto;
+  }
+  .ApplyDetail_pr{
+    padding: 12px;
+    white-space: pre-line;
+    border: 1px solid $gray-3;
+    border-radius: 4px;
+    font-size: 1.5rem;
+  }
+  &.--show{
+    transform: none;
+    -webkit-transform: none;
+  }
+  .ApplyDetail_close{
+    position: absolute;
+    top: 30px;
+    right: 20px;
+    width: 40px;cursor: pointer;
+    &::before{
+      content: '';
+      display: block;
+      width: 100%;
+      height: 0;
+      border-top: 2px solid $gray;
+      transform: rotate(45deg) translate(1px, 2px);
+    }
+    &::after{
+      content: '';
+      display: block;
+      width: 100%;
+      height: 0;
+      border-top: 2px solid $gray;
+      transform: rotate(-45deg);
+    }
+  }
+}

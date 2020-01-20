@@ -1,6 +1,7 @@
 .Modal{
   z-index: $modalZIndex;
   transition: $transitionBasis;
+  -webkit-transition: $transitionBasis;
   .Modal_overlay{
     z-index: $modalZIndex;
     position: fixed;
@@ -13,14 +14,20 @@
   }
   .Modal_content{
     position: fixed;
-    top: 30%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    width: 680px;
+    max-width: 90%;
+    margin: 0 auto;
     padding: 30px;
     border-radius: 8px;
     box-shadow: 0 1px 20px $deepGray;
     background: $white;
     z-index: 9999;
+    @include media(sm){
+      padding: 30px 10px;
+    }
   }
 
   &.--hidden{

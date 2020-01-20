@@ -12,12 +12,20 @@ class Work extends Model implements CanDeleteRelationInterface
   use HandledByUser;
   use SoftDeletes;
 
-  const COUNT_PER_PAGE = 12;
-  const RELATIONS_ARRAY = ['professionType', 'customer.user', 'customer.professionTypes', 'appliers', 'scouts.user', 'skills'];
-
   protected $table = 'works';
-
   protected $fillable = ['title', 'body', 'fee', 'file_name', 'customer_id', 'profession_type_id'];
+
+  const COUNT_PER_PAGE = 12;
+  const RELATIONS_ARRAY = [
+    'professionType',
+    'customer.user',
+    'customer.professionTypes',
+    'appliers.user',
+    'appliers.professionTypes',
+    'scouts.user',
+    'skills',
+    'applies'
+  ];
 
   /**
    * @return bool
@@ -47,7 +55,7 @@ class Work extends Model implements CanDeleteRelationInterface
    */
   public function getIsFavoriteAttribute()
   {
-    if(Auth::guest() || count($this->favorites) === 0){
+    if(Auth::guest() || $this->favorites->count() === 0){
       return false;
     }
     return $this->favorites->contains( function($customer) {
@@ -74,14 +82,6 @@ class Work extends Model implements CanDeleteRelationInterface
   public function getFavoriteCountAttribute()
   {
     return $this->favorites->count();
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getCustomerNameAttribute()
-  {
-    return $this->customer->name;
   }
 
   /**
@@ -124,7 +124,16 @@ class Work extends Model implements CanDeleteRelationInterface
    */
   public function appliers()
   {
-    return $this->belongsToMany(Customer::class, 'applies', 'work_id', 'applier_id')->withPivot('pr', 'match_flag')->withTimestamps();
+    return $this->belongsToMany(Customer::class, 'applies', 'work_id', 'applier_id')->withPivot('id', 'pr', 'match_flag')->withTimestamps();
+  }
+
+  /**
+   * リレーション - 申込
+   * @return \Illuminate\Database\Eloquent\Relations\hasMany
+   */
+  public function applies()
+  {
+    return $this->hasMany(Apply::class, 'work_id', 'id');
   }
 
   /**
@@ -136,7 +145,12 @@ class Work extends Model implements CanDeleteRelationInterface
     return $this->belongsToMany(Customer::class, 'scouts', 'work_id', 'scouted_id')->withPivot('title', 'body')->withTimestamps();
   }
 
-  protected $appends = ['is_owner', 'is_favorite', 'is_applier', 'is_scouted', 'favorite_count', 'customer_name'];
+  protected $appends = [
+    'is_owner',
+    'is_favorite','is_applier',
+    'is_scouted',
+    'favorite_count'
+  ];
   protected $hidden = ['customer_id'];
 
   public function getDeleteRelations()

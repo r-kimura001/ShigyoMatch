@@ -17,7 +17,7 @@ class Customer extends Model implements CanDeleteRelationInterface
   use SoftDeletes;
 
   const COUNT_PER_PAGE = 12;
-  const RELATIONS_ARRAY = [ 'professionTypes', 'user', 'works.skills', 'works.professionType'];
+  const RELATIONS_ARRAY = [ 'professionTypes', 'user', 'works.skills', 'works.professionType', 'applyWorks'];
 
   protected $fillable = [
     'name',
@@ -52,7 +52,6 @@ class Customer extends Model implements CanDeleteRelationInterface
     }
   }
 
-
   /**
    * リレーション - カスタマーの登録資格
    * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
@@ -85,7 +84,25 @@ class Customer extends Model implements CanDeleteRelationInterface
    */
   public function scoutedWorks()
   {
-    return $this->belongsToMany(Work::class, 'scouts', 'scouted_id', 'work_id')->withPivot('title', 'body');
+    return $this->belongsToMany(Work::class, 'scouts', 'scouted_id', 'work_id')->withPivot('title', 'body')->withTimestamps();
+  }
+
+  /**
+   * リレーション - 申込をした募集案件
+   * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+   */
+  public function applyWorks()
+  {
+    return $this->belongsToMany(Work::class, 'applies', 'applier_id', 'work_id')->withPivot('id', 'pr', 'match_flag')->withTimestamps();
+  }
+
+  /**
+   * リレーション - 申込件数
+   * @return \Illuminate\Database\Eloquent\Relations\HasMany
+   */
+  public function applies()
+  {
+    return $this->hasMany(Apply::class, 'applier_id', 'id');
   }
 
   /**

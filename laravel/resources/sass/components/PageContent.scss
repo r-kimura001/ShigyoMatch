@@ -5,6 +5,11 @@
   .PageContent_layout{
     &.--flex{
       flex-grow: 1;
+      display: flex;
+      width: 100%;
+      max-width: 1380px;
+      margin: 0 auto;
+      position: relative;
     }
   }
 }

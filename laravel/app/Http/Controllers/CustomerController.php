@@ -128,6 +128,15 @@ class CustomerController extends Controller
 
   /**
    * @param int $id
+   * @return array
+   */
+  public function appliedWorks(int $id)
+  {
+    return $this->customerService->appliedWorks($id);
+  }
+
+  /**
+   * @param int $id
    * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
    */
   public function pagelessWorks(int $id)
@@ -135,6 +144,10 @@ class CustomerController extends Controller
     return $this->customerService->pagelessWorks($id);
   }
 
+  /**
+   * @param int $id
+   * @return mixed
+   */
   public function scoutedWorks(int $id)
   {
     return $this->customerService->scoutedWorks($id);

@@ -1,5 +1,5 @@
 <template>
-  <div class="p-chats">
+  <div class="p-chats u-pa20">
     <section class="MypageContent_box">Chats</section>
   </div>
 </template>

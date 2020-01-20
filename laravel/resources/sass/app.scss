@@ -3,6 +3,7 @@
 @import "./base";
 
 // components
+@import "./components/ApplyDetail";
 @import "./components/ApplyFormLayout";
 @import "./components/AuthFormLayout";
 @import "./components/AuthNav";
@@ -23,6 +24,8 @@
 @import "./components/MainContent";
 @import "./components/MainLayout";
 @import "./components/MainVisual";
+@import "./components/Message";
+@import "./components/MessageLayout";
 @import "./components/Modal";
 @import "./components/MypageContent";
 @import "./components/Number";

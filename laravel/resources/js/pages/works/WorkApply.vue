@@ -60,7 +60,7 @@
             </ul>
           </div>
           <h2 class="ApplyFormLayout_title">
-            <span class="ApplyFormLayout_titleText">プロフィール内容をご確認ください</span>
+            <span class="ApplyFormLayout_titleText">プロフィールに問題なければ自己PRを入力してください</span>
           </h2>
           <FormLayout
             :form-data="formData"

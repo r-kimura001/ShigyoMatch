@@ -3,8 +3,7 @@
   margin: 0 auto;
 
   .MypageContent_main{
-    margin-left: 240px;
-    padding: 0 30px 30px;
+    margin-left: $sidebarWidth;
     background: $customerDetailBg;
 
     @include media(){
@@ -15,7 +14,7 @@
     }
   }
   .MypageContent_sidebar{
-    width: 240px;
+    width: $sidebarWidth;
     overflow-y: scroll;
     position: fixed;
     top: $headerHeight;
@@ -59,14 +58,14 @@
     @include media(){
       padding: 10px;
     }
-
     &.--color{
       background: inherit;
     }
   }
   .MypageContent_tabs{
+    padding: 0 10px 30px;
   }
   .MypageContent_body{
-    padding: 30px 10px;
+    padding: 0 10px;
   }
 }

@@ -20,7 +20,7 @@
     right: 0;
     white-space: nowrap;
     transition: .15s;
-    transform-origin: center top;
+    transform-origin: calc(100% - 40px) top;
     transform: scale3d(0,0,1);
     min-width: 130px;
     text-align: center;

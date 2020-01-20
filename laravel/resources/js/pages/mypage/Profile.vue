@@ -1,5 +1,5 @@
 <template>
-  <div class="p-profiles">
+  <div class="p-profiles u-pa20">
     <div>
       <h2>Profile</h2>
       <section class="MypageContent_box">

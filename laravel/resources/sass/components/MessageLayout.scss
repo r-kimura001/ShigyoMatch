@@ -1,0 +1,119 @@
+.MessageLayout{
+  position: absolute; // 親 .PageContent_layout --flex
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: calc(100% - #{$sidebarWidth});
+  max-width: $baseWidth - $sidebarWidth;
+  display: flex;
+  font-size: 1.5rem;
+  padding: 5px 0;
+  background: $white;
+  .MessageLayout_sidebar{
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    width: 240px;
+
+  }
+  .MessageLayout_roomList{
+    flex-grow: 1;
+    overflow-y: scroll;
+  }
+  .MessageLayout_room{
+    width: 100%;
+    padding: 10px 15px;
+    background: $white;
+    border-bottom: 1px solid $gray-2;
+    cursor: pointer;
+    transition: $transitionBasis;
+    &:hover{
+      background: $lightGreen;
+    }
+    &.--current{
+      background: $lightGreen;
+    }
+  }
+  .MessageLayout_icon{
+    width: 36px;
+    height: 36px;
+    border-radius: 9999px;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+  }
+  .MessageLayout_main{
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .MessageLayout_heading{
+    padding: 10px;
+    background: $highGreen;
+    color: $white;
+    min-height: 56px;
+  }
+  .MessageLayout_box{
+    flex-grow: 1;
+    background: $gray-5;
+    overflow-y: scroll;
+  }
+  .MessageLayout_noRoom{
+    text-align: center;
+    padding: 30px 15px;
+    display: block;
+    color: $gray-2;
+  }
+  .MessageLayout_item{
+    padding: 15px 20px;
+
+    &.--end{
+      margin-bottom: 40px;
+    }
+  }
+  .MessageLayout_footer{
+    border-top: 1px solid $gray-4;
+    .MessageLayout_formText{
+      padding: 0 10px;
+      width: 100%;
+      margin-right: 10px;
+      overflow-y: initial;
+      max-height: 100px;
+      line-height: 1.25;
+      font-size: 1.6rem;
+      &::-webkit-scrollbar{
+        width: 5px;
+      }
+    }
+  }
+  .MessageLayout_strCounter{
+    display: block;
+    width: 60px;
+    text-align: right;
+    padding: 3px 3px 3px 0;
+    font-size: 1rem;
+    color: $gray-3;
+  }
+
+
+  @include media(){
+    bottom: 78px;
+    width: 100%;
+    max-width: initial;
+    flex-direction: column;
+    padding: 5px 0 0;
+    .MessageLayout_sidebar {
+      max-width: initial;
+      width: 100%;
+    }
+    .MessageLayout_roomList{
+      display: none;
+    }
+    .MessageLayout_room{
+      border-left: 0;
+    }
+  }
+  @include media(sm-y){
+    bottom: 43px;
+  }
+}
