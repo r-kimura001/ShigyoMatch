@@ -40,21 +40,21 @@ export default {
           path: '',
           iconSrc: 'icon-home.svg',
         },
-        {
-          name: 'プロフィール',
-          path: '/profile',
-          iconSrc: 'icon-profile.svg',
-        },
+        // {
+        //   name: 'プロフィール',
+        //   path: '/profile',
+        //   iconSrc: 'icon-profile.svg',
+        // },
         {
           name: 'マッチング履歴',
           path: '/matches',
           iconSrc: 'icon-match.svg',
         },
-        {
-          name: 'スカウト',
-          path: '/scouts',
-          iconSrc: 'icon-scout.svg',
-        },
+        // {
+        //   name: 'スカウト',
+        //   path: '/scouts',
+        //   iconSrc: 'icon-scout.svg',
+        // },
         {
           name: '申込',
           path: '/applies',
@@ -65,11 +65,11 @@ export default {
           path: '/favorites',
           iconSrc: 'icon-favorite.svg',
         },
-        {
-          name: 'メッセージ',
-          path: '/messages',
-          iconSrc: 'icon-mail-line.svg',
-        },
+        // {
+        //   name: 'メッセージ',
+        //   path: '/messages',
+        //   iconSrc: 'icon-mail-line.svg',
+        // },
         {
           name: 'チャットルーム',
           path: '/chats',

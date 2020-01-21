@@ -1850,6 +1850,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3731,19 +3756,21 @@ __webpack_require__.r(__webpack_exports__);
         name: 'HOME',
         path: '',
         iconSrc: 'icon-home.svg'
-      }, {
-        name: 'プロフィール',
-        path: '/profile',
-        iconSrc: 'icon-profile.svg'
-      }, {
+      }, // {
+      //   name: 'プロフィール',
+      //   path: '/profile',
+      //   iconSrc: 'icon-profile.svg',
+      // },
+      {
         name: 'マッチング履歴',
         path: '/matches',
         iconSrc: 'icon-match.svg'
-      }, {
-        name: 'スカウト',
-        path: '/scouts',
-        iconSrc: 'icon-scout.svg'
-      }, {
+      }, // {
+      //   name: 'スカウト',
+      //   path: '/scouts',
+      //   iconSrc: 'icon-scout.svg',
+      // },
+      {
         name: '申込',
         path: '/applies',
         iconSrc: ''
@@ -3751,11 +3778,12 @@ __webpack_require__.r(__webpack_exports__);
         name: '気になる',
         path: '/favorites',
         iconSrc: 'icon-favorite.svg'
-      }, {
-        name: 'メッセージ',
-        path: '/messages',
-        iconSrc: 'icon-mail-line.svg'
-      }, {
+      }, // {
+      //   name: 'メッセージ',
+      //   path: '/messages',
+      //   iconSrc: 'icon-mail-line.svg',
+      // },
+      {
         name: 'チャットルーム',
         path: '/chats',
         iconSrc: 'icon-chat.svg'
@@ -5632,6 +5660,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -5664,7 +5700,9 @@ __webpack_require__.r(__webpack_exports__);
       applyFlag: 0,
       appliedFlag: 1,
       currentFlag: 0,
-      detail: {}
+      detail: {},
+      hovering: null,
+      test: null
     };
   },
   watch: {
@@ -5783,11 +5821,73 @@ __webpack_require__.r(__webpack_exports__);
         }
       }, null, this);
     },
+    setMatch: function setMatch(applier) {
+      var applyData, response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function setMatch$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              if (!applier.pivot.match_flag) {
+                _context4.next = 3;
+                break;
+              }
+
+              alert('既にマッチしています。');
+              return _context4.abrupt("return", false);
+
+            case 3:
+              if (confirm('一度マッチすると取り消しできません。よろしいですか？')) {
+                _context4.next = 5;
+                break;
+              }
+
+              return _context4.abrupt("return", false);
+
+            case 5:
+              this.$store.commit('form/setIsLoading', true);
+              applyData = new FormData();
+              applyData.append('applier_id', applier.id);
+              _context4.next = 10;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(axios.post("/api/works/".concat(applier.work.id, "/match"), applyData));
+
+            case 10:
+              response = _context4.sent;
+              this.$store.commit('form/setResponse', response);
+              this.$store.commit('form/setIsLoading', false);
+
+              if (!(response.status === _util__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
+                _context4.next = 16;
+                break;
+              }
+
+              _context4.next = 16;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(this.appliedWorks());
+
+            case 16:
+            case "end":
+              return _context4.stop();
+          }
+        }
+      }, null, this);
+    },
     change: function change(flag) {
       this.currentFlag = flag;
     },
     showDetail: function showDetail(applier) {
       this.detail = applier;
+    },
+    isActive: function isActive(applier) {
+      return applier.pivot.match_flag || applier.pivot.id === this.hovering;
+    },
+    dataDesc: function dataDesc(applier) {
+      return applier.pivot.match_flag ? 'マッチ済みです' : 'この方に仕事を依頼する';
+    },
+    toggleHeart: function toggleHeart(applier) {
+      if (this.hovering === applier.pivot.id) {
+        this.hovering = null;
+      } else {
+        this.hovering = applier.pivot.id;
+      }
     }
   }
 });
@@ -6452,6 +6552,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var lodash_maxBy__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! lodash/maxBy */ "./node_modules/lodash/maxBy.js");
 /* harmony import */ var lodash_maxBy__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(lodash_maxBy__WEBPACK_IMPORTED_MODULE_7__);
 
+//
+//
+//
 //
 //
 //
@@ -13662,7 +13765,7 @@ var render = function() {
         "ul",
         { staticClass: "AuthNav_menu" },
         [
-          _c("li", { staticClass: "AuthNav_item" }, [
+          _c("li", { staticClass: "AuthNav_item --title" }, [
             _vm._v(_vm._s(_vm.customer.name) + "様")
           ]),
           _vm._v(" "),
@@ -13676,8 +13779,48 @@ var render = function() {
           ),
           _vm._v(" "),
           _c(
+            "RouterLink",
+            {
+              staticClass: "AuthNav_item",
+              style: _vm.bgImage("assets/icon-profile-white.svg"),
+              attrs: {
+                to: "/mypage/" + _vm.customer.id + "/profile",
+                tag: "li"
+              }
+            },
+            [_vm._v("プロフィール")]
+          ),
+          _vm._v(" "),
+          _c(
+            "RouterLink",
+            {
+              staticClass: "AuthNav_item",
+              style: _vm.bgImage("assets/icon-scout-white.svg"),
+              attrs: { to: "/mypage/" + _vm.customer.id + "/scouts", tag: "li" }
+            },
+            [_vm._v("スカウト")]
+          ),
+          _vm._v(" "),
+          _c(
+            "RouterLink",
+            {
+              staticClass: "AuthNav_item",
+              style: _vm.bgImage("assets/icon-mail-white.svg"),
+              attrs: {
+                to: "/mypage/" + _vm.customer.id + "/mesages",
+                tag: "li"
+              }
+            },
+            [_vm._v("メッセージ")]
+          ),
+          _vm._v(" "),
+          _c(
             "li",
-            { staticClass: "AuthNav_item", on: { click: _vm.clickLogout } },
+            {
+              staticClass: "AuthNav_item",
+              style: _vm.bgImage("assets/icon-logout-white.svg"),
+              on: { click: _vm.clickLogout }
+            },
             [_vm._v("ログアウト")]
           )
         ],
@@ -17758,6 +17901,40 @@ var render = function() {
                                 _c(
                                   "button",
                                   {
+                                    staticClass: "u-px10 MatchButton",
+                                    attrs: {
+                                      "data-desc": _vm.dataDesc(applier)
+                                    },
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.setMatch(applier)
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _vm.isActive(applier)
+                                      ? _c("i", {
+                                          staticClass: "fas fa-heart",
+                                          on: {
+                                            mouseleave: function($event) {
+                                              return _vm.toggleHeart(applier)
+                                            }
+                                          }
+                                        })
+                                      : _c("i", {
+                                          staticClass: "far fa-heart",
+                                          on: {
+                                            mouseenter: function($event) {
+                                              return _vm.toggleHeart(applier)
+                                            }
+                                          }
+                                        })
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "button",
+                                  {
                                     staticClass: "Button --minimum",
                                     on: {
                                       click: function($event) {
@@ -18351,6 +18528,8 @@ var render = function() {
     _vm._v(" "),
     _c("div", { staticClass: "MessageLayout" }, [
       _c("div", { staticClass: "MessageLayout_sidebar" }, [
+        _vm._m(0),
+        _vm._v(" "),
         _c(
           "ul",
           { staticClass: "MessageLayout_roomList" },
@@ -18547,7 +18726,16 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h3", { staticClass: "u-pa20 u-alignCenter" }, [
+      _c("span", { staticClass: "Text -bold" }, [_vm._v("お相手一覧")])
+    ])
+  }
+]
 render._withStripped = true
 
 

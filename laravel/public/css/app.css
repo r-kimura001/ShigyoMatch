@@ -723,6 +723,7 @@ td {
   right: 20px;
   width: 40px;
   cursor: pointer;
+  height: 40px;
 }
 
 .ApplyDetail .ApplyDetail_close::before {
@@ -814,10 +815,10 @@ td {
   top: 42px;
   right: 0;
   white-space: nowrap;
-  -webkit-transition: 0.15s;
   transition: 0.15s;
-  -webkit-transform-origin: calc(100% - 40px) top;
-          transform-origin: calc(100% - 40px) top;
+  -webkit-transition: 0.15s;
+  -webkit-transform-origin: calc(100% - 50px) top;
+          transform-origin: calc(100% - 50px) top;
   -webkit-transform: scale3d(0, 0, 1);
           transform: scale3d(0, 0, 1);
   min-width: 130px;
@@ -840,14 +841,28 @@ td {
 }
 
 .AuthNav .AuthNav_item {
-  padding: 10px 12px;
   cursor: pointer;
   -webkit-transition: 0.3s;
   transition: 0.3s;
+  text-align: left;
+  padding: 10px 10px 10px 43px;
+  background-position: left 20px center;
+  background-size: 1.6rem;
+  background-repeat: no-repeat;
 }
 
 .AuthNav .AuthNav_item:hover {
-  background: #cccccc;
+  background-color: #cccccc;
+}
+
+.AuthNav .AuthNav_item.\--title {
+  text-align: center;
+  padding: 15px;
+  cursor: initial;
+}
+
+.AuthNav .AuthNav_item.\--title:hover {
+  background: transparent;
 }
 
 .AuthNav.\--open .AuthNav_menu {
@@ -2364,7 +2379,7 @@ td {
 }
 
 .MessageLayout .MessageLayout_footer .MessageLayout_formText {
-  padding: 0 10px;
+  padding: 10px;
   width: 100%;
   margin-right: 10px;
   overflow-y: initial;
@@ -2472,6 +2487,43 @@ td {
 .Modal.\--hidden {
   pointer-events: none;
   opacity: 0;
+}
+
+.MatchButton {
+  cursor: pointer;
+  color: #e4406f;
+  position: relative;
+  transition: 0.3s;
+  -webkit-transition: 0.3s;
+}
+
+.MatchButton:hover::after {
+  content: attr(data-desc);
+  position: absolute;
+  top: -100%;
+  left: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  font-size: 1rem;
+  color: #fefefe;
+  background: #626d78;
+  padding: 8px;
+  border-radius: 5px;
+}
+
+.MatchButton:hover::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: calc(50% + 5px);
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 12px 12px 0 0;
+  border-color: #626d78 transparent transparent transparent;
+  -webkit-transform: translateY(-100%);
+          transform: translateY(-100%);
+  color: #fefefe;
 }
 
 .MypageContent {
@@ -2872,14 +2924,12 @@ td {
     display: flex;
     -webkit-box-align: center;
             align-items: center;
-    flex-wrap: wrap;
   }
 
   .Sidebar .Sidebar_list .Sidebar_listItem {
     -webkit-box-flex: 1;
-            flex: 1;
+            flex-grow: 1;
     width: 100%;
-    max-width: 100px;
   }
 
   .Sidebar .Sidebar_list .Sidebar_listItem .Sidebar_listBody {
@@ -3047,6 +3097,10 @@ td {
   color: #fefefe;
   -webkit-transition: 0.3s;
   transition: 0.3s;
+  display: inline-block;
+}
+
+.Text {
   display: inline-block;
 }
 

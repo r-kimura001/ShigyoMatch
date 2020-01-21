@@ -29,12 +29,10 @@
     .Sidebar_list {
       display: flex;
       align-items: center;
-      flex-wrap: wrap;
 
       .Sidebar_listItem {
-        flex: 1;
+        flex-grow: 1;
         width: 100%;
-        max-width: 100px;
 
         .Sidebar_listBody {
           padding: 0;

@@ -48,6 +48,20 @@ class ApplyController extends Controller
     }
 
     /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function match(Request $request, int $id)
+    {
+      $data = $request->all();
+
+      $work = $this->workService->match($id, $request->all());
+      return $work;
+    }
+
+    /**
      * Display the specified resource.
      *
      * @param  int  $id

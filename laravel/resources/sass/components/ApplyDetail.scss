@@ -31,7 +31,9 @@
     position: absolute;
     top: 30px;
     right: 20px;
-    width: 40px;cursor: pointer;
+    width: 40px;
+    cursor: pointer;
+    height: 40px;
     &::before{
       content: '';
       display: block;

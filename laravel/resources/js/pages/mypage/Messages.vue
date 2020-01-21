@@ -3,6 +3,9 @@
     <h2>Messages</h2>
     <div class="MessageLayout">
       <div class="MessageLayout_sidebar">
+        <h3 class="u-pa20 u-alignCenter">
+          <span class="Text -bold">お相手一覧</span>
+        </h3>
         <ul class="MessageLayout_roomList">
           <li
             v-for="(room, index) in rooms"

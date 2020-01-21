@@ -20,7 +20,8 @@
     right: 0;
     white-space: nowrap;
     transition: .15s;
-    transform-origin: calc(100% - 40px) top;
+    -webkit-transition: .15s;
+    transform-origin: calc(100% - 50px) top;
     transform: scale3d(0,0,1);
     min-width: 130px;
     text-align: center;
@@ -40,13 +41,25 @@
 
   }
   .AuthNav_item{
-    padding: 10px 12px;
     cursor: pointer;
     transition: $transitionBasis;
+    text-align: left;
+    @include iconFix(10px, 43px, 20px, 1.6rem);
 
     &:hover{
-      background: $gray-2;
+      background-color: $gray-2;
     }
+
+    &.--title{
+      text-align: center;
+      padding: 15px;
+      cursor: initial;
+      &:hover{
+        background: transparent;
+      }
+    }
+
+
   }
 
   &.--open{

@@ -32,6 +32,7 @@ Route::get('/customers/{id}/pageless_works', 'CustomerController@pagelessWorks')
 
 // 申込
 Route::post('/works/{id}/apply', 'ApplyController@store')->name('work.apply');
+Route::post('/works/{id}/match', 'ApplyController@match')->name('work.match');
 Route::get('/customers/{id}/apply_works', 'CustomerController@applyWorks')->name('customer.applyWorks');
 Route::get('/customers/{id}/applied_works', 'CustomerController@appliedWorks')->name('customer.appliedWorks');
 
