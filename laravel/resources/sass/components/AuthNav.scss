@@ -44,7 +44,7 @@
     cursor: pointer;
     transition: $transitionBasis;
     text-align: left;
-    @include iconFix(10px, 43px, 20px, 1.6rem);
+    @include iconFix(10px, 45px, 24px, 1.4rem);
 
     &:hover{
       background-color: $gray-2;

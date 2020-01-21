@@ -845,9 +845,9 @@ td {
   -webkit-transition: 0.3s;
   transition: 0.3s;
   text-align: left;
-  padding: 10px 10px 10px 43px;
-  background-position: left 20px center;
-  background-size: 1.6rem;
+  padding: 10px 10px 10px 45px;
+  background-position: left 24px center;
+  background-size: 1.4rem;
   background-repeat: no-repeat;
 }
 
