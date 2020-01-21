@@ -720,7 +720,7 @@ td {
 .ApplyDetail .ApplyDetail_close {
   position: absolute;
   top: 30px;
-  right: 20px;
+  left: 30px;
   width: 40px;
   cursor: pointer;
   height: 40px;
@@ -845,8 +845,8 @@ td {
   -webkit-transition: 0.3s;
   transition: 0.3s;
   text-align: left;
-  padding: 10px 10px 10px 45px;
-  background-position: left 24px center;
+  padding: 10px 10px 10px 80px;
+  background-position: left 58px center;
   background-size: 1.4rem;
   background-repeat: no-repeat;
 }
@@ -859,6 +859,9 @@ td {
   text-align: center;
   padding: 15px;
   cursor: initial;
+  width: 230px;
+  white-space: normal;
+  line-height: 1.5;
 }
 
 .AuthNav .AuthNav_item.\--title:hover {
@@ -3097,10 +3100,6 @@ td {
   color: #fefefe;
   -webkit-transition: 0.3s;
   transition: 0.3s;
-  display: inline-block;
-}
-
-.Text {
   display: inline-block;
 }
 

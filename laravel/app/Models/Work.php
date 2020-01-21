@@ -24,7 +24,7 @@ class Work extends Model implements CanDeleteRelationInterface
     'appliers.professionTypes',
     'scouts.user',
     'skills',
-    'applies'
+    'applies.applier'
   ];
 
   /**

@@ -2,7 +2,7 @@
   <div class="MainLayout">
     <div class="MainLayout_boxList">
       <p v-if="isApplied" class="Text -danger">この募集案件には既に申込済みです</p>
-      <p v-if="isScouted" class="Text -success">スカウトされています</p>
+      <p v-else-if="isScouted" class="Text -success">スカウトされています</p>
       <section class="MainLayout_box">
         <WorkDetailLayout :work="work"></WorkDetailLayout>
       </section>

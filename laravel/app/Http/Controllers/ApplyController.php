@@ -4,15 +4,21 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\WorkService;
+use App\Services\ApplyService;
 
 class ApplyController extends Controller
 {
   protected $workService;
+  protected $applyService;
 
-  public function __construct(WorkService $workService)
+  public function __construct(
+    WorkService $workService,
+    ApplyService $applyService
+  )
   {
     $this->middleware('auth');
     $this->workService = $workService;
+    $this->applyService = $applyService;
   }
 
   /**
@@ -41,9 +47,9 @@ class ApplyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, int $id)
+    public function store(Request $request, int $workId)
     {
-        $work = $this->workService->apply($id, $request->all());
+        $work = $this->applyService->apply($workId, $request->all());
         return response($work, 201);
     }
 
@@ -53,23 +59,30 @@ class ApplyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function match(Request $request, int $id)
+    public function match(Request $request, int $workId)
     {
       $data = $request->all();
 
-      $work = $this->workService->match($id, $request->all());
+      $work = $this->applyService->match($workId, $request->all());
       return $work;
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $customerId
+     * @return mixed
      */
-    public function show($id)
+    public function matches(int $customerId)
     {
-        //
+        return $this->applyService->matches($customerId);
+    }
+
+    /**
+     * @param int $customerId
+     * @return mixed
+     */
+    public function matcheds(int $customerId)
+    {
+        return $this->applyService->matcheds($customerId);
     }
 
     /**

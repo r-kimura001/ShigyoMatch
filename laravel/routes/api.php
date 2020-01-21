@@ -31,10 +31,12 @@ Route::get('/customers/{id}/favoriteWorks', 'CustomerController@favoriteWorks')-
 Route::get('/customers/{id}/pageless_works', 'CustomerController@pagelessWorks')->name('customer.pagelessWorks');
 
 // 申込
-Route::post('/works/{id}/apply', 'ApplyController@store')->name('work.apply');
-Route::post('/works/{id}/match', 'ApplyController@match')->name('work.match');
+Route::post('/works/{workId}/apply', 'ApplyController@store')->name('work.apply');
+Route::post('/works/{workId}/match', 'ApplyController@match')->name('work.match');
 Route::get('/customers/{id}/apply_works', 'CustomerController@applyWorks')->name('customer.applyWorks');
 Route::get('/customers/{id}/applied_works', 'CustomerController@appliedWorks')->name('customer.appliedWorks');
+Route::get('/customers/{id}/matches', 'ApplyController@matches')->name('customer.matches');
+Route::get('/customers/{id}/matcheds', 'ApplyController@matcheds')->name('customer.matcheds');
 
 // メッセージ
 Route::post('/messages/store', 'MessageController@store')->name('message.store');

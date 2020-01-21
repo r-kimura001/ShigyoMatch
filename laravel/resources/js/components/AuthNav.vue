@@ -25,7 +25,7 @@
         >スカウト</RouterLink
       >
       <RouterLink
-        :to="`/mypage/${customer.id}/mesages`"
+        :to="`/mypage/${customer.id}/messages`"
         tag="li"
         class="AuthNav_item"
         :style="bgImage('assets/icon-mail-white.svg')"

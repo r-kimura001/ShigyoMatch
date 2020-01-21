@@ -198,6 +198,7 @@
             const applyInfo = work.appliers.filter(applier => applier.id === this.customer.id)
             work['author_apply_info'] = applyInfo[0]
           })
+          this.apply_works.sort( (a, b) => this.applyDate(a) < this.applyDate(b) ? 1 : -1)
           this.hasApplyWorks = !!Object.keys(this.apply_works).length
         }
       },
@@ -228,7 +229,13 @@
         this.$store.commit('form/setResponse', response)
         this.$store.commit('form/setIsLoading', false)
         if(response.status === OK){
+          this.$store.commit('form/setSuccessMessage', 'マッチングが成立しました')
           await this.appliedWorks()
+        }else{
+          this.$store.commit('error/setErrors', {
+            status: response.status,
+            message: response.data,
+          })
         }
 
       },
@@ -251,6 +258,10 @@
           this.hovering = applier.pivot.id
         }
       },
+      applyDate(work){
+        const targetApply = work.applies.filter( apply => apply.applier.id === this.customer.id)[0]
+        return targetApply.created_at
+      }
     },
   }
 </script>

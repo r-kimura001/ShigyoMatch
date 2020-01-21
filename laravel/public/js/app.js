@@ -5783,6 +5783,9 @@ __webpack_require__.r(__webpack_exports__);
                   });
                   work['author_apply_info'] = applyInfo[0];
                 });
+                this.apply_works.sort(function (a, b) {
+                  return _this2.applyDate(a) < _this2.applyDate(b) ? 1 : -1;
+                });
                 this.hasApplyWorks = !!Object.keys(this.apply_works).length;
               }
 
@@ -5856,14 +5859,25 @@ __webpack_require__.r(__webpack_exports__);
               this.$store.commit('form/setIsLoading', false);
 
               if (!(response.status === _util__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
-                _context4.next = 16;
+                _context4.next = 19;
                 break;
               }
 
-              _context4.next = 16;
+              this.$store.commit('form/setSuccessMessage', 'マッチングが成立しました');
+              _context4.next = 17;
               return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(this.appliedWorks());
 
-            case 16:
+            case 17:
+              _context4.next = 20;
+              break;
+
+            case 19:
+              this.$store.commit('error/setErrors', {
+                status: response.status,
+                message: response.data
+              });
+
+            case 20:
             case "end":
               return _context4.stop();
           }
@@ -5888,6 +5902,14 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         this.hovering = applier.pivot.id;
       }
+    },
+    applyDate: function applyDate(work) {
+      var _this3 = this;
+
+      var targetApply = work.applies.filter(function (apply) {
+        return apply.applier.id === _this3.customer.id;
+      })[0];
+      return targetApply.created_at;
     }
   }
 });
@@ -6513,11 +6535,67 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/util */ "./resources/js/util.js");
+/* harmony import */ var _mixins_styles__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/mixins/styles */ "./resources/js/mixins/styles.js");
+
 //
 //
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     customer: {
@@ -6526,6 +6604,157 @@ __webpack_require__.r(__webpack_exports__);
       "default": function _default() {
         return {};
       }
+    }
+  },
+  mixins: [_mixins_styles__WEBPACK_IMPORTED_MODULE_2__["default"]],
+  data: function data() {
+    return {
+      applies: null,
+      applierStatus: 1,
+      recruiterStatus: 2,
+      label: {
+        1: '応募側',
+        2: '募集側'
+      },
+      color: {
+        1: '\#177cc0',
+        2: '\#e4406f'
+      },
+      hasData: true
+    };
+  },
+  watch: {
+    $route: {
+      handler: function handler() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function handler$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                this.$store.commit('form/setIsLoading', true);
+                _context.next = 3;
+                return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(this.setMatches());
+
+              case 3:
+                this.$store.commit('form/setIsLoading', false);
+
+              case 4:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, null, this);
+      },
+      immediate: true
+    }
+  },
+  methods: {
+    setMatches: function setMatches() {
+      var matchApplies, matchedApplies;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function setMatches$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.next = 2;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(this.matches());
+
+            case 2:
+              matchApplies = _context2.sent;
+              _context2.next = 5;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(this.matcheds());
+
+            case 5:
+              matchedApplies = _context2.sent;
+              this.applies = matchApplies.concat(matchedApplies);
+              this.hasData = this.applies.length;
+
+            case 8:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, null, this);
+    },
+    matches: function matches() {
+      var _this = this;
+
+      var response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function matches$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              _context3.next = 2;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(axios.get("/api/customers/".concat(this.customer.id, "/matches")));
+
+            case 2:
+              response = _context3.sent;
+
+              if (!(response.status === _util__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
+                _context3.next = 7;
+                break;
+              }
+
+              return _context3.abrupt("return", response.data.map(function (apply) {
+                apply.status = _this.applierStatus;
+                return apply;
+              }));
+
+            case 7:
+              this.$store.commit('error/setErrors', {
+                status: response.status,
+                message: response
+              });
+
+            case 8:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, null, this);
+    },
+    matcheds: function matcheds() {
+      var _this2 = this;
+
+      var response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function matcheds$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              _context4.next = 2;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(axios.get("/api/customers/".concat(this.customer.id, "/matcheds")));
+
+            case 2:
+              response = _context4.sent;
+
+              if (!(response.status === _util__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
+                _context4.next = 7;
+                break;
+              }
+
+              return _context4.abrupt("return", response.data.map(function (apply) {
+                apply.status = _this2.recruiterStatus;
+                return apply;
+              }));
+
+            case 7:
+              this.$store.commit('error/setErrors', {
+                status: response.status,
+                message: response
+              });
+
+            case 8:
+            case "end":
+              return _context4.stop();
+          }
+        }
+      }, null, this);
+    },
+    target: function target(apply) {
+      return apply.status === this.applierStatus ? apply.work.customer : apply.applier;
+    },
+    bgColor: function bgColor(id) {
+      return {
+        backgroundColor: this.color[id]
+      };
     }
   }
 });
@@ -6665,8 +6894,7 @@ __webpack_require__.r(__webpack_exports__);
       body: '',
       rows: 1,
       maxStrLen: 1000,
-      targetIndex: null,
-      test: null
+      targetIndex: null
     };
   },
   watch: {
@@ -6783,15 +7011,23 @@ __webpack_require__.r(__webpack_exports__);
               response = _context4.sent;
 
               if (!(response.status === _util__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
-                _context4.next = 5;
+                _context4.next = 7;
                 break;
               }
 
-              return _context4.abrupt("return", response.data.map(function (work) {
+              return _context4.abrupt("return", Object.keys(response.data).map(function (key) {
+                return response.data[key];
+              }).map(function (work) {
                 return work.applies;
               }).flat());
 
-            case 5:
+            case 7:
+              this.$store.commit('error/setErrors', {
+                status: response.status,
+                message: response
+              });
+
+            case 8:
             case "end":
               return _context4.stop();
           }
@@ -13807,7 +14043,7 @@ var render = function() {
               staticClass: "AuthNav_item",
               style: _vm.bgImage("assets/icon-mail-white.svg"),
               attrs: {
-                to: "/mypage/" + _vm.customer.id + "/mesages",
+                to: "/mypage/" + _vm.customer.id + "/messages",
                 tag: "li"
               }
             },
@@ -18490,15 +18726,118 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "p-matches u-pa20" }, [
+    _c("section", { staticClass: "MypageContent_box" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "MypageContent_body" }, [
+        _c("div", { staticClass: "Table" }, [
+          _c("table", [
+            _vm._m(1),
+            _vm._v(" "),
+            _c(
+              "tbody",
+              _vm._l(_vm.applies, function(apply, index) {
+                return _c("tr", { key: index }, [
+                  _c("td", [
+                    _c(
+                      "span",
+                      { staticClass: "Tag", style: _vm.bgColor(apply.status) },
+                      [_vm._v(_vm._s(_vm.label[apply.status]))]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "td",
+                    [
+                      _c(
+                        "RouterLink",
+                        {
+                          staticClass: "Table_dataText --link --hasIcon",
+                          style: _vm.bgImage(apply.work.file_name),
+                          attrs: { to: "/works/" + apply.work.id, tag: "span" }
+                        },
+                        [
+                          _vm._v(
+                            "\n                " +
+                              _vm._s(apply.work.title) +
+                              "\n              "
+                          )
+                        ]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "td",
+                    [
+                      _c(
+                        "RouterLink",
+                        {
+                          staticClass: "Table_dataText --link --hasIcon",
+                          style: _vm.bgImage(_vm.target(apply).file_name),
+                          attrs: {
+                            to: "/customers/" + _vm.target(apply).id,
+                            tag: "span"
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                " +
+                              _vm._s(_vm.target(apply).name) +
+                              "\n              "
+                          )
+                        ]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("td", [
+                    _c("div", { staticClass: "Table_dataText" }, [
+                      _vm._v(_vm._s(apply.created_at))
+                    ])
+                  ])
+                ])
+              }),
+              0
+            )
+          ]),
+          _vm._v(" "),
+          !_vm.hasData
+            ? _c("p", { staticClass: "u-pa20" }, [
+                _vm._v("マッチした募集案件はありません")
+              ])
+            : _vm._e()
+        ])
+      ])
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "p-matches" }, [
-      _c("section", { staticClass: "MypageContent_box" }, [_vm._v("matches")])
+    return _c("h3", { staticClass: "MypageContent_title u-pa20" }, [
+      _c("span", [_vm._v("マッチした案件")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { staticClass: "Table_headText" }, [_vm._v("あなたは")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "Table_headText" }, [_vm._v("募集タイトル")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "Table_headText" }, [_vm._v("お相手")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "Table_headText" }, [_vm._v("申込日時")])
+      ])
     ])
   }
 ]
@@ -19318,9 +19657,7 @@ var render = function() {
           ? _c("p", { staticClass: "Text -danger" }, [
               _vm._v("この募集案件には既に申込済みです")
             ])
-          : _vm._e(),
-        _vm._v(" "),
-        _vm.isScouted
+          : _vm.isScouted
           ? _c("p", { staticClass: "Text -success" }, [
               _vm._v("スカウトされています")
             ])
