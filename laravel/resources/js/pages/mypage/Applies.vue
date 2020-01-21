@@ -77,6 +77,14 @@
                 <tr v-for="(applier, index) in appliers" :key="index">
                   <td>
                     <button
+                      class="u-px10 MatchButton"
+                      :data-desc="dataDesc(applier)"
+                      @click="setMatch(applier)"
+                    >
+                      <i class="fas fa-heart" v-if="isActive(applier)" @mouseleave="toggleHeart(applier)"></i>
+                      <i class="far fa-heart" v-else @mouseenter="toggleHeart(applier)"></i>
+                    </button>
+                    <button
                       class="Button --minimum"
                       @click="showDetail(applier)"
                     >
@@ -146,7 +154,9 @@
         applyFlag: 0,
         appliedFlag: 1,
         currentFlag: 0,
-        detail: {}
+        detail: {},
+        hovering: null,
+        test: null,
       }
     },
     watch: {
@@ -162,7 +172,7 @@
     },
     computed:{
       appliers(){
-        const appliers = this.applied_works.map( work => work.appliers).flat();
+        const appliers = this.applied_works.map(work => work.appliers).flat();
 
         // 申込者に紐づくwork
         appliers.forEach(applier => {
@@ -188,6 +198,7 @@
             const applyInfo = work.appliers.filter(applier => applier.id === this.customer.id)
             work['author_apply_info'] = applyInfo[0]
           })
+          this.apply_works.sort( (a, b) => this.applyDate(a) < this.applyDate(b) ? 1 : -1)
           this.hasApplyWorks = !!Object.keys(this.apply_works).length
         }
       },
@@ -202,11 +213,54 @@
           this.hasAppliedWorks = !!this.applied_works.length
         }
       },
+      async setMatch(applier){
+        if(applier.pivot.match_flag){
+          alert('既にマッチしています。')
+          return false
+        }
+        if(!confirm('一度マッチすると取り消しできません。よろしいですか？')){
+          return false
+        }
+
+        this.$store.commit('form/setIsLoading', true)
+        const applyData = new FormData()
+        applyData.append('applier_id', applier.id)
+        const response = await axios.post(`/api/works/${applier.work.id}/match`, applyData)
+        this.$store.commit('form/setResponse', response)
+        this.$store.commit('form/setIsLoading', false)
+        if(response.status === OK){
+          this.$store.commit('form/setSuccessMessage', 'マッチングが成立しました')
+          await this.appliedWorks()
+        }else{
+          this.$store.commit('error/setErrors', {
+            status: response.status,
+            message: response.data,
+          })
+        }
+
+      },
       change(flag){
         this.currentFlag = flag
       },
       showDetail(applier){
         this.detail = applier
+      },
+      isActive(applier){
+        return applier.pivot.match_flag || applier.pivot.id === this.hovering
+      },
+      dataDesc(applier){
+        return applier.pivot.match_flag ? 'マッチ済みです' : 'この方に仕事を依頼する'
+      },
+      toggleHeart(applier){
+        if(this.hovering === applier.pivot.id){
+          this.hovering = null
+        }else{
+          this.hovering = applier.pivot.id
+        }
+      },
+      applyDate(work){
+        const targetApply = work.applies.filter( apply => apply.applier.id === this.customer.id)[0]
+        return targetApply.created_at
       }
     },
   }

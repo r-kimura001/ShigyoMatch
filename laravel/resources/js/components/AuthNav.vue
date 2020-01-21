@@ -6,11 +6,36 @@
       @click="toggleMenu"
     ></button>
     <ul class="AuthNav_menu">
-      <li class="AuthNav_item">{{ customer.name }}様</li>
+      <li class="AuthNav_item --title">{{ customer.name }}様</li>
       <RouterLink :to="`/mypage/${customer.id}`" tag="li" class="AuthNav_item"
         >マイページ</RouterLink
       >
-      <li class="AuthNav_item" @click="clickLogout">ログアウト</li>
+      <RouterLink
+        :to="`/mypage/${customer.id}/profile`"
+        tag="li"
+        class="AuthNav_item"
+        :style="bgImage('assets/icon-profile-white.svg')"
+      >プロフィール</RouterLink
+      >
+      <RouterLink
+        :to="`/mypage/${customer.id}/scouts`"
+        tag="li"
+        class="AuthNav_item"
+        :style="bgImage('assets/icon-scout-white.svg')"
+        >スカウト</RouterLink
+      >
+      <RouterLink
+        :to="`/mypage/${customer.id}/messages`"
+        tag="li"
+        class="AuthNav_item"
+        :style="bgImage('assets/icon-mail-white.svg')"
+        >メッセージ</RouterLink
+      >
+      <li
+        class="AuthNav_item"
+        @click="clickLogout"
+        :style="bgImage('assets/icon-logout-white.svg')"
+      >ログアウト</li>
     </ul>
   </div>
 </template>

@@ -106,7 +106,7 @@
       isApplier(){
         const author = this.$store.state.auth.customer
         return this.applier.id === author.id
-      }
+      },
     },
     methods: {
       out(){

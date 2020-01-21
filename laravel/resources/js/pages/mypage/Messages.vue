@@ -3,6 +3,9 @@
     <h2>Messages</h2>
     <div class="MessageLayout">
       <div class="MessageLayout_sidebar">
+        <h3 class="u-pa20 u-alignCenter">
+          <span class="Text -bold">お相手一覧</span>
+        </h3>
         <ul class="MessageLayout_roomList">
           <li
             v-for="(room, index) in rooms"
@@ -104,7 +107,6 @@
         rows: 1,
         maxStrLen: 1000,
         targetIndex: null,
-        test: null
       }
     },
     watch: {
@@ -151,7 +153,15 @@
       {
         const response = await axios.get(`/api/messages/${this.customer.id}/show_applied`)
         if (response.status === OK) {
-          return response.data.map( work => work.applies).flat()
+          return Object.keys(response.data)
+            .map( key => response.data[key] )
+            .map( work => work.applies )
+            .flat()
+        }else{
+          this.$store.commit('error/setErrors', {
+            status: response.status,
+            message: response,
+          })
         }
       },
       async store(){

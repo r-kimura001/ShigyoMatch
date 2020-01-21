@@ -30,8 +30,10 @@
   .ApplyDetail_close{
     position: absolute;
     top: 30px;
-    right: 20px;
-    width: 40px;cursor: pointer;
+    left: 30px;
+    width: 40px;
+    cursor: pointer;
+    height: 40px;
     &::before{
       content: '';
       display: block;

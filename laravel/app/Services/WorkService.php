@@ -92,6 +92,30 @@ class WorkService extends Service
     return $work;
   }
 
+  /**
+   * @param int $workId
+   * @param array $data
+   * @return mixed
+   */
+  public function match(int $workId, array $data)
+  {
+    $work = $this->workById($workId);
+
+    if(!$work->is_owner){
+      return [
+        'error' => '不正な操作の可能性があります'
+      ];
+    }
+
+    $applierData = [
+      $data['applier_id'] => ['match_flag' => 1]
+    ];
+
+    $work->appliers()->sync($applierData);
+
+    return $work;
+  }
+
   public function scout(array $data)
   {
     $work = $this->workById($data['work_id']);
