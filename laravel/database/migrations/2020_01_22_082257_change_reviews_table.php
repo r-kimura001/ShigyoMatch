@@ -15,8 +15,12 @@ class ChangeReviewsTable extends Migration
     {
       Schema::table('reviews', function(Blueprint $table){
         $table->dropColumn('work_id');
-        $table->bigInteger('apply_id')->after('id');
+        $table->bigInteger('apply_id')->nullable()->after('id');
       });
+      Schema::table('reviews', function(Blueprint $table){
+        $table->bigInteger('apply_id')->nullable(false)->change();
+      });
+
     }
 
     /**
@@ -28,7 +32,11 @@ class ChangeReviewsTable extends Migration
     {
       Schema::table('reviews', function(Blueprint $table){
         $table->dropColumn('apply_id');
-        $table->bigInteger('work_id')->after('id');
+        $table->bigInteger('work_id')->nullable()->after('id');
+      });
+      Schema::table('reviews', function(Blueprint $table){
+        $table->dropColumn('apply_id');
+        $table->bigInteger('work_id')->nullable(false)->change();
       });
     }
 }
