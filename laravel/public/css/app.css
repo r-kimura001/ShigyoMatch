@@ -823,6 +823,7 @@ td {
           transform: scale3d(0, 0, 1);
   min-width: 130px;
   text-align: center;
+  padding-bottom: 5px;
 }
 
 .AuthNav .AuthNav_menu::after {
@@ -845,8 +846,8 @@ td {
   -webkit-transition: 0.3s;
   transition: 0.3s;
   text-align: left;
-  padding: 10px 10px 10px 80px;
-  background-position: left 58px center;
+  padding: 10px 10px 10px 65px;
+  background-position: left 43px center;
   background-size: 1.4rem;
   background-repeat: no-repeat;
 }
@@ -856,16 +857,21 @@ td {
 }
 
 .AuthNav .AuthNav_item.\--title {
-  text-align: center;
-  padding: 15px;
   cursor: initial;
-  width: 230px;
+  width: 200px;
+  padding: 10px 15px;
   white-space: normal;
   line-height: 1.5;
 }
 
 .AuthNav .AuthNav_item.\--title:hover {
   background: transparent;
+}
+
+.AuthNav .AuthNav_item .AuthNav_menuTitle {
+  display: block;
+  padding: 10px 5px 15px;
+  border-bottom: 1px solid #dedede;
 }
 
 .AuthNav.\--open .AuthNav_menu {
@@ -914,6 +920,51 @@ td {
 .BorderButton.\--yellow:hover {
   color: #fefefe;
   background: #fabd3e;
+}
+
+.BorderButton.\--orange {
+  color: #EC7211;
+  border-color: #EC7211;
+}
+
+.BorderButton.\--orange:hover {
+  color: #fefefe;
+  background: #EC7211;
+}
+
+.BorderButton.\--orange.\--disable {
+  border-color: #a8a3a7;
+  color: #a8a3a7;
+  pointer-events: none;
+}
+
+.BorderButton.\--orange.\--disable:hover::after {
+  content: attr(data-desc);
+  position: absolute;
+  top: -100%;
+  left: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  font-size: 1rem;
+  color: #fefefe;
+  background: #626d78;
+  padding: 8px;
+  border-radius: 5px;
+}
+
+.BorderButton.\--orange.\--disable:hover::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: calc(50% + 5px);
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 12px 12px 0 0;
+  border-color: #626d78 transparent transparent transparent;
+  -webkit-transform: translateY(-100%);
+          transform: translateY(-100%);
+  color: #fefefe;
 }
 
 .BorderButton.\--danger {
@@ -972,6 +1023,10 @@ td {
 
 .Button.\--danger {
   background: #e44963;
+}
+
+.Button.\--orange {
+  background: #EC7211;
 }
 
 .Button.\--flex {
@@ -1039,6 +1094,29 @@ td {
   box-shadow: none;
   position: relative;
   top: 4px;
+}
+
+.Button.\--close {
+  background-image: url(https://asset.shigyo-match.site/assets/icon-close-white.svg);
+  background-size: 18px;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-width: initial;
+  width: 35px;
+  height: 35px;
+  border: 2px solid #fefefe;
+  background-color: #333333;
+}
+
+.Button.\--review {
+  min-width: initial;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  font-size: 1.6rem;
+  line-height: 1;
+  padding: 7px 0;
+  background-color: #EC7211;
 }
 
 .Button.\--disable {
@@ -1284,7 +1362,7 @@ td {
   border-radius: 8px;
   background: #fefefe;
   box-shadow: 0 1px 5px #dedede;
-  width: 300px;
+  width: 260px;
   flex-shrink: 0;
 }
 
@@ -1297,7 +1375,7 @@ td {
 }
 
 .CustomerInfoLayout .CustomerInfoLayout_headingBox {
-  padding: 20px;
+  padding: 15px;
 }
 
 .CustomerInfoLayout .CustomerInfoLayout_headingBox:not(:last-of-type) {
@@ -1327,12 +1405,12 @@ td {
   color: #a8a3a7;
   line-height: 1.5;
   white-space: pre-line;
-  padding: 5px 40px 15px;
+  padding: 5px 20px 15px;
 }
 
 @media screen and (max-width: 480px) {
   .CustomerInfoLayout .CustomerInfoLayout_greeting {
-    padding: 5px 20px 15px;
+    padding: 5px 10px 15px;
   }
 }
 
@@ -2487,6 +2565,23 @@ td {
   }
 }
 
+.Modal .Modal_heading {
+  padding: 15px 0;
+  border-bottom: 1px solid #dedede;
+}
+
+.Modal .Modal_body {
+  max-height: 300px;
+  overflow-y: scroll;
+  padding-top: 15px;
+}
+
+.Modal .Modal_close {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+}
+
 .Modal.\--hidden {
   pointer-events: none;
   opacity: 0;
@@ -2537,17 +2632,12 @@ td {
 .MypageContent .MypageContent_main {
   margin-left: 240px;
   background: #F4F4F4;
+  padding: 10px;
 }
 
 @media screen and (max-width: 768px) {
   .MypageContent .MypageContent_main {
     margin: 0;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .MypageContent .MypageContent_main {
-    padding: 0 10px;
   }
 }
 
@@ -2613,6 +2703,12 @@ td {
 
 .MypageContent .MypageContent_body {
   padding: 0 10px;
+}
+
+@media screen and (max-width: 670px) {
+  .MypageContent .MypageContent_body {
+    padding: 0;
+  }
 }
 
 .Number {
@@ -2841,6 +2937,141 @@ td {
   color: #004161;
   font-weight: bold;
   margin-left: 5px;
+}
+
+.ReviewForm {
+  width: 200px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.ReviewForm .ReviewForm_button.\--remove {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
+.ReviewForm .ReviewForm_button.\--add {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
+.ReviewFormLayout .ReviewFormLayout_workInfo {
+  font-size: 1.4rem;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  color: #a8a3a7;
+  position: relative;
+  z-index: 1;
+}
+
+.ReviewFormLayout .ReviewFormLayout_form {
+  max-width: 90%;
+  margin: 0 auto;
+}
+
+.ReviewFormLayout .ReviewFormLayout_workHeading {
+  text-align: center;
+  padding: 10px;
+}
+
+.ReviewFormLayout .ReviewFormLayout_workThumb {
+  width: 100%;
+}
+
+.ReviewFormLayout .ReviewFormLayout_workMain {
+  transition: -webkit-transform 0.3s;
+  transition: transform 0.3s;
+  transition: transform 0.3s, -webkit-transform 0.3s;
+  -webkit-transition: -webkit-transform 0.3s;
+  -webkit-transform-origin: center top;
+          transform-origin: center top;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  position: absolute;
+  top: 42px;
+  left: 50%;
+  width: 90%;
+  background: white;
+  border: 1px solid #dedede;
+  padding: 10px;
+}
+
+.ReviewFormLayout .ReviewFormLayout_workMain::before {
+  content: "";
+  position: absolute;
+  top: -24px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-width: 12px;
+  border-style: solid;
+  border-color: transparent transparent #dedede transparent;
+}
+
+.ReviewFormLayout .ReviewFormLayout_workMain::after {
+  content: "";
+  position: absolute;
+  top: -22px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-width: 11px 12px 12px 12px;
+  border-style: solid;
+  border-color: transparent transparent #fefefe transparent;
+}
+
+.ReviewFormLayout .ReviewFormLayout_workMain .ReviewFormLayout_workItem {
+  padding: 10px;
+  text-align: left;
+  white-space: pre-line;
+}
+
+.ReviewFormLayout .ReviewFormLayout_workMain.\--hidden {
+  font-size: 0;
+  -webkit-transform: translateX(-50%) scale3d(1, 0, 1);
+          transform: translateX(-50%) scale3d(1, 0, 1);
+}
+
+.ReviewFormLayout .ReviewFormLayout_toggle {
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  position: relative;
+}
+
+.ReviewFormLayout .ReviewFormLayout_toggle::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-size: 20px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url(https://asset.shigyo-match.site/assets/icon-toggle-gray.svg);
+  -webkit-transform-origin: center;
+          transform-origin: center;
+  transition: -webkit-transform 0.3s;
+  transition: transform 0.3s;
+  transition: transform 0.3s, -webkit-transform 0.3s;
+  -webkit-transition: -webkit-transform 0.3s;
+}
+
+.ReviewFormLayout .ReviewFormLayout_toggle.\--open::after {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
 }
 
 .ScoutList .ScoutList_scoutInfo {

@@ -12,17 +12,17 @@ export default {
   props: {
     score: {
       type: Number,
-      default: 0,
+      default: 1,
     },
   },
   data() {
     return {
-      scoreLimit: 5,
+      maxScore: 5,
     }
   },
   computed: {
     frontWidth() {
-      return Math.ceil((this.score / this.scoreLimit) * 100)
+      return Math.ceil((this.score / this.maxScore) * 100)
     },
   },
   methods: {

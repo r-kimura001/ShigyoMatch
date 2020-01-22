@@ -30,6 +30,9 @@
     &.--danger{
         background: $redPink;
     }
+    &.--orange{
+      background: $orange;
+    }
     &.--flex{
         width: 100%;
         max-width: 240px;
@@ -84,6 +87,28 @@
           position: relative;
           top: 4px;
       }
+    }
+
+    &.--close{
+      background-image: url(#{$assetPath}/icon-close-white.svg);
+      background-size: 18px;
+      background-position: center;
+      background-repeat: no-repeat;
+      min-width: initial;
+      width: 35px;
+      height: 35px;
+      border: 2px solid $white;
+      background-color: $black;
+    }
+    &.--review{
+      min-width: initial;
+      width: 30px;
+      height: 30px;
+      text-align: center;
+      font-size: 1.6rem;
+      line-height: 1;
+      padding: 7px 0;
+      background-color: $orange;
     }
 
     &.--disable{

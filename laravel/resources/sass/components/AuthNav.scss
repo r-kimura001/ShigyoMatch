@@ -25,6 +25,7 @@
     transform: scale3d(0,0,1);
     min-width: 130px;
     text-align: center;
+    padding-bottom: 5px;
     &::after{
       content: '';
       position: absolute;
@@ -44,23 +45,28 @@
     cursor: pointer;
     transition: $transitionBasis;
     text-align: left;
-    @include iconFix(10px, 80px, 58px, 1.4rem);
+    @include iconFix(10px, 65px, 43px, 1.4rem);
 
     &:hover{
       background-color: $gray-2;
     }
 
     &.--title{
-      text-align: center;
-      padding: 15px;
       cursor: initial;
-      width: 230px;
+      width: 200px;
+      padding: 10px 15px;
       white-space: normal;
       line-height: 1.5;
       &:hover{
         background: transparent;
       }
     }
+    .AuthNav_menuTitle{
+      display: block;
+      padding: 10px 5px 15px;
+      border-bottom: 1px solid $gray-3;
+    }
+
   }
 
   &.--open{

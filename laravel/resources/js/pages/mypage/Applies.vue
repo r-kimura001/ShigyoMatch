@@ -1,5 +1,5 @@
 <template>
-  <div class="p-applys u-pa20">
+  <div class="p-applys">
     <h2>Applies</h2>
     <section class="MypageContent_box">
       <div class="MypageContent_tabs">
@@ -67,6 +67,7 @@
             <table>
               <thead>
               <tr>
+                <th class="Table_headText">マッチ</th>
                 <th class="Table_headText">操作</th>
                 <th class="Table_headText">募集タイトル</th>
                 <th class="Table_headText">申込者</th>
@@ -84,6 +85,8 @@
                       <i class="fas fa-heart" v-if="isActive(applier)" @mouseleave="toggleHeart(applier)"></i>
                       <i class="far fa-heart" v-else @mouseenter="toggleHeart(applier)"></i>
                     </button>
+                  </td>
+                  <td>
                     <button
                       class="Button --minimum"
                       @click="showDetail(applier)"

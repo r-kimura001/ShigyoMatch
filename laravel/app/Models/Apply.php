@@ -17,6 +17,16 @@ class Apply extends Model implements CanDeleteRelationInterface
 
   protected $table = 'applies';
 
+  public function getIsReviewAttribute()
+  {
+    if(Auth::guest()){
+      return false;
+    }
+    return $this->reviews->contains(function($review){
+      return $review->reviewer_id === Auth::user()->customer_id;
+    });
+  }
+
   /**
    * @return \Illuminate\Database\Eloquent\Relations\HasMany
    */
@@ -38,7 +48,20 @@ class Apply extends Model implements CanDeleteRelationInterface
   {
     return $this->hasOne(Customer::class, 'id', 'applier_id');
   }
+  /**
+   * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+   */
+  public function reviewers()
+  {
+    return $this->belongsToMany(Customer::class, 'reviews','apply_id', 'reviewer_id');
+  }
 
+  public function reviews()
+  {
+    return $this->hasMany(Review::class, 'apply_id', 'id');
+  }
+
+  protected $appends = ['is_review'];
   protected $hidden = ['applier_id', 'work_id'];
 
   public function getDeleteRelations()

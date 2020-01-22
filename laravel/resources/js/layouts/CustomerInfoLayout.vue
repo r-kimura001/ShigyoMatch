@@ -15,7 +15,7 @@
           {{ customer.greeting }}
         </p>
         <div class="u-alignCenter">
-          <ScoutButton :id="customer.id" v-if="!self"></ScoutButton>
+          <ScoutButton :id="customer.id" :author="author" v-if="!self"></ScoutButton>
         </div>
       </div>
       <!-- CustomerInfoLayout_headingBox -->
@@ -155,6 +155,9 @@ export default {
       return this.customer.profession_types
     },
     self(){
+      if(!this.isLogin){
+        return false
+      }
       return this.customer.id === this.author.id
     }
   },

@@ -5,12 +5,10 @@
   .MypageContent_main{
     margin-left: $sidebarWidth;
     background: $customerDetailBg;
+    padding: 10px;
 
     @include media(){
       margin: 0;
-    }
-    @include media(sm){
-      padding: 0 10px;
     }
   }
   .MypageContent_sidebar{
@@ -67,5 +65,8 @@
   }
   .MypageContent_body{
     padding: 0 10px;
+    @include media(sm-y){
+      padding: 0;
+    }
   }
 }

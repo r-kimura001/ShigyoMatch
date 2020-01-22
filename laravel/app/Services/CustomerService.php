@@ -84,6 +84,10 @@ class CustomerService extends Service
    */
   public function update(Customer $customer, array $data)
   {
+    if($customer->id === Customer::TEST_ID){
+      $data['login_id'] = 'testuser';
+      $data['email'] = 'sample@example.com';
+    }
     $customer->updateByUser($data);
     $customer->user->updateByUser($data);
 

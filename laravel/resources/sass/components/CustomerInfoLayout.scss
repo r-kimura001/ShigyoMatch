@@ -10,7 +10,7 @@
     border-radius: 8px;
     background: $white;
     box-shadow: 0 1px 5px $gray-3;
-    width: 300px;
+    width: 260px;
     flex-shrink: 0;
 
     @include media(lg){
@@ -20,7 +20,7 @@
     }
   }
   .CustomerInfoLayout_headingBox{
-    padding: 20px;
+    padding: 15px;
 
     &:not(:last-of-type){
       border-bottom: 1px solid $gray-3;
@@ -48,10 +48,10 @@
     color: $gray;
     line-height: 1.5;
     white-space: pre-line;
-    padding: 5px 40px 15px;
+    padding: 5px 20px 15px;
 
     @include media(sm){
-      padding: 5px 20px 15px;
+      padding: 5px 10px 15px;
     }
   }
   .CustomerInfoLayout_label{

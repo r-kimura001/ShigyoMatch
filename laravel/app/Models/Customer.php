@@ -16,6 +16,7 @@ class Customer extends Model implements CanDeleteRelationInterface
   use HandledByUser;
   use SoftDeletes;
 
+  const TEST_ID = 1;
   const COUNT_PER_PAGE = 12;
   const RELATIONS_ARRAY = [ 'professionTypes', 'user', 'works.skills', 'works.professionType', 'applyWorks'];
 
@@ -112,6 +113,15 @@ class Customer extends Model implements CanDeleteRelationInterface
   public function favorites()
   {
     return $this->belongsToMany(Work::class, 'favorites', 'customer_id', 'work_id')->withTimestamps();
+  }
+
+  /**
+   * リレーション - カスタマー（Auth::user）がした評価
+   * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+   */
+  public function reviews()
+  {
+    return $this->belongsToMany(Apply::class, 'reviews', 'reviewer_id', 'apply_id')->withTimestamps()->withPivot('point', 'comment', 'reviewee_id');
   }
 
   protected $appends = [ 'full_address' ];

@@ -43,6 +43,9 @@ Route::post('/messages/store', 'MessageController@store')->name('message.store')
 Route::get('/messages/{customerId}/show_apply', 'MessageController@showApplyOnlyHasMessage')->name('message.showApplyOnlyHasMessage');
 Route::get('/messages/{customerId}/show_applied', 'MessageController@showAppliedOnlyHasMessage')->name('message.showAppliedOnlyHasMessage');
 
+// レビュー
+Route::post('/customers/{reviewerId}/reviews/store', 'ReviewController@store')->name('review.store');
+
 // スカウト
 Route::post('/scout', 'ScoutController@store')->name('scout.store');
 Route::get('/customers/{id}/scouted', 'CustomerController@scoutedWorks')->name('customer.scoutedWorks');
