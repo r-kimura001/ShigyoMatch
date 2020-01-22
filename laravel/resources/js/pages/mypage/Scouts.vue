@@ -1,5 +1,5 @@
 <template>
-  <div class="p-scouts u-pa20">
+  <div class="p-scouts">
     <h2>Scouts</h2>
     <section class="MypageContent_box">
       <div class="MypageContent_tabs">

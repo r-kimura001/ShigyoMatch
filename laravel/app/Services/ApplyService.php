@@ -79,7 +79,7 @@ class ApplyService extends Service
 
   public function matches(int $customerId)
   {
-    $customer = $this->customerRep->findById(['applies.work.customer'], $customerId);
+    $customer = $this->customerRep->findById(['applies.work.customer', 'applies.reviews'], $customerId);
     return $customer->applies->filter(function($apply){
       return $apply->match_flag;
     });
@@ -87,7 +87,7 @@ class ApplyService extends Service
 
   public function matcheds(int $customerId)
   {
-    $customer = $this->customerRep->findById(['works.applies.applier', 'works.applies.work'], $customerId);
+    $customer = $this->customerRep->findById(['works.applies.applier', 'works.applies.work', 'works.applies.reviews'], $customerId);
     $applies = $customer->works->map( function($work) {
       return $work->applies;
     })->flatten();

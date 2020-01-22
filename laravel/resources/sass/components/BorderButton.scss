@@ -33,6 +33,46 @@
       background: $yellow;
     }
   }
+  &.--orange{
+    color: $orange;
+    border-color: $orange;
+    &:hover{
+      color: $white;
+      background: $orange;
+    }
+    &.--disable{
+      border-color: $gray;
+      color: $gray;
+      pointer-events: none;
+      &:hover{
+        &::after {
+          content: attr(data-desc);
+          position: absolute;
+          top: -100%;
+          left: 50%;
+          transform: translateY(-50%);
+          font-size: 1rem;
+          color: $white;
+          background: $deepGray;
+          padding: 8px;
+          border-radius: 5px;
+        }
+        &::before{
+          content: '';
+          position: absolute;
+          top: 0;
+          left: calc(50% + 5px);
+          width: 0;
+          height: 0;
+          border-style: solid;
+          border-width: 12px 12px 0 0;
+          border-color: $deepGray transparent transparent transparent;
+          transform: translateY(-100%);
+          color: $white;
+        }
+      }
+    }
+  }
   &.--danger{
     color: $redPink;
     border-color: $redPink;

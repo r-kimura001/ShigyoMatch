@@ -1,7 +1,7 @@
 <template>
-  <div class="p-matches u-pa20">
+  <div class="p-matches">
     <section class="MypageContent_box">
-      <h3 class="MypageContent_title u-pa20">
+      <h3 class="MypageContent_title">
         <span>マッチした案件</span>
       </h3>
       <div class="MypageContent_body">
@@ -12,7 +12,8 @@
               <th class="Table_headText">あなたは</th>
               <th class="Table_headText">募集タイトル</th>
               <th class="Table_headText">お相手</th>
-              <th class="Table_headText">申込日時</th>
+              <th class="Table_headText">最終更新日時</th>
+              <th class="Table_headText">操作</th>
             </tr>
             </thead>
             <tbody>
@@ -41,7 +42,21 @@
                 </RouterLink>
               </td>
               <td>
-                <div class="Table_dataText">{{ apply.created_at }}</div>
+                <div class="Table_dataText">{{ apply.updated_at }}</div>
+              </td>
+              <td>
+                <button
+                  class="BorderButton --minimum --orange"
+                  :class="{'--disable': apply.is_review}"
+                  @click="showReviewForm(apply.id)"
+                >
+                  {{ reviewResult(apply) }}
+                </button>
+                <ReviewFormLayout
+                  :apply="apply"
+                  :reviewee="target(apply)"
+                  :currentId="currentId"
+                  @onClickClose="closeModal"></ReviewFormLayout>
               </td>
             </tr>
             </tbody>
@@ -53,6 +68,7 @@
   </div>
 </template>
 <script>
+  import ReviewFormLayout from '@/layouts/ReviewFormLayout'
   import { OK } from '@/util'
   import styles from '@/mixins/styles'
 export default {
@@ -62,6 +78,9 @@ export default {
       required: true,
       default: () => ({}),
     },
+  },
+  components: {
+    ReviewFormLayout
   },
   mixins: [ styles ],
   data(){
@@ -77,7 +96,9 @@ export default {
         1: '\#177cc0',
         2: '\#e4406f'
       },
+      test: null,
       hasData: true,
+      currentId: 0,
     }
   },
   watch: {
@@ -89,7 +110,6 @@ export default {
       },
       immediate: true
     }
-
   },
   methods: {
     async setMatches(){
@@ -104,7 +124,7 @@ export default {
     async matches(){
       const response = await axios.get(`/api/customers/${this.customer.id}/matches`)
       if(response.status === OK ){
-        return response.data.map( apply => {
+        return Object.keys(response.data).map( key => response.data[key]).map( apply => {
           apply.status = this.applierStatus
           return apply
         })
@@ -136,6 +156,15 @@ export default {
       return {
         backgroundColor: this.color[id],
       }
+    },
+    showReviewForm(applyId){
+      this.currentId = applyId
+    },
+    closeModal(){
+      this.currentId = 0
+    },
+    reviewResult(apply){
+      return apply.is_review ? 'レビュー済み' : 'レビューを書く'
     }
   }
 

@@ -17,16 +17,35 @@
         </section>
       </div>
     </div>
-    <RouterLink to="/works/create" tag="button" class="Button --pink --fixed"
-      >募集を投稿する</RouterLink
+    <button
+      v-if="author"
+      class="Button --pink --fixed"
+      @click="toCreate()"
+      >案件を募集する</button
     >
   </div>
 </template>
 <script>
 import WorkListLayout from '@/layouts/WorkListLayout'
 import apiIndexHandler from '@/mixins/apiIndexHandler'
+import { mapState } from 'vuex'
 export default {
   components: { WorkListLayout },
   mixins: [apiIndexHandler],
+  computed: {
+    ...mapState({
+      author: state => state.auth.customer
+    })
+  },
+  methods: {
+    toCreate(){
+      if(!this.author){
+        alert('募集案件を投稿するにはログインしてください')
+        return false
+      }else{
+        this.$router.push('/works/create')
+      }
+    }
+  }
 }
 </script>

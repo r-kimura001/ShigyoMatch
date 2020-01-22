@@ -34,6 +34,10 @@
           v-if="formItem.type === 'professionTypes'"
           :item="formItem"
         ></ProfessionTypes>
+        <ReviewForm
+          v-if="formItem.type === 'review'"
+          :item="formItem"
+        ></ReviewForm>
       </div>
       <div class="Form_row u-alignCenter">
         <button
@@ -60,6 +64,7 @@ import TextareaBox from '@/components/form/TextareaBox'
 import Url from '@/components/form/Url'
 import Filebox from '@/components/form/Filebox'
 import ProfessionTypes from '@/components/form/ProfessionTypes'
+import ReviewForm from '@/components/form/ReviewForm'
 import { mapGetters } from 'vuex'
 export default {
   components: {
@@ -75,6 +80,7 @@ export default {
     Url,
     Filebox,
     ProfessionTypes,
+    ReviewForm,
   },
   props: {
     FormData: {
