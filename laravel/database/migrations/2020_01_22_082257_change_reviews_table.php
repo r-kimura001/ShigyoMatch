@@ -35,7 +35,6 @@ class ChangeReviewsTable extends Migration
         $table->bigInteger('work_id')->nullable()->after('id');
       });
       Schema::table('reviews', function(Blueprint $table){
-        $table->dropColumn('apply_id');
         $table->bigInteger('work_id')->nullable(false)->change();
       });
     }
