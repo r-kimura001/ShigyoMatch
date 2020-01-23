@@ -4409,7 +4409,7 @@ __webpack_require__.r(__webpack_exports__);
           desc: '案件とマッチしそうな事務所をスカウトしてみましょう。\n募集内容に興味を持ったお相手からは、申込が届きます。',
           image: 'assets/lawyer.svg',
           link: {
-            text: '人材のお探しの方',
+            text: '人材をお探しの方',
             path: '/customers',
             "class": {
               '--pink': true
@@ -4433,8 +4433,8 @@ __webpack_require__.r(__webpack_exports__);
           desc: '高評価やフォロワーが増えると、さらなる案件獲得につながります。\nまずはプロフィールを充実させましょう',
           image: "assets/smile_review.svg",
           link: {
-            text: '人材のお探しの方',
-            path: '/customers',
+            text: 'アカウントをお持ちの方',
+            path: '/login',
             "class": {
               '': true
             }
