@@ -26,9 +26,13 @@ class WorkController extends Controller
     $this->fileUploadService = $fileUploadService;
   }
 
-  public function index()
+  /**
+   * @param Request $request
+   * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+   */
+  public function index(Request $request)
   {
-    return response($this->workService->paginate(), 200);
+    return response($this->workService->paginate($request->all()), 200);
   }
 
   /**

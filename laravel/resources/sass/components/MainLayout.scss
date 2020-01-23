@@ -6,10 +6,10 @@
     padding: 40px 10px;
   }
   @include media(){
-    padding: 20px 0;
+    padding: 20px;
   }
   @include media(sm){
-    padding: 10px 0;
+    padding: 10px;
   }
 
   .MainLayout_heading{

@@ -1,0 +1,66 @@
+.Introductions{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 800px;
+  margin: 0 auto;
+
+  .Introductions_item{
+    flex-grow: 1;
+    width: 100%;
+    max-width: calc(100% / 3 - 20px);
+    margin: 10px;
+    border: 1px solid $gray-3;
+    opacity: 0;
+    animation: phrasein 3s ease-in-out forwards;
+  }
+  .Introductions_heading{
+    padding-top: calc(100% - 60px);
+    position: relative;
+    border-radius: 9999px;
+    margin: 15px 30px 20px;
+    overflow: hidden;
+  }
+  .Introductions_thumb{
+    @include cover();
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .Introductions_title{
+    padding-bottom: 15px;
+    color: $deepGreen;
+    font-weight: bold;
+    text-align: center;
+  }
+  .Introductions_desc{
+    white-space: pre-line;
+    font-size: 1.3rem;
+    line-height: 1.3;
+    padding: 0 30px;
+    color: $gray;
+    height: 100px;
+    @include media(){
+      height: 120px;
+    }
+    @include media(sm-y){
+      height: 70px;
+    }
+  }
+  .Introductions_link{
+    padding: 0 25px 20px;
+  }
+
+  @include media(sm-y){
+    justify-content: flex-start;
+    .Introductions_item{
+      max-width: 330px;
+      margin: 20px auto;
+    }
+    .Introductions_link{
+      padding: 0 10px 20px;
+    }
+  }
+
+
+}

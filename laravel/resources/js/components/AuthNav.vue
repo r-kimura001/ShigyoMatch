@@ -65,7 +65,7 @@ export default {
     },
   },
   watch: {
-    // ルートが変更されたらfetchDataメソッドを再び呼び出します
+    // ルートが変更されたらfetchDataメソッドを再び呼び出す
     $route: 'fetchData',
   },
   methods: {

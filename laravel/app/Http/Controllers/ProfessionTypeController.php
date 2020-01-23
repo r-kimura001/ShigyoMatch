@@ -26,6 +26,14 @@ class ProfessionTypeController extends Controller
   {
     $professionType = $this->professionTypeService->findById($id);
     return $professionType->selectables;
+  }
 
+  /**
+   * @param Request $request
+   * @return \App\Repositories\ProfessionTypeRepository
+   */
+  public function idByBody(Request $request)
+  {
+    return $this->professionTypeService->idByBody($request->body);
   }
 }

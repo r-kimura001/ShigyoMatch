@@ -588,6 +588,13 @@ ol {
   font-size: 62.5%;
 }
 
+@font-face {
+  font-family: "makiba";
+  font-style: normal;
+  font-weight: 400;
+  src: url(/fonts/makibafontp13.ttf?473172c69bd0c8f2f84d47e007dd026a) format("truetype");
+}
+
 body {
   font-size: 1.8rem;
   font-family: YakuHanJP, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", Meiryo, sans-serif;
@@ -680,6 +687,109 @@ td {
   background: #ccc;
   border-radius: 10px;
   box-shadow: inset 0 0 0 2px transparent;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 2s;
+  -webkit-transition: opacity 2s;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
+@-webkit-keyframes fadeout {
+  0% {
+    opacity: 1;
+  }
+
+  67% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeout {
+  0% {
+    opacity: 1;
+  }
+
+  67% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+
+  67% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+
+  67% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes phrasein {
+  0% {
+    -webkit-transform: translateY(20%);
+            transform: translateY(20%);
+    opacity: 0;
+  }
+
+  67% {
+    opacity: 0;
+  }
+
+  100% {
+    -webkit-transform: none;
+            transform: none;
+    opacity: 1;
+  }
+}
+
+@keyframes phrasein {
+  0% {
+    -webkit-transform: translateY(20%);
+            transform: translateY(20%);
+    opacity: 0;
+  }
+
+  67% {
+    opacity: 0;
+  }
+
+  100% {
+    -webkit-transform: none;
+            transform: none;
+    opacity: 1;
+  }
 }
 
 .ApplyDetail {
@@ -1041,6 +1151,7 @@ td {
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
   width: 280px;
+  z-index: 129;
 }
 
 .Button.\--small {
@@ -1074,7 +1185,7 @@ td {
 }
 
 .Button.\--hasShadow {
-  max-width: 150px;
+  min-width: initial;
   padding: 8px 12px;
   border-radius: 10px;
   box-shadow: 0 4px 0 #349d9d;
@@ -1918,10 +2029,21 @@ td {
   text-align: center;
   font-size: 1.4rem;
   padding: 20px 10px;
+  position: relative;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+          justify-content: center;
 }
 
 .GlobalNav .GlobalNav_menu .GlobalNav_item:hover {
   color: #cccccc;
+}
+
+.GlobalNav .GlobalNav_menu .GlobalNav_item:hover .GlobalNav_children {
+  color: #333333;
 }
 
 .GlobalNav .GlobalNav_menu .GlobalNav_item.\--current {
@@ -1932,6 +2054,79 @@ td {
 
 .GlobalNav .GlobalNav_menu .GlobalNav_item.\--u-md {
   display: none;
+}
+
+.GlobalNav .GlobalNav_menu .GlobalNav_item .GlobalNav_childrenToggle {
+  display: none;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .GlobalNav .GlobalNav_menu .GlobalNav_item .GlobalNav_childrenToggle {
+    display: inline-block;
+  }
+}
+
+.GlobalNav .GlobalNav_menu .GlobalNav_item .GlobalNav_childrenToggle::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  width: 20px;
+  height: 20px;
+  background-size: cover;
+  background-position: center;
+  background-image: url(https://asset.shigyo-match.site/assets/icon-toggle-gray.svg);
+  -webkit-transform-origin: center;
+          transform-origin: center;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  transition: -webkit-transform 0.3s;
+  transition: transform 0.3s;
+  transition: transform 0.3s, -webkit-transform 0.3s;
+  -webkit-transition: -webkit-transform 0.3s;
+}
+
+.GlobalNav .GlobalNav_menu .GlobalNav_item .GlobalNav_childrenToggle.\--open::after {
+  -webkit-transform: translateY(-50%) rotate(180deg);
+          transform: translateY(-50%) rotate(180deg);
+}
+
+.GlobalNav .GlobalNav_menu .GlobalNav_item .GlobalNav_children {
+  position: absolute;
+  top: 50px;
+  left: 0;
+  right: 0;
+  background: #fefefe;
+  font-size: 1.4rem;
+  transition: 0.3s;
+  -webkit-transition: 0.3s;
+  -webkit-transform-origin: center top;
+          transform-origin: center top;
+  -webkit-transform: scale3d(1, 0, 1);
+          transform: scale3d(1, 0, 1);
+  z-index: 1;
+}
+
+.GlobalNav .GlobalNav_menu .GlobalNav_item .GlobalNav_children.\--show {
+  -webkit-transform: none;
+          transform: none;
+}
+
+.GlobalNav .GlobalNav_menu .GlobalNav_item .GlobalNav_children .GlobalNav_childrenItem {
+  padding: 10px;
+  text-align: center;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.GlobalNav .GlobalNav_menu .GlobalNav_item .GlobalNav_children .GlobalNav_childrenItem:hover {
+  color: #a8a3a7 !important;
 }
 
 @media screen and (max-width: 768px) {
@@ -2039,6 +2234,12 @@ td {
   margin-top: 56px;
 }
 
+@media screen and (max-width: 768px) {
+  .Header .Header_fix {
+    margin-top: 51px;
+  }
+}
+
 .Header .Header_buttons {
   display: -webkit-box;
   display: flex;
@@ -2116,6 +2317,95 @@ td {
   }
 }
 
+.Introductions {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: center;
+          justify-content: center;
+  flex-wrap: wrap;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.Introductions .Introductions_item {
+  -webkit-box-flex: 1;
+          flex-grow: 1;
+  width: 100%;
+  max-width: calc(100% / 3 - 20px);
+  margin: 10px;
+  border: 1px solid #dedede;
+  opacity: 0;
+  -webkit-animation: phrasein 3s ease-in-out forwards;
+          animation: phrasein 3s ease-in-out forwards;
+}
+
+.Introductions .Introductions_heading {
+  padding-top: calc(100% - 60px);
+  position: relative;
+  border-radius: 9999px;
+  margin: 15px 30px 20px;
+  overflow: hidden;
+}
+
+.Introductions .Introductions_thumb {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.Introductions .Introductions_title {
+  padding-bottom: 15px;
+  color: #349d9d;
+  font-weight: bold;
+  text-align: center;
+}
+
+.Introductions .Introductions_desc {
+  white-space: pre-line;
+  font-size: 1.3rem;
+  line-height: 1.3;
+  padding: 0 30px;
+  color: #a8a3a7;
+  height: 100px;
+}
+
+@media screen and (max-width: 768px) {
+  .Introductions .Introductions_desc {
+    height: 120px;
+  }
+}
+
+@media screen and (max-width: 670px) {
+  .Introductions .Introductions_desc {
+    height: 70px;
+  }
+}
+
+.Introductions .Introductions_link {
+  padding: 0 25px 20px;
+}
+
+@media screen and (max-width: 670px) {
+  .Introductions {
+    -webkit-box-pack: start;
+            justify-content: flex-start;
+  }
+
+  .Introductions .Introductions_item {
+    max-width: 330px;
+    margin: 20px auto;
+  }
+
+  .Introductions .Introductions_link {
+    padding: 0 10px 20px;
+  }
+}
+
 .Loader {
   -webkit-transition: 0.3s;
   transition: 0.3s;
@@ -2179,13 +2469,13 @@ td {
 
 @media screen and (max-width: 768px) {
   .MainLayout {
-    padding: 20px 0;
+    padding: 20px;
   }
 }
 
 @media screen and (max-width: 480px) {
   .MainLayout {
-    padding: 10px 0;
+    padding: 10px;
   }
 }
 
@@ -2243,7 +2533,121 @@ td {
 }
 
 .MainVisual {
-  background: #4CAF93;
+  max-width: 1380px;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+  padding-top: 37.5%;
+}
+
+@media screen and (max-width: 768px) {
+  .MainVisual {
+    padding-top: 50%;
+  }
+}
+
+.MainVisual_cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #333333;
+  opacity: 0.15;
+  z-index: 1;
+}
+
+.MainVisual_panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  -webkit-animation: fuwa 16s linear infinite;
+          animation: fuwa 16s linear infinite;
+}
+
+.MainVisual_phrase {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  -webkit-animation: phrasein 1.5s linear forwards;
+          animation: phrasein 1.5s linear forwards;
+  -webkit-animation-delay: 2s;
+          animation-delay: 2s;
+  font-family: "makiba", YakuHanJP, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", Meiryo, sans-serif;
+  z-index: 2;
+  font-size: 6rem;
+  color: #fefefe;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: end;
+          align-items: flex-end;
+  opacity: 0;
+  transition: 0.3s;
+  -webkit-transition: 0.3s;
+}
+
+@media screen and (max-width: 768px) {
+  .MainVisual_phrase {
+    font-size: 5rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .MainVisual_phrase {
+    font-size: 3rem;
+  }
+}
+
+@-webkit-keyframes fuwa {
+  0% {
+    -webkit-transform: none;
+            transform: none;
+  }
+
+  5% {
+    opacity: 1;
+  }
+
+  25% {
+    opacity: 1;
+  }
+
+  30% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes fuwa {
+  0% {
+    -webkit-transform: none;
+            transform: none;
+  }
+
+  5% {
+    opacity: 1;
+  }
+
+  25% {
+    opacity: 1;
+  }
+
+  30% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0;
+  }
 }
 
 .Message {
@@ -3841,8 +4245,20 @@ td {
   background: #e9e9e9;
 }
 
-.p-top {
-  color: #df9201;
+.p-top .fadein-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #fefefe;
+  pointer-events: none;
+  opacity: 1;
+  z-index: 130;
+  transition: 0.3s;
+  -webkit-transition: 0.3s;
+  -webkit-animation: fadeout 1.5s linear forwards;
+          animation: fadeout 1.5s linear forwards;
 }
 
 .u-mt5 {

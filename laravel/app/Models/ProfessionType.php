@@ -27,6 +27,15 @@ class ProfessionType extends Model
   }
 
   /**
+   * 資格に紐付いているユーザー一覧
+   * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+   */
+  public function customers()
+  {
+    return $this->belongsToMany(Customer::class, 'customer_profession_types', 'profession_type_id', 'customer_id')->withPivot('register_number')->withTimestamps();
+  }
+
+  /**
    * リレーション　- 資格に紐付いている募集案件たち
    * @return \Illuminate\Database\Eloquent\Relations\HasMany
    */

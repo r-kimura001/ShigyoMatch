@@ -27,9 +27,9 @@ class WorkService extends Service
     return $this->workRep->all(Work::RELATIONS_ARRAY);
   }
 
-  public function paginate()
+  public function paginate(array $data)
   {
-    return $this->workRep->paginate(Work::RELATIONS_ARRAY);
+    return $this->workRep->paginate($data['professionTypeId'], Work::RELATIONS_ARRAY, 2);
   }
 
   public function store($data)

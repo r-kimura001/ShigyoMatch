@@ -3,6 +3,7 @@
   .GlobalNav_toggle{
     display: none;
   }
+
   .GlobalNav_menu{
     display: flex;
     align-items: center;
@@ -17,8 +18,16 @@
       text-align: center;
       font-size: 1.4rem;
       padding: 20px 10px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
       &:hover {
         color: $gray-2;
+        .GlobalNav_children{
+          color: $black;
+        }
       }
       &.--current{
         color: $orange;
@@ -27,6 +36,66 @@
       }
       &.--u-md{
         display: none;
+      }
+
+      .GlobalNav_childrenToggle{
+        display: none;
+        @include media(){
+          display: inline-block;
+        }
+        cursor: pointer;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+
+        &::after{
+          content: '';
+          position: absolute;
+          top: 50%;
+          right: 20px;
+          width: 20px;
+          height: 20px;
+          background-size: cover;
+          background-position: center;
+          background-image: url(#{$assetPath}/icon-toggle-gray.svg);
+          transform-origin: center;
+          transform: translateY(-50%);
+          transition: transform $transitionBasis;
+          -webkit-transition: -webkit-transform $transitionBasis;
+        }
+        &.--open{
+          &::after{
+            transform: translateY(-50%) rotate(180deg);
+          }
+        }
+      }
+
+      .GlobalNav_children{
+        position: absolute;
+        top: 50px;
+        left: 0;
+        right: 0;
+        background: $white;
+        font-size: 1.4rem;
+        transition: $transitionBasis;
+        -webkit-transition: $transitionBasis;
+        transform-origin: center top;
+        transform: scale3d(1, 0, 1);
+        z-index: 1;
+        &.--show{
+          transform: none;
+        }
+
+        .GlobalNav_childrenItem{
+          padding: 10px;
+          text-align: center;
+          transition: $transitionBasis;
+          &:hover{
+            color: $gray !important;
+          }
+        }
       }
     }
   }

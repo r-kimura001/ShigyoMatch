@@ -75,9 +75,11 @@ const routes = [
     component: Works,
     props: route => {
       const page = route.query.page
+      const skill = route.query.skill
       return {
         page: /^[1-9[0-9]*$/.test(page) ? page * 1 : 1,
-        paramPath: 'works'
+        paramPath: 'works',
+        skill: !skill ? '弁護士' : skill
       }
     }
   },
@@ -112,9 +114,11 @@ const routes = [
     component: Customers,
     props: route => {
       const page = route.query.page
+      const skill = route.query.skill
       return {
         page: /^[1-9[0-9]*$/.test(page) ? page * 1 : 1,
-        paramPath: 'customers'
+        paramPath: 'customers',
+        skill: !skill ? '弁護士' : skill
       }
     },
   },
