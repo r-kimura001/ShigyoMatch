@@ -63,6 +63,7 @@ Route::delete('/works/{id}/unfavorite', 'WorkController@unfavorite')->name('work
 
 // profession_types
 Route::get('/professions', 'ProfessionTypeController@index')->name('professionType.index');
+Route::get('/professionId', 'ProfessionTypeController@idByBody')->name('professionType.idByBody');
 Route::get('/professions/{id}/selectables', 'ProfessionTypeController@selectables')->name('professionType.selectables');
 
 // prefectures

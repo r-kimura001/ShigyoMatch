@@ -25,9 +25,13 @@ class CustomerController extends Controller
     $this->fileUploadService = $fileUploadService;
   }
 
-  public function index()
+  /**
+   * @param Request $request
+   * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+   */
+  public function index(Request $request)
   {
-    return $this->customerService->paginate();
+    return $this->customerService->customersByProfession($request->all());
   }
 
   /**

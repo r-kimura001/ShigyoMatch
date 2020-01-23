@@ -1,3 +1,56 @@
 .MainVisual{
-  background: $mainVisualBg;
+  max-width: $baseWidth;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+  padding-top: 37.5%;
+
+  @include media(){
+    padding-top: 50%;
+  }
+}
+.MainVisual_cover{
+  @include cover();
+  background: $black;
+  opacity: 0.15;
+  z-index: 1;
+}
+.MainVisual_panel{
+  @include cover();
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  animation: fuwa 16s linear infinite;
+}
+.MainVisual_phrase{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  @include phrasein();
+  animation-delay: 2s;
+  font-family: 'makiba', $mainFontFamily;
+  z-index: 2;
+  font-size: 6rem;
+  color: $white;
+  display: flex;
+  align-items: flex-end;
+  opacity: 0;
+  transition: $transitionBasis;
+  -webkit-transition: $transitionBasis;
+
+  @include media(){
+    font-size: 5rem;
+  }
+  @include media(sm){
+    font-size: 3rem;
+  }
+}
+
+@keyframes fuwa {
+  0% { transform: none; }
+  5% { opacity: 1; }
+  25% { opacity: 1; }
+  30% { opacity: 0; }
+  100% { opacity: 0; }
 }

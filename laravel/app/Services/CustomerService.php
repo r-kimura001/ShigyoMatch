@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Repositories\CustomerRepository;
 use App\Repositories\WorkRepository;
+use App\Repositories\ProfessionTypeRepository;
 use App\Models\Customer;
 use App\Models\User;
 use App\Models\Work;
@@ -14,6 +15,7 @@ class CustomerService extends Service
 {
   protected $customerRep;
   protected $workRep;
+  protected $professionTypeRep;
 
   /**
    * CustomerService constructor.
@@ -21,11 +23,13 @@ class CustomerService extends Service
    */
   public function __construct(
     CustomerRepository $customerRep,
-    WorkRepository $workRep
+    WorkRepository $workRep,
+    ProfessionTypeRepository $professionTypeRep
   )
   {
     $this->customerRep = $customerRep;
     $this->workRep = $workRep;
+    $this->professionTypeRep = $professionTypeRep;
   }
 
   /**
@@ -37,11 +41,13 @@ class CustomerService extends Service
   }
 
   /**
-   * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+   * @param array $data
+   * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model|object|null
    */
-  public function paginate()
+  public function customersByProfession(array $data)
   {
-    return $this->customerRep->paginate(Customer::RELATIONS_ARRAY);
+    $relations = ['customers.professionTypes', 'customers.professionTypes'];
+    return $this->professionTypeRep->findById($relations, $data['professionTypeId']);
   }
 
   /**

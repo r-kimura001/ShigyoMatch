@@ -2,7 +2,7 @@
   <div class="Pager">
     <ul class="Pager_links">
       <RouterLink
-        :to="`/${path}?page=1`"
+        :to="pathObj(1)"
         tag="li"
         class="Pager_link"
         :class="{ '--edge': isFirst }"
@@ -14,19 +14,19 @@
         class="Pager_link"
         tag="li"
         :class="{ '--current': n === currentPage }"
-        :to="`/${path}?page=${n + firstPage - 1}`"
+        :to="pathObj(n + firstPage - 1)"
         >{{ n }}
       </RouterLink>
       <li v-if="tooLong">...</li>
       <RouterLink
         v-if="moreThan"
-        :to="`/${path}?page=${lastPage}`"
+        :to="pathObj(lastPage)"
         tag="li"
         class="Pager_link"
         >{{ lastPage }}
       </RouterLink>
       <RouterLink
-        :to="`/${path}?page=${lastPage}`"
+        :to="pathObj(lastPage)"
         tag="li"
         class="Pager_link"
         :class="{ '--edge': isLast }"
@@ -54,6 +54,9 @@ export default {
       required: true,
       default: '',
     },
+    professionType: {
+      type: String
+    }
   },
   data() {
     return {
@@ -92,5 +95,16 @@ export default {
       return this.currentPage === this.lastPage
     },
   },
+  methods: {
+    pathObj(page){
+      return {
+        path: this.path,
+        query: {
+          page: page,
+          skill: this.professionType
+        }
+      }
+    }
+  }
 }
 </script>

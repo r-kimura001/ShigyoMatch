@@ -30,6 +30,7 @@ export const NOT_FOUND = 404
 export const BASE_STORAGE_URL = 'https://asset.shigyo-match.site'
 export const BASE_URL = window.location.origin
 export const MQL = window.matchMedia('(max-width: 768px)')
+export const PER_PAGE = 2
 export const CLIENT_HEIGHT = document.documentElement.clientHeight
 export const CLIENT_WIDTH = document.documentElement.clientWidth
 export const PROFESSIONS = {

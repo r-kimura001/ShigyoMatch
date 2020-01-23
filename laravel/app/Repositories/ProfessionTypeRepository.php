@@ -22,5 +22,4 @@ class ProfessionTypeRepository extends Repository
     return $this->getBuilder()->where('body', $body)->first(['id']);
   }
 
-
 }

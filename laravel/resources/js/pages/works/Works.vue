@@ -11,6 +11,7 @@
               :current-page="currentPage"
               :last-page="lastPage"
               path="works"
+              :professionType="skill"
             ></Pager>
             <WorkListLayout :works="list"></WorkListLayout>
           </div>

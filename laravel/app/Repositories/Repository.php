@@ -31,16 +31,6 @@ class Repository
 
   /**
    * @param array $relations
-   * @param int $perPage
-   * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
-   */
-  public function paginate(array $relations, int $perPage=self::COUNT_PER_PAGE)
-  {
-    return $this->getBuilder()->with($relations)->latest()->paginate($perPage);
-  }
-
-  /**
-   * @param array $relations
    * @param int $id
    * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model|object|null
    */

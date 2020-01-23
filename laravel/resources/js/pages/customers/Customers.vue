@@ -2,7 +2,7 @@
   <div class="p-works">
     <div class="MainLayout --customers">
       <h1 class="MainLayout_heading">
-        事務所一覧
+        人材を探す
       </h1>
       <div class="MainLayout_boxList">
         <section class="MainLayout_box">
@@ -14,13 +14,14 @@
             <div>
               <div>
                 <!-- header_title(「弁護士一覧」みたいな) -->
-                <div></div>
+                <h2>{{ skill }}事務所一覧</h2>
                 <!-- Pager -->
                 <Pager
                   v-if="lastPage > 1"
                   :current-page="currentPage"
                   :last-page="lastPage"
                   path="customers"
+                  :professionType="skill"
                 ></Pager>
               </div>
               <CustomerListLayout :customers="list"></CustomerListLayout>

@@ -63,3 +63,21 @@
     background-image: url(#{$assetPath}/icon-man.svg);
   }
 }
+
+@mixin cover(){
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+@mixin fadeout(){
+  animation: fadeout 1.5s linear forwards;
+}
+@mixin fadein(){
+  animation: fadein 1.5s linear forwards;
+}
+@mixin phrasein(){
+  animation: phrasein 1.5s linear forwards;
+}
