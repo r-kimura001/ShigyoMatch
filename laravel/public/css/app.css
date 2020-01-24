@@ -978,6 +978,23 @@ td {
   background: transparent;
 }
 
+.AuthNav .AuthNav_item.\--hasNote {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+}
+
+.AuthNav .AuthNav_item.\--hasNote::after {
+  content: "";
+  display: inline-block;
+  margin-left: 5px;
+  width: 10px;
+  height: 10px;
+  border-radius: 9999px;
+  background: #e4406f;
+}
+
 .AuthNav .AuthNav_item .AuthNav_menuTitle {
   display: block;
   padding: 10px 5px 15px;
@@ -2796,6 +2813,7 @@ td {
 .MessageLayout .MessageLayout_room {
   width: 100%;
   padding: 10px 15px;
+  line-height: 1.25;
   background: #fefefe;
   border-bottom: 1px solid #cccccc;
   cursor: pointer;
@@ -2809,6 +2827,26 @@ td {
 
 .MessageLayout .MessageLayout_room.\--current {
   background: #d2f1e2;
+  pointer-events: none;
+}
+
+.MessageLayout .MessageLayout_room.\--hasUnread {
+  padding: 10px 30px 10px 15px;
+  position: relative;
+}
+
+.MessageLayout .MessageLayout_room.\--hasUnread::after {
+  content: attr(data-unread);
+  position: absolute;
+  top: 50%;
+  right: 3px;
+  padding: 3px 5px;
+  border-radius: 9999px;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  font-size: 1rem;
+  color: #fefefe;
+  background: #f42a2d;
 }
 
 .MessageLayout .MessageLayout_icon {

@@ -18,5 +18,6 @@ class DatabaseSeeder extends Seeder
       $this->call(CustomerProfessionTypesTableSeeder::class);
       $this->call(SelectablesTableSeeder::class);
       $this->call(WorksTableSeeder::class);
+      $this->call(NoteTemplatesTableSeeder::class);
     }
 }

@@ -29,6 +29,18 @@
       return {
         introductions: {
           1: {
+            title: '申込・メッセージ機能',
+            desc: '掲載中の募集案件にどんどん応募しましょう。\nお相手の目に留まればメッセージが開通します',
+            image: `assets/message.svg`,
+            link: {
+              text: '仕事をお探しの方',
+              path: '/works',
+              class: {
+                '--blue': true
+              }
+            }
+          },
+          2: {
             title: '案件募集・スカウト機能',
             desc: '案件とマッチしそうな事務所をスカウトしてみましょう。\n募集内容に興味を持ったお相手からは、申込が届きます。',
             image: 'assets/lawyer.svg',
@@ -40,21 +52,9 @@
               }
             }
           },
-          2: {
-            title: '申込・メッセージ機能',
-            desc: '掲載中の案件にたくさん応募しましょう。\nお相手の目に留まればメッセージが開通します',
-            image: `assets/message.svg`,
-            link: {
-              text: '案件をお探しの方',
-              path: '/works',
-              class: {
-                '--blue': true
-              }
-            }
-          },
           3: {
             title: 'レビュー・フォロー機能',
-            desc: '高評価やフォロワーが増えると、さらなる案件獲得につながります。\nまずはプロフィールを充実させましょう',
+            desc: '高評価やフォロワーが増えると、さらなる案件または人材獲得につながります。\nまずはプロフィールを充実させましょう',
             image: `assets/smile_review.svg`,
             link: {
               text: 'アカウントをお持ちの方',

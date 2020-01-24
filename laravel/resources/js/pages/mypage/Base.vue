@@ -5,7 +5,10 @@
     </div>
     <div class="MypageContent_main">
       <h1>{{ customer.name }}様</h1>
-      <RouterView :customer="customer"></RouterView>
+      <RouterView
+        :customer="customer"
+        @readed="setEmpty"
+      ></RouterView>
     </div>
   </div>
 </template>
@@ -25,7 +28,7 @@ export default {
       customer: state => state.auth.customer,
     }),
     self() {
-      return this.customer.id == this.id
+      return !this.customer ? false : this.customer.id == this.id
     },
   },
   watch: {
@@ -38,5 +41,10 @@ export default {
       immediate: true,
     },
   },
+  methods: {
+    setEmpty(data){
+      this.$store.commit('auth/setEmpty', data)
+    }
+  }
 }
 </script>

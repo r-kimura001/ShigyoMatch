@@ -59,6 +59,7 @@
 </template>
 <script>
 import styles from '@/mixins/styles'
+import { CLIENT_WIDTH } from '@/util'
 import { mapGetters } from 'vuex'
 export default {
   mixins: [ styles ],
@@ -111,12 +112,18 @@ export default {
           ]
         },
       ],
-      currentChildren: null
+      currentChildren: null,
+      o_middleDevice: false
     }
   },
   watch: {
     // ルートが変更されたらfetchDataメソッドを再び呼び出す
-    $route: 'fetchData',
+    $route: {
+      async handler(){
+        await this.fetchData()
+        this.o_middleDevice = CLIENT_WIDTH > 768
+      }
+    },
   },
   computed: {
     ...mapGetters({
@@ -138,7 +145,9 @@ export default {
       return this.authCheck
     },
     showChildren(index){
-      this.currentChildren = index
+      if(this.o_middleDevice){
+        this.currentChildren = index
+      }
     },
     toggleChildren(index){
       this.currentChildren = this.currentChildren === index ? null : index

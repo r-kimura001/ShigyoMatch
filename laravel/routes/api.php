@@ -42,6 +42,7 @@ Route::get('/customers/{id}/matcheds', 'ApplyController@matcheds')->name('custom
 Route::post('/messages/store', 'MessageController@store')->name('message.store');
 Route::get('/messages/{customerId}/show_apply', 'MessageController@showApplyOnlyHasMessage')->name('message.showApplyOnlyHasMessage');
 Route::get('/messages/{customerId}/show_applied', 'MessageController@showAppliedOnlyHasMessage')->name('message.showAppliedOnlyHasMessage');
+Route::delete('/applies/{applyId}/messages', 'MessageController@read')->name('message.read');
 
 // レビュー
 Route::post('/customers/{reviewerId}/reviews/store', 'ReviewController@store')->name('review.store');

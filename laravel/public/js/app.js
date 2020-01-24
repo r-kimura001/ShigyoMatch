@@ -1877,6 +1877,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2047,8 +2048,13 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _mixins_styles__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/mixins/styles */ "./resources/js/mixins/styles.js");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _mixins_styles__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/mixins/styles */ "./resources/js/mixins/styles.js");
+/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/util */ "./resources/js/util.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+
+
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -2116,8 +2122,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mixins: [_mixins_styles__WEBPACK_IMPORTED_MODULE_0__["default"]],
+  mixins: [_mixins_styles__WEBPACK_IMPORTED_MODULE_1__["default"]],
   data: function data() {
     return {
       isOpen: false,
@@ -2154,14 +2161,34 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           name: '税理士'
         }]
       }],
-      currentChildren: null
+      currentChildren: null,
+      o_middleDevice: false
     };
   },
   watch: {
     // ルートが変更されたらfetchDataメソッドを再び呼び出す
-    $route: 'fetchData'
+    $route: {
+      handler: function handler() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function handler$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(this.fetchData());
+
+              case 2:
+                this.o_middleDevice = _util__WEBPACK_IMPORTED_MODULE_2__["CLIENT_WIDTH"] > 768;
+
+              case 3:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, null, this);
+      }
+    }
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])({
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapGetters"])({
     authCheck: 'auth/isLogin'
   })),
   methods: {
@@ -2179,7 +2206,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return this.authCheck;
     },
     showChildren: function showChildren(index) {
-      this.currentChildren = index;
+      if (this.o_middleDevice) {
+        this.currentChildren = index;
+      }
     },
     toggleChildren: function toggleChildren(index) {
       this.currentChildren = this.currentChildren === index ? null : index;
@@ -4405,6 +4434,18 @@ __webpack_require__.r(__webpack_exports__);
     return {
       introductions: {
         1: {
+          title: '申込・メッセージ機能',
+          desc: '掲載中の募集案件にどんどん応募しましょう。\nお相手の目に留まればメッセージが開通します',
+          image: "assets/message.svg",
+          link: {
+            text: '仕事をお探しの方',
+            path: '/works',
+            "class": {
+              '--blue': true
+            }
+          }
+        },
+        2: {
           title: '案件募集・スカウト機能',
           desc: '案件とマッチしそうな事務所をスカウトしてみましょう。\n募集内容に興味を持ったお相手からは、申込が届きます。',
           image: 'assets/lawyer.svg',
@@ -4416,21 +4457,9 @@ __webpack_require__.r(__webpack_exports__);
             }
           }
         },
-        2: {
-          title: '申込・メッセージ機能',
-          desc: '掲載中の案件にたくさん応募しましょう。\nお相手の目に留まればメッセージが開通します',
-          image: "assets/message.svg",
-          link: {
-            text: '案件をお探しの方',
-            path: '/works',
-            "class": {
-              '--blue': true
-            }
-          }
-        },
         3: {
           title: 'レビュー・フォロー機能',
-          desc: '高評価やフォロワーが増えると、さらなる案件獲得につながります。\nまずはプロフィールを充実させましょう',
+          desc: '高評価やフォロワーが増えると、さらなる案件または人材獲得につながります。\nまずはプロフィールを充実させましょう',
           image: "assets/smile_review.svg",
           link: {
             text: 'アカウントをお持ちの方',
@@ -6662,6 +6691,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -6680,7 +6712,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   }), {
     self: function self() {
-      return this.customer.id == this.id;
+      return !this.customer ? false : this.customer.id == this.id;
     }
   }),
   watch: {
@@ -6702,6 +6734,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }, null, this);
       },
       immediate: true
+    }
+  },
+  methods: {
+    setEmpty: function setEmpty(data) {
+      this.$store.commit('auth/setEmpty', data);
     }
   }
 });
@@ -7438,6 +7475,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -7496,9 +7535,6 @@ __webpack_require__.r(__webpack_exports__);
       immediate: true
     }
   },
-  mounted: function mounted() {
-    this.scrollToEnd();
-  },
   computed: {
     textAreaWidth: function textAreaWidth() {
       return this.$el.querySelector('.MessageLayout_formText').offsetWidth - 20;
@@ -7536,9 +7572,8 @@ __webpack_require__.r(__webpack_exports__);
               this.rooms.sort(function (a, b) {
                 return _this.latestDate(a) < _this.latestDate(b) ? 1 : -1;
               });
-              this.currentRoom = this.rooms[0];
 
-            case 10:
+            case 9:
             case "end":
               return _context2.stop();
           }
@@ -7628,11 +7663,12 @@ __webpack_require__.r(__webpack_exports__);
               messageData.append('body', this.body);
               messageData.append('apply_id', this.currentRoom.id);
               messageData.append('sender_id', this.customer.id);
+              messageData.append('receiver_id', this.target(this.currentRoom).id);
               this.body = '';
-              _context5.next = 10;
+              _context5.next = 11;
               return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(axios.post('/api/messages/store', messageData));
 
-            case 10:
+            case 11:
               response = _context5.sent;
 
               if (response.status === _util__WEBPACK_IMPORTED_MODULE_1__["CREATED"]) {
@@ -7645,7 +7681,7 @@ __webpack_require__.r(__webpack_exports__);
                 });
               }
 
-            case 12:
+            case 13:
             case "end":
               return _context5.stop();
           }
@@ -7677,12 +7713,75 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     setCurrentRoom: function setCurrentRoom(room) {
-      this.currentRoom = room;
-      this.body = '';
-      this.scrollToEnd();
+      var response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function setCurrentRoom$(_context6) {
+        while (1) {
+          switch (_context6.prev = _context6.next) {
+            case 0:
+              this.currentRoom = room;
+              this.body = '';
+              _context6.next = 4;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(this.read(room));
+
+            case 4:
+              response = _context6.sent;
+              this.$emit('readed', {
+                prop: 'message_notes',
+                key: 'message_id',
+                ids: room.messages.filter(function (msg) {
+                  return msg.is_note;
+                }).map(function (msg) {
+                  return msg.id;
+                })
+              });
+
+              if (response.status === _util__WEBPACK_IMPORTED_MODULE_1__["DELETED"]) {
+                room.messages.forEach(function (msg) {
+                  msg.is_note = false;
+                  msg.note = null;
+                });
+              }
+
+              this.scrollToEnd();
+
+            case 8:
+            case "end":
+              return _context6.stop();
+          }
+        }
+      }, null, this);
+    },
+    read: function read(room) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function read$(_context7) {
+        while (1) {
+          switch (_context7.prev = _context7.next) {
+            case 0:
+              _context7.next = 2;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(axios["delete"]("/api/applies/".concat(room.id, "/messages")));
+
+            case 2:
+              return _context7.abrupt("return", _context7.sent);
+
+            case 3:
+            case "end":
+              return _context7.stop();
+          }
+        }
+      });
     },
     isCurrent: function isCurrent(id) {
-      return this.currentRoom.id === id;
+      return !this.currentRoom ? false : this.currentRoom.id === id;
+    },
+    unreadCount: function unreadCount(room) {
+      return room.messages.filter(function (message) {
+        return message.is_note;
+      }).length;
+    },
+    roomClassList: function roomClassList(room) {
+      return {
+        '--current': this.isCurrent(room.id),
+        '--hasUnread': this.unreadCount(room)
+      };
     },
     vertical: function vertical() {
       var val = "".concat(this.body, "\n");
@@ -14645,6 +14744,7 @@ var render = function() {
             "RouterLink",
             {
               staticClass: "AuthNav_item",
+              class: { "--hasNote": _vm.customer.message_notes.length },
               style: _vm.bgImage("assets/icon-mail-white.svg"),
               attrs: {
                 to: "/mypage/" + _vm.customer.id + "/messages",
@@ -19472,7 +19572,10 @@ var render = function() {
       [
         _c("h1", [_vm._v(_vm._s(_vm.customer.name) + "様")]),
         _vm._v(" "),
-        _c("RouterView", { attrs: { customer: _vm.customer } })
+        _c("RouterView", {
+          attrs: { customer: _vm.customer },
+          on: { readed: _vm.setEmpty }
+        })
       ],
       1
     )
@@ -19861,7 +19964,8 @@ var render = function() {
                   "div",
                   {
                     staticClass: "MessageLayout_room",
-                    class: { "--current": _vm.isCurrent(room.id) }
+                    class: _vm.roomClassList(room),
+                    attrs: { "data-unread": _vm.unreadCount(room) }
                   },
                   [
                     _c("div", { staticClass: "HorizontalLayout --vertical" }, [
@@ -46947,6 +47051,13 @@ var mutations = {
   },
   setAddress: function setAddress(state, data) {
     state.address = data;
+  },
+  setEmpty: function setEmpty(state, data) {
+    data.ids.forEach(function (id) {
+      state.customer[data.prop] = state.customer[data.prop].filter(function (item) {
+        return item[data.key] !== id;
+      });
+    });
   }
 };
 var actions = {
