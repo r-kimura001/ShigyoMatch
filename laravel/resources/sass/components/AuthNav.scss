@@ -61,6 +61,20 @@
         background: transparent;
       }
     }
+
+    &.--hasNote{
+      display: flex;
+      align-items: center;
+      &::after{
+        content: '';
+        display: inline-block;
+        margin-left: 5px;
+        width: 10px;
+        height: 10px;
+        border-radius: 9999px;
+        background: $shadowPink;
+      }
+    }
     .AuthNav_menuTitle{
       display: block;
       padding: 10px 5px 15px;

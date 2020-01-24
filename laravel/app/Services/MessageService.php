@@ -7,6 +7,7 @@ use App\Repositories\MessageRepository;
 use App\Repositories\WorkRepository;
 use App\Models\Apply;
 use App\Models\Message;
+use App\Models\MessageNote;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\Events\Registered;
 use App\Services\CustomerService;
@@ -46,11 +47,22 @@ class MessageService extends Service
    */
   public function store(array $data)
   {
+    // messagesのstore
     $apply = $this->applyRep->findById(Apply::RELATIONS_ARRAY, $data['apply_id']);
     $message = new Message();
     $message->fill($data);
-    $newApply = $apply->messages()->save($message);
-    return $newApply;
+    $newMessage = $apply->messages()->save($message);
+
+    // notesのstore
+    $receiver = $this->customerService->customerById($data['receiver_id']);
+    $note = new MessageNote();
+    $noteData = [
+      'message_id' => $newMessage->id,
+      'receiver_id' => $data['receiver_id'],
+    ];
+    $note->fill($noteData);
+    $receiver->messageNotes()->save($note);
+    return $newMessage;
   }
 
   /**
@@ -101,5 +113,16 @@ class MessageService extends Service
     })->all();
   }
 
+  public function read(int $applyId)
+  {
+    $apply = $this->applyRep->findById(['messages.note'], $applyId);
+    $apply->messages->each(function($msg){
+      if($msg->is_note){
+        $msg->note->delete();
+      }
+    });
+  }
+
 }
+
 

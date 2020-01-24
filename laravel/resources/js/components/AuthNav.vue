@@ -30,6 +30,7 @@
         :to="`/mypage/${customer.id}/messages`"
         tag="li"
         class="AuthNav_item"
+        :class="{'--hasNote': customer.message_notes.length}"
         :style="bgImage('assets/icon-mail-white.svg')"
         >メッセージ</RouterLink
       >

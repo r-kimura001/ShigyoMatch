@@ -18,7 +18,7 @@ class Customer extends Model implements CanDeleteRelationInterface
 
   const TEST_ID = 1;
   const COUNT_PER_PAGE = 12;
-  const RELATIONS_ARRAY = [ 'professionTypes', 'user', 'works.skills', 'works.professionType', 'applyWorks'];
+  const RELATIONS_ARRAY = [ 'professionTypes', 'user', 'works.skills', 'works.professionType', 'applyWorks', 'messageNotes'];
 
   protected $fillable = [
     'name',
@@ -122,6 +122,14 @@ class Customer extends Model implements CanDeleteRelationInterface
   public function reviews()
   {
     return $this->belongsToMany(Apply::class, 'reviews', 'reviewer_id', 'apply_id')->withTimestamps()->withPivot('point', 'comment', 'reviewee_id');
+  }
+
+  /**
+   * @return \Illuminate\Database\Eloquent\Relations\HasMany
+   */
+  public function messageNotes()
+  {
+    return $this->hasMany(MessageNote::class, 'receiver_id', 'id');
   }
 
   protected $appends = [ 'full_address' ];

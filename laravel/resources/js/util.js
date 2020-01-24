@@ -33,6 +33,7 @@ export const MQL = window.matchMedia('(max-width: 768px)')
 export const PER_PAGE = 2
 export const CLIENT_HEIGHT = document.documentElement.clientHeight
 export const CLIENT_WIDTH = document.documentElement.clientWidth
+
 export const PROFESSIONS = {
   bengoshi: 1,
   shihoushoshi: 2,

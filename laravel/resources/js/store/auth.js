@@ -37,6 +37,11 @@ const mutations = {
   setAddress(state, data) {
     state.address = data
   },
+  setEmpty(state, data) {
+    data.ids.forEach( id => {
+      state.customer[data.prop] = state.customer[data.prop].filter( item => item[data.key] !== id )
+    })
+  },
 }
 
 const actions = {

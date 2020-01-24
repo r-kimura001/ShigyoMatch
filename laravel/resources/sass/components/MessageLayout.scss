@@ -24,6 +24,7 @@
   .MessageLayout_room{
     width: 100%;
     padding: 10px 15px;
+    line-height: 1.25;
     background: $white;
     border-bottom: 1px solid $gray-2;
     cursor: pointer;
@@ -33,6 +34,23 @@
     }
     &.--current{
       background: $lightGreen;
+      pointer-events: none;
+    }
+    &.--hasUnread{
+      padding: 10px 30px 10px 15px;
+      position: relative;
+      &::after{
+        content: attr(data-unread);
+        position: absolute;
+        top: 50%;
+        right: 3px;
+        padding: 3px 5px;
+        border-radius: 9999px;
+        transform: translateY(-50%);
+        font-size: 1rem;
+        color: $white;
+        background: $red;
+      }
     }
   }
   .MessageLayout_icon{

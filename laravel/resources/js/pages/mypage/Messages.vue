@@ -12,7 +12,9 @@
             :key="index"
             @click="setCurrentRoom(room)"
           >
-            <div class="MessageLayout_room" :class="{ '--current': isCurrent(room.id) }">
+            <div class="MessageLayout_room"
+                 :class="roomClassList(room)"
+                 :data-unread="unreadCount(room)">
               <div class="HorizontalLayout --vertical">
                 <div class="HorizontalLayout_col">
                   <div class="MessageLayout_icon" :style="bgImage(target(room).file_name)">
@@ -81,7 +83,7 @@
   </div>
 </template>
 <script>
-  import { OK, CREATED } from '@/util'
+  import { OK, CREATED, DELETED } from '@/util'
   import styles from '@/mixins/styles'
   import WorkListLayout from '@/layouts/WorkListLayout'
   import WorkTableLayout from '@/layouts/WorkTableLayout'
@@ -119,9 +121,6 @@
         immediate: true,
       },
     },
-    mounted(){
-      this.scrollToEnd()
-    },
     computed:{
       textAreaWidth(){
         return this.$el.querySelector('.MessageLayout_formText').offsetWidth - 20
@@ -140,7 +139,6 @@
         applyRecords.push(appliedRecords)
         this.rooms = applyRecords.filter( applyItem => applyItem !== []).flat()
         this.rooms.sort( (a, b) => this.latestDate(a) < this.latestDate(b) ? 1 : -1)
-        this.currentRoom = this.rooms[0]
       },
       async msgByApplyWorks()
       {
@@ -174,6 +172,7 @@
         messageData.append('body', this.body)
         messageData.append('apply_id', this.currentRoom.id)
         messageData.append('sender_id', this.customer.id)
+        messageData.append('receiver_id', this.target(this.currentRoom).id)
         this.body = ''
 
         const response = await axios.post('/api/messages/store', messageData)
@@ -210,13 +209,37 @@
           }
         })
       },
-      setCurrentRoom(room){
+      async setCurrentRoom(room){
         this.currentRoom = room
         this.body = ''
+        const response = await this.read(room)
+        this.$emit('readed', {
+          prop: 'message_notes', 
+          key: 'message_id',
+          ids: room.messages.filter( msg => msg.is_note).map( msg => msg.id )
+        })
+        if(response.status === DELETED){
+          room.messages.forEach( msg => {
+            msg.is_note = false
+            msg.note = null
+          })
+        }
         this.scrollToEnd()
       },
+      async read(room){
+        return await axios.delete(`/api/applies/${room.id}/messages`)
+      },
       isCurrent(id){
-        return this.currentRoom.id === id
+        return !this.currentRoom ? false : this.currentRoom.id === id
+      },
+      unreadCount(room){
+        return room.messages.filter( message => message.is_note).length
+      },
+      roomClassList(room){
+        return {
+          '--current': this.isCurrent(room.id),
+          '--hasUnread': this.unreadCount(room),
+        }
       },
       vertical(){
         let val = `${this.body}\n`

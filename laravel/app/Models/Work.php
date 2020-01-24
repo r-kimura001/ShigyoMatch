@@ -155,6 +155,6 @@ class Work extends Model implements CanDeleteRelationInterface
 
   public function getDeleteRelations()
   {
-    return [];
+    return [$this->applies];
   }
 }
