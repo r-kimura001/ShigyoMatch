@@ -17,10 +17,22 @@
     border-radius: 6px;
     padding: 4px 9px;
     min-width: initial;
-    border: 1px solid $blue;
-    color: $blue;
+    border: 1px solid $green;
+    color: $green;
     font-weight: normal;
     &:hover{
+      color: $white;
+      background: $green;
+    }
+    &.--blue{
+      border-color: $blue;
+      color: $blue;
+      &:hover{
+        color: $white;
+        background: $blue;
+      }
+    }
+    &.--followed{
       color: $white;
       background: $blue;
     }

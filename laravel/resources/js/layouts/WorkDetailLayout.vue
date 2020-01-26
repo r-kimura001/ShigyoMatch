@@ -52,7 +52,7 @@
                 </p>
               </dt>
               <dd class="WorkDetailLayout_customerDesc">
-                <p class="Text -gray -fz12 -bold">{{ customer.name }}</p>
+                <RouterLink :to="`/customers/${customer.id}`" tag="p" class="Text -link -fz12 -bold">{{ customer.name }}</RouterLink>
               </dd>
             </dl>
             <dl class="WorkDetailLayout_customerList u-pb10">

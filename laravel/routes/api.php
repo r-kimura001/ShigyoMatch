@@ -62,6 +62,10 @@ Route::delete('/works/{id}', 'WorkController@destroy')->name('work.destroy');
 Route::put('/works/{id}/favorite', 'WorkController@favorite')->name('work.favorite');
 Route::delete('/works/{id}/unfavorite', 'WorkController@unfavorite')->name('work.unfavorite');
 
+// フォロー機能
+Route::put('/customers/{id}/follow', 'CustomerController@follow')->name('customer.follow');
+Route::delete('/customers/{id}/unfollow', 'CustomerController@unfollow')->name('customer.unfollow');
+
 // profession_types
 Route::get('/professions', 'ProfessionTypeController@index')->name('professionType.index');
 Route::get('/professionId', 'ProfessionTypeController@idByBody')->name('professionType.idByBody');

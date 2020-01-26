@@ -12,6 +12,7 @@ export default {
     },
     skill: {
       type: String,
+      default: '弁護士'
     },
   },
   data() {

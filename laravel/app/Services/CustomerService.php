@@ -209,8 +209,25 @@ class CustomerService extends Service
     return $customer->scoutedWorks;
   }
 
-
-
+  /**
+   * @param int $id
+   */
+  public function follow(int $id)
+  {
+    $followee = $this->customerById($id);
+    $followee->followers()->detach(Auth::user()->customer_id);
+    $followee->followers()->attach(Auth::user()->customer_id);
+    return $followee;
+  }
+  /**
+   * @param int $id
+   */
+  public function unfollow(int $id)
+  {
+    $followee = $this->customerById($id);
+    $followee->followers()->detach(Auth::user()->customer_id);
+    return $followee;
+  }
 
 }
 

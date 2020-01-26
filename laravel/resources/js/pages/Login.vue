@@ -74,6 +74,14 @@ export default {
       },
     }
   },
+  watch: {
+    $route: {
+      handler(){
+        this.$store.commit('auth/setLoginErrorMessages', null)
+      },
+      immediate: true
+    }
+  },
   computed: {
     ...mapState({
       apiStatus: state => state.auth.apiStatus,
