@@ -14,8 +14,23 @@
         <p class="CustomerInfoLayout_greeting">
           {{ customer.greeting }}
         </p>
-        <div class="u-alignCenter">
-          <ScoutButton :id="customer.id" :author="author" v-if="!self"></ScoutButton>
+        <div class="HorizontalLayout --justifyCenter">
+          <div class="HorizontalLayout_col">
+            <FollowButton
+              :id="customer.id"
+              :author="author"
+              :isFollow="customer.is_follow"
+              v-if="!self"
+              @followClick="followClick"
+            ></FollowButton>
+          </div>
+          <div class="HorizontalLayout_col u-ml5">
+            <ScoutButton
+              :id="customer.id"
+              :author="author"
+              v-if="!self"
+            ></ScoutButton>
+          </div>
         </div>
       </div>
       <!-- CustomerInfoLayout_headingBox -->
@@ -130,11 +145,13 @@ import apiIndexHandler from '@/mixins/apiIndexHandler'
 import WorkListLayout from '@/layouts/WorkListLayout'
 import Pager from '@/components/Pager'
 import ScoutButton from '@/components/ScoutButton'
+import FollowButton from '@/components/FollowButton'
 export default {
   components: {
     WorkListLayout,
     Pager,
-    ScoutButton
+    ScoutButton,
+    FollowButton,
   },
   mixins: [styles, apiIndexHandler],
   props: {
@@ -159,11 +176,44 @@ export default {
         return false
       }
       return this.customer.id === this.author.id
-    }
+    },
   },
   methods: {
     imageSrc(src) {
       return `${BASE_STORAGE_URL}/assets/${src}`
+    },
+    async followClick(){
+      if(this.customer.is_follow){
+        await this.unfollow()
+      }else{
+        await this.follow()
+      }
+    },
+    async follow(){
+      const response = await axios.put(`/api/customers/${this.customer.id}/follow`)
+      if(response.status === OK){
+        this.customer.followers = response.data.followers
+        this.customer.is_follow = true
+        this.customer.follower_count = response.data.follower_count
+      }else{
+        this.$store.commit('error/setErrors', {
+          status: response.status,
+          message: response,
+        })
+      }
+    },
+    async unfollow(){
+      const response = await axios.delete(`/api/customers/${this.customer.id}/unfollow`)
+      if(response.status === OK){
+        this.customer.followers = response.data.followers
+        this.customer.is_follow = false
+        this.customer.follower_count = response.data.follower_count
+      }else{
+        this.$store.commit('error/setErrors', {
+          status: response.status,
+          message: response,
+        })
+      }
     },
   },
 }

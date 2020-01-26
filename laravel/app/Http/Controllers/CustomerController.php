@@ -27,7 +27,7 @@ class CustomerController extends Controller
 
   /**
    * @param Request $request
-   * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+   * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model|object|null
    */
   public function index(Request $request)
   {
@@ -155,6 +155,20 @@ class CustomerController extends Controller
   public function scoutedWorks(int $id)
   {
     return $this->customerService->scoutedWorks($id);
+  }
+
+  /**
+   * @param int $id
+   * @return mixed
+   */
+  public function follow(int $id)
+  {
+    return $this->customerService->follow($id);
+  }
+
+  public function unfollow(int $id)
+  {
+    return $this->customerService->unfollow($id);
   }
 
 

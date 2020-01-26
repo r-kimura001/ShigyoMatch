@@ -1029,12 +1029,27 @@ td {
   border-radius: 6px;
   padding: 4px 9px;
   min-width: initial;
-  border: 1px solid #1c91df;
-  color: #1c91df;
+  border: 1px solid #33ba7c;
+  color: #33ba7c;
   font-weight: normal;
 }
 
 .BorderButton.\--minimum:hover {
+  color: #fefefe;
+  background: #33ba7c;
+}
+
+.BorderButton.\--minimum.\--blue {
+  border-color: #1c91df;
+  color: #1c91df;
+}
+
+.BorderButton.\--minimum.\--blue:hover {
+  color: #fefefe;
+  background: #1c91df;
+}
+
+.BorderButton.\--minimum.\--followed {
   color: #fefefe;
   background: #1c91df;
 }
@@ -3842,6 +3857,12 @@ td {
 
 .Text.-link {
   color: #33ba7c;
+  cursor: pointer;
+}
+
+.Text.-link:hover {
+  text-decoration: underline;
+  opacity: 0.8;
 }
 
 .Text.-danger {

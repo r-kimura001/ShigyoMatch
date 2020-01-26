@@ -8,6 +8,7 @@ use App\Models\ProfessionType;
 use App\Models\Prefecture;
 use App\Models\User;
 use App\Models\Work;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Interfaces\CanDeleteRelationInterface;
 
@@ -51,6 +52,27 @@ class Customer extends Model implements CanDeleteRelationInterface
         .$this->attributes['address']
         .$this->attributes['building'];
     }
+  }
+
+  /**
+   * @return bool
+   */
+  public function getIsFollowAttribute()
+  {
+    if(Auth::guest()){
+      return false;
+    }
+    return $this->followers->contains(function($follower){
+      return $follower->id === Auth::user()->customer_id;
+    });
+  }
+
+  /**
+   * @return mixed
+   */
+  public function getFollowerCountAttribute()
+  {
+    return $this->followers->count();
   }
 
   /**
@@ -132,7 +154,22 @@ class Customer extends Model implements CanDeleteRelationInterface
     return $this->hasMany(MessageNote::class, 'receiver_id', 'id');
   }
 
-  protected $appends = [ 'full_address' ];
+  /**
+   * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+   */
+  public function followers()
+  {
+    return $this->belongsToMany(Customer::class, 'follows', 'followee_id', 'follower_id')->withTimestamps();
+  }
+  /**
+   * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+   */
+  public function followees()
+  {
+    return $this->belongsToMany(Customer::class, 'follows', 'follower_id', 'followee_id')->withTimestamps();
+  }
+
+  protected $appends = [ 'full_address', 'is_follow', 'follower_count' ];
 
   public function getDeleteRelations()
   {

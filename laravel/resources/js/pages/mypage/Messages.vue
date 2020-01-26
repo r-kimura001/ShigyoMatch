@@ -214,7 +214,7 @@
         this.body = ''
         const response = await this.read(room)
         this.$emit('readed', {
-          prop: 'message_notes', 
+          prop: 'message_notes',
           key: 'message_id',
           ids: room.messages.filter( msg => msg.is_note).map( msg => msg.id )
         })
