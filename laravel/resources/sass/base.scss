@@ -7,6 +7,18 @@
   font-weight: 400;
   src: url('../fonts/makibafontp13.ttf') format('truetype');
 }
+@font-face {
+  font-family: 'IntroDemo';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/IntroDemo-BlackCAPS.otf') format('opentype');
+}
+@font-face {
+  font-family: 'IntroDemo-L';
+  font-style: normal;
+  font-weight: 200;
+  src: url('../fonts/IntroDemoCond-LightCAPS.ttf') format('truetype');
+}
 body {
   font-size: 1.8rem;
   font-family: $mainFontFamily;

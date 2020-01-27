@@ -73,7 +73,7 @@ class LoginController extends Controller
   // ★ メソッド追加
   protected function authenticated(Request $request, $user)
   {
-    return $this->customerService->customerById($user->customer_id);
+    return $this->customerService->customerById([], $user->customer_id);
   }
 
   protected function loggedOut(Request $request)

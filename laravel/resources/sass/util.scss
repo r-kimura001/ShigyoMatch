@@ -86,6 +86,9 @@
 .u-ml20 {
   margin-left: 20px;
 }
+.u-mx5{
+  margin: 0 5px;
+}
 .u-ma5{
   margin: 5px;
 }
@@ -191,6 +194,91 @@
 }
 .u-icon{
   width: 18px;
+}
+
+.u-tip{
+  &::after {
+    content: attr(data-desc);
+    position: absolute;
+    top: -100%;
+    left: 50%;
+    transform: translateY(-50%);
+    font-size: 1rem;
+    color: $white;
+    background: $deepGray;
+    padding: 8px;
+    border-radius: 5px;
+    min-width: 100px;
+    opacity: 0;
+    pointer-events: none;
+    transition: $transitionBasis;
+  }
+  &::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: calc(50% + 5px);
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 12px 12px 0 0;
+    border-color: $deepGray transparent transparent transparent;
+    transform: translateY(-100%);
+    color: $white;
+    opacity: 0;
+    pointer-events: none;
+    transition: $transitionBasis;
+  }
+  &:hover {
+    &::before, &::after{
+      opacity: 1;
+      pointer-events: initial;
+    }
+  }
+}
+
+.u-tip-bottom{
+  &::after {
+    content: attr(data-desc);
+    position: absolute;
+    bottom: -100%;
+    left: 50%;
+    right: -50%;
+    display: block;
+    transform: translateY(50%);
+    font-size: 1rem;
+    color: $white;
+    background: $deepGray;
+    padding: 5px 8px;
+    border-radius: 5px;
+    min-width: 80px;
+    line-height: 1.2;
+    opacity: 0;
+    pointer-events: none;
+    transition: $transitionBasis;
+  }
+  &::before{
+    content: '';
+    position: absolute;
+    bottom: -100%;
+    left: calc(50% + 5px);
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 12px 12px 0;
+    border-color: transparent transparent $deepGray transparent;
+    transform: translateY(-100%);
+    color: $white;
+    opacity: 0;
+    pointer-events: none;
+    transition: $transitionBasis;
+  }
+  &:hover {
+    &::after, &::before{
+      opacity: 1;
+      pointer-events: initial;
+    }
+  }
 }
 
 // clearfix

@@ -3,7 +3,9 @@
     <div>
       <h2>Profile</h2>
       <section class="MypageContent_box">
-        <h3>プロフィールの編集</h3>
+        <h3 class="MypageContent_boxTitle u-mb10">
+          <span class="MypageContent_titleText">プロフィールの編集</span>
+        </h3>
         <ProfileFormLayout
           :form-data="formData"
           @profileSubmit="update"
@@ -18,8 +20,7 @@ import ProfileFormLayout from '@/layouts/mypage/ProfileFormLayout'
 // mixins
 import customerUpdateData from '@/mixins/formData/customerUpdateData'
 // other
-import { BASE_STORAGE_URL, OK, UNPROCESSABLE_ENTITY } from '@/util'
-
+import { BASE_STORAGE_URL, OK, UNPROCESSABLE_ENTITY, alphaNumeric, between } from '@/util'
 export default {
   components: { ProfileFormLayout },
   mixins: [customerUpdateData],
@@ -80,6 +81,10 @@ export default {
       })
     },
     async update() {
+      if(!!this.validation()){
+        this.$scrollTo('.ErrorMessage', 1500)
+        return false
+      }
       this.$store.commit('form/setIsLoading', true)
 
       const customerData = new FormData()
@@ -116,6 +121,7 @@ export default {
       )
 
       this.$store.commit('form/setIsLoading', false)
+      this.$store.commit('form/setResponse', response)
 
       if (response.status === UNPROCESSABLE_ENTITY) {
         this.$store.commit('error/setMessage', response.data.errors)
@@ -127,6 +133,36 @@ export default {
         this.$store.commit('form/setSuccessMessage', '更新に成功しました')
       }
     },
+    validation(){
+      let validationCount = 0
+      if(!alphaNumeric(this.formData.login_id.value)){
+        this.$store.commit('error/setMessage', {
+          login_id: [ 'ログインIDは半角英数字のみ使用できます' ]
+        })
+        validationCount++
+      }
+      if(!between(this.formData.login_id.value, this.formData.login_id.min, this.formData.login_id.max)){
+        this.$store.commit('error/setMessage', {
+          login_id: [ 'ログインIDは6文字以上20文字以下で入力してください' ]
+        })
+        validationCount++
+      }
+      if(!this.formData.profession_types.value.length){
+        this.$store.commit('error/setMessage', {
+          professionIds: [ 'お持ちの資格にチェックを入れてください' ]
+        })
+        validationCount++
+      }
+      this.formData.profession_types.value.forEach( professionId => {
+        if( !this.formData.profession_types.registerNumbers.hasOwnProperty(professionId) || this.formData.profession_types.registerNumbers[professionId] === ''){
+          this.$store.commit('error/setMessage', {
+            professionIds: [ 'チェックを入れた資格の登録番号を入力してください' ]
+          })
+          validationCount++
+        }
+      })
+      return validationCount
+    }
   },
 }
 </script>

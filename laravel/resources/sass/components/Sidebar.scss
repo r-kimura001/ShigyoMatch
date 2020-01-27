@@ -39,13 +39,13 @@
         }
 
         .Sidebar_listLabel {
-          padding: 45px 5px 5px;
+          padding: 40px 5px 5px;
           background-size: 2.4rem;
           background-position: center;
           border-width: 0 0 2px 0;
           text-align: center;
           @include media(sm-y){
-            padding: 15px 5px;
+            padding: 20px 5px;
             background-size: 2rem;
           }
 

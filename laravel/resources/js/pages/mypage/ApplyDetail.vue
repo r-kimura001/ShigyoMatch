@@ -10,7 +10,12 @@
             <li class="ApplyFormLayout_infoItem">
               <dl class="DefinitionLayout">
                 <dt class="DefinitionLayout_term">事務所名</dt>
-                <dd class="DefinitionLayout_desc">{{ applier.name }}</dd>
+                <dd class="DefinitionLayout_desc">
+                  <RouterLink
+                    :to="`/customers/${applier.id}`"
+                    tag="span"
+                    class="Text -link">{{ applier.name }}</RouterLink>
+                </dd>
               </dl>
             </li>
             <li class="ApplyFormLayout_infoItem">

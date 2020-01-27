@@ -54,7 +54,7 @@ class MessageService extends Service
     $newMessage = $apply->messages()->save($message);
 
     // notesのstore
-    $receiver = $this->customerService->customerById($data['receiver_id']);
+    $receiver = $this->customerService->customerById([], $data['receiver_id']);
     $note = new MessageNote();
     $noteData = [
       'message_id' => $newMessage->id,

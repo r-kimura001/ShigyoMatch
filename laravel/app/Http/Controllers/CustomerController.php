@@ -7,6 +7,7 @@ use App\Http\Requests\Customer\UpdateRequest;
 use App\Http\Requests\Customer\StoreRequest;
 use App\Services\CustomerService;
 use App\Models\User;
+use App\Models\Customer;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Services\FileUploadService;
@@ -52,7 +53,7 @@ class CustomerController extends Controller
       DB::rollback();
       throw $exception;
     }
-    return response($this->customerService->customerById($createdCustomer->id), 201);
+    return response($this->customerService->customerById([], $createdCustomer->id), 201);
   }
 
   /**
@@ -63,7 +64,7 @@ class CustomerController extends Controller
    */
   public function update(UpdateRequest $request, int $id)
   {
-    $customer = $this->customerService->customerById($id);
+    $customer = $this->customerService->customerById([], $id);
     $data = $request->all();
     $putPath = 'customers/'.$id;
 
@@ -91,7 +92,7 @@ class CustomerController extends Controller
       $this->fileUploadService->delete($deleteSrc);
     }
 
-    return $this->customerService->customerById($id);
+    return $this->customerService->customerById([], $id);
   }
 
   /**
@@ -100,7 +101,7 @@ class CustomerController extends Controller
    */
   public function show(int $id)
   {
-    return $this->customerService->customerById($id);
+    return $this->customerService->customerById(['works', 'followers', 'professionTypes'],$id);
   }
 
   /**
@@ -119,6 +120,15 @@ class CustomerController extends Controller
   public function favoriteWorks(int $id)
   {
     return $this->customerService->favoriteWorks($id);
+  }
+
+  /**
+   * @param int $id
+   * @return array
+   */
+  public function favoritedWorks(int $id)
+  {
+    return $this->customerService->favoritedWorks($id);
   }
 
   /**
@@ -175,6 +185,6 @@ class CustomerController extends Controller
 
   public function customer()
   {
-    return Auth::check() ? $this->customerService->customerById(Auth::user()->customer_id) : '';
+    return Auth::check() ? $this->customerService->customerById(['professionTypes', 'user', 'works.professionType', 'messageNotes', 'followers', 'followees'], Auth::user()->customer_id) : '';
   }
 }

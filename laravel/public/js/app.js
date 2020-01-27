@@ -2034,6 +2034,12 @@ __webpack_require__.r(__webpack_exports__);
         return {};
       }
     },
+    followers: {
+      type: Array,
+      "default": function _default() {
+        return [];
+      }
+    },
     isFollow: {
       type: Boolean,
       "default": false
@@ -3092,11 +3098,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mixins: [_mixins_styles__WEBPACK_IMPORTED_MODULE_2__["default"], _mixins_worksData__WEBPACK_IMPORTED_MODULE_3__["default"]],
+  computed: {
+    favoriteStatus: function favoriteStatus() {
+      return this.work.is_favorite ? '「気になる」済み' : '「気になる」に登録する';
+    }
+  },
   methods: {
     onClickStar: function onClickStar() {
       if (!this.isLogin) {
@@ -4043,16 +4055,12 @@ __webpack_require__.r(__webpack_exports__);
         name: '気になる',
         path: '/favorites',
         iconSrc: 'icon-favorite.svg'
-      }, // {
+      } // {
       //   name: 'メッセージ',
       //   path: '/messages',
       //   iconSrc: 'icon-mail-line.svg',
       // },
-      {
-        name: 'チャットルーム',
-        path: '/chats',
-        iconSrc: 'icon-chat.svg'
-      }]
+      ]
     };
   }
 });
@@ -4086,8 +4094,6 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-//
-//
 //
 //
 //
@@ -4266,6 +4272,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
 
       return this.customer.id === this.author.id;
+    },
+    isFollow: function isFollow() {
+      var _this = this;
+
+      var isFollow = false;
+      this.customer.followers.forEach(function (follower) {
+        if (follower.id === _this.author.id) {
+          isFollow = true;
+        }
+      });
+      return isFollow;
     }
   }),
   methods: {
@@ -4277,7 +4294,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              if (!this.customer.is_follow) {
+              if (!this.isFollow) {
                 _context.next = 5;
                 break;
               }
@@ -4314,8 +4331,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
               if (response.status === _util__WEBPACK_IMPORTED_MODULE_1__["OK"]) {
                 this.customer.followers = response.data.followers;
-                this.customer.is_follow = true;
-                this.customer.follower_count = response.data.follower_count;
               } else {
                 this.$store.commit('error/setErrors', {
                   status: response.status,
@@ -4344,8 +4359,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
               if (response.status === _util__WEBPACK_IMPORTED_MODULE_1__["OK"]) {
                 this.customer.followers = response.data.followers;
-                this.customer.is_follow = false;
-                this.customer.follower_count = response.data.follower_count;
               } else {
                 this.$store.commit('error/setErrors', {
                   status: response.status,
@@ -4811,25 +4824,22 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               return _context.abrupt("return", false);
 
             case 17:
-              if (!(response.status === _util__WEBPACK_IMPORTED_MODULE_4__["CREATED"])) {
-                _context.next = 24;
-                break;
+              if (response.status === _util__WEBPACK_IMPORTED_MODULE_4__["CREATED"]) {
+                this.$store.commit('error/setErrors', {
+                  message: null,
+                  status: null
+                });
+                this.clearFormValue();
+                this.$store.commit('form/setSuccessMessage', 'レビューを投稿しました');
+                this.$emit('onReviewed');
+              } else {
+                this.$store.commit('error/setErrors', {
+                  message: response,
+                  status: response.status
+                });
               }
 
-              this.$store.commit('error/setErrors', {
-                message: null,
-                status: null
-              });
-              this.clearFormValue();
-              this.$store.commit('form/setSuccessMessage', 'レビューを投稿しました');
-              this.$emit('onClickClose');
-              _context.next = 25;
-              break;
-
-            case 24:
-              return _context.abrupt("return", false);
-
-            case 25:
+            case 18:
             case "end":
               return _context.stop();
           }
@@ -6411,6 +6421,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -6746,6 +6760,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -6957,9 +6976,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/util */ "./resources/js/util.js");
-/* harmony import */ var _layouts_WorkListLayout__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/layouts/WorkListLayout */ "./resources/js/layouts/WorkListLayout.vue");
-/* harmony import */ var _layouts_WorkTableLayout__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/layouts/WorkTableLayout */ "./resources/js/layouts/WorkTableLayout.vue");
-/* harmony import */ var _components_Tab__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/components/Tab */ "./resources/js/components/Tab.vue");
+/* harmony import */ var _mixins_styles__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/mixins/styles */ "./resources/js/mixins/styles.js");
+/* harmony import */ var _layouts_WorkListLayout__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/layouts/WorkListLayout */ "./resources/js/layouts/WorkListLayout.vue");
+/* harmony import */ var _layouts_WorkTableLayout__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/layouts/WorkTableLayout */ "./resources/js/layouts/WorkTableLayout.vue");
+/* harmony import */ var _components_Tab__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/components/Tab */ "./resources/js/components/Tab.vue");
 
 //
 //
@@ -6992,16 +7012,44 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    WorkListLayout: _layouts_WorkListLayout__WEBPACK_IMPORTED_MODULE_2__["default"],
-    WorkTableLayout: _layouts_WorkTableLayout__WEBPACK_IMPORTED_MODULE_3__["default"],
-    Tab: _components_Tab__WEBPACK_IMPORTED_MODULE_4__["default"]
+    WorkListLayout: _layouts_WorkListLayout__WEBPACK_IMPORTED_MODULE_3__["default"],
+    WorkTableLayout: _layouts_WorkTableLayout__WEBPACK_IMPORTED_MODULE_4__["default"],
+    Tab: _components_Tab__WEBPACK_IMPORTED_MODULE_5__["default"]
   },
+  mixins: [_mixins_styles__WEBPACK_IMPORTED_MODULE_2__["default"]],
   props: {
     customer: {
       type: Object,
@@ -7014,7 +7062,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       favorite_works: [],
-      favorited_works: [],
+      favorited_members: [],
       hasFavorite: true,
       hasFavorited: true,
       favoriteFlag: 0,
@@ -7035,7 +7083,7 @@ __webpack_require__.r(__webpack_exports__);
 
               case 3:
                 _context.next = 5;
-                return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(this.worksByOwner());
+                return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(this.favoritedWorks());
 
               case 5:
                 this.$store.commit('form/setIsLoading', false);
@@ -7066,8 +7114,10 @@ __webpack_require__.r(__webpack_exports__);
               if (response.status !== _util__WEBPACK_IMPORTED_MODULE_1__["OK"]) {
                 this.hasFavorite = false;
               } else {
-                this.favorite_works = response.data;
-                this.hasFavorite = !!Object.keys(this.favorite_works).length;
+                this.favorite_works = Object.keys(response.data).map(function (key) {
+                  return response.data[key];
+                });
+                this.hasFavorite = !!this.favorite_works.length;
               }
 
             case 4:
@@ -7077,14 +7127,14 @@ __webpack_require__.r(__webpack_exports__);
         }
       }, null, this);
     },
-    worksByOwner: function worksByOwner() {
+    favoritedWorks: function favoritedWorks() {
       var response;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function worksByOwner$(_context3) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function favoritedWorks$(_context3) {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
               _context3.next = 2;
-              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(axios.get("/api/customers/".concat(this.customer.id, "/works")));
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(axios.get("/api/customers/".concat(this.customer.id, "/favoritedWorks")));
 
             case 2:
               response = _context3.sent;
@@ -7092,8 +7142,20 @@ __webpack_require__.r(__webpack_exports__);
               if (response.status !== _util__WEBPACK_IMPORTED_MODULE_1__["OK"]) {
                 this.hasFavorited = false;
               } else {
-                this.favorited_works = response.data.data;
-                this.hasFavorited = !!this.favorited_works.length;
+                this.favorited_members = response.data.map(function (work) {
+                  work.favorites.forEach(function (favorite) {
+                    favorite.work = {
+                      id: work.id,
+                      title: work.title,
+                      file_name: work.file_name
+                    };
+                  });
+                  return work.favorites;
+                }).flat();
+                this.favorited_members.sort(function (a, b) {
+                  return a.pivot.created_at < b.pivot.created_at ? 1 : -1;
+                });
+                this.hasFavorited = !!this.favorited_members.length;
               }
 
             case 4:
@@ -7125,6 +7187,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/util */ "./resources/js/util.js");
 /* harmony import */ var _layouts_WorkTableLayout__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/layouts/WorkTableLayout */ "./resources/js/layouts/WorkTableLayout.vue");
 /* harmony import */ var _components_modal_ConfirmModal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/components/modal/ConfirmModal */ "./resources/js/components/modal/ConfirmModal.vue");
+/* harmony import */ var _mixins_matches__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/mixins/matches */ "./resources/js/mixins/matches.js");
 
 //
 //
@@ -7143,6 +7206,54 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -7151,6 +7262,7 @@ __webpack_require__.r(__webpack_exports__);
     WorkTableLayout: _layouts_WorkTableLayout__WEBPACK_IMPORTED_MODULE_2__["default"],
     ConfirmModal: _components_modal_ConfirmModal__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
+  mixins: [_mixins_matches__WEBPACK_IMPORTED_MODULE_4__["default"]],
   props: {
     customer: {
       type: Object,
@@ -7163,7 +7275,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       works: [],
-      hasData: true,
+      hasPost: true,
       deleteId: null
     };
   },
@@ -7179,9 +7291,13 @@ __webpack_require__.r(__webpack_exports__);
                 return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(this.worksByOwner());
 
               case 3:
+                _context.next = 5;
+                return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(this.setMatches());
+
+              case 5:
                 this.$store.commit('form/setIsLoading', false);
 
-              case 4:
+              case 6:
               case "end":
                 return _context.stop();
             }
@@ -7205,10 +7321,10 @@ __webpack_require__.r(__webpack_exports__);
               response = _context2.sent;
 
               if (response.status !== _util__WEBPACK_IMPORTED_MODULE_1__["OK"]) {
-                this.hasData = false;
+                this.hasPost = false;
               } else {
                 this.works = response.data.data;
-                this.hasData = !!this.works.length;
+                this.hasPost = !!this.works.length;
               }
 
             case 4:
@@ -7291,6 +7407,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _layouts_ReviewFormLayout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/layouts/ReviewFormLayout */ "./resources/js/layouts/ReviewFormLayout.vue");
 /* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/util */ "./resources/js/util.js");
 /* harmony import */ var _mixins_styles__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/mixins/styles */ "./resources/js/mixins/styles.js");
+/* harmony import */ var _mixins_matches__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/mixins/matches */ "./resources/js/mixins/matches.js");
 
 //
 //
@@ -7361,6 +7478,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+
 
 
 
@@ -7377,10 +7497,9 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     ReviewFormLayout: _layouts_ReviewFormLayout__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
-  mixins: [_mixins_styles__WEBPACK_IMPORTED_MODULE_3__["default"]],
+  mixins: [_mixins_styles__WEBPACK_IMPORTED_MODULE_3__["default"], _mixins_matches__WEBPACK_IMPORTED_MODULE_4__["default"]],
   data: function data() {
     return {
-      applies: null,
       applierStatus: 1,
       recruiterStatus: 2,
       label: {
@@ -7392,7 +7511,6 @@ __webpack_require__.r(__webpack_exports__);
         2: '\#e4406f'
       },
       test: null,
-      hasData: true,
       currentId: 0
     };
   },
@@ -7421,108 +7539,6 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
-    setMatches: function setMatches() {
-      var matchApplies, matchedApplies;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function setMatches$(_context2) {
-        while (1) {
-          switch (_context2.prev = _context2.next) {
-            case 0:
-              _context2.next = 2;
-              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(this.matches());
-
-            case 2:
-              matchApplies = _context2.sent;
-              _context2.next = 5;
-              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(this.matcheds());
-
-            case 5:
-              matchedApplies = _context2.sent;
-              this.applies = matchApplies.concat(matchedApplies);
-              this.hasData = this.applies.length;
-
-            case 8:
-            case "end":
-              return _context2.stop();
-          }
-        }
-      }, null, this);
-    },
-    matches: function matches() {
-      var _this = this;
-
-      var response;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function matches$(_context3) {
-        while (1) {
-          switch (_context3.prev = _context3.next) {
-            case 0:
-              _context3.next = 2;
-              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(axios.get("/api/customers/".concat(this.customer.id, "/matches")));
-
-            case 2:
-              response = _context3.sent;
-
-              if (!(response.status === _util__WEBPACK_IMPORTED_MODULE_2__["OK"])) {
-                _context3.next = 7;
-                break;
-              }
-
-              return _context3.abrupt("return", Object.keys(response.data).map(function (key) {
-                return response.data[key];
-              }).map(function (apply) {
-                apply.status = _this.applierStatus;
-                return apply;
-              }));
-
-            case 7:
-              this.$store.commit('error/setErrors', {
-                status: response.status,
-                message: response
-              });
-
-            case 8:
-            case "end":
-              return _context3.stop();
-          }
-        }
-      }, null, this);
-    },
-    matcheds: function matcheds() {
-      var _this2 = this;
-
-      var response;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function matcheds$(_context4) {
-        while (1) {
-          switch (_context4.prev = _context4.next) {
-            case 0:
-              _context4.next = 2;
-              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(axios.get("/api/customers/".concat(this.customer.id, "/matcheds")));
-
-            case 2:
-              response = _context4.sent;
-
-              if (!(response.status === _util__WEBPACK_IMPORTED_MODULE_2__["OK"])) {
-                _context4.next = 7;
-                break;
-              }
-
-              return _context4.abrupt("return", response.data.map(function (apply) {
-                apply.status = _this2.recruiterStatus;
-                return apply;
-              }));
-
-            case 7:
-              this.$store.commit('error/setErrors', {
-                status: response.status,
-                message: response
-              });
-
-            case 8:
-            case "end":
-              return _context4.stop();
-          }
-        }
-      }, null, this);
-    },
     target: function target(apply) {
       return apply.status === this.applierStatus ? apply.work.customer : apply.applier;
     },
@@ -7536,6 +7552,10 @@ __webpack_require__.r(__webpack_exports__);
     },
     closeModal: function closeModal() {
       this.currentId = 0;
+    },
+    fetchApply: function fetchApply(apply) {
+      apply.is_review = true;
+      this.closeModal();
     },
     reviewResult: function reviewResult(apply) {
       return apply.is_review ? 'レビュー済み' : 'レビューを書く';
@@ -8020,6 +8040,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 // components
  // mixins
 
@@ -8145,6 +8167,15 @@ __webpack_require__.r(__webpack_exports__);
         while (1) {
           switch (_context4.prev = _context4.next) {
             case 0:
+              if (!this.validation()) {
+                _context4.next = 3;
+                break;
+              }
+
+              this.$scrollTo('.ErrorMessage', 1500);
+              return _context4.abrupt("return", false);
+
+            case 3:
               this.$store.commit('form/setIsLoading', true);
               customerData = new FormData();
               keys = Object.keys(this.formData).filter(function (key) {
@@ -8169,15 +8200,16 @@ __webpack_require__.r(__webpack_exports__);
                 }
               };
               config.headers['X-HTTP-Method-Override'] = 'PUT';
-              _context4.next = 9;
+              _context4.next = 12;
               return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(axios.post("/api/customers/".concat(this.customer.id), customerData, config));
 
-            case 9:
+            case 12:
               response = _context4.sent;
               this.$store.commit('form/setIsLoading', false);
+              this.$store.commit('form/setResponse', response);
 
               if (!(response.status === _util__WEBPACK_IMPORTED_MODULE_3__["UNPROCESSABLE_ENTITY"])) {
-                _context4.next = 17;
+                _context4.next = 21;
                 break;
               }
 
@@ -8185,19 +8217,56 @@ __webpack_require__.r(__webpack_exports__);
               this.$scrollTo('.Header', 1500);
               return _context4.abrupt("return", false);
 
-            case 17:
+            case 21:
               if (response.status === _util__WEBPACK_IMPORTED_MODULE_3__["OK"]) {
                 this.$store.commit('error/setMessage', null);
                 this.$store.commit('auth/setCustomer', response.data);
                 this.$store.commit('form/setSuccessMessage', '更新に成功しました');
               }
 
-            case 18:
+            case 22:
             case "end":
               return _context4.stop();
           }
         }
       }, null, this);
+    },
+    validation: function validation() {
+      var _this3 = this;
+
+      var validationCount = 0;
+
+      if (!Object(_util__WEBPACK_IMPORTED_MODULE_3__["alphaNumeric"])(this.formData.login_id.value)) {
+        this.$store.commit('error/setMessage', {
+          login_id: ['ログインIDは半角英数字のみ使用できます']
+        });
+        validationCount++;
+      }
+
+      if (!Object(_util__WEBPACK_IMPORTED_MODULE_3__["between"])(this.formData.login_id.value, this.formData.login_id.min, this.formData.login_id.max)) {
+        this.$store.commit('error/setMessage', {
+          login_id: ['ログインIDは6文字以上20文字以下で入力してください']
+        });
+        validationCount++;
+      }
+
+      if (!this.formData.profession_types.value.length) {
+        this.$store.commit('error/setMessage', {
+          professionIds: ['お持ちの資格にチェックを入れてください']
+        });
+        validationCount++;
+      }
+
+      this.formData.profession_types.value.forEach(function (professionId) {
+        if (!_this3.formData.profession_types.registerNumbers.hasOwnProperty(professionId) || _this3.formData.profession_types.registerNumbers[professionId] === '') {
+          _this3.$store.commit('error/setMessage', {
+            professionIds: ['チェックを入れた資格の登録番号を入力してください']
+          });
+
+          validationCount++;
+        }
+      });
+      return validationCount;
     }
   }
 });
@@ -8221,6 +8290,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Tab__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/components/Tab */ "./resources/js/components/Tab.vue");
 /* harmony import */ var _mixins_styles__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/mixins/styles */ "./resources/js/mixins/styles.js");
 
+//
+//
 //
 //
 //
@@ -16053,8 +16124,9 @@ var render = function() {
     [
       _vm.showable
         ? _c("div", {
-            staticClass: "WorkCard_mark",
+            staticClass: "WorkCard_mark u-tip-bottom",
             class: { "--favorite": _vm.work.is_favorite },
+            attrs: { "data-desc": _vm.favoriteStatus },
             on: { click: _vm.onClickStar }
           })
         : _vm._e(),
@@ -16308,6 +16380,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
+    { staticClass: "ErrorMessage" },
     _vm._l(_vm.errorMessage, function(message, index) {
       return _c(
         "small",
@@ -16577,7 +16650,7 @@ var render = function() {
                 }
               ],
               attrs: {
-                name: "item.name",
+                name: _vm.item.name,
                 type: "checkbox",
                 "data-label": professionType[_vm.item.labelKey]
               },
@@ -17331,7 +17404,7 @@ var render = function() {
                     attrs: {
                       id: _vm.customer.id,
                       author: _vm.author,
-                      isFollow: _vm.customer.is_follow
+                      isFollow: _vm.isFollow
                     },
                     on: { followClick: _vm.followClick }
                   })
@@ -17418,7 +17491,7 @@ var render = function() {
             _c("p", { staticClass: "Text -deepGreen -bold u-alignCenter" }, [
               _vm._v(
                 "\n            " +
-                  _vm._s(_vm.customer.follower_count) +
+                  _vm._s(_vm.customer.followers.length) +
                   "\n          "
               )
             ])
@@ -17439,7 +17512,7 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("p", { staticClass: "Text -deepGreen -bold u-alignCenter" }, [
-              _vm._v("\n            2\n          ")
+              _vm._v(_vm._s(_vm.customer.match_count))
             ])
           ])
         ])
@@ -19264,7 +19337,7 @@ var render = function() {
     "div",
     { staticClass: "p-applys" },
     [
-      _c("h2", [_vm._v("Applies")]),
+      _c("h2", { staticClass: "MypageContent_heading" }, [_vm._v("申込履歴")]),
       _vm._v(" "),
       _c("section", { staticClass: "MypageContent_box" }, [
         _c(
@@ -19283,247 +19356,236 @@ var render = function() {
           1
         ),
         _vm._v(" "),
-        _c("div", { staticClass: "MypageContent_body" }, [
-          _vm.currentFlag === _vm.applyFlag
-            ? _c("div", {}, [
+        _vm.currentFlag === _vm.applyFlag
+          ? _c("div", { staticClass: "MypageContent_body" }, [
+              _vm._m(0),
+              _vm._v(" "),
+              _c("div", { staticClass: "Table u-py20" }, [
+                _c("table", [
+                  _vm._m(1),
+                  _vm._v(" "),
+                  _c(
+                    "tbody",
+                    _vm._l(_vm.apply_works, function(work, index) {
+                      return _c("tr", { key: index }, [
+                        _c("td", [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "Button --minimum",
+                              on: {
+                                click: function($event) {
+                                  return _vm.showDetail(work.author_apply_info)
+                                }
+                              }
+                            },
+                            [_vm._v("\n                詳細\n              ")]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          [
+                            _c(
+                              "RouterLink",
+                              {
+                                staticClass: "Table_dataText --link --hasIcon",
+                                style: _vm.bgImage(work.file_name),
+                                attrs: { to: "/works/" + work.id, tag: "span" }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                " +
+                                    _vm._s(work.title) +
+                                    "\n              "
+                                )
+                              ]
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          [
+                            _c(
+                              "RouterLink",
+                              {
+                                staticClass: "Table_dataText --link --hasIcon",
+                                style: _vm.bgImage(work.customer.file_name),
+                                attrs: {
+                                  to: "/customers/" + work.customer.id,
+                                  tag: "span"
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                " +
+                                    _vm._s(work.customer.name) +
+                                    "\n              "
+                                )
+                              ]
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c("td", [
+                          _c("div", { staticClass: "Table_dataText" }, [
+                            _vm._v(
+                              _vm._s(work.author_apply_info.pivot.created_at)
+                            )
+                          ])
+                        ])
+                      ])
+                    }),
+                    0
+                  )
+                ]),
+                _vm._v(" "),
                 !_vm.hasApplyWorks
-                  ? _c("p", [_vm._v("申込をした募集案件はありません")])
-                  : _c("div", { staticClass: "Table" }, [
-                      _c("table", [
-                        _vm._m(0),
-                        _vm._v(" "),
-                        _c(
-                          "tbody",
-                          _vm._l(_vm.apply_works, function(work, index) {
-                            return _c("tr", { key: index }, [
-                              _c("td", [
-                                _c(
-                                  "button",
-                                  {
-                                    staticClass: "Button --minimum",
+                  ? _c("p", { staticClass: "u-pa20" }, [
+                      _vm._v("申込をした募集案件はありません")
+                    ])
+                  : _vm._e()
+              ])
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.currentFlag === _vm.appliedFlag
+          ? _c("div", { staticClass: "MypageContent_body" }, [
+              _vm._m(2),
+              _vm._v(" "),
+              _c("div", { staticClass: "Table u-py20" }, [
+                _c("table", [
+                  _vm._m(3),
+                  _vm._v(" "),
+                  _c(
+                    "tbody",
+                    _vm._l(_vm.appliers, function(applier, index) {
+                      return _c("tr", { key: index }, [
+                        _c("td", [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "u-px10 MatchButton u-tip",
+                              attrs: { "data-desc": _vm.dataDesc(applier) },
+                              on: {
+                                click: function($event) {
+                                  return _vm.setMatch(applier)
+                                }
+                              }
+                            },
+                            [
+                              _vm.isActive(applier)
+                                ? _c("i", {
+                                    staticClass: "fas fa-heart",
                                     on: {
-                                      click: function($event) {
-                                        return _vm.showDetail(
-                                          work.author_apply_info
-                                        )
+                                      mouseleave: function($event) {
+                                        return _vm.toggleHeart(applier)
                                       }
                                     }
-                                  },
-                                  [
-                                    _vm._v(
-                                      "\n                  詳細\n                "
-                                    )
-                                  ]
+                                  })
+                                : _c("i", {
+                                    staticClass: "far fa-heart",
+                                    on: {
+                                      mouseenter: function($event) {
+                                        return _vm.toggleHeart(applier)
+                                      }
+                                    }
+                                  })
+                            ]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "Button --minimum",
+                              on: {
+                                click: function($event) {
+                                  return _vm.showDetail(applier)
+                                }
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                  詳細\n                "
+                              )
+                            ]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          [
+                            _c(
+                              "RouterLink",
+                              {
+                                staticClass: "Table_dataText --link --hasIcon",
+                                style: _vm.bgImage(applier.work.file_name),
+                                attrs: {
+                                  to: "/works/" + applier.work.id,
+                                  tag: "span"
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                  " +
+                                    _vm._s(applier.work.title) +
+                                    "\n                "
                                 )
-                              ]),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                [
-                                  _c(
-                                    "RouterLink",
-                                    {
-                                      staticClass:
-                                        "Table_dataText --link --hasIcon",
-                                      style: _vm.bgImage(work.file_name),
-                                      attrs: {
-                                        to: "/works/" + work.id,
-                                        tag: "span"
-                                      }
-                                    },
-                                    [
-                                      _vm._v(
-                                        "\n                  " +
-                                          _vm._s(work.title) +
-                                          "\n                "
-                                      )
-                                    ]
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                [
-                                  _c(
-                                    "RouterLink",
-                                    {
-                                      staticClass:
-                                        "Table_dataText --link --hasIcon",
-                                      style: _vm.bgImage(
-                                        work.customer.file_name
-                                      ),
-                                      attrs: {
-                                        to: "/customers/" + work.customer.id,
-                                        tag: "span"
-                                      }
-                                    },
-                                    [
-                                      _vm._v(
-                                        "\n                  " +
-                                          _vm._s(work.customer.name) +
-                                          "\n                "
-                                      )
-                                    ]
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c("td", [
-                                _c("div", { staticClass: "Table_dataText" }, [
-                                  _vm._v(
-                                    _vm._s(
-                                      work.author_apply_info.pivot.created_at
-                                    )
-                                  )
-                                ])
-                              ])
-                            ])
-                          }),
-                          0
-                        )
+                              ]
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          [
+                            _c(
+                              "RouterLink",
+                              {
+                                staticClass: "Table_dataText --link --hasIcon",
+                                style: _vm.bgImage(applier.file_name),
+                                attrs: {
+                                  to: "/customers/" + applier.id,
+                                  tag: "span"
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                  " +
+                                    _vm._s(applier.name) +
+                                    "\n                "
+                                )
+                              ]
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c("td", [
+                          _c("div", { staticClass: "Table_dataText" }, [
+                            _vm._v(_vm._s(applier.pivot.created_at))
+                          ])
+                        ])
                       ])
-                    ])
-              ])
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.currentFlag === _vm.appliedFlag
-            ? _c("div", [
+                    }),
+                    0
+                  )
+                ]),
+                _vm._v(" "),
                 !_vm.hasAppliedWorks
-                  ? _c("p", [_vm._v("申込を受けた募集案件はありません")])
-                  : _c("div", { staticClass: "Table" }, [
-                      _c("table", [
-                        _vm._m(1),
-                        _vm._v(" "),
-                        _c(
-                          "tbody",
-                          _vm._l(_vm.appliers, function(applier, index) {
-                            return _c("tr", { key: index }, [
-                              _c("td", [
-                                _c(
-                                  "button",
-                                  {
-                                    staticClass: "u-px10 MatchButton",
-                                    attrs: {
-                                      "data-desc": _vm.dataDesc(applier)
-                                    },
-                                    on: {
-                                      click: function($event) {
-                                        return _vm.setMatch(applier)
-                                      }
-                                    }
-                                  },
-                                  [
-                                    _vm.isActive(applier)
-                                      ? _c("i", {
-                                          staticClass: "fas fa-heart",
-                                          on: {
-                                            mouseleave: function($event) {
-                                              return _vm.toggleHeart(applier)
-                                            }
-                                          }
-                                        })
-                                      : _c("i", {
-                                          staticClass: "far fa-heart",
-                                          on: {
-                                            mouseenter: function($event) {
-                                              return _vm.toggleHeart(applier)
-                                            }
-                                          }
-                                        })
-                                  ]
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c("td", [
-                                _c(
-                                  "button",
-                                  {
-                                    staticClass: "Button --minimum",
-                                    on: {
-                                      click: function($event) {
-                                        return _vm.showDetail(applier)
-                                      }
-                                    }
-                                  },
-                                  [
-                                    _vm._v(
-                                      "\n                    詳細\n                  "
-                                    )
-                                  ]
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                [
-                                  _c(
-                                    "RouterLink",
-                                    {
-                                      staticClass:
-                                        "Table_dataText --link --hasIcon",
-                                      style: _vm.bgImage(
-                                        applier.work.file_name
-                                      ),
-                                      attrs: {
-                                        to: "/works/" + applier.work.id,
-                                        tag: "span"
-                                      }
-                                    },
-                                    [
-                                      _vm._v(
-                                        "\n                    " +
-                                          _vm._s(applier.work.title) +
-                                          "\n                  "
-                                      )
-                                    ]
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                [
-                                  _c(
-                                    "RouterLink",
-                                    {
-                                      staticClass:
-                                        "Table_dataText --link --hasIcon",
-                                      style: _vm.bgImage(applier.file_name),
-                                      attrs: {
-                                        to: "/customers/" + applier.id,
-                                        tag: "span"
-                                      }
-                                    },
-                                    [
-                                      _vm._v(
-                                        "\n                    " +
-                                          _vm._s(applier.name) +
-                                          "\n                  "
-                                      )
-                                    ]
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c("td", [
-                                _c("div", { staticClass: "Table_dataText" }, [
-                                  _vm._v(_vm._s(applier.pivot.created_at))
-                                ])
-                              ])
-                            ])
-                          }),
-                          0
-                        )
-                      ])
+                  ? _c("p", { staticClass: "u-pa20" }, [
+                      _vm._v("申込を受けた募集案件はありません")
                     ])
+                  : _vm._e()
               ])
-            : _vm._e()
-        ])
+            ])
+          : _vm._e()
       ]),
       _vm._v(" "),
       _c("ApplyDetail", {
@@ -19546,6 +19608,16 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c("h3", { staticClass: "MypageContent_boxTitle" }, [
+      _c("span", { staticClass: "MypageContent_titleText" }, [
+        _vm._v("申込をした案件")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
         _c("th", { staticClass: "Table_headText" }, [_vm._v("操作")]),
@@ -19555,6 +19627,16 @@ var staticRenderFns = [
         _c("th", { staticClass: "Table_headText" }, [_vm._v("募集者")]),
         _vm._v(" "),
         _c("th", { staticClass: "Table_headText" }, [_vm._v("申込日時")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h3", { staticClass: "MypageContent_boxTitle" }, [
+      _c("span", { staticClass: "MypageContent_titleText" }, [
+        _vm._v("申込を受けた案件")
       ])
     ])
   },
@@ -19619,9 +19701,24 @@ var render = function() {
                         _vm._v("事務所名")
                       ]),
                       _vm._v(" "),
-                      _c("dd", { staticClass: "DefinitionLayout_desc" }, [
-                        _vm._v(_vm._s(_vm.applier.name))
-                      ])
+                      _c(
+                        "dd",
+                        { staticClass: "DefinitionLayout_desc" },
+                        [
+                          _c(
+                            "RouterLink",
+                            {
+                              staticClass: "Text -link",
+                              attrs: {
+                                to: "/customers/" + _vm.applier.id,
+                                tag: "span"
+                              }
+                            },
+                            [_vm._v(_vm._s(_vm.applier.name))]
+                          )
+                        ],
+                        1
+                      )
                     ])
                   ]),
                   _vm._v(" "),
@@ -19873,7 +19970,9 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "p-favorites" }, [
-    _c("h2", [_vm._v("Favorites")]),
+    _c("h2", { staticClass: "MypageContent_heading" }, [
+      _vm._v("お気に入り履歴")
+    ]),
     _vm._v(" "),
     _c("section", { staticClass: "MypageContent_box" }, [
       _c(
@@ -19892,40 +19991,125 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c("div", { staticClass: "MypageContent_body" }, [
-        _vm.currentFlag === _vm.favoriteFlag
-          ? _c(
-              "div",
-              {},
-              [
-                !_vm.hasFavorite
-                  ? _c("p", [_vm._v("気になるした募集案件はありません")])
-                  : _c("WorkListLayout", {
-                      attrs: { works: _vm.favorite_works }
-                    })
-              ],
-              1
-            )
-          : _vm._e(),
-        _vm._v(" "),
-        _vm.currentFlag === _vm.favoritedFlag
-          ? _c(
-              "div",
-              [
-                !_vm.hasFavorited
-                  ? _c("p", [_vm._v("気になるされた募集案件はありません")])
-                  : _c("WorkTableLayout", {
-                      attrs: { works: _vm.favorited_works }
-                    })
-              ],
-              1
-            )
-          : _vm._e()
-      ])
+      _vm.currentFlag === _vm.favoriteFlag
+        ? _c(
+            "div",
+            { staticClass: "MypageContent_body u-bgBlue" },
+            [
+              _vm._m(0),
+              _vm._v(" "),
+              !_vm.hasFavorite
+                ? _c("p", [_vm._v("気になるした募集案件はありません")])
+                : _c("WorkListLayout", {
+                    staticClass: "u-py20",
+                    attrs: { works: _vm.favorite_works }
+                  })
+            ],
+            1
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.currentFlag === _vm.favoritedFlag
+        ? _c("div", { staticClass: "MypageContent_body" }, [
+            _vm._m(1),
+            _vm._v(" "),
+            !_vm.hasFavorited
+              ? _c("p", [_vm._v("気になるされた募集案件はありません")])
+              : _c(
+                  "ul",
+                  { staticClass: "FavoritedList u-py20" },
+                  _vm._l(_vm.favorited_members, function(favorite, index) {
+                    return _c(
+                      "li",
+                      { key: index, staticClass: "FavoritedList_item" },
+                      [
+                        _c("div", { staticClass: "FavoritedList_body" }, [
+                          _c(
+                            "div",
+                            { staticClass: "FavoritedList_member" },
+                            [
+                              _c(
+                                "RouterLink",
+                                {
+                                  staticClass: "FavoritedList_memberLink",
+                                  attrs: {
+                                    to: "/customers/" + favorite.id,
+                                    tag: "div"
+                                  }
+                                },
+                                [
+                                  _c("span", {
+                                    staticClass: "FavoritedList_memberThumb",
+                                    style: _vm.bgImage(favorite.file_name)
+                                  }),
+                                  _vm._v(" "),
+                                  _c(
+                                    "span",
+                                    { staticClass: "Text -link u-mx5" },
+                                    [_vm._v(_vm._s(favorite.name))]
+                                  )
+                                ]
+                              ),
+                              _vm._v(
+                                "\n              さんが「気になる」を押しました\n            "
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            { staticClass: "FavoritedList_work" },
+                            [
+                              _c("div", {
+                                staticClass: "FavoritedList_workThumb",
+                                style: _vm.bgImage(favorite.work.file_name)
+                              }),
+                              _vm._v(" "),
+                              _c(
+                                "RouterLink",
+                                {
+                                  staticClass: "Text -blue u-mx5",
+                                  attrs: { to: "/works/" + favorite.work.id }
+                                },
+                                [_vm._v(_vm._s(favorite.work.title))]
+                              )
+                            ],
+                            1
+                          )
+                        ])
+                      ]
+                    )
+                  }),
+                  0
+                )
+          ])
+        : _vm._e()
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h3", { staticClass: "MypageContent_boxTitle" }, [
+      _c("span", { staticClass: "MypageContent_titleText" }, [
+        _vm._v("気になるした案件")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h3", { staticClass: "MypageContent_boxTitle" }, [
+      _c("span", { staticClass: "MypageContent_titleText" }, [
+        _vm._v("気になるされた案件")
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -19952,23 +20136,83 @@ var render = function() {
     { staticClass: "p-home" },
     [
       _c("div", [
-        _c("h2", [_vm._v("Home")]),
+        _c("h2", { staticClass: "MypageContent_heading" }, [_vm._v("HOME")]),
         _vm._v(" "),
-        _c(
-          "section",
-          { staticClass: "MypageContent_box" },
-          [
-            _c("h3", {}, [_vm._v("投稿中の募集案件")]),
+        _c("section", { staticClass: "MypageContent_box" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("ul", { staticClass: "MypageContent_aggregate" }, [
+            _c("li", { staticClass: "MypageContent_aggregateItem" }, [
+              _c("div", { staticClass: "AggregateBox" }, [
+                _c("h4", { staticClass: "AggregateBox_heading" }, [
+                  _vm._v("マッチ件数")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "AggregateBox_body" }, [
+                  _c("span", { staticClass: "AggregateBox_num" }, [
+                    _vm._v(_vm._s(_vm.applies.length))
+                  ]),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "AggregateBox_unit" }, [
+                    _vm._v("件")
+                  ])
+                ])
+              ])
+            ]),
             _vm._v(" "),
-            !_vm.hasData
-              ? _c("p", [_vm._v("募集案件の投稿はありません")])
-              : _c("WorkTableLayout", {
-                  attrs: { works: _vm.works },
-                  on: { sendDelete: _vm.openDeleteModal }
-                })
-          ],
-          1
-        )
+            _vm._m(1),
+            _vm._v(" "),
+            _c("li", { staticClass: "MypageContent_aggregateItem" }, [
+              _c("div", { staticClass: "AggregateBox" }, [
+                _c("h4", { staticClass: "AggregateBox_heading" }, [
+                  _vm._v("フォロワー")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "AggregateBox_body" }, [
+                  _c("span", { staticClass: "AggregateBox_num" }, [
+                    _vm._v(_vm._s(_vm.customer.followers.length))
+                  ]),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "AggregateBox_unit" })
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("li", { staticClass: "MypageContent_aggregateItem" }, [
+              _c("div", { staticClass: "AggregateBox" }, [
+                _c("h4", { staticClass: "AggregateBox_heading" }, [
+                  _vm._v("フォロー")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "AggregateBox_body" }, [
+                  _c("span", { staticClass: "AggregateBox_num" }, [
+                    _vm._v(_vm._s(_vm.customer.followees.length))
+                  ]),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "AggregateBox_unit" })
+                ])
+              ])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("section", { staticClass: "MypageContent_box" }, [
+          _vm._m(2),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "MypageContent_body" },
+            [
+              !_vm.hasData
+                ? _c("p", [_vm._v("募集案件の投稿はありません")])
+                : _c("WorkTableLayout", {
+                    attrs: { works: _vm.works },
+                    on: { sendDelete: _vm.openDeleteModal }
+                  })
+            ],
+            1
+          )
+        ])
       ]),
       _vm._v(" "),
       _c("ConfirmModal", {
@@ -19979,7 +20223,46 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h3", { staticClass: "MypageContent_boxTitle" }, [
+      _c("span", { staticClass: "MypageContent_titleText" }, [
+        _vm._v("活動レポート")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "MypageContent_aggregateItem" }, [
+      _c("div", { staticClass: "AggregateBox" }, [
+        _c("h4", { staticClass: "AggregateBox_heading" }, [
+          _vm._v("レビュー平均")
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "AggregateBox_body" }, [
+          _c("span", { staticClass: "AggregateBox_num" }, [_vm._v("12")]),
+          _vm._v(" "),
+          _c("span", { staticClass: "AggregateBox_unit" }, [_vm._v("点")])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h3", { staticClass: "MypageContent_boxTitle" }, [
+      _c("span", { staticClass: "MypageContent_titleText" }, [
+        _vm._v("投稿中の募集案件")
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -20104,7 +20387,12 @@ var render = function() {
                           reviewee: _vm.target(apply),
                           currentId: _vm.currentId
                         },
-                        on: { onClickClose: _vm.closeModal }
+                        on: {
+                          onClickClose: _vm.closeModal,
+                          onReviewed: function($event) {
+                            return _vm.fetchApply(apply)
+                          }
+                        }
                       })
                     ],
                     1
@@ -20130,8 +20418,10 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("h3", { staticClass: "MypageContent_title" }, [
-      _c("span", [_vm._v("マッチした案件")])
+    return _c("h3", { staticClass: "MypageContent_boxTitle" }, [
+      _c("span", { staticClass: "MypageContent_titleText" }, [
+        _vm._v("マッチした案件")
+      ])
     ])
   },
   function() {
@@ -20441,7 +20731,7 @@ var render = function() {
         "section",
         { staticClass: "MypageContent_box" },
         [
-          _c("h3", [_vm._v("プロフィールの編集")]),
+          _vm._m(0),
           _vm._v(" "),
           _c("ProfileFormLayout", {
             attrs: { "form-data": _vm.formData },
@@ -20453,7 +20743,18 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h3", { staticClass: "MypageContent_boxTitle u-mb10" }, [
+      _c("span", { staticClass: "MypageContent_titleText" }, [
+        _vm._v("プロフィールの編集")
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -20495,116 +20796,113 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c("div", { staticClass: "MypageContent_body" }, [
-        _vm.currentFlag === _vm.scoutedFlag
-          ? _c("div", { staticClass: "u-bgGray u-py40" }, [
-              !_vm.hasScouted
-                ? _c("p", [_vm._v("スカウトを受けた案件はありません")])
-                : _c(
-                    "div",
-                    [
-                      _c("h3", [_vm._v("スカウトを受けた案件")]),
-                      _vm._v(" "),
-                      _vm._l(_vm.scouted_works, function(work, index) {
+      _vm.currentFlag === _vm.scoutedFlag
+        ? _c("div", { staticClass: "MypageContent_body u-bgBlue" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            !_vm.hasScouted
+              ? _c("p", { staticClass: "u-pa20" }, [
+                  _vm._v("スカウトを受けた案件はありません")
+                ])
+              : _c(
+                  "div",
+                  { staticClass: "u-py20" },
+                  _vm._l(_vm.scouted_works, function(work, index) {
+                    return _c("ul", { key: index, staticClass: "ScoutList" }, [
+                      _c("li", { staticClass: "ScoutList_item" }, [
+                        _c("div", { staticClass: "ScoutList_targetInfo" }, [
+                          _vm._v(_vm._s(work.customer.name))
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "ScoutList_scoutInfo" }, [
+                          _c("div", {
+                            staticClass: "ScoutList_scoutThumb",
+                            style: _vm.bgImage(work.file_name)
+                          }),
+                          _vm._v(" "),
+                          _c("p", { staticClass: "ScoutList_text u-ml20" }, [
+                            _vm._v(_vm._s(work.pivot.title))
+                          ])
+                        ])
+                      ])
+                    ])
+                  }),
+                  0
+                )
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.currentFlag === _vm.scoutFlag
+        ? _c("div", { staticClass: "MypageContent_body u-bgGray" }, [
+            _vm._m(1),
+            _vm._v(" "),
+            !_vm.hasScout
+              ? _c("p", { staticClass: "u-pa20" }, [
+                  _vm._v("スカウトした案件はありません")
+                ])
+              : _c(
+                  "div",
+                  { staticClass: "u-py20" },
+                  _vm._l(_vm.scout_works, function(work, index) {
+                    return _c(
+                      "ul",
+                      { key: index, staticClass: "ScoutList" },
+                      _vm._l(work.scouts, function(targetCustomer, idx) {
                         return _c(
-                          "ul",
-                          { key: index, staticClass: "ScoutList" },
+                          "li",
+                          { key: idx, staticClass: "ScoutList_item" },
                           [
-                            _c("li", { staticClass: "ScoutList_item" }, [
-                              _c(
-                                "div",
-                                { staticClass: "ScoutList_targetInfo" },
-                                [_vm._v(_vm._s(work.customer.name))]
-                              ),
+                            _c("div", { staticClass: "ScoutList_targetInfo" }, [
+                              _vm._v(_vm._s(targetCustomer.name))
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "ScoutList_scoutInfo" }, [
+                              _c("div", {
+                                staticClass: "ScoutList_targetThumb",
+                                style: _vm.bgImage(targetCustomer.file_name)
+                              }),
                               _vm._v(" "),
                               _c(
-                                "div",
-                                { staticClass: "ScoutList_scoutInfo" },
-                                [
-                                  _c("div", {
-                                    staticClass: "ScoutList_scoutThumb",
-                                    style: _vm.bgImage(work.file_name)
-                                  }),
-                                  _vm._v(" "),
-                                  _c(
-                                    "p",
-                                    { staticClass: "ScoutList_text u-ml20" },
-                                    [_vm._v(_vm._s(work.pivot.title))]
-                                  )
-                                ]
+                                "p",
+                                { staticClass: "ScoutList_text u-ml20" },
+                                [_vm._v(_vm._s(targetCustomer.pivot.title))]
                               )
                             ])
                           ]
                         )
-                      })
-                    ],
-                    2
-                  )
-            ])
-          : _vm._e(),
-        _vm._v(" "),
-        _vm.currentFlag === _vm.scoutFlag
-          ? _c("div", { staticClass: "u-bgBlue u-py40" }, [
-              !_vm.hasScout
-                ? _c("p", [_vm._v("スカウトした案件はありません")])
-                : _c(
-                    "div",
-                    [
-                      _c("h3", [_vm._v("スカウトした案件")]),
-                      _vm._v(" "),
-                      _vm._l(_vm.scout_works, function(work, index) {
-                        return _c(
-                          "ul",
-                          { key: index, staticClass: "ScoutList" },
-                          _vm._l(work.scouts, function(targetCustomer, idx) {
-                            return _c(
-                              "li",
-                              { key: idx, staticClass: "ScoutList_item" },
-                              [
-                                _c(
-                                  "div",
-                                  { staticClass: "ScoutList_targetInfo" },
-                                  [_vm._v(_vm._s(targetCustomer.name))]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "div",
-                                  { staticClass: "ScoutList_scoutInfo" },
-                                  [
-                                    _c("div", {
-                                      staticClass: "ScoutList_targetThumb",
-                                      style: _vm.bgImage(
-                                        targetCustomer.file_name
-                                      )
-                                    }),
-                                    _vm._v(" "),
-                                    _c(
-                                      "p",
-                                      { staticClass: "ScoutList_text u-ml20" },
-                                      [
-                                        _vm._v(
-                                          _vm._s(targetCustomer.pivot.title)
-                                        )
-                                      ]
-                                    )
-                                  ]
-                                )
-                              ]
-                            )
-                          }),
-                          0
-                        )
-                      })
-                    ],
-                    2
-                  )
-            ])
-          : _vm._e()
-      ])
+                      }),
+                      0
+                    )
+                  }),
+                  0
+                )
+          ])
+        : _vm._e()
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h3", { staticClass: "MypageContent_boxTitle" }, [
+      _c("span", { staticClass: "MypageContent_titleText" }, [
+        _vm._v("スカウトを受けた案件")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h3", { staticClass: "MypageContent_boxTitle" }, [
+      _c("span", { staticClass: "MypageContent_titleText" }, [
+        _vm._v("スカウトした案件")
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -44197,7 +44495,6 @@ __webpack_require__.r(__webpack_exports__);
 
             case 2:
               response = _context3.sent;
-              this.$store.commit('form/setResponse', response);
               this.$store.commit('error/setStatus', response.status);
               this.$store.commit('error/setMessage', response);
 
@@ -44218,7 +44515,7 @@ __webpack_require__.r(__webpack_exports__);
 
               this.hasData = !!this.list.length;
 
-            case 8:
+            case 7:
             case "end":
               return _context3.stop();
           }
@@ -44388,11 +44685,13 @@ __webpack_require__.r(__webpack_exports__);
           name: 'login_id',
           type: 'text',
           value: '',
-          placeholder: 'loginID',
+          min: 6,
+          max: 20,
+          placeholder: 'ログインID(半角英数字6~20文字)',
           options: {
             required: true,
             autofocus: true,
-            maxLength: 50
+            maxLength: 20
           },
           classOption: {
             '--id': true
@@ -44887,6 +45186,135 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       } else if (this.item.name === 'address') {
         this.item.value = addr.street;
       }
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/mixins/matches.js":
+/*!****************************************!*\
+  !*** ./resources/js/mixins/matches.js ***!
+  \****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/util */ "./resources/js/util.js");
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      applies: null,
+      hasData: true
+    };
+  },
+  methods: {
+    setMatches: function setMatches() {
+      var matchApplies, matchedApplies;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function setMatches$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(this.matches());
+
+            case 2:
+              matchApplies = _context.sent;
+              _context.next = 5;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(this.matcheds());
+
+            case 5:
+              matchedApplies = _context.sent;
+              this.applies = matchApplies.concat(matchedApplies);
+              this.hasData = this.applies.length;
+
+            case 8:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, null, this);
+    },
+    matches: function matches() {
+      var _this = this;
+
+      var response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function matches$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.next = 2;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(axios.get("/api/customers/".concat(this.customer.id, "/matches")));
+
+            case 2:
+              response = _context2.sent;
+
+              if (!(response.status === _util__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
+                _context2.next = 7;
+                break;
+              }
+
+              return _context2.abrupt("return", Object.keys(response.data).map(function (key) {
+                return response.data[key];
+              }).map(function (apply) {
+                apply.status = _this.applierStatus;
+                return apply;
+              }));
+
+            case 7:
+              this.$store.commit('error/setErrors', {
+                status: response.status,
+                message: response
+              });
+
+            case 8:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, null, this);
+    },
+    matcheds: function matcheds() {
+      var _this2 = this;
+
+      var response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function matcheds$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              _context3.next = 2;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(axios.get("/api/customers/".concat(this.customer.id, "/matcheds")));
+
+            case 2:
+              response = _context3.sent;
+
+              if (!(response.status === _util__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
+                _context3.next = 7;
+                break;
+              }
+
+              return _context3.abrupt("return", response.data.map(function (apply) {
+                apply.status = _this2.recruiterStatus;
+                return apply;
+              }));
+
+            case 7:
+              this.$store.commit('error/setErrors', {
+                status: response.status,
+                message: response
+              });
+
+            case 8:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, null, this);
     }
   }
 });
@@ -47705,12 +48133,14 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 /*!******************************!*\
   !*** ./resources/js/util.js ***!
   \******************************/
-/*! exports provided: getCookieValue, OK, CREATED, DELETED, INTERNAL_SERVER_ERROR, UNPROCESSABLE_ENTITY, UNAUTHORIZED, NOT_FOUND, BASE_STORAGE_URL, BASE_URL, MQL, PER_PAGE, CLIENT_HEIGHT, CLIENT_WIDTH, PROFESSIONS */
+/*! exports provided: getCookieValue, alphaNumeric, between, OK, CREATED, DELETED, INTERNAL_SERVER_ERROR, UNPROCESSABLE_ENTITY, UNAUTHORIZED, NOT_FOUND, BASE_STORAGE_URL, BASE_URL, MQL, PER_PAGE, CLIENT_HEIGHT, CLIENT_WIDTH, PROFESSIONS */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getCookieValue", function() { return getCookieValue; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "alphaNumeric", function() { return alphaNumeric; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "between", function() { return between; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OK", function() { return OK; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CREATED", function() { return CREATED; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DELETED", function() { return DELETED; });
@@ -47756,6 +48186,12 @@ function getCookieValue(searchKey) {
   });
   return val;
 }
+function alphaNumeric(str) {
+  return str.match(/^([A-Z]|[a-z]|[0-9])+$/g);
+}
+function between(str, min, max) {
+  return str.length >= min && str.length <= max;
+}
 var OK = 200;
 var CREATED = 201;
 var DELETED = 204;
@@ -47766,7 +48202,7 @@ var NOT_FOUND = 404;
 var BASE_STORAGE_URL = 'https://asset.shigyo-match.site';
 var BASE_URL = window.location.origin;
 var MQL = window.matchMedia('(max-width: 768px)');
-var PER_PAGE = 2;
+var PER_PAGE = 12;
 var CLIENT_HEIGHT = document.documentElement.clientHeight;
 var CLIENT_WIDTH = document.documentElement.clientWidth;
 var PROFESSIONS = {

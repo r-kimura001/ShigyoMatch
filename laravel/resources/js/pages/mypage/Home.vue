@@ -1,15 +1,62 @@
 <template>
   <div class="p-home">
     <div>
-      <h2>Home</h2>
+      <h2 class="MypageContent_heading">HOME</h2>
       <section class="MypageContent_box">
-        <h3 class="">投稿中の募集案件</h3>
-        <p v-if="!hasData">募集案件の投稿はありません</p>
-        <WorkTableLayout
-          v-else
-          :works="works"
-          @sendDelete="openDeleteModal"
-        ></WorkTableLayout>
+        <h3 class="MypageContent_boxTitle">
+          <span class="MypageContent_titleText">活動レポート</span>
+        </h3>
+        <ul class="MypageContent_aggregate">
+          <li class="MypageContent_aggregateItem">
+            <div class="AggregateBox">
+              <h4 class="AggregateBox_heading">マッチ件数</h4>
+              <div class="AggregateBox_body">
+                <span class="AggregateBox_num">{{ applies.length }}</span>
+                <span class="AggregateBox_unit">件</span>
+              </div>
+            </div>
+          </li>
+          <li class="MypageContent_aggregateItem">
+            <div class="AggregateBox">
+              <h4 class="AggregateBox_heading">レビュー平均</h4>
+              <div class="AggregateBox_body">
+                <span class="AggregateBox_num">12</span>
+                <span class="AggregateBox_unit">点</span>
+              </div>
+            </div>
+          </li>
+          <li class="MypageContent_aggregateItem">
+            <div class="AggregateBox">
+              <h4 class="AggregateBox_heading">フォロワー</h4>
+              <div class="AggregateBox_body">
+                <span class="AggregateBox_num">{{ customer.followers.length }}</span>
+                <span class="AggregateBox_unit"></span>
+              </div>
+            </div>
+          </li>
+          <li class="MypageContent_aggregateItem">
+            <div class="AggregateBox">
+              <h4 class="AggregateBox_heading">フォロー</h4>
+              <div class="AggregateBox_body">
+                <span class="AggregateBox_num">{{ customer.followees.length }}</span>
+                <span class="AggregateBox_unit"></span>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </section>
+      <section class="MypageContent_box">
+        <h3 class="MypageContent_boxTitle">
+          <span class="MypageContent_titleText">投稿中の募集案件</span>
+        </h3>
+        <div class="MypageContent_body">
+          <p v-if="!hasData">募集案件の投稿はありません</p>
+          <WorkTableLayout
+            v-else
+            :works="works"
+            @sendDelete="openDeleteModal"
+          ></WorkTableLayout>
+        </div>
       </section>
     </div>
     <ConfirmModal :id="deleteId" @confirmed="deleteItem"></ConfirmModal>
@@ -19,11 +66,13 @@
 import { DELETED, UNPROCESSABLE_ENTITY, OK } from '@/util'
 import WorkTableLayout from '@/layouts/WorkTableLayout'
 import ConfirmModal from '@/components/modal/ConfirmModal'
+import matches from '@/mixins/matches'
 export default {
   components: {
     WorkTableLayout,
     ConfirmModal,
   },
+  mixins: [matches],
   props: {
     customer: {
       type: Object,
@@ -34,7 +83,7 @@ export default {
   data() {
     return {
       works: [],
-      hasData: true,
+      hasPost: true,
       deleteId: null,
     }
   },
@@ -43,6 +92,7 @@ export default {
       async handler() {
         this.$store.commit('form/setIsLoading', true)
         await this.worksByOwner()
+        await this.setMatches()
         this.$store.commit('form/setIsLoading', false)
       },
       immediate: true,
@@ -54,10 +104,10 @@ export default {
         `/api/customers/${this.customer.id}/works`
       )
       if (response.status !== OK) {
-        this.hasData = false
+        this.hasPost = false
       } else {
         this.works = response.data.data
-        this.hasData = !!this.works.length
+        this.hasPost = !!this.works.length
       }
     },
     openDeleteModal(id) {

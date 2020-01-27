@@ -9,11 +9,13 @@ export default {
           name: 'login_id',
           type: 'text',
           value: '',
-          placeholder: 'loginID',
+          min: 6,
+          max: 20,
+          placeholder: 'ログインID(半角英数字6~20文字)',
           options: {
             required: true,
             autofocus: true,
-            maxLength: 50,
+            maxLength: 20,
           },
           classOption: {
             '--id': true,

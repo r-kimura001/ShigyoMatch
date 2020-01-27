@@ -27,6 +27,7 @@ class UpdateRequest extends FormRequest
   public function rules()
   {
     return [
+      'login_id' => 'required|regex:/^[a-zA-Z0-9]+$/|min:6|max:20|unique:users,login_id,'.Auth::user()->login_id.',login_id',
       'email' => 'required|email|unique:users,email,'.Auth::user()->email.',email',
       'name' => 'required|max:100',
       'zip_code' => 'nullable|integer|max:9999999',
@@ -43,6 +44,7 @@ class UpdateRequest extends FormRequest
   public function attributes()
   {
     return [
+      'login_id' => 'ログインID',
       'email' => 'メールアドレス',
       'name' => '事務所名',
       'zip_code' => '郵便番号',
@@ -59,7 +61,8 @@ class UpdateRequest extends FormRequest
   public function messages()
   {
     return [
-      'file_name|max' => '画像データは'. self::MULTIPLE_NUM .'MB以下のファイルを指定してください'
+      'file_name|max' => '画像データは'. self::MULTIPLE_NUM .'MB以下のファイルを指定してください',
+      'login_id|regex' => 'ログインIDは半角英数字のみ使用できます'
     ];
   }
 

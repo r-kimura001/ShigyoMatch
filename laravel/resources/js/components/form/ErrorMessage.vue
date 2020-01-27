@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="ErrorMessage">
     <small
       v-for="(message, index) in errorMessage"
       :key="index"

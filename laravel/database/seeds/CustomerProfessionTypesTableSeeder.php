@@ -22,7 +22,7 @@ class CustomerProfessionTypesTableSeeder extends Seeder
       DB::table('customer_profession_types')->truncate();
 
       $now = Carbon::now();
-      $customers = $customerService->all();
+      $customers = $customerService->all([]);
       $professionTypes = $professionTypeService->all();
       $customerId = 1;
       $professionId = 1;

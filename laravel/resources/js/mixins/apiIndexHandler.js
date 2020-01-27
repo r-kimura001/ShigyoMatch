@@ -53,7 +53,6 @@ export default {
           professionTypeId: this.professionId
         },
       })
-      this.$store.commit('form/setResponse', response)
       this.$store.commit('error/setStatus', response.status)
       this.$store.commit('error/setMessage', response)
       if(this.paramPath === 'customers'){

@@ -1,8 +1,8 @@
 <template>
   <div class="p-matches">
     <section class="MypageContent_box">
-      <h3 class="MypageContent_title">
-        <span>マッチした案件</span>
+      <h3 class="MypageContent_boxTitle">
+        <span class="MypageContent_titleText">マッチした案件</span>
       </h3>
       <div class="MypageContent_body">
         <div class="Table">
@@ -56,7 +56,9 @@
                   :apply="apply"
                   :reviewee="target(apply)"
                   :currentId="currentId"
-                  @onClickClose="closeModal"></ReviewFormLayout>
+                  @onClickClose="closeModal"
+                  @onReviewed="fetchApply(apply)"
+                ></ReviewFormLayout>
               </td>
             </tr>
             </tbody>
@@ -68,9 +70,10 @@
   </div>
 </template>
 <script>
-  import ReviewFormLayout from '@/layouts/ReviewFormLayout'
-  import { OK } from '@/util'
-  import styles from '@/mixins/styles'
+import ReviewFormLayout from '@/layouts/ReviewFormLayout'
+import { OK } from '@/util'
+import styles from '@/mixins/styles'
+import matches from '@/mixins/matches'
 export default {
   props: {
     customer: {
@@ -82,10 +85,9 @@ export default {
   components: {
     ReviewFormLayout
   },
-  mixins: [ styles ],
+  mixins: [ styles, matches ],
   data(){
     return {
-      applies: null,
       applierStatus: 1,
       recruiterStatus: 2,
       label: {
@@ -97,7 +99,6 @@ export default {
         2: '\#e4406f'
       },
       test: null,
-      hasData: true,
       currentId: 0,
     }
   },
@@ -112,43 +113,6 @@ export default {
     }
   },
   methods: {
-    async setMatches(){
-      // 申し込み側
-      const matchApplies = await this.matches()
-      // 募集側
-      const matchedApplies = await this.matcheds()
-
-      this.applies = matchApplies.concat(matchedApplies)
-      this.hasData = this.applies.length
-    },
-    async matches(){
-      const response = await axios.get(`/api/customers/${this.customer.id}/matches`)
-      if(response.status === OK ){
-        return Object.keys(response.data).map( key => response.data[key]).map( apply => {
-          apply.status = this.applierStatus
-          return apply
-        })
-      }else{
-        this.$store.commit('error/setErrors', {
-          status: response.status,
-          message: response,
-        })
-      }
-    },
-    async matcheds(){
-      const response = await axios.get(`/api/customers/${this.customer.id}/matcheds`)
-      if(response.status === OK ){
-        return response.data.map( apply => {
-          apply.status = this.recruiterStatus
-          return apply
-        })
-      }else{
-        this.$store.commit('error/setErrors', {
-          status: response.status,
-          message: response,
-        })
-      }
-    },
     target(apply){
       return apply.status === this.applierStatus ? apply.work.customer : apply.applier
     },
@@ -162,6 +126,10 @@ export default {
     },
     closeModal(){
       this.currentId = 0
+    },
+    fetchApply(apply){
+      apply.is_review = true
+      this.closeModal()
     },
     reviewResult(apply){
       return apply.is_review ? 'レビュー済み' : 'レビューを書く'

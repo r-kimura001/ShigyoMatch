@@ -2,9 +2,10 @@
   <div class="WorkCard" :data-fee="work.fee.toLocaleString()">
     <div
       v-if="showable"
-      class="WorkCard_mark"
+      class="WorkCard_mark u-tip-bottom"
       :class="{ '--favorite': work.is_favorite }"
       @click="onClickStar"
+      :data-desc="favoriteStatus"
     ></div>
     <RouterLink :to="`/works/${work.id}`" tag="div" class="WorkCard_face">
       <div class="WorkCard_thumb">
@@ -39,6 +40,11 @@ import styles from '@/mixins/styles'
 import worksData from '@/mixins/worksData'
 export default {
   mixins: [styles, worksData],
+  computed: {
+    favoriteStatus(){
+      return this.work.is_favorite ? '「気になる」済み' : '「気になる」に登録する'
+    }
+  },
   methods: {
     onClickStar() {
       if (!this.isLogin) {

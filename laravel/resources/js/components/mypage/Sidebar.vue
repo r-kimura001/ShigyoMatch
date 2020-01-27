@@ -70,11 +70,6 @@ export default {
         //   path: '/messages',
         //   iconSrc: 'icon-mail-line.svg',
         // },
-        {
-          name: 'チャットルーム',
-          path: '/chats',
-          iconSrc: 'icon-chat.svg',
-        },
       ],
     }
   },

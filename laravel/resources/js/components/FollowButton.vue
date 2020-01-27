@@ -18,15 +18,19 @@ export default {
       required: true,
       default: () => ({})
     },
-    isFollow:{
+    followers:{
+      type: Array,
+      default: () => ([])
+    },
+    isFollow: {
       type: Boolean,
       default: false
-    },
+    }
   },
   computed: {
     txt(){
       return this.isFollow ? 'フォロー済み' : 'フォロー'
-    }
+    },
   },
   methods: {
     onFollowClick(){
