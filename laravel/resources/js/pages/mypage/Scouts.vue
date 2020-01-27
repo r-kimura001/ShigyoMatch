@@ -11,8 +11,8 @@
         ></Tab>
       </div>
       <div v-if="currentFlag===scoutedFlag" class="MypageContent_body u-bgBlue">
-        <h3 class="MypageContent_boxTitle">
-          <span class="MypageContent_titleText">スカウトを受けた案件</span>
+        <h3 class="BaseTitle">
+          <span class="BaseTitle_text">スカウトを受けた案件</span>
         </h3>
         <p v-if="!hasScouted" class="u-pa20">スカウトを受けた案件はありません</p>
         <div v-else class="u-py20">
@@ -28,8 +28,8 @@
         </div>
       </div>
       <div  v-if="currentFlag===scoutFlag" class="MypageContent_body u-bgGray">
-        <h3 class="MypageContent_boxTitle">
-          <span class="MypageContent_titleText">スカウトした案件</span>
+        <h3 class="BaseTitle">
+          <span class="BaseTitle_text">スカウトした案件</span>
         </h3>
         <p v-if="!hasScout" class="u-pa20">スカウトした案件はありません</p>
         <div v-else class="u-py20">

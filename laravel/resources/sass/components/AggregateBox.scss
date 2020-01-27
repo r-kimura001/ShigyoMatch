@@ -21,6 +21,13 @@
   .AggregateBox_num {
     font-size: 3rem;
     font-family: 'IntroDemo', $mainFontFamily;
+
+    &.--nodata{
+      font-size: 1.4rem;
+      font-style: italic;
+      color: $gray;
+      line-height: 3rem;
+    }
   }
   .AggregateBox_unit{
     font-size: 1.2rem;

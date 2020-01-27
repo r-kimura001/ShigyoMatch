@@ -45,6 +45,7 @@
 <script>
 import styles from '@/mixins/styles'
 import Review from '@/components/Review'
+import { dateReplace } from '@/util'
 export default {
   components: {
     Review,
@@ -67,7 +68,9 @@ export default {
     professionTypes() {
       return this.item.profession_types
     },
+    date(){
+      return dateReplace(this.item.created_at)
+    }
   },
-  methods: {},
 }
 </script>

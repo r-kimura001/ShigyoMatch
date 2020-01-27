@@ -1,5 +1,5 @@
 <template>
-  <div class="Review">
+  <div class="Review" :class="{ '--small': small }">
     <p class="Review_rating">
       <span class="Review_ratingFront" :style="frontStyle()">★★★★★</span>
       <span class="Review_ratingBack">★★★★★</span>
@@ -14,6 +14,9 @@ export default {
       type: Number,
       default: 1,
     },
+    small: {
+      default: false
+    }
   },
   data() {
     return {

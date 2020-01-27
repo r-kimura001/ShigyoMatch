@@ -837,6 +837,13 @@ td {
   font-family: "IntroDemo", YakuHanJP, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", Meiryo, sans-serif;
 }
 
+.AggregateBox .AggregateBox_num.\--nodata {
+  font-size: 1.4rem;
+  font-style: italic;
+  color: #a8a3a7;
+  line-height: 3rem;
+}
+
 .AggregateBox .AggregateBox_unit {
   font-size: 1.2rem;
 }
@@ -1053,6 +1060,49 @@ td {
 .AuthNav.\--open .AuthNav_menu {
   -webkit-transform: none;
           transform: none;
+}
+
+.BaseTitle {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: end;
+          align-items: flex-end;
+  margin-bottom: 20px;
+}
+
+.BaseTitle .BaseTitle_text {
+  display: inline-block;
+  font-weight: bold;
+  padding: 10px 35px 10px 55px;
+  border-bottom: 2px solid #EC7211;
+  background-size: 45px;
+  background-repeat: no-repeat;
+  background-position: 5px center;
+  flex-shrink: 0;
+}
+
+.BaseTitle .BaseTitle_button {
+  -webkit-box-flex: 1;
+          flex-grow: 1;
+  padding-right: 20px;
+  text-align: right;
+}
+
+@media screen and (max-width: 480px) {
+  .BaseTitle {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+            flex-direction: column;
+    -webkit-box-align: start;
+            align-items: flex-start;
+  }
+
+  .BaseTitle .BaseTitle_button {
+    text-align: center;
+    padding-right: 0;
+    margin-top: 30px;
+    width: 100%;
+  }
 }
 
 .BorderButton {
@@ -1616,9 +1666,23 @@ td {
   background-repeat: no-repeat;
 }
 
-.CustomerInfoLayout .CustomerInfoLayout_tag {
-  display: inline-block;
-  margin: 3px;
+.CustomerInfoLayout .CustomerInfoLayout_skill {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+}
+
+.CustomerInfoLayout .CustomerInfoLayout_skill .CustomerInfoLayout_skillTag {
+  margin: 5px;
+  min-width: 65px;
+  text-align: left;
+}
+
+.CustomerInfoLayout .CustomerInfoLayout_skill .CustomerInfoLayout_skillNum {
+  font-size: 1.3rem;
+  color: #a8a3a7;
+  margin-left: 5px;
 }
 
 .CustomerInfoLayout .CustomerInfoLayout_link {
@@ -1648,6 +1712,7 @@ td {
   .CustomerInfoLayout .CustomerInfoLayout_main {
     width: 100%;
     padding: 15px 0;
+    margin-top: 50px;
   }
 }
 
@@ -1761,15 +1826,6 @@ td {
           align-items: center;
   font-size: 1.2rem;
   color: #a8a3a7;
-}
-
-.FavoritedList_memberLink {
-  display: -webkit-box;
-  display: flex;
-  -webkit-box-align: center;
-          align-items: center;
-  cursor: pointer;
-  padding-left: 12px;
 }
 
 .FavoritedList_memberThumb {
@@ -2654,7 +2710,7 @@ td {
 @media screen and (max-width: 480px) {
   .MainLayout .MainLayout_box {
     padding: 30px 10px;
-    margin: 15px 10px;
+    margin: 15px 0px;
   }
 }
 
@@ -2794,6 +2850,47 @@ td {
   100% {
     opacity: 0;
   }
+}
+
+.MemberLink {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  cursor: pointer;
+  padding-left: 12px;
+}
+
+.MemberLink .MemberLink_thumb {
+  display: inline-block;
+  width: 36px;
+  height: 36px;
+  border-radius: 9999px;
+  background-size: cover;
+  background-position: center;
+}
+
+.MemberLink .MemberLink_text {
+  color: #33ba7c;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  font-size: 1.4rem;
+  margin: 0 5px;
+  line-height: 1.2;
+}
+
+.MemberLink .MemberLink_text::after {
+  content: attr(data-unit);
+  color: #a8a3a7;
+  font-size: 1.2rem;
+}
+
+.MemberLink .MemberLink_text:hover {
+  opacity: 0.7;
+}
+
+.MemberLink .MemberLink_text:hover::after {
+  text-decoration: none;
 }
 
 .Message {
@@ -3180,12 +3277,13 @@ td {
 .MypageContent .MypageContent_main {
   margin-left: 240px;
   background: #F4F4F4;
-  padding: 10px;
+  padding: 20px;
 }
 
 @media screen and (max-width: 768px) {
   .MypageContent .MypageContent_main {
     margin: 0;
+    padding: 10px;
   }
 }
 
@@ -3520,6 +3618,14 @@ td {
   margin-left: 5px;
 }
 
+.Review.\--small .Review_rating {
+  font-size: 1.2rem;
+}
+
+.Review.\--small .Review_score {
+  font-size: 1.4rem;
+}
+
 .ReviewForm {
   width: 200px;
   margin: 0 auto;
@@ -3653,6 +3759,51 @@ td {
 .ReviewFormLayout .ReviewFormLayout_toggle.\--open::after {
   -webkit-transform: rotate(180deg);
           transform: rotate(180deg);
+}
+
+.ReviewListLayout {
+  background: #fefefe;
+  padding: 20px;
+}
+
+.ReviewListLayout .ReviewListLayout_item {
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: 1px solid #dedede;
+}
+
+.ReviewListLayout .ReviewListLayout_item:not(:last-of-type) {
+  margin-bottom: 15px;
+}
+
+.ReviewListLayout .ReviewListLayout_heading {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  -webkit-box-pack: end;
+          justify-content: flex-end;
+}
+
+@media screen and (max-width: 670px) {
+  .ReviewListLayout .ReviewListLayout_heading {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+            flex-direction: column;
+    -webkit-box-align: end;
+            align-items: flex-end;
+  }
+}
+
+.ReviewListLayout .ReviewListLayout_comment {
+  font-size: 1.4rem;
+  white-space: pre-line;
+}
+
+@media screen and (max-width: 670px) {
+  .ReviewListLayout {
+    padding: 10px;
+  }
 }
 
 .ScoutList .ScoutList_scoutInfo {
@@ -3983,6 +4134,11 @@ td {
   color: #626d78;
 }
 
+.Text.-nodata {
+  color: #a8a3a7;
+  font-style: italic;
+}
+
 .Text.-link {
   color: #33ba7c;
   cursor: pointer;
@@ -4129,7 +4285,7 @@ td {
 
 .WorkCard .WorkCard_time {
   font-size: 1rem;
-  color: #cccccc;
+  color: #a8a3a7;
 }
 
 .WorkCard .WorkCard_professionType {
@@ -4756,12 +4912,10 @@ td {
   background: #626d78;
   padding: 5px 8px;
   border-radius: 5px;
-  min-width: 80px;
+  min-width: 90px;
   line-height: 1.2;
   opacity: 0;
   pointer-events: none;
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
 }
 
 .u-tip-bottom::before {
@@ -4774,13 +4928,11 @@ td {
   border-style: solid;
   border-width: 0 12px 12px 0;
   border-color: transparent transparent #626d78 transparent;
-  -webkit-transform: translateY(-100%);
-          transform: translateY(-100%);
+  -webkit-transform: translateY(-90%);
+          transform: translateY(-90%);
   color: #fefefe;
   opacity: 0;
   pointer-events: none;
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
 }
 
 .u-tip-bottom:hover::after,

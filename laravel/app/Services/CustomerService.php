@@ -217,7 +217,7 @@ class CustomerService extends Service
     $followee = $this->customerById(['followers'], $id);
     $followee->followers()->detach(Auth::user()->customer_id);
     $followee->followers()->attach(Auth::user()->customer_id);
-    return $followee;
+    return $this->customerById(['followers'], $id);
   }
   /**
    * @param int $id
@@ -226,7 +226,7 @@ class CustomerService extends Service
   {
     $followee = $this->customerById(['followers'], $id);
     $followee->followers()->detach(Auth::user()->customer_id);
-    return $followee;
+    return $this->customerById(['followers'], $id);
   }
 
 }

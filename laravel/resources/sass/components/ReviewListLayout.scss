@@ -1,0 +1,30 @@
+.ReviewListLayout{
+  background: $white;
+  padding: 20px;
+  .ReviewListLayout_item{
+    padding: 10px 12px;
+    border-radius: 6px;
+    border: 1px solid $gray-3;
+    &:not(:last-of-type){
+      margin-bottom: 15px;
+    }
+  }
+  .ReviewListLayout_heading{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    @include media(sm-y){
+      flex-direction: column;
+      align-items: flex-end;
+    }
+  }
+  .ReviewListLayout_comment{
+    font-size: 1.4rem;
+    white-space: pre-line;
+
+  }
+
+  @include media(sm-y){
+    padding: 10px;
+  }
+}

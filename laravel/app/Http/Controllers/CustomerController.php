@@ -101,7 +101,7 @@ class CustomerController extends Controller
    */
   public function show(int $id)
   {
-    return $this->customerService->customerById(['works', 'followers', 'professionTypes'],$id);
+    return $this->customerService->customerById(['works', 'followers', 'professionTypes', 'reviewers.reviewer'],$id);
   }
 
   /**
@@ -185,6 +185,6 @@ class CustomerController extends Controller
 
   public function customer()
   {
-    return Auth::check() ? $this->customerService->customerById(['professionTypes', 'user', 'works.professionType', 'messageNotes', 'followers', 'followees'], Auth::user()->customer_id) : '';
+    return Auth::check() ? $this->customerService->customerById(['professionTypes', 'user', 'works.professionType', 'messageNotes', 'followers', 'followees', 'reviewers.reviewer'], Auth::user()->customer_id) : '';
   }
 }

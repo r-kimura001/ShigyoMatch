@@ -1928,6 +1928,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _mixins_styles__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/mixins/styles */ "./resources/js/mixins/styles.js");
 /* harmony import */ var _components_Review__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/components/Review */ "./resources/js/components/Review.vue");
+/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/util */ "./resources/js/util.js");
 //
 //
 //
@@ -1972,6 +1973,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1997,9 +1999,11 @@ __webpack_require__.r(__webpack_exports__);
   computed: {
     professionTypes: function professionTypes() {
       return this.item.profession_types;
+    },
+    date: function date() {
+      return Object(_util__WEBPACK_IMPORTED_MODULE_2__["dateReplace"])(this.item.created_at);
     }
-  },
-  methods: {}
+  }
 });
 
 /***/ }),
@@ -2486,6 +2490,45 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/MemberLink.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/MemberLink.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _mixins_styles__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/mixins/styles */ "./resources/js/mixins/styles.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    customer: {
+      type: Object,
+      "default": function _default() {
+        return {};
+      }
+    },
+    unit: {
+      type: String,
+      "default": ''
+    }
+  },
+  mixins: [_mixins_styles__WEBPACK_IMPORTED_MODULE_0__["default"]]
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Pager.vue?vue&type=script&lang=js&":
 /*!****************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Pager.vue?vue&type=script&lang=js& ***!
@@ -2728,6 +2771,9 @@ __webpack_require__.r(__webpack_exports__);
     score: {
       type: Number,
       "default": 1
+    },
+    small: {
+      "default": false
     }
   },
   data: function data() {
@@ -3106,7 +3152,10 @@ __webpack_require__.r(__webpack_exports__);
   mixins: [_mixins_styles__WEBPACK_IMPORTED_MODULE_2__["default"], _mixins_worksData__WEBPACK_IMPORTED_MODULE_3__["default"]],
   computed: {
     favoriteStatus: function favoriteStatus() {
-      return this.work.is_favorite ? '「気になる」済み' : '「気になる」に登録する';
+      return this.work.is_favorite ? '「気になる」解除' : '「気になる」に登録する';
+    },
+    date: function date() {
+      return Object(_util__WEBPACK_IMPORTED_MODULE_1__["dateReplace"])(this.work.created_at);
     }
   },
   methods: {
@@ -4080,12 +4129,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/util */ "./resources/js/util.js");
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _mixins_styles__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/mixins/styles */ "./resources/js/mixins/styles.js");
-/* harmony import */ var _mixins_apiIndexHandler__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/mixins/apiIndexHandler */ "./resources/js/mixins/apiIndexHandler.js");
-/* harmony import */ var _layouts_WorkListLayout__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/layouts/WorkListLayout */ "./resources/js/layouts/WorkListLayout.vue");
-/* harmony import */ var _components_Pager__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/components/Pager */ "./resources/js/components/Pager.vue");
-/* harmony import */ var _components_ScoutButton__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/components/ScoutButton */ "./resources/js/components/ScoutButton.vue");
-/* harmony import */ var _components_FollowButton__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @/components/FollowButton */ "./resources/js/components/FollowButton.vue");
+/* harmony import */ var _mixins_apiIndexHandler__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/mixins/apiIndexHandler */ "./resources/js/mixins/apiIndexHandler.js");
+/* harmony import */ var _mixins_reviewCalc__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/mixins/reviewCalc */ "./resources/js/mixins/reviewCalc.js");
+/* harmony import */ var _mixins_styles__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/mixins/styles */ "./resources/js/mixins/styles.js");
+/* harmony import */ var _components_FollowButton__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/components/FollowButton */ "./resources/js/components/FollowButton.vue");
+/* harmony import */ var _components_MemberLink__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/components/MemberLink */ "./resources/js/components/MemberLink.vue");
+/* harmony import */ var _components_Pager__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @/components/Pager */ "./resources/js/components/Pager.vue");
+/* harmony import */ var _components_Review__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @/components/Review */ "./resources/js/components/Review.vue");
+/* harmony import */ var _components_ScoutButton__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @/components/ScoutButton */ "./resources/js/components/ScoutButton.vue");
+/* harmony import */ var _layouts_WorkListLayout__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @/layouts/WorkListLayout */ "./resources/js/layouts/WorkListLayout.vue");
 
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -4231,6 +4283,38 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
 
 
 
@@ -4241,12 +4325,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    WorkListLayout: _layouts_WorkListLayout__WEBPACK_IMPORTED_MODULE_5__["default"],
-    Pager: _components_Pager__WEBPACK_IMPORTED_MODULE_6__["default"],
-    ScoutButton: _components_ScoutButton__WEBPACK_IMPORTED_MODULE_7__["default"],
-    FollowButton: _components_FollowButton__WEBPACK_IMPORTED_MODULE_8__["default"]
+    FollowButton: _components_FollowButton__WEBPACK_IMPORTED_MODULE_6__["default"],
+    Pager: _components_Pager__WEBPACK_IMPORTED_MODULE_8__["default"],
+    MemberLink: _components_MemberLink__WEBPACK_IMPORTED_MODULE_7__["default"],
+    Review: _components_Review__WEBPACK_IMPORTED_MODULE_9__["default"],
+    ScoutButton: _components_ScoutButton__WEBPACK_IMPORTED_MODULE_10__["default"],
+    WorkListLayout: _layouts_WorkListLayout__WEBPACK_IMPORTED_MODULE_11__["default"]
   },
-  mixins: [_mixins_styles__WEBPACK_IMPORTED_MODULE_3__["default"], _mixins_apiIndexHandler__WEBPACK_IMPORTED_MODULE_4__["default"]],
+  mixins: [_mixins_styles__WEBPACK_IMPORTED_MODULE_5__["default"], _mixins_apiIndexHandler__WEBPACK_IMPORTED_MODULE_3__["default"], _mixins_reviewCalc__WEBPACK_IMPORTED_MODULE_4__["default"]],
   props: {
     customer: {
       type: Object,
@@ -4277,6 +4363,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this = this;
 
       var isFollow = false;
+
+      if (!this.customer.followers.length) {
+        return false;
+      }
+
       this.customer.followers.forEach(function (follower) {
         if (follower.id === _this.author.id) {
           isFollow = true;
@@ -4328,6 +4419,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
             case 2:
               response = _context2.sent;
+              this.$store.commit('form/setResponse', response);
 
               if (response.status === _util__WEBPACK_IMPORTED_MODULE_1__["OK"]) {
                 this.customer.followers = response.data.followers;
@@ -4338,7 +4430,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 });
               }
 
-            case 4:
+            case 5:
             case "end":
               return _context2.stop();
           }
@@ -4356,6 +4448,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
             case 2:
               response = _context3.sent;
+              this.$store.commit('form/setResponse', response);
 
               if (response.status === _util__WEBPACK_IMPORTED_MODULE_1__["OK"]) {
                 this.customer.followers = response.data.followers;
@@ -4366,7 +4459,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 });
               }
 
-            case 4:
+            case 5:
             case "end":
               return _context3.stop();
           }
@@ -4866,8 +4959,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _mixins_worksData__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/mixins/worksData */ "./resources/js/mixins/worksData.js");
 /* harmony import */ var _mixins_styles__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/mixins/styles */ "./resources/js/mixins/styles.js");
 
-//
-//
 //
 //
 //
@@ -6258,8 +6349,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -6667,6 +6756,9 @@ __webpack_require__.r(__webpack_exports__);
         return apply.applier.id === _this3.customer.id;
       })[0];
       return targetApply.created_at;
+    },
+    createdAt: function createdAt(created_at) {
+      return Object(_util__WEBPACK_IMPORTED_MODULE_1__["dateReplace"])(created_at);
     }
   }
 });
@@ -6821,10 +6913,11 @@ __webpack_require__.r(__webpack_exports__);
               messageData.append('body', this.formItem.value);
               messageData.append('apply_id', this.applier.pivot.id);
               messageData.append('sender_id', this.applier.work.customer.id);
-              _context.next = 7;
+              messageData.append('receiver_id', this.applier.id);
+              _context.next = 8;
               return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(axios.post('/api/messages/store', messageData));
 
-            case 7:
+            case 8:
               response = _context.sent;
               this.$store.commit('form/setIsLoading', false);
 
@@ -6838,7 +6931,7 @@ __webpack_require__.r(__webpack_exports__);
                 });
               }
 
-            case 10:
+            case 11:
             case "end":
               return _context.stop();
           }
@@ -6977,9 +7070,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/util */ "./resources/js/util.js");
 /* harmony import */ var _mixins_styles__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/mixins/styles */ "./resources/js/mixins/styles.js");
-/* harmony import */ var _layouts_WorkListLayout__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/layouts/WorkListLayout */ "./resources/js/layouts/WorkListLayout.vue");
-/* harmony import */ var _layouts_WorkTableLayout__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/layouts/WorkTableLayout */ "./resources/js/layouts/WorkTableLayout.vue");
-/* harmony import */ var _components_Tab__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/components/Tab */ "./resources/js/components/Tab.vue");
+/* harmony import */ var _components_MemberLink__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/components/MemberLink */ "./resources/js/components/MemberLink.vue");
+/* harmony import */ var _layouts_WorkListLayout__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/layouts/WorkListLayout */ "./resources/js/layouts/WorkListLayout.vue");
+/* harmony import */ var _layouts_WorkTableLayout__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/layouts/WorkTableLayout */ "./resources/js/layouts/WorkTableLayout.vue");
+/* harmony import */ var _components_Tab__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/components/Tab */ "./resources/js/components/Tab.vue");
 
 //
 //
@@ -7030,14 +7124,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
+
 
 
 
@@ -7045,9 +7132,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    WorkListLayout: _layouts_WorkListLayout__WEBPACK_IMPORTED_MODULE_3__["default"],
-    WorkTableLayout: _layouts_WorkTableLayout__WEBPACK_IMPORTED_MODULE_4__["default"],
-    Tab: _components_Tab__WEBPACK_IMPORTED_MODULE_5__["default"]
+    MemberLink: _components_MemberLink__WEBPACK_IMPORTED_MODULE_3__["default"],
+    WorkListLayout: _layouts_WorkListLayout__WEBPACK_IMPORTED_MODULE_4__["default"],
+    WorkTableLayout: _layouts_WorkTableLayout__WEBPACK_IMPORTED_MODULE_5__["default"],
+    Tab: _components_Tab__WEBPACK_IMPORTED_MODULE_6__["default"]
   },
   mixins: [_mixins_styles__WEBPACK_IMPORTED_MODULE_2__["default"]],
   props: {
@@ -7188,6 +7276,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _layouts_WorkTableLayout__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/layouts/WorkTableLayout */ "./resources/js/layouts/WorkTableLayout.vue");
 /* harmony import */ var _components_modal_ConfirmModal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/components/modal/ConfirmModal */ "./resources/js/components/modal/ConfirmModal.vue");
 /* harmony import */ var _mixins_matches__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/mixins/matches */ "./resources/js/mixins/matches.js");
+/* harmony import */ var _mixins_reviewCalc__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/mixins/reviewCalc */ "./resources/js/mixins/reviewCalc.js");
 
 //
 //
@@ -7253,6 +7342,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -7262,7 +7360,7 @@ __webpack_require__.r(__webpack_exports__);
     WorkTableLayout: _layouts_WorkTableLayout__WEBPACK_IMPORTED_MODULE_2__["default"],
     ConfirmModal: _components_modal_ConfirmModal__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
-  mixins: [_mixins_matches__WEBPACK_IMPORTED_MODULE_4__["default"]],
+  mixins: [_mixins_matches__WEBPACK_IMPORTED_MODULE_4__["default"], _mixins_reviewCalc__WEBPACK_IMPORTED_MODULE_5__["default"]],
   props: {
     customer: {
       type: Object,
@@ -9228,6 +9326,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 
 
@@ -10552,6 +10653,37 @@ module.exports = baseMatchesProperty;
 
 /***/ }),
 
+/***/ "./node_modules/lodash/_baseMean.js":
+/*!******************************************!*\
+  !*** ./node_modules/lodash/_baseMean.js ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseSum = __webpack_require__(/*! ./_baseSum */ "./node_modules/lodash/_baseSum.js");
+
+/** Used as references for various `Number` constants. */
+var NAN = 0 / 0;
+
+/**
+ * The base implementation of `_.mean` and `_.meanBy` without support for
+ * iteratee shorthands.
+ *
+ * @private
+ * @param {Array} array The array to iterate over.
+ * @param {Function} iteratee The function invoked per iteration.
+ * @returns {number} Returns the mean.
+ */
+function baseMean(array, iteratee) {
+  var length = array == null ? 0 : array.length;
+  return length ? (baseSum(array, iteratee) / length) : NAN;
+}
+
+module.exports = baseMean;
+
+
+/***/ }),
+
 /***/ "./node_modules/lodash/_baseProperty.js":
 /*!**********************************************!*\
   !*** ./node_modules/lodash/_baseProperty.js ***!
@@ -10600,6 +10732,41 @@ function basePropertyDeep(path) {
 }
 
 module.exports = basePropertyDeep;
+
+
+/***/ }),
+
+/***/ "./node_modules/lodash/_baseSum.js":
+/*!*****************************************!*\
+  !*** ./node_modules/lodash/_baseSum.js ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/**
+ * The base implementation of `_.sum` and `_.sumBy` without support for
+ * iteratee shorthands.
+ *
+ * @private
+ * @param {Array} array The array to iterate over.
+ * @param {Function} iteratee The function invoked per iteration.
+ * @returns {number} Returns the sum.
+ */
+function baseSum(array, iteratee) {
+  var result,
+      index = -1,
+      length = array.length;
+
+  while (++index < length) {
+    var current = iteratee(array[index]);
+    if (current !== undefined) {
+      result = result === undefined ? current : (result + current);
+    }
+  }
+  return result;
+}
+
+module.exports = baseSum;
 
 
 /***/ }),
@@ -13424,6 +13591,48 @@ module.exports = maxBy;
 
 /***/ }),
 
+/***/ "./node_modules/lodash/meanBy.js":
+/*!***************************************!*\
+  !*** ./node_modules/lodash/meanBy.js ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseIteratee = __webpack_require__(/*! ./_baseIteratee */ "./node_modules/lodash/_baseIteratee.js"),
+    baseMean = __webpack_require__(/*! ./_baseMean */ "./node_modules/lodash/_baseMean.js");
+
+/**
+ * This method is like `_.mean` except that it accepts `iteratee` which is
+ * invoked for each element in `array` to generate the value to be averaged.
+ * The iteratee is invoked with one argument: (value).
+ *
+ * @static
+ * @memberOf _
+ * @since 4.7.0
+ * @category Math
+ * @param {Array} array The array to iterate over.
+ * @param {Function} [iteratee=_.identity] The iteratee invoked per element.
+ * @returns {number} Returns the mean.
+ * @example
+ *
+ * var objects = [{ 'n': 4 }, { 'n': 2 }, { 'n': 8 }, { 'n': 6 }];
+ *
+ * _.meanBy(objects, function(o) { return o.n; });
+ * // => 5
+ *
+ * // The `_.property` iteratee shorthand.
+ * _.meanBy(objects, 'n');
+ * // => 5
+ */
+function meanBy(array, iteratee) {
+  return baseMean(array, baseIteratee(iteratee, 2));
+}
+
+module.exports = meanBy;
+
+
+/***/ }),
+
 /***/ "./node_modules/lodash/memoize.js":
 /*!****************************************!*\
   !*** ./node_modules/lodash/memoize.js ***!
@@ -15553,6 +15762,48 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/MemberLink.vue?vue&type=template&id=6d24f742&":
+/*!*************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/MemberLink.vue?vue&type=template&id=6d24f742& ***!
+  \*************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "RouterLink",
+    {
+      staticClass: "MemberLink",
+      attrs: { to: "/customers/" + _vm.customer.id, tag: "div" }
+    },
+    [
+      _c("span", {
+        staticClass: "MemberLink_thumb",
+        style: _vm.bgImage(_vm.customer.file_name)
+      }),
+      _vm._v(" "),
+      _c(
+        "span",
+        { staticClass: "MemberLink_text", attrs: { "data-unit": _vm.unit } },
+        [_vm._v(_vm._s(_vm.customer.name))]
+      )
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Pager.vue?vue&type=template&id=0802cee8&":
 /*!********************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Pager.vue?vue&type=template&id=0802cee8& ***!
@@ -15692,7 +15943,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "Review" }, [
+  return _c("div", { staticClass: "Review", class: { "--small": _vm.small } }, [
     _c("p", { staticClass: "Review_rating" }, [
       _c(
         "span",
@@ -16177,7 +16428,7 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("p", { staticClass: "WorkCard_time" }, [
-                _vm._v("2020年1月20日")
+                _vm._v(_vm._s(_vm.date))
               ])
             ])
           ]),
@@ -17378,55 +17629,72 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "CustomerInfoLayout" }, [
     _c("div", { staticClass: "CustomerInfoLayout_heading" }, [
-      _c("div", { staticClass: "CustomerInfoLayout_headingBox" }, [
-        _c("div", {
-          staticClass: "CustomerInfoLayout_thumb",
-          style: {
-            backgroundImage: "url(" + _vm.thumbSrc(_vm.customer.file_name) + ")"
-          }
-        }),
-        _vm._v(" "),
-        _c("h2", { staticClass: "CustomerInfoLayout_name" }, [
-          _vm._v("\n        " + _vm._s(_vm.customer.name) + "\n      ")
-        ]),
-        _vm._v(" "),
-        _c("p", { staticClass: "CustomerInfoLayout_greeting" }, [
-          _vm._v("\n        " + _vm._s(_vm.customer.greeting) + "\n      ")
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "HorizontalLayout --justifyCenter" }, [
-          _c(
-            "div",
-            { staticClass: "HorizontalLayout_col" },
-            [
-              !_vm.self
-                ? _c("FollowButton", {
-                    attrs: {
-                      id: _vm.customer.id,
-                      author: _vm.author,
-                      isFollow: _vm.isFollow
-                    },
-                    on: { followClick: _vm.followClick }
-                  })
-                : _vm._e()
-            ],
-            1
-          ),
+      _c(
+        "div",
+        { staticClass: "CustomerInfoLayout_headingBox" },
+        [
+          _c("div", {
+            staticClass: "CustomerInfoLayout_thumb",
+            style: {
+              backgroundImage:
+                "url(" + _vm.thumbSrc(_vm.customer.file_name) + ")"
+            }
+          }),
           _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "HorizontalLayout_col u-ml5" },
-            [
-              !_vm.self
-                ? _c("ScoutButton", {
-                    attrs: { id: _vm.customer.id, author: _vm.author }
-                  })
-                : _vm._e()
-            ],
-            1
-          )
-        ])
-      ]),
+          _c("h2", { staticClass: "CustomerInfoLayout_name" }, [
+            _vm._v("\n        " + _vm._s(_vm.customer.name) + "\n      ")
+          ]),
+          _vm._v(" "),
+          _c("p", { staticClass: "CustomerInfoLayout_greeting" }, [
+            _vm._v("\n        " + _vm._s(_vm.customer.greeting) + "\n      ")
+          ]),
+          _vm._v(" "),
+          _vm.hasReview
+            ? _c("Review", {
+                staticClass: "u-pb20",
+                attrs: { score: _vm.averageReview }
+              })
+            : _c(
+                "p",
+                { staticClass: "Text -fz12 -nodata u-alignCenter u-pb20" },
+                [_vm._v("レビューはありません")]
+              ),
+          _vm._v(" "),
+          _c("div", { staticClass: "HorizontalLayout --justifyCenter" }, [
+            _c(
+              "div",
+              { staticClass: "HorizontalLayout_col" },
+              [
+                !_vm.self
+                  ? _c("FollowButton", {
+                      attrs: {
+                        id: _vm.customer.id,
+                        author: _vm.author,
+                        isFollow: _vm.isFollow
+                      },
+                      on: { followClick: _vm.followClick }
+                    })
+                  : _vm._e()
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "HorizontalLayout_col u-ml5" },
+              [
+                !_vm.self
+                  ? _c("ScoutButton", {
+                      attrs: { id: _vm.customer.id, author: _vm.author }
+                    })
+                  : _vm._e()
+              ],
+              1
+            )
+          ])
+        ],
+        1
+      ),
       _vm._v(" "),
       _c("div", { staticClass: "CustomerInfoLayout_headingBox" }, [
         _c(
@@ -17440,22 +17708,32 @@ var render = function() {
         _vm._v(" "),
         _c(
           "ul",
+          { staticClass: "CustomerInfoLayout_skills" },
           _vm._l(_vm.professionTypes, function(professionType, index) {
             return _c(
               "li",
-              { key: index, staticClass: "CustomerInfoLayout_tag" },
+              { key: index, staticClass: "CustomerInfoLayout_skill" },
               [
-                _c(
-                  "p",
-                  { staticClass: "Tag", style: _vm.bgColor(professionType.id) },
-                  [
-                    _vm._v(
-                      "\n            " +
-                        _vm._s(professionType.body) +
-                        "\n          "
-                    )
-                  ]
-                )
+                _c("div", { staticClass: "CustomerInfoLayout_skillTag" }, [
+                  _c(
+                    "span",
+                    {
+                      staticClass: "Tag",
+                      style: _vm.bgColor(professionType.id)
+                    },
+                    [
+                      _vm._v(
+                        "\n              " +
+                          _vm._s(professionType.body) +
+                          "\n            "
+                      )
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "CustomerInfoLayout_skillNum" }, [
+                  _vm._v(_vm._s(professionType.pivot.register_number))
+                ])
               ]
             )
           }),
@@ -17555,33 +17833,97 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "CustomerInfoLayout_main" }, [
-      _c("h2", { staticClass: "CustomerInfoLayout_mainTitle" }, [
-        _vm._v("\n      募集中の案件\n    ")
+      _c("section", { staticClass: "CustomerInfoLayout_mainBox" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        !_vm.hasData
+          ? _c("p", [_vm._v("募集中の案件はありません")])
+          : _c(
+              "div",
+              [
+                _vm.lastPage > 1
+                  ? _c("Pager", {
+                      attrs: {
+                        "current-page": _vm.currentPage,
+                        "last-page": _vm.lastPage,
+                        path: "works"
+                      }
+                    })
+                  : _vm._e(),
+                _vm._v(" "),
+                _c("WorkListLayout", { attrs: { works: _vm.list } })
+              ],
+              1
+            )
       ]),
       _vm._v(" "),
-      !_vm.hasData
-        ? _c("p", [_vm._v("募集中の案件はありません")])
-        : _c(
-            "div",
-            [
-              _vm.lastPage > 1
-                ? _c("Pager", {
-                    attrs: {
-                      "current-page": _vm.currentPage,
-                      "last-page": _vm.lastPage,
-                      path: "works"
-                    }
-                  })
-                : _vm._e(),
-              _vm._v(" "),
-              _c("WorkListLayout", { attrs: { works: _vm.list } })
-            ],
-            1
-          )
+      _c("section", { staticClass: "CustomerInfoLayout_mainBox u-mt50" }, [
+        _c("h2", { staticClass: "BaseTitle" }, [
+          _c("span", { staticClass: "BaseTitle_text" }, [
+            _vm._v(_vm._s(_vm.customer.name) + "さんへのレビュー")
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "ul",
+          { staticClass: "ReviewListLayout" },
+          [
+            !_vm.hasReview
+              ? _c("li", { staticClass: "Text -nodata -fz14" }, [
+                  _vm._v("レビューはありません")
+                ])
+              : _vm._l(_vm.reviewers, function(review, index) {
+                  return _c(
+                    "li",
+                    { key: index, staticClass: "ReviewListLayout_item" },
+                    [
+                      _c("div", { staticClass: "ReviewListLayout_comment" }, [
+                        _vm._v(_vm._s(review.comment))
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "ReviewListLayout_heading" }, [
+                        _c(
+                          "div",
+                          { staticClass: "ReviewListLayout_reviewer" },
+                          [
+                            _c("MemberLink", {
+                              attrs: { customer: review.reviewer }
+                            })
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "ReviewListLayout_point" },
+                          [
+                            _c("Review", {
+                              attrs: { score: review.point, small: true }
+                            })
+                          ],
+                          1
+                        )
+                      ])
+                    ]
+                  )
+                })
+          ],
+          2
+        )
+      ])
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h2", { staticClass: "BaseTitle" }, [
+      _c("span", { staticClass: "BaseTitle_text" }, [_vm._v("募集中の案件")])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -18062,7 +18404,7 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("dd", { staticClass: "WorkDetailLayout_listDesc" }, [
-            _vm._v("\n          " + _vm._s(_vm.work.body) + "\n        ")
+            _vm._v(_vm._s(_vm.work.body))
           ])
         ]),
         _vm._v(" "),
@@ -19220,9 +19562,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "p-works" }, [
     _c("div", { staticClass: "MainLayout --customers" }, [
-      _c("h1", { staticClass: "MainLayout_heading" }, [
-        _vm._v("\n      人材を探す\n    ")
-      ]),
+      _c("h1", { staticClass: "MainLayout_heading" }, [_vm._v("人材を探す")]),
       _vm._v(" "),
       _c("div", { staticClass: "MainLayout_boxList" }, [
         _c("section", { staticClass: "MainLayout_box" }, [
@@ -19237,7 +19577,11 @@ var render = function() {
                     _c(
                       "div",
                       [
-                        _c("h2", [_vm._v(_vm._s(_vm.skill) + "事務所一覧")]),
+                        _c("h2", { staticClass: "BaseTitle" }, [
+                          _c("span", { staticClass: "BaseTitle_text" }, [
+                            _vm._v(_vm._s(_vm.skill) + "事務所一覧")
+                          ])
+                        ]),
                         _vm._v(" "),
                         _vm.lastPage > 1
                           ? _c("Pager", {
@@ -19433,7 +19777,11 @@ var render = function() {
                         _c("td", [
                           _c("div", { staticClass: "Table_dataText" }, [
                             _vm._v(
-                              _vm._s(work.author_apply_info.pivot.created_at)
+                              _vm._s(
+                                _vm.createdAt(
+                                  work.author_apply_info.pivot.created_at
+                                )
+                              )
                             )
                           ])
                         ])
@@ -19569,7 +19917,9 @@ var render = function() {
                         _vm._v(" "),
                         _c("td", [
                           _c("div", { staticClass: "Table_dataText" }, [
-                            _vm._v(_vm._s(applier.pivot.created_at))
+                            _vm._v(
+                              _vm._s(_vm.createdAt(applier.pivot.created_at))
+                            )
                           ])
                         ])
                       ])
@@ -19608,10 +19958,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("h3", { staticClass: "MypageContent_boxTitle" }, [
-      _c("span", { staticClass: "MypageContent_titleText" }, [
-        _vm._v("申込をした案件")
-      ])
+    return _c("h3", { staticClass: "BaseTitle" }, [
+      _c("span", { staticClass: "BaseTitle_text" }, [_vm._v("申込をした案件")])
     ])
   },
   function() {
@@ -19634,8 +19982,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("h3", { staticClass: "MypageContent_boxTitle" }, [
-      _c("span", { staticClass: "MypageContent_titleText" }, [
+    return _c("h3", { staticClass: "BaseTitle" }, [
+      _c("span", { staticClass: "BaseTitle_text" }, [
         _vm._v("申込を受けた案件")
       ])
     ])
@@ -19994,14 +20342,14 @@ var render = function() {
       _vm.currentFlag === _vm.favoriteFlag
         ? _c(
             "div",
-            { staticClass: "MypageContent_body u-bgBlue" },
+            { staticClass: "MypageContent_body u-bgGray" },
             [
               _vm._m(0),
               _vm._v(" "),
               !_vm.hasFavorite
                 ? _c("p", [_vm._v("気になるした募集案件はありません")])
                 : _c("WorkListLayout", {
-                    staticClass: "u-py20",
+                    staticClass: "u-pa10",
                     attrs: { works: _vm.favorite_works }
                   })
             ],
@@ -20023,61 +20371,46 @@ var render = function() {
                       "li",
                       { key: index, staticClass: "FavoritedList_item" },
                       [
-                        _c("div", { staticClass: "FavoritedList_body" }, [
-                          _c(
-                            "div",
-                            { staticClass: "FavoritedList_member" },
-                            [
-                              _c(
-                                "RouterLink",
-                                {
-                                  staticClass: "FavoritedList_memberLink",
+                        _c(
+                          "div",
+                          { staticClass: "FavoritedList_body u-px10" },
+                          [
+                            _c(
+                              "div",
+                              { staticClass: "FavoritedList_member" },
+                              [
+                                _c("MemberLink", {
                                   attrs: {
-                                    to: "/customers/" + favorite.id,
-                                    tag: "div"
+                                    customer: favorite,
+                                    unit: "さんから「気になる」が届きました"
                                   }
-                                },
-                                [
-                                  _c("span", {
-                                    staticClass: "FavoritedList_memberThumb",
-                                    style: _vm.bgImage(favorite.file_name)
-                                  }),
-                                  _vm._v(" "),
-                                  _c(
-                                    "span",
-                                    { staticClass: "Text -link u-mx5" },
-                                    [_vm._v(_vm._s(favorite.name))]
-                                  )
-                                ]
-                              ),
-                              _vm._v(
-                                "\n              さんが「気になる」を押しました\n            "
-                              )
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            { staticClass: "FavoritedList_work" },
-                            [
-                              _c("div", {
-                                staticClass: "FavoritedList_workThumb",
-                                style: _vm.bgImage(favorite.work.file_name)
-                              }),
-                              _vm._v(" "),
-                              _c(
-                                "RouterLink",
-                                {
-                                  staticClass: "Text -blue u-mx5",
-                                  attrs: { to: "/works/" + favorite.work.id }
-                                },
-                                [_vm._v(_vm._s(favorite.work.title))]
-                              )
-                            ],
-                            1
-                          )
-                        ])
+                                })
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "FavoritedList_work" },
+                              [
+                                _c("div", {
+                                  staticClass: "FavoritedList_workThumb",
+                                  style: _vm.bgImage(favorite.work.file_name)
+                                }),
+                                _vm._v(" "),
+                                _c(
+                                  "RouterLink",
+                                  {
+                                    staticClass: "Text -blue u-mx5",
+                                    attrs: { to: "/works/" + favorite.work.id }
+                                  },
+                                  [_vm._v(_vm._s(favorite.work.title))]
+                                )
+                              ],
+                              1
+                            )
+                          ]
+                        )
                       ]
                     )
                   }),
@@ -20093,8 +20426,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("h3", { staticClass: "MypageContent_boxTitle" }, [
-      _c("span", { staticClass: "MypageContent_titleText" }, [
+    return _c("h3", { staticClass: "BaseTitle u-px10" }, [
+      _c("span", { staticClass: "BaseTitle_text" }, [
         _vm._v("気になるした案件")
       ])
     ])
@@ -20103,8 +20436,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("h3", { staticClass: "MypageContent_boxTitle" }, [
-      _c("span", { staticClass: "MypageContent_titleText" }, [
+    return _c("h3", { staticClass: "BaseTitle u-px10" }, [
+      _c("span", { staticClass: "BaseTitle_text" }, [
         _vm._v("気になるされた案件")
       ])
     ])
@@ -20160,7 +20493,29 @@ var render = function() {
               ])
             ]),
             _vm._v(" "),
-            _vm._m(1),
+            _c("li", { staticClass: "MypageContent_aggregateItem" }, [
+              _c("div", { staticClass: "AggregateBox" }, [
+                _c("h4", { staticClass: "AggregateBox_heading" }, [
+                  _vm._v("レビュー平均")
+                ]),
+                _vm._v(" "),
+                _vm.hasReview
+                  ? _c("div", { staticClass: "AggregateBox_body" }, [
+                      _c("span", { staticClass: "AggregateBox_num" }, [
+                        _vm._v(_vm._s(_vm.averageReview))
+                      ]),
+                      _vm._v(" "),
+                      _c("span", { staticClass: "AggregateBox_unit" }, [
+                        _vm._v("点")
+                      ])
+                    ])
+                  : _c("div", { staticClass: "AggregateBox_body" }, [
+                      _c("span", { staticClass: "AggregateBox_num --nodata" }, [
+                        _vm._v("\n                レビューなし\n              ")
+                      ])
+                    ])
+              ])
+            ]),
             _vm._v(" "),
             _c("li", { staticClass: "MypageContent_aggregateItem" }, [
               _c("div", { staticClass: "AggregateBox" }, [
@@ -20197,7 +20552,27 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("section", { staticClass: "MypageContent_box" }, [
-          _vm._m(2),
+          _c("h3", { staticClass: "BaseTitle" }, [
+            _c("span", { staticClass: "BaseTitle_text" }, [
+              _vm._v("投稿中の募集案件")
+            ]),
+            _vm._v(" "),
+            _c(
+              "span",
+              { staticClass: "BaseTitle_button" },
+              [
+                _c(
+                  "RouterLink",
+                  {
+                    staticClass: "Button --small --pink",
+                    attrs: { to: "/works/create", tag: "button" }
+                  },
+                  [_vm._v("募集案件を投稿する")]
+                )
+              ],
+              1
+            )
+          ]),
           _vm._v(" "),
           _c(
             "div",
@@ -20228,38 +20603,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("h3", { staticClass: "MypageContent_boxTitle" }, [
-      _c("span", { staticClass: "MypageContent_titleText" }, [
-        _vm._v("活動レポート")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "MypageContent_aggregateItem" }, [
-      _c("div", { staticClass: "AggregateBox" }, [
-        _c("h4", { staticClass: "AggregateBox_heading" }, [
-          _vm._v("レビュー平均")
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "AggregateBox_body" }, [
-          _c("span", { staticClass: "AggregateBox_num" }, [_vm._v("12")]),
-          _vm._v(" "),
-          _c("span", { staticClass: "AggregateBox_unit" }, [_vm._v("点")])
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("h3", { staticClass: "MypageContent_boxTitle" }, [
-      _c("span", { staticClass: "MypageContent_titleText" }, [
-        _vm._v("投稿中の募集案件")
-      ])
+    return _c("h3", { staticClass: "BaseTitle" }, [
+      _c("span", { staticClass: "BaseTitle_text" }, [_vm._v("活動レポート")])
     ])
   }
 ]
@@ -20418,10 +20763,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("h3", { staticClass: "MypageContent_boxTitle" }, [
-      _c("span", { staticClass: "MypageContent_titleText" }, [
-        _vm._v("マッチした案件")
-      ])
+    return _c("h3", { staticClass: "BaseTitle" }, [
+      _c("span", { staticClass: "BaseTitle_text" }, [_vm._v("マッチした案件")])
     ])
   },
   function() {
@@ -20748,8 +21091,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("h3", { staticClass: "MypageContent_boxTitle u-mb10" }, [
-      _c("span", { staticClass: "MypageContent_titleText" }, [
+    return _c("h3", { staticClass: "BaseTitle u-mb10" }, [
+      _c("span", { staticClass: "BaseTitle_text" }, [
         _vm._v("プロフィールの編集")
       ])
     ])
@@ -20886,8 +21229,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("h3", { staticClass: "MypageContent_boxTitle" }, [
-      _c("span", { staticClass: "MypageContent_titleText" }, [
+    return _c("h3", { staticClass: "BaseTitle" }, [
+      _c("span", { staticClass: "BaseTitle_text" }, [
         _vm._v("スカウトを受けた案件")
       ])
     ])
@@ -20896,8 +21239,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("h3", { staticClass: "MypageContent_boxTitle" }, [
-      _c("span", { staticClass: "MypageContent_titleText" }, [
+    return _c("h3", { staticClass: "BaseTitle" }, [
+      _c("span", { staticClass: "BaseTitle_text" }, [
         _vm._v("スカウトした案件")
       ])
     ])
@@ -21320,7 +21663,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "p-works" }, [
     _c("div", { staticClass: "MainLayout --hasWorks" }, [
-      _c("h1", { staticClass: "MainLayout_heading" }, [_vm._v("募集案件一覧")]),
+      _c("h1", { staticClass: "MainLayout_heading" }, [_vm._v("案件を探す")]),
       _vm._v(" "),
       _c("div", { staticClass: "MainLayout_boxList" }, [
         _c("section", { staticClass: "MainLayout_box" }, [
@@ -21329,6 +21672,12 @@ var render = function() {
             : _c(
                 "div",
                 [
+                  _c("h2", { staticClass: "BaseTitle" }, [
+                    _c("span", { staticClass: "BaseTitle_text" }, [
+                      _vm._v(_vm._s(_vm.skill) + "の案件一覧")
+                    ])
+                  ]),
+                  _vm._v(" "),
                   _vm.lastPage > 1
                     ? _c("Pager", {
                         attrs: {
@@ -42105,6 +42454,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/MemberLink.vue":
+/*!************************************************!*\
+  !*** ./resources/js/components/MemberLink.vue ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _MemberLink_vue_vue_type_template_id_6d24f742___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MemberLink.vue?vue&type=template&id=6d24f742& */ "./resources/js/components/MemberLink.vue?vue&type=template&id=6d24f742&");
+/* harmony import */ var _MemberLink_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MemberLink.vue?vue&type=script&lang=js& */ "./resources/js/components/MemberLink.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _MemberLink_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _MemberLink_vue_vue_type_template_id_6d24f742___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _MemberLink_vue_vue_type_template_id_6d24f742___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/MemberLink.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/MemberLink.vue?vue&type=script&lang=js&":
+/*!*************************************************************************!*\
+  !*** ./resources/js/components/MemberLink.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MemberLink_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./MemberLink.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/MemberLink.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MemberLink_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/MemberLink.vue?vue&type=template&id=6d24f742&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/MemberLink.vue?vue&type=template&id=6d24f742& ***!
+  \*******************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MemberLink_vue_vue_type_template_id_6d24f742___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./MemberLink.vue?vue&type=template&id=6d24f742& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/MemberLink.vue?vue&type=template&id=6d24f742&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MemberLink_vue_vue_type_template_id_6d24f742___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MemberLink_vue_vue_type_template_id_6d24f742___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/Pager.vue":
 /*!*******************************************!*\
   !*** ./resources/js/components/Pager.vue ***!
@@ -45321,6 +45739,43 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/mixins/reviewCalc.js":
+/*!*******************************************!*\
+  !*** ./resources/js/mixins/reviewCalc.js ***!
+  \*******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var lodash_meanBy__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash/meanBy */ "./node_modules/lodash/meanBy.js");
+/* harmony import */ var lodash_meanBy__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash_meanBy__WEBPACK_IMPORTED_MODULE_0__);
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    customer: {
+      type: Object,
+      "default": function _default() {
+        return {};
+      }
+    }
+  },
+  computed: {
+    reviewers: function reviewers() {
+      return this.customer.reviewers;
+    },
+    averageReview: function averageReview() {
+      var average = lodash_meanBy__WEBPACK_IMPORTED_MODULE_0___default()(this.reviewers, 'point');
+      return Math.round(average * 10) / 10;
+    },
+    hasReview: function hasReview() {
+      return !!this.reviewers.length;
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./resources/js/mixins/styles.js":
 /*!***************************************!*\
   !*** ./resources/js/mixins/styles.js ***!
@@ -48133,7 +48588,7 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 /*!******************************!*\
   !*** ./resources/js/util.js ***!
   \******************************/
-/*! exports provided: getCookieValue, alphaNumeric, between, OK, CREATED, DELETED, INTERNAL_SERVER_ERROR, UNPROCESSABLE_ENTITY, UNAUTHORIZED, NOT_FOUND, BASE_STORAGE_URL, BASE_URL, MQL, PER_PAGE, CLIENT_HEIGHT, CLIENT_WIDTH, PROFESSIONS */
+/*! exports provided: getCookieValue, alphaNumeric, between, dateReplace, OK, CREATED, DELETED, INTERNAL_SERVER_ERROR, UNPROCESSABLE_ENTITY, UNAUTHORIZED, NOT_FOUND, BASE_STORAGE_URL, BASE_URL, MQL, PER_PAGE, CLIENT_HEIGHT, CLIENT_WIDTH, PROFESSIONS */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -48141,6 +48596,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getCookieValue", function() { return getCookieValue; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "alphaNumeric", function() { return alphaNumeric; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "between", function() { return between; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "dateReplace", function() { return dateReplace; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OK", function() { return OK; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CREATED", function() { return CREATED; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DELETED", function() { return DELETED; });
@@ -48191,6 +48647,33 @@ function alphaNumeric(str) {
 }
 function between(str, min, max) {
   return str.length >= min && str.length <= max;
+}
+function dateReplace(datetime) {
+  var now = new Date();
+  var createDate = new Date(datetime);
+  var diff = now - createDate;
+  var minute = Math.floor(diff / 1000 / 60);
+  var hours = Math.floor(diff / 1000 / 60 / 60);
+  var days = Math.floor(diff / 1000 / 60 / 60 / 24);
+
+  if (minute < 1) {
+    return 'たった今';
+  } else if (hours < 1) {
+    return "\u7D04".concat(minute, "\u5206\u524D");
+  } else if (days < 1) {
+    return "\u7D04".concat(hours, "\u6642\u9593\u524D");
+  } else if (now.getFullYear() > createDate.getFullYear()) {
+    var year = createDate.getFullYear();
+    var month = createDate.getMonth() + 1;
+    var date = createDate.getDate();
+    return "".concat(year, "\u5E74").concat(month, "\u6708").concat(date, "\u65E5");
+  } else {
+    var _month = createDate.getMonth() + 1;
+
+    var _date = createDate.getDate();
+
+    return "".concat(_month, "\u6708").concat(_date, "\u65E5");
+  }
 }
 var OK = 200;
 var CREATED = 201;

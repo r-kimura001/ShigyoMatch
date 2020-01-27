@@ -9,4 +9,9 @@ class Review extends Model
 {
   use SoftDeletes;
   protected $table = 'reviews';
+
+  public function reviewer()
+  {
+    return $this->hasOne(Customer::class, 'id', 'reviewer_id');
+  }
 }

@@ -11,10 +11,11 @@
   .MypageContent_main{
     margin-left: $sidebarWidth;
     background: $customerDetailBg;
-    padding: 10px;
+    padding: 20px;
 
     @include media(){
       margin: 0;
+      padding: 10px;
     }
   }
   .MypageContent_sidebar{

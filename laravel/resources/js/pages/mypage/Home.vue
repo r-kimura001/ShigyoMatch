@@ -3,8 +3,8 @@
     <div>
       <h2 class="MypageContent_heading">HOME</h2>
       <section class="MypageContent_box">
-        <h3 class="MypageContent_boxTitle">
-          <span class="MypageContent_titleText">活動レポート</span>
+        <h3 class="BaseTitle">
+          <span class="BaseTitle_text">活動レポート</span>
         </h3>
         <ul class="MypageContent_aggregate">
           <li class="MypageContent_aggregateItem">
@@ -19,9 +19,14 @@
           <li class="MypageContent_aggregateItem">
             <div class="AggregateBox">
               <h4 class="AggregateBox_heading">レビュー平均</h4>
-              <div class="AggregateBox_body">
-                <span class="AggregateBox_num">12</span>
+              <div v-if="hasReview" class="AggregateBox_body">
+                <span class="AggregateBox_num">{{ averageReview }}</span>
                 <span class="AggregateBox_unit">点</span>
+              </div>
+              <div v-else class="AggregateBox_body">
+                <span class="AggregateBox_num --nodata">
+                  レビューなし
+                </span>
               </div>
             </div>
           </li>
@@ -46,8 +51,11 @@
         </ul>
       </section>
       <section class="MypageContent_box">
-        <h3 class="MypageContent_boxTitle">
-          <span class="MypageContent_titleText">投稿中の募集案件</span>
+        <h3 class="BaseTitle">
+          <span class="BaseTitle_text">投稿中の募集案件</span>
+          <span class="BaseTitle_button">
+            <RouterLink to="/works/create" tag="button" class="Button --small --pink">募集案件を投稿する</RouterLink>
+          </span>
         </h3>
         <div class="MypageContent_body">
           <p v-if="!hasData">募集案件の投稿はありません</p>
@@ -67,12 +75,13 @@ import { DELETED, UNPROCESSABLE_ENTITY, OK } from '@/util'
 import WorkTableLayout from '@/layouts/WorkTableLayout'
 import ConfirmModal from '@/components/modal/ConfirmModal'
 import matches from '@/mixins/matches'
+import reviewCalc from '@/mixins/reviewCalc'
 export default {
   components: {
     WorkTableLayout,
     ConfirmModal,
   },
-  mixins: [matches],
+  mixins: [matches, reviewCalc],
   props: {
     customer: {
       type: Object,

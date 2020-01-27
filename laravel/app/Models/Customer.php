@@ -155,6 +155,14 @@ class Customer extends Model implements CanDeleteRelationInterface
   {
     return $this->belongsToMany(Apply::class, 'reviews', 'reviewer_id', 'apply_id')->withTimestamps()->withPivot('point', 'comment', 'reviewee_id');
   }
+  /**
+   * リレーション - カスタマー（Auth::user）のことを評価したレコード
+   * @return \Illuminate\Database\Eloquent\Relations\HasMany
+   */
+  public function reviewers()
+  {
+    return $this->hasMany(Review::class,'reviewee_id', 'id');
+  }
 
   /**
    * @return \Illuminate\Database\Eloquent\Relations\HasMany

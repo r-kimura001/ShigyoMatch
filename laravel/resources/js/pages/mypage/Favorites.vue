@@ -10,20 +10,20 @@
           @tabClick="change"
         ></Tab>
       </div>
-      <div v-if="currentFlag===favoriteFlag" class="MypageContent_body u-bgBlue">
-        <h3 class="MypageContent_boxTitle">
-          <span class="MypageContent_titleText">気になるした案件</span>
+      <div v-if="currentFlag===favoriteFlag" class="MypageContent_body u-bgGray">
+        <h3 class="BaseTitle u-px10">
+          <span class="BaseTitle_text">気になるした案件</span>
         </h3>
         <p v-if="!hasFavorite">気になるした募集案件はありません</p>
         <WorkListLayout
           v-else
           :works="favorite_works"
-          class="u-py20"
+          class="u-pa10"
         ></WorkListLayout>
       </div>
       <div v-if="currentFlag===favoritedFlag" class="MypageContent_body">
-        <h3 class="MypageContent_boxTitle">
-          <span class="MypageContent_titleText">気になるされた案件</span>
+        <h3 class="BaseTitle u-px10">
+          <span class="BaseTitle_text">気になるされた案件</span>
         </h3>
         <p v-if="!hasFavorited">気になるされた募集案件はありません</p>
         <ul v-else class="FavoritedList u-py20">
@@ -32,17 +32,9 @@
             v-for="(favorite, index) in favorited_members"
             :key="index"
           >
-            <div class="FavoritedList_body">
+            <div class="FavoritedList_body u-px10">
               <div class="FavoritedList_member">
-                <RouterLink
-                :to="`/customers/${favorite.id}`"
-                tag="div"
-                class="FavoritedList_memberLink"
-                >
-                  <span class="FavoritedList_memberThumb" :style="bgImage(favorite.file_name)"></span>
-                  <span class="Text -link u-mx5">{{ favorite.name }}</span>
-                </RouterLink>
-                さんが「気になる」を押しました
+                <MemberLink :customer="favorite" unit="さんから「気になる」が届きました"></MemberLink>
               </div>
               <div class="FavoritedList_work">
                 <div class="FavoritedList_workThumb" :style="bgImage(favorite.work.file_name)"></div>
@@ -58,12 +50,17 @@
 <script>
 import { OK } from '@/util'
 import styles from '@/mixins/styles'
+import MemberLink from '@/components/MemberLink'
 import WorkListLayout from '@/layouts/WorkListLayout'
 import WorkTableLayout from '@/layouts/WorkTableLayout'
 import Tab from '@/components/Tab'
 
 export default {
-  components: { WorkListLayout, WorkTableLayout, Tab },
+  components: {
+    MemberLink,
+    WorkListLayout,
+    WorkTableLayout,
+    Tab },
   mixins: [ styles ],
   props: {
     customer: {
