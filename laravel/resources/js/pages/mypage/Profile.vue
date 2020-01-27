@@ -3,8 +3,8 @@
     <div>
       <h2>Profile</h2>
       <section class="MypageContent_box">
-        <h3 class="MypageContent_boxTitle u-mb10">
-          <span class="MypageContent_titleText">プロフィールの編集</span>
+        <h3 class="BaseTitle u-mb10">
+          <span class="BaseTitle_text">プロフィールの編集</span>
         </h3>
         <ProfileFormLayout
           :form-data="formData"

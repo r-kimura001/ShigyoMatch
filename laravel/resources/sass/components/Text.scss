@@ -50,6 +50,10 @@
   &.-deepGray{
     color: $deepGray;
   }
+  &.-nodata{
+    color: $gray;
+    font-style: italic;
+  }
   &.-link{
     color: $green;
     cursor: pointer;

@@ -11,8 +11,8 @@
         ></Tab>
       </div>
       <div v-if="currentFlag===applyFlag" class="MypageContent_body">
-        <h3 class="MypageContent_boxTitle">
-          <span class="MypageContent_titleText">申込をした案件</span>
+        <h3 class="BaseTitle">
+          <span class="BaseTitle_text">申込をした案件</span>
         </h3>
         <div class="Table u-py20">
           <table>
@@ -55,7 +55,7 @@
                 </RouterLink>
               </td>
               <td>
-                <div class="Table_dataText">{{ work.author_apply_info.pivot.created_at }}</div>
+                <div class="Table_dataText">{{ createdAt(work.author_apply_info.pivot.created_at) }}</div>
               </td>
             </tr>
             </tbody>
@@ -64,8 +64,8 @@
         </div>
       </div>
       <div v-if="currentFlag===appliedFlag" class="MypageContent_body">
-        <h3 class="MypageContent_boxTitle">
-          <span class="MypageContent_titleText">申込を受けた案件</span>
+        <h3 class="BaseTitle">
+          <span class="BaseTitle_text">申込を受けた案件</span>
         </h3>
         <div class="Table u-py20">
           <table>
@@ -119,7 +119,7 @@
                   </RouterLink>
                 </td>
                 <td>
-                  <div class="Table_dataText">{{ applier.pivot.created_at }}</div>
+                  <div class="Table_dataText">{{ createdAt(applier.pivot.created_at) }}</div>
                 </td>
               </tr>
             </tbody>
@@ -135,7 +135,7 @@
   </div>
 </template>
 <script>
-  import { OK } from '@/util'
+  import { OK, dateReplace } from '@/util'
   import styles from '@/mixins/styles'
   import WorkListLayout from '@/layouts/WorkListLayout'
   import WorkTableLayout from '@/layouts/WorkTableLayout'
@@ -268,6 +268,9 @@
       applyDate(work){
         const targetApply = work.applies.filter( apply => apply.applier.id === this.customer.id)[0]
         return targetApply.created_at
+      },
+      createdAt(created_at){
+        return dateReplace(created_at)
       }
     },
   }

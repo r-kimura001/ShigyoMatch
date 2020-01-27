@@ -26,6 +26,31 @@ export function alphaNumeric(str) {
 export function between(str, min, max) {
   return str.length >= min && str.length <= max
 }
+export function dateReplace(datetime) {
+  const now = new Date()
+  const createDate = new Date(datetime)
+  const diff = now - createDate
+  const minute = Math.floor(diff / 1000 / 60)
+  const hours = Math.floor(diff / 1000 / 60 / 60)
+  const days = Math.floor(diff / 1000 / 60 / 60 / 24)
+
+  if(minute < 1){
+    return 'たった今'
+  }else if(hours < 1){
+    return `約${minute}分前`
+  }else if(days < 1){
+    return `約${hours}時間前`
+  }else if(now.getFullYear() > createDate.getFullYear()){
+    const year = createDate.getFullYear()
+    const month = createDate.getMonth() + 1
+    const date = createDate.getDate()
+    return `${year}年${month}月${date}日`
+  }else{
+    const month = createDate.getMonth() + 1
+    const date = createDate.getDate()
+    return `${month}月${date}日`
+  }
+}
 
 export const OK = 200
 export const CREATED = 201

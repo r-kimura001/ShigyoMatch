@@ -123,6 +123,7 @@
         messageData.append('body', this.formItem.value)
         messageData.append('apply_id', this.applier.pivot.id)
         messageData.append('sender_id', this.applier.work.customer.id)
+        messageData.append('receiver_id', this.applier.id)
 
         const response = await axios.post('/api/messages/store', messageData)
 

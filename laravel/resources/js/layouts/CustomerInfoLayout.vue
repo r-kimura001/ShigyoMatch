@@ -14,6 +14,8 @@
         <p class="CustomerInfoLayout_greeting">
           {{ customer.greeting }}
         </p>
+        <Review :score="averageReview" class="u-pb20" v-if="hasReview"></Review>
+        <p class="Text -fz12 -nodata u-alignCenter u-pb20" v-else>レビューはありません</p>
         <div class="HorizontalLayout --justifyCenter">
           <div class="HorizontalLayout_col">
             <FollowButton
@@ -41,15 +43,18 @@
         >
           資格
         </h3>
-        <ul>
+        <ul class="CustomerInfoLayout_skills">
           <li
             v-for="(professionType, index) in professionTypes"
             :key="index"
-            class="CustomerInfoLayout_tag"
+            class="CustomerInfoLayout_skill"
           >
-            <p class="Tag" :style="bgColor(professionType.id)">
-              {{ professionType.body }}
-            </p>
+            <div class="CustomerInfoLayout_skillTag">
+              <span class="Tag" :style="bgColor(professionType.id)">
+                {{ professionType.body }}
+              </span>
+            </div>
+            <div class="CustomerInfoLayout_skillNum">{{ professionType.pivot.register_number }}</div>
           </li>
         </ul>
       </div>
@@ -116,20 +121,44 @@
     </div>
     <!-- CustomerInfoLayout_heading -->
     <div class="CustomerInfoLayout_main">
-      <!-- header_title(「募集中の案件一覧」みたいな) -->
-      <h2 class="CustomerInfoLayout_mainTitle">
-        募集中の案件
-      </h2>
-      <p v-if="!hasData">募集中の案件はありません</p>
-      <div v-else>
-        <Pager
-          v-if="lastPage > 1"
-          :current-page="currentPage"
-          :last-page="lastPage"
-          path="works"
-        ></Pager>
-        <WorkListLayout :works="list"></WorkListLayout>
-      </div>
+      <section class="CustomerInfoLayout_mainBox">
+        <h2 class="BaseTitle">
+          <span class="BaseTitle_text">募集中の案件</span>
+        </h2>
+        <p v-if="!hasData">募集中の案件はありません</p>
+        <div v-else>
+          <Pager
+            v-if="lastPage > 1"
+            :current-page="currentPage"
+            :last-page="lastPage"
+            path="works"
+          ></Pager>
+          <WorkListLayout :works="list"></WorkListLayout>
+        </div>
+      </section>
+      <section class="CustomerInfoLayout_mainBox u-mt50">
+        <h2 class="BaseTitle">
+          <span class="BaseTitle_text">{{ customer.name }}さんへのレビュー</span>
+        </h2>
+        <ul class="ReviewListLayout">
+          <li v-if="!hasReview" class="Text -nodata -fz14">レビューはありません</li>
+          <li
+            v-else
+            class="ReviewListLayout_item"
+            v-for="(review, index) in reviewers"
+            :key="index">
+            <div class="ReviewListLayout_comment">{{ review.comment }}</div>
+            <div class="ReviewListLayout_heading">
+              <div class="ReviewListLayout_reviewer">
+                <MemberLink :customer="review.reviewer"></MemberLink>
+              </div>
+              <div class="ReviewListLayout_point">
+                <Review :score="review.point" :small="true"></Review>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </section>
     </div>
     <!-- CustomerInfoLayout_main -->
   </div>
@@ -138,20 +167,25 @@
 <script>
 import { BASE_STORAGE_URL, OK } from '@/util'
 import { mapGetters, mapState } from 'vuex'
-import styles from '@/mixins/styles'
 import apiIndexHandler from '@/mixins/apiIndexHandler'
-import WorkListLayout from '@/layouts/WorkListLayout'
-import Pager from '@/components/Pager'
-import ScoutButton from '@/components/ScoutButton'
+import reviewCalc from '@/mixins/reviewCalc'
+import styles from '@/mixins/styles'
 import FollowButton from '@/components/FollowButton'
+import MemberLink from '@/components/MemberLink'
+import Pager from '@/components/Pager'
+import Review from '@/components/Review'
+import ScoutButton from '@/components/ScoutButton'
+import WorkListLayout from '@/layouts/WorkListLayout'
 export default {
   components: {
-    WorkListLayout,
-    Pager,
-    ScoutButton,
     FollowButton,
+    Pager,
+    MemberLink,
+    Review,
+    ScoutButton,
+    WorkListLayout,
   },
-  mixins: [styles, apiIndexHandler],
+  mixins: [styles, apiIndexHandler, reviewCalc],
   props: {
     customer: {
       type: Object,
@@ -177,13 +211,16 @@ export default {
     },
     isFollow(){
       let isFollow = false
+      if(!this.customer.followers.length){
+        return false
+      }
       this.customer.followers.forEach(follower => {
         if(follower.id === this.author.id){
           isFollow = true
         }
       })
       return isFollow
-    }
+    },
   },
   methods: {
     imageSrc(src) {
@@ -198,6 +235,7 @@ export default {
     },
     async follow(){
       const response = await axios.put(`/api/customers/${this.customer.id}/follow`)
+      this.$store.commit('form/setResponse', response)
       if(response.status === OK){
         this.customer.followers = response.data.followers
       }else{
@@ -209,6 +247,7 @@ export default {
     },
     async unfollow(){
       const response = await axios.delete(`/api/customers/${this.customer.id}/unfollow`)
+      this.$store.commit('form/setResponse', response)
       if(response.status === OK){
         this.customer.followers = response.data.followers
       }else{

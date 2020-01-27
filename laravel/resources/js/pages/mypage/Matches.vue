@@ -1,8 +1,8 @@
 <template>
   <div class="p-matches">
     <section class="MypageContent_box">
-      <h3 class="MypageContent_boxTitle">
-        <span class="MypageContent_titleText">マッチした案件</span>
+      <h3 class="BaseTitle">
+        <span class="BaseTitle_text">マッチした案件</span>
       </h3>
       <div class="MypageContent_body">
         <div class="Table">

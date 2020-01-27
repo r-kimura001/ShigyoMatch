@@ -22,7 +22,7 @@
         <li class="HorizontalLayout_col --flex">
           <div class="WorkCard_text">
             <p class="WorkCard_title">{{ work.title }}</p>
-            <p class="WorkCard_time">2020年1月20日</p>
+            <p class="WorkCard_time">{{ date }}</p>
           </div>
         </li>
         <li class="HorizontalLayout_col">
@@ -35,14 +35,17 @@
   </div>
 </template>
 <script>
-import { OK } from '@/util'
+import { OK, dateReplace } from '@/util'
 import styles from '@/mixins/styles'
 import worksData from '@/mixins/worksData'
 export default {
   mixins: [styles, worksData],
   computed: {
     favoriteStatus(){
-      return this.work.is_favorite ? '「気になる」済み' : '「気になる」に登録する'
+      return this.work.is_favorite ? '「気になる」解除' : '「気になる」に登録する'
+    },
+    date(){
+      return dateReplace(this.work.created_at)
     }
   },
   methods: {

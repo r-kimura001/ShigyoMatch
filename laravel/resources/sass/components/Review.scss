@@ -32,4 +32,13 @@
     font-weight: bold;
     margin-left: 5px;
   }
+
+  &.--small{
+    .Review_rating{
+      font-size: 1.2rem;
+    }
+    .Review_score{
+      font-size: 1.4rem;
+    }
+  }
 }

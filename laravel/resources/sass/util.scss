@@ -251,11 +251,10 @@
     background: $deepGray;
     padding: 5px 8px;
     border-radius: 5px;
-    min-width: 80px;
+    min-width: 90px;
     line-height: 1.2;
     opacity: 0;
     pointer-events: none;
-    transition: $transitionBasis;
   }
   &::before{
     content: '';
@@ -267,11 +266,10 @@
     border-style: solid;
     border-width: 0 12px 12px 0;
     border-color: transparent transparent $deepGray transparent;
-    transform: translateY(-100%);
+    transform: translateY(-90%);
     color: $white;
     opacity: 0;
     pointer-events: none;
-    transition: $transitionBasis;
   }
   &:hover {
     &::after, &::before{

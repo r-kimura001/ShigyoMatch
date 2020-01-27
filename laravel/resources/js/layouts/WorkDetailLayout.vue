@@ -35,9 +35,7 @@
         </dl>
         <dl class="WorkDetailLayout_list">
           <dt class="WorkDetailLayout_listTerm">募集要項</dt>
-          <dd class="WorkDetailLayout_listDesc">
-            {{ work.body }}
-          </dd>
+          <dd class="WorkDetailLayout_listDesc">{{ work.body }}</dd>
         </dl>
         <dl class="WorkDetailLayout_list">
           <dt class="WorkDetailLayout_listTerm">募集者情報</dt>
