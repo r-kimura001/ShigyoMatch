@@ -121,13 +121,12 @@
           })
           this.clearFormValue()
           this.$store.commit('form/setSuccessMessage', 'レビューを投稿しました')
-          this.$emit('onClickClose')
+          this.$emit('onReviewed')
         } else {
-          return false
-          // this.$store.commit('error/setErrors', {
-          //   message: response,
-          //   status: response.status,
-          // })
+          this.$store.commit('error/setErrors', {
+            message: response,
+            status: response.status,
+          })
         }
       },
     }

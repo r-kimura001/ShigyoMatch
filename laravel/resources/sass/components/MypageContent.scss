@@ -2,6 +2,12 @@
   max-width: $baseWidth;
   margin: 0 auto;
 
+  .MypageContent_heading{
+    padding: 5px;
+    margin: 15px 0;
+    font-weight: bold;
+  }
+
   .MypageContent_main{
     margin-left: $sidebarWidth;
     background: $customerDetailBg;
@@ -54,19 +60,45 @@
     }
 
     @include media(){
-      padding: 10px;
+      padding: 30px 10px;
     }
     &.--color{
       background: inherit;
     }
   }
+  .MypageContent_titleText{
+    display: inline-block;
+    font-weight: bold;
+    padding: 10px 35px 10px 55px;
+    border-bottom: 2px solid $orange;
+    background-size: 45px;
+    background-repeat: no-repeat;
+    background-position: 5px center;
+  }
   .MypageContent_tabs{
-    padding: 0 10px 30px;
+    padding: 0 10px 10px;
   }
   .MypageContent_body{
-    padding: 0 10px;
+    padding: 30px 10px;
     @include media(sm-y){
-      padding: 0;
+      padding: 30px 0;
+    }
+  }
+
+  .MypageContent_aggregate{
+    max-width: 400px;
+    margin: 20px 0;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .MypageContent_aggregateItem{
+    flex-grow: 1;
+    width: 100%;
+    max-width: 50%;
+    padding: 15px;
+
+    @include media(sm){
+      padding: 6px;
     }
   }
 }

@@ -1,0 +1,29 @@
+.AggregateBox {
+  overflow: hidden;
+  border-radius: 10px;
+  border: 2px solid $orange;
+
+  .AggregateBox_heading {
+    font-weight: bold;
+    background: $orange;
+    padding: 8px 12px;
+    text-align: center;
+    font-size: 1.4rem;
+    color: $white;
+    @include media(sm){
+      font-size: 1.4rem;
+    }
+  }
+  .AggregateBox_body {
+    text-align: center;
+    padding: 12px 10px;
+  }
+  .AggregateBox_num {
+    font-size: 3rem;
+    font-family: 'IntroDemo', $mainFontFamily;
+  }
+  .AggregateBox_unit{
+    font-size: 1.2rem;
+  }
+
+}

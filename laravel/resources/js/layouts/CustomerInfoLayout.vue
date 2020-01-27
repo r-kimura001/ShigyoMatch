@@ -19,7 +19,7 @@
             <FollowButton
               :id="customer.id"
               :author="author"
-              :isFollow="customer.is_follow"
+              :isFollow="isFollow"
               v-if="!self"
               @followClick="followClick"
             ></FollowButton>
@@ -73,7 +73,7 @@
               <span>フォロワー</span>
             </h4>
             <p class="Text -deepGreen -bold u-alignCenter">
-              {{ customer.follower_count }}
+              {{ customer.followers.length }}
             </p>
           </li>
           <li class="HorizontalLayout_col --equal">
@@ -86,9 +86,7 @@
               />
               <span>受託件数</span>
             </h4>
-            <p class="Text -deepGreen -bold u-alignCenter">
-              2
-            </p>
+            <p class="Text -deepGreen -bold u-alignCenter">{{ customer.match_count }}</p>
           </li>
         </ul>
       </div>
@@ -177,13 +175,22 @@ export default {
       }
       return this.customer.id === this.author.id
     },
+    isFollow(){
+      let isFollow = false
+      this.customer.followers.forEach(follower => {
+        if(follower.id === this.author.id){
+          isFollow = true
+        }
+      })
+      return isFollow
+    }
   },
   methods: {
     imageSrc(src) {
       return `${BASE_STORAGE_URL}/assets/${src}`
     },
     async followClick(){
-      if(this.customer.is_follow){
+      if(this.isFollow){
         await this.unfollow()
       }else{
         await this.follow()
@@ -193,8 +200,6 @@ export default {
       const response = await axios.put(`/api/customers/${this.customer.id}/follow`)
       if(response.status === OK){
         this.customer.followers = response.data.followers
-        this.customer.is_follow = true
-        this.customer.follower_count = response.data.follower_count
       }else{
         this.$store.commit('error/setErrors', {
           status: response.status,
@@ -206,8 +211,6 @@ export default {
       const response = await axios.delete(`/api/customers/${this.customer.id}/unfollow`)
       if(response.status === OK){
         this.customer.followers = response.data.followers
-        this.customer.is_follow = false
-        this.customer.follower_count = response.data.follower_count
       }else{
         this.$store.commit('error/setErrors', {
           status: response.status,

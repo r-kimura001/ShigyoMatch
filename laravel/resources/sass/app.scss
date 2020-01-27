@@ -3,6 +3,7 @@
 @import "./base";
 
 // components
+@import "./components/AggregateBox";
 @import "./components/ApplyDetail";
 @import "./components/ApplyFormLayout";
 @import "./components/AuthFormLayout";
@@ -15,6 +16,7 @@
 @import "./components/CustomerInfoLayout";
 @import "./components/CustomerListLayout";
 @import "./components/DefinitionLayout";
+@import "./components/FavoritedList";
 @import "./components/Footer";
 @import "./components/Form";
 @import "./components/GlobalNav";

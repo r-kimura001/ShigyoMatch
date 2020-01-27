@@ -10,36 +10,38 @@
           @tabClick="change"
         ></Tab>
       </div>
-      <div class="MypageContent_body">
-        <div v-if="currentFlag===scoutedFlag" class="u-bgGray u-py40">
-          <p v-if="!hasScouted">スカウトを受けた案件はありません</p>
-          <div v-else>
-            <h3>スカウトを受けた案件</h3>
-            <ul v-for="(work, index) in scouted_works" :key="index" class="ScoutList">
-              <li class="ScoutList_item">
-                <div class="ScoutList_targetInfo">{{ work.customer.name }}</div>
-                <div class="ScoutList_scoutInfo">
-                  <div class="ScoutList_scoutThumb" :style="bgImage(work.file_name)"></div>
-                  <p class="ScoutList_text u-ml20">{{ work.pivot.title }}</p>
-                </div>
-              </li>
-            </ul>
-          </div>
+      <div v-if="currentFlag===scoutedFlag" class="MypageContent_body u-bgBlue">
+        <h3 class="MypageContent_boxTitle">
+          <span class="MypageContent_titleText">スカウトを受けた案件</span>
+        </h3>
+        <p v-if="!hasScouted" class="u-pa20">スカウトを受けた案件はありません</p>
+        <div v-else class="u-py20">
+          <ul v-for="(work, index) in scouted_works" :key="index" class="ScoutList">
+            <li class="ScoutList_item">
+              <div class="ScoutList_targetInfo">{{ work.customer.name }}</div>
+              <div class="ScoutList_scoutInfo">
+                <div class="ScoutList_scoutThumb" :style="bgImage(work.file_name)"></div>
+                <p class="ScoutList_text u-ml20">{{ work.pivot.title }}</p>
+              </div>
+            </li>
+          </ul>
         </div>
-        <div v-if="currentFlag===scoutFlag" class="u-bgBlue u-py40">
-          <p v-if="!hasScout">スカウトした案件はありません</p>
-          <div v-else>
-            <h3>スカウトした案件</h3>
-            <ul v-for="(work, index) in scout_works" :key="index" class="ScoutList">
-              <li v-for="(targetCustomer, idx) in work.scouts" :key="idx" class="ScoutList_item">
-                <div class="ScoutList_targetInfo">{{ targetCustomer.name }}</div>
-                <div class="ScoutList_scoutInfo">
-                  <div class="ScoutList_targetThumb" :style="bgImage(targetCustomer.file_name)"></div>
-                  <p class="ScoutList_text u-ml20">{{ targetCustomer.pivot.title }}</p>
-                </div>
-              </li>
-            </ul>
-          </div>
+      </div>
+      <div  v-if="currentFlag===scoutFlag" class="MypageContent_body u-bgGray">
+        <h3 class="MypageContent_boxTitle">
+          <span class="MypageContent_titleText">スカウトした案件</span>
+        </h3>
+        <p v-if="!hasScout" class="u-pa20">スカウトした案件はありません</p>
+        <div v-else class="u-py20">
+          <ul v-for="(work, index) in scout_works" :key="index" class="ScoutList">
+            <li v-for="(targetCustomer, idx) in work.scouts" :key="idx" class="ScoutList_item">
+              <div class="ScoutList_targetInfo">{{ targetCustomer.name }}</div>
+              <div class="ScoutList_scoutInfo">
+                <div class="ScoutList_targetThumb" :style="bgImage(targetCustomer.file_name)"></div>
+                <p class="ScoutList_text u-ml20">{{ targetCustomer.pivot.title }}</p>
+              </div>
+            </li>
+          </ul>
         </div>
       </div>
     </section>

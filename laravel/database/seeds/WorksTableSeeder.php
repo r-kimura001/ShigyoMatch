@@ -18,7 +18,7 @@ class WorksTableSeeder extends Seeder
     public function run(CustomerService $customerService)
     {
       DB::table('works')->truncate();
-      $customers = $customerService->all();
+      $customers = $customerService->all(['professionTypes']);
 
       $customers->each(function($customer){
         $customer->professionTypes->each(function($professionType) use ($customer){

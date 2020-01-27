@@ -1,6 +1,6 @@
 <template>
   <div class="p-favorites">
-    <h2>Favorites</h2>
+    <h2 class="MypageContent_heading">お気に入り履歴</h2>
     <section class="MypageContent_box">
       <div class="MypageContent_tabs">
         <Tab
@@ -10,33 +10,61 @@
           @tabClick="change"
         ></Tab>
       </div>
-      <div class="MypageContent_body">
-        <div v-if="currentFlag===favoriteFlag" class="">
-          <p v-if="!hasFavorite">気になるした募集案件はありません</p>
-          <WorkListLayout
-            v-else
-            :works="favorite_works"
-          ></WorkListLayout>
-        </div>
-        <div v-if="currentFlag===favoritedFlag">
-          <p v-if="!hasFavorited">気になるされた募集案件はありません</p>
-          <WorkTableLayout
-            v-else
-            :works="favorited_works"
-          ></WorkTableLayout>
-        </div>
+      <div v-if="currentFlag===favoriteFlag" class="MypageContent_body u-bgBlue">
+        <h3 class="MypageContent_boxTitle">
+          <span class="MypageContent_titleText">気になるした案件</span>
+        </h3>
+        <p v-if="!hasFavorite">気になるした募集案件はありません</p>
+        <WorkListLayout
+          v-else
+          :works="favorite_works"
+          class="u-py20"
+        ></WorkListLayout>
+      </div>
+      <div v-if="currentFlag===favoritedFlag" class="MypageContent_body">
+        <h3 class="MypageContent_boxTitle">
+          <span class="MypageContent_titleText">気になるされた案件</span>
+        </h3>
+        <p v-if="!hasFavorited">気になるされた募集案件はありません</p>
+        <ul v-else class="FavoritedList u-py20">
+          <li
+            class="FavoritedList_item"
+            v-for="(favorite, index) in favorited_members"
+            :key="index"
+          >
+            <div class="FavoritedList_body">
+              <div class="FavoritedList_member">
+                <RouterLink
+                :to="`/customers/${favorite.id}`"
+                tag="div"
+                class="FavoritedList_memberLink"
+                >
+                  <span class="FavoritedList_memberThumb" :style="bgImage(favorite.file_name)"></span>
+                  <span class="Text -link u-mx5">{{ favorite.name }}</span>
+                </RouterLink>
+                さんが「気になる」を押しました
+              </div>
+              <div class="FavoritedList_work">
+                <div class="FavoritedList_workThumb" :style="bgImage(favorite.work.file_name)"></div>
+                <RouterLink :to="`/works/${favorite.work.id}`" class="Text -blue u-mx5">{{ favorite.work.title }}</RouterLink>
+              </div>
+            </div>
+          </li>
+        </ul>
       </div>
     </section>
   </div>
 </template>
 <script>
 import { OK } from '@/util'
+import styles from '@/mixins/styles'
 import WorkListLayout from '@/layouts/WorkListLayout'
 import WorkTableLayout from '@/layouts/WorkTableLayout'
 import Tab from '@/components/Tab'
 
 export default {
   components: { WorkListLayout, WorkTableLayout, Tab },
+  mixins: [ styles ],
   props: {
     customer: {
       type: Object,
@@ -47,7 +75,7 @@ export default {
   data() {
     return {
       favorite_works: [],
-      favorited_works: [],
+      favorited_members: [],
       hasFavorite: true,
       hasFavorited: true,
       favoriteFlag: 0,
@@ -60,7 +88,7 @@ export default {
       async handler() {
         this.$store.commit('form/setIsLoading', true)
         await this.favoriteWorks()
-        await this.worksByOwner()
+        await this.favoritedWorks()
         this.$store.commit('form/setIsLoading', false)
       },
       immediate: true,
@@ -74,19 +102,29 @@ export default {
       if (response.status !== OK) {
         this.hasFavorite = false
       } else {
-        this.favorite_works = response.data
-        this.hasFavorite = !!Object.keys(this.favorite_works).length
+        this.favorite_works = Object.keys(response.data).map( key => response.data[key] )
+        this.hasFavorite = !!this.favorite_works.length
       }
     },
-    async worksByOwner() {
+    async favoritedWorks() {
       const response = await axios.get(
-        `/api/customers/${this.customer.id}/works`
+        `/api/customers/${this.customer.id}/favoritedWorks`
       )
       if (response.status !== OK) {
         this.hasFavorited = false
       } else {
-        this.favorited_works = response.data.data
-        this.hasFavorited = !!this.favorited_works.length
+        this.favorited_members = response.data.map( work => {
+          work.favorites.forEach( favorite => {
+            favorite.work = {
+              id: work.id,
+              title: work.title,
+              file_name: work.file_name,
+            }
+          })
+          return work.favorites
+        }).flat()
+        this.favorited_members.sort( (a, b) => a.pivot.created_at < b.pivot.created_at ? 1 : -1)
+        this.hasFavorited = !!this.favorited_members.length
       }
     },
     change(flag){

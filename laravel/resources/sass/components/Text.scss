@@ -41,6 +41,9 @@
   &.-gray{
     color: $gray;
   }
+  &.-blue{
+    color: $blue;
+  }
   &.-deepGreen{
     color: $deepGreen;
   }
@@ -50,6 +53,7 @@
   &.-link{
     color: $green;
     cursor: pointer;
+    transition: $transitionBasis;
     &:hover{
       text-decoration: underline;
       opacity: 0.8;

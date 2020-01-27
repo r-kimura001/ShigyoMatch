@@ -2,6 +2,7 @@
 .Pager{
   .Pager_links{
     display: flex;
+    flex-wrap: wrap;
   }
 
   .Pager_link{

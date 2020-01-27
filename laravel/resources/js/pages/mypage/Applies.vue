@@ -1,6 +1,6 @@
 <template>
   <div class="p-applys">
-    <h2>Applies</h2>
+    <h2 class="MypageContent_heading">申込履歴</h2>
     <section class="MypageContent_box">
       <div class="MypageContent_tabs">
         <Tab
@@ -10,117 +10,121 @@
           @tabClick="change"
         ></Tab>
       </div>
-      <div class="MypageContent_body">
-        <div v-if="currentFlag===applyFlag" class="">
-          <p v-if="!hasApplyWorks">申込をした募集案件はありません</p>
-          <div v-else class="Table">
-            <table>
-              <thead>
-              <tr>
-                <th class="Table_headText">操作</th>
-                <th class="Table_headText">募集タイトル</th>
-                <th class="Table_headText">募集者</th>
-                <th class="Table_headText">申込日時</th>
-              </tr>
-              </thead>
-              <tbody>
-              <tr v-for="(work, index) in apply_works" :key="index">
+      <div v-if="currentFlag===applyFlag" class="MypageContent_body">
+        <h3 class="MypageContent_boxTitle">
+          <span class="MypageContent_titleText">申込をした案件</span>
+        </h3>
+        <div class="Table u-py20">
+          <table>
+            <thead>
+            <tr>
+              <th class="Table_headText">操作</th>
+              <th class="Table_headText">募集タイトル</th>
+              <th class="Table_headText">募集者</th>
+              <th class="Table_headText">申込日時</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr v-for="(work, index) in apply_works" :key="index">
+              <td>
+                <button
+                  class="Button --minimum"
+                  @click="showDetail(work.author_apply_info)"
+                >
+                  詳細
+                </button>
+              </td>
+              <td>
+                <RouterLink
+                  :to="`/works/${work.id}`"
+                  tag="span"
+                  class="Table_dataText --link --hasIcon"
+                  :style="bgImage(work.file_name)"
+                >
+                  {{ work.title }}
+                </RouterLink>
+              </td>
+              <td>
+                <RouterLink
+                  :to="`/customers/${work.customer.id}`"
+                  tag="span"
+                  class="Table_dataText --link --hasIcon"
+                  :style="bgImage(work.customer.file_name)"
+                >
+                  {{ work.customer.name }}
+                </RouterLink>
+              </td>
+              <td>
+                <div class="Table_dataText">{{ work.author_apply_info.pivot.created_at }}</div>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+          <p v-if="!hasApplyWorks" class="u-pa20">申込をした募集案件はありません</p>
+        </div>
+      </div>
+      <div v-if="currentFlag===appliedFlag" class="MypageContent_body">
+        <h3 class="MypageContent_boxTitle">
+          <span class="MypageContent_titleText">申込を受けた案件</span>
+        </h3>
+        <div class="Table u-py20">
+          <table>
+            <thead>
+            <tr>
+              <th class="Table_headText">マッチ</th>
+              <th class="Table_headText">操作</th>
+              <th class="Table_headText">募集タイトル</th>
+              <th class="Table_headText">申込者</th>
+              <th class="Table_headText">申込日時</th>
+            </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(applier, index) in appliers" :key="index">
+                <td>
+                  <button
+                    class="u-px10 MatchButton u-tip"
+                    :data-desc="dataDesc(applier)"
+                    @click="setMatch(applier)"
+                  >
+                    <i class="fas fa-heart" v-if="isActive(applier)" @mouseleave="toggleHeart(applier)"></i>
+                    <i class="far fa-heart" v-else @mouseenter="toggleHeart(applier)"></i>
+                  </button>
+                </td>
                 <td>
                   <button
                     class="Button --minimum"
-                    @click="showDetail(work.author_apply_info)"
+                    @click="showDetail(applier)"
                   >
                     詳細
                   </button>
                 </td>
                 <td>
                   <RouterLink
-                    :to="`/works/${work.id}`"
+                    :to="`/works/${applier.work.id}`"
                     tag="span"
                     class="Table_dataText --link --hasIcon"
-                    :style="bgImage(work.file_name)"
+                    :style="bgImage(applier.work.file_name)"
                   >
-                    {{ work.title }}
+                    {{ applier.work.title }}
                   </RouterLink>
                 </td>
                 <td>
                   <RouterLink
-                    :to="`/customers/${work.customer.id}`"
+                    :to="`/customers/${applier.id}`"
                     tag="span"
                     class="Table_dataText --link --hasIcon"
-                    :style="bgImage(work.customer.file_name)"
+                    :style="bgImage(applier.file_name)"
                   >
-                    {{ work.customer.name }}
+                    {{ applier.name }}
                   </RouterLink>
                 </td>
                 <td>
-                  <div class="Table_dataText">{{ work.author_apply_info.pivot.created_at }}</div>
+                  <div class="Table_dataText">{{ applier.pivot.created_at }}</div>
                 </td>
               </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-        <div v-if="currentFlag===appliedFlag">
-          <p v-if="!hasAppliedWorks">申込を受けた募集案件はありません</p>
-          <div v-else class="Table">
-            <table>
-              <thead>
-              <tr>
-                <th class="Table_headText">マッチ</th>
-                <th class="Table_headText">操作</th>
-                <th class="Table_headText">募集タイトル</th>
-                <th class="Table_headText">申込者</th>
-                <th class="Table_headText">申込日時</th>
-              </tr>
-              </thead>
-              <tbody>
-                <tr v-for="(applier, index) in appliers" :key="index">
-                  <td>
-                    <button
-                      class="u-px10 MatchButton"
-                      :data-desc="dataDesc(applier)"
-                      @click="setMatch(applier)"
-                    >
-                      <i class="fas fa-heart" v-if="isActive(applier)" @mouseleave="toggleHeart(applier)"></i>
-                      <i class="far fa-heart" v-else @mouseenter="toggleHeart(applier)"></i>
-                    </button>
-                  </td>
-                  <td>
-                    <button
-                      class="Button --minimum"
-                      @click="showDetail(applier)"
-                    >
-                      詳細
-                    </button>
-                  </td>
-                  <td>
-                    <RouterLink
-                      :to="`/works/${applier.work.id}`"
-                      tag="span"
-                      class="Table_dataText --link --hasIcon"
-                      :style="bgImage(applier.work.file_name)"
-                    >
-                      {{ applier.work.title }}
-                    </RouterLink>
-                  </td>
-                  <td>
-                    <RouterLink
-                      :to="`/customers/${applier.id}`"
-                      tag="span"
-                      class="Table_dataText --link --hasIcon"
-                      :style="bgImage(applier.file_name)"
-                    >
-                      {{ applier.name }}
-                    </RouterLink>
-                  </td>
-                  <td>
-                    <div class="Table_dataText">{{ applier.pivot.created_at }}</div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+            </tbody>
+          </table>
+          <p v-if="!hasAppliedWorks" class="u-pa20">申込を受けた募集案件はありません</p>
         </div>
       </div>
     </section>

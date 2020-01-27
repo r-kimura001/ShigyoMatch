@@ -1,0 +1,51 @@
+.FavoritedList {
+  width: 100%;
+}
+.FavoritedList_item{
+  padding: 10px 0;
+  &:not(:last-of-type){
+    border-bottom: 1px solid $gray-3;
+  }
+  &:nth-of-type(odd){
+    background: $customerDetailBg;
+  }
+}
+.FavoritedList_body{
+  max-width: 600px;
+  margin: 0 auto;
+}
+.FavoritedList_member {
+  display: flex;
+  align-items: center;
+  font-size: 1.2rem;
+  color: $gray;
+}
+.FavoritedList_memberLink {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding-left: 12px;
+}
+.FavoritedList_memberThumb {
+  display: inline-block;
+  width: 36px;
+  height: 36px;
+  border-radius: 9999px;
+  background-size: cover;
+  background-position: center;
+}
+
+.FavoritedList_work {
+  display: flex;
+  align-items: center;
+  padding: 8px 0;
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
+.FavoritedList_workThumb {
+  background-position: center;
+  background-size: cover;
+  width: 60px;
+  height: 60px;
+}

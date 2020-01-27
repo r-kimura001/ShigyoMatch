@@ -28,6 +28,7 @@ Route::put('/customers/{id}', 'CustomerController@update')->name('customer.updat
 Route::get('/customers/{id}', 'CustomerController@show')->name('customer.show');
 Route::get('/customers/{id}/works', 'CustomerController@worksByOwner')->name('customer.worksByOwner');
 Route::get('/customers/{id}/favoriteWorks', 'CustomerController@favoriteWorks')->name('customer.favoriteWorks');
+Route::get('/customers/{id}/favoritedWorks', 'CustomerController@favoritedWorks')->name('customer.favoritedWorks');
 Route::get('/customers/{id}/pageless_works', 'CustomerController@pagelessWorks')->name('customer.pagelessWorks');
 
 // 申込

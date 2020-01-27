@@ -19,7 +19,7 @@ class Customer extends Model implements CanDeleteRelationInterface
 
   const TEST_ID = 1;
   const COUNT_PER_PAGE = 12;
-  const RELATIONS_ARRAY = [ 'professionTypes', 'user', 'works.skills', 'works.professionType', 'applyWorks', 'messageNotes'];
+  const RELATIONS_ARRAY = [ 'professionTypes', 'user', 'works.skills', 'works.professionType', 'applyWorks', 'messageNotes', 'followers', 'followees'];
 
   protected $fillable = [
     'name',
@@ -52,6 +52,16 @@ class Customer extends Model implements CanDeleteRelationInterface
         .$this->attributes['address']
         .$this->attributes['building'];
     }
+  }
+
+  /**
+   * @return int
+   */
+  public function getMatchCountAttribute()
+  {
+    return count($this->applies->filter(function($apply){
+      return $apply->match_flag;
+    }));
   }
 
   /**
@@ -161,6 +171,7 @@ class Customer extends Model implements CanDeleteRelationInterface
   {
     return $this->belongsToMany(Customer::class, 'follows', 'followee_id', 'follower_id')->withTimestamps();
   }
+
   /**
    * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
    */
@@ -169,7 +180,7 @@ class Customer extends Model implements CanDeleteRelationInterface
     return $this->belongsToMany(Customer::class, 'follows', 'follower_id', 'followee_id')->withTimestamps();
   }
 
-  protected $appends = [ 'full_address', 'is_follow', 'follower_count' ];
+  protected $appends = [ 'full_address', 'match_count' ];
 
   public function getDeleteRelations()
   {

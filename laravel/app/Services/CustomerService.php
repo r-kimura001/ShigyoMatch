@@ -35,9 +35,9 @@ class CustomerService extends Service
   /**
    * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
    */
-  public function all()
+  public function all(Array $relations)
   {
-    return $this->customerRep->all(Customer::RELATIONS_ARRAY);
+    return $this->customerRep->all($relations);
   }
 
   /**
@@ -46,7 +46,7 @@ class CustomerService extends Service
    */
   public function customersByProfession(array $data)
   {
-    $relations = ['customers.professionTypes', 'customers.professionTypes'];
+    $relations = ['customers.professionTypes'];
     return $this->professionTypeRep->findById($relations, $data['professionTypeId']);
   }
 
@@ -111,9 +111,9 @@ class CustomerService extends Service
    * @param $customerId
    * @return mixed
    */
-  public function customerById(int $customerId)
+  public function customerById(array $relations, int $customerId)
   {
-    return $this->customerRep->findById(Customer::RELATIONS_ARRAY, $customerId);
+    return $this->customerRep->findById($relations, $customerId);
   }
 
   /**
@@ -174,7 +174,7 @@ class CustomerService extends Service
    */
   public function applies(int $customerId)
   {
-    $customer = $this->customerById($customerId);
+    $customer = $this->customerById([], $customerId);
     return $customer->applies()->with(['messages', 'applier', 'work.customer'])->get();
   }
   /**
@@ -199,13 +199,13 @@ class CustomerService extends Service
 
   public function scoutedWorks(int $customerId)
   {
-    $customer = $this->customerById($customerId);
+    $customer = $this->customerById([], $customerId);
     return $customer->scoutedWorks()->with(Work::RELATIONS_ARRAY)->get();
   }
 
   public function scoutWorks(int $customerId)
   {
-    $customer = $this->customerById($customerId);
+    $customer = $this->customerById([], $customerId);
     return $customer->scoutedWorks;
   }
 
@@ -214,7 +214,7 @@ class CustomerService extends Service
    */
   public function follow(int $id)
   {
-    $followee = $this->customerById($id);
+    $followee = $this->customerById(['followers'], $id);
     $followee->followers()->detach(Auth::user()->customer_id);
     $followee->followers()->attach(Auth::user()->customer_id);
     return $followee;
@@ -224,7 +224,7 @@ class CustomerService extends Service
    */
   public function unfollow(int $id)
   {
-    $followee = $this->customerById($id);
+    $followee = $this->customerById(['followers'], $id);
     $followee->followers()->detach(Auth::user()->customer_id);
     return $followee;
   }
