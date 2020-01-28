@@ -24,6 +24,9 @@
     &.--report{
       background-image: url(#{$assetPath}/icon-report.svg);
     }
+    &.--profile{
+      background-image: url(#{$assetPath}/icon-profile.svg);
+    }
     &.--scout{
       background-image: url(#{$assetPath}/icon-scout-simple.svg);
     }

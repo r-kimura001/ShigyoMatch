@@ -1,0 +1,15 @@
+.BackButton{
+  display: inline-block;
+  font-size: 2rem;
+  padding: 10px;
+  font-weight: bold;
+  border-radius: 9999px;
+  border: 2px solid $gray;
+  color: $gray;
+  cursor: pointer;
+  transition: $transitionBasis;
+  &:hover{
+    color: $white;
+    background: $gray;
+  }
+}

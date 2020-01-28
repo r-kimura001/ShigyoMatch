@@ -92,7 +92,7 @@ class CustomerController extends Controller
       $this->fileUploadService->delete($deleteSrc);
     }
 
-    return $this->customerService->customerById([], $id);
+    return $this->customerService->customerById(Customer::RELATIONS_ARRAY, $id);
   }
 
   /**

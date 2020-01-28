@@ -1,10 +1,10 @@
 <template>
   <div class="p-profiles u-pa20">
     <div>
-      <h2>Profile</h2>
+      <h2 class="MypageContent_heading">プロフィール</h2>
       <section class="MypageContent_box">
         <h3 class="BaseTitle u-mb10">
-          <span class="BaseTitle_text">プロフィールの編集</span>
+          <span class="BaseTitle_text --profile">プロフィールの編集</span>
         </h3>
         <ProfileFormLayout
           :form-data="formData"
@@ -121,7 +121,6 @@ export default {
       )
 
       this.$store.commit('form/setIsLoading', false)
-      this.$store.commit('form/setResponse', response)
 
       if (response.status === UNPROCESSABLE_ENTITY) {
         this.$store.commit('error/setMessage', response.data.errors)

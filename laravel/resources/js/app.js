@@ -10,6 +10,9 @@ Vue.use(VueScrollTo)
 import VueObserveVisibility from 'vue-observe-visibility'
 Vue.use(VueObserveVisibility)
 
+import Vuetify from 'vuetify'
+Vue.use(Vuetify)
+
 import App from './App.vue'
 
 const createApp = async () => {

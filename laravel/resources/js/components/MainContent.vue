@@ -1,10 +1,9 @@
 <template>
   <main class="MainContent" :class="pageMod">
-    <h1 class="MainContent_title" v-if="isOnly('MainContentTitle')">{{ title }}</h1>
-<!--    <ul class="BreadCrumb">-->
-<!--      <li><a :href="$router.go(-1)">一つ前</a></li>-->
-<!--      <li><a :href="$router.go(-2)">二つ前</a></li>-->
-<!--    </ul>-->
+    <div class="MainContent_heading">
+      <button class="BackButton u-mr20" v-if="isDetail" @click="$router.go(-1)">←</button>
+      <h1 class="MainContent_title" v-if="isOnly('MainContentTitle')">{{ title }}</h1>
+    </div>
     <RouterView></RouterView>
   </main>
 </template>
@@ -20,6 +19,10 @@
           return '士業マッチングサイト'
         }
       },
+      isDetail(){
+        const path = this.$route.path
+        return !!path.match(/^\/(works|customers)\/[1-9]?[0-9]+$/g)
+      },
       pageMod(){
         const path = this.$route.path
         if(path.indexOf('/customers') != -1) {
@@ -33,8 +36,5 @@
         }
       }
     },
-    methods: {
-
-    }
   }
 </script>

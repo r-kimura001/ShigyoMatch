@@ -5,7 +5,6 @@ import VueRouter from 'vue-router'
 import Top from '@/pages/Top.vue'
 import Signup from '@/pages/Signup.vue'
 import Login from '@/pages/Login.vue'
-import Greeting from '@/pages/Greeting.vue'
 
 // works
 import Works from '@/pages/works/Works.vue'
@@ -51,18 +50,8 @@ const routes = [
     path: '/',
     component: Top,
     meta: {
-      title: '士業マッチングサイト',
-      breadcrumbs: [
-        {
-          path: '/',
-          name: 'トップ',
-        },
-      ],
+      title: 'Top',
     },
-  },
-  {
-    path: '/greeting',
-    component: Greeting,
   },
   {
     path: '/signup',
@@ -93,17 +82,18 @@ const routes = [
     },
     meta: {
       title: '案件を探す',
-      breadcrumbs: [
-        {
-          path: '/works',
-          name: '案件一覧',
-        },
-      ],
     },
   },
   {
     path: '/works/create',
     component: WorkCreate,
+    beforeEnter (to, from, next) {
+      if (!store.getters['auth/isLogin']) {
+        next('/login')
+      } else {
+        next()
+      }
+    },
   },
   {
     path: '/works/:id',
@@ -141,12 +131,6 @@ const routes = [
     },
     meta: {
       title: '人材を探す',
-      breadcrumbs: [
-        {
-          path: '/customers',
-          name: '事務所一覧',
-        },
-      ],
     },
   },
   {
@@ -191,12 +175,6 @@ const routes = [
             component: Home,
             meta: {
               title: 'マイページHOME',
-              breadcrumbs: [
-                {
-                  path: '/',
-                  name: 'マイページHOME',
-                },
-              ],
             },
           },
           {

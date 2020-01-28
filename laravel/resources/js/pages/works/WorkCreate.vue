@@ -1,7 +1,9 @@
 <template>
   <div class="p-work-create">
     <div class="MainLayout">
-      <h1 class="MainLayout_heading">募集案件投稿フォーム</h1>
+      <h1 class="BaseTitle --center">
+        <span class="BaseTitle_text --work">募集案件投稿フォーム</span>
+      </h1>
       <div class="MainLayout_boxList">
         <section class="MainLayout_box">
           <WorkFormLayout

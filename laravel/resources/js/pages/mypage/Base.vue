@@ -4,7 +4,7 @@
       <Sidebar :id="id"></Sidebar>
     </div>
     <div class="MypageContent_main">
-      <h1>{{ customer.name }}様</h1>
+      <h1 class="MypageContent_title">{{ customer.name }}様</h1>
       <RouterView
         :customer="customer"
         @readed="setEmpty"
