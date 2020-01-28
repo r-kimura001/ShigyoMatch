@@ -1,5 +1,5 @@
 <template>
-  <aside class="Sidebar">
+  <aside class="Sidebar" :class="{'--hidden': ignore}">
     <div class="Sidebar_list">
       <div
         v-for="(list, index) in menuList"
@@ -24,12 +24,23 @@
 </template>
 <script>
 import styles from '@/mixins/styles'
+import { CLIENT_WIDTH } from '@/util'
+import switchDisplay from '@/mixins/switchDisplay'
 export default {
-  mixins: [styles],
+  mixins: [styles, switchDisplay],
   props: {
     id: {
       type: Number,
       required: true,
+    },
+  },
+  watch: {
+    // ルートが変更されたらfetchDataメソッドを再び呼び出す
+    $route: {
+      handler(){
+        this.o_middleDevice = CLIENT_WIDTH > 768
+      },
+      immediate: true
     },
   },
   data() {
@@ -40,21 +51,11 @@ export default {
           path: '',
           iconSrc: 'icon-home.svg',
         },
-        // {
-        //   name: 'プロフィール',
-        //   path: '/profile',
-        //   iconSrc: 'icon-profile.svg',
-        // },
         {
           name: 'マッチング履歴',
           path: '/matches',
           iconSrc: 'icon-match.svg',
         },
-        // {
-        //   name: 'スカウト',
-        //   path: '/scouts',
-        //   iconSrc: 'icon-scout.svg',
-        // },
         {
           name: '申込',
           path: '/applies',
@@ -65,13 +66,15 @@ export default {
           path: '/favorites',
           iconSrc: 'icon-favorite.svg',
         },
-        // {
-        //   name: 'メッセージ',
-        //   path: '/messages',
-        //   iconSrc: 'icon-mail-line.svg',
-        // },
       ],
+      o_middleDevice: false
     }
   },
+  computed: {
+    ignore(){
+      const currentPath = this.$route.path
+      return !this.o_middleDevice && currentPath.indexOf('messages') != -1
+    }
+  }
 }
 </script>

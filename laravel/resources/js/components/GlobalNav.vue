@@ -122,7 +122,8 @@ export default {
       async handler(){
         await this.fetchData()
         this.o_middleDevice = CLIENT_WIDTH > 768
-      }
+      },
+      immediate: true
     },
   },
   computed: {

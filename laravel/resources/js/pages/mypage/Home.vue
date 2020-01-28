@@ -58,7 +58,7 @@
           </span>
         </h3>
         <div class="MypageContent_body">
-          <p v-if="!hasData">募集案件の投稿はありません</p>
+          <p v-if="!hasPost">募集案件の投稿はありません</p>
           <WorkTableLayout
             v-else
             :works="works"

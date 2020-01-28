@@ -15,7 +15,12 @@
     display: flex;
     flex-direction: column;
     width: 240px;
-
+  }
+  .MessageLayout_sidebarTitle{
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   .MessageLayout_roomList{
     flex-grow: 1;
@@ -116,28 +121,73 @@
 
 
   @include media(){
-    bottom: 78px;
+    position: fixed;
+    top: 56px;
+    left: 0;
     width: 100%;
-    max-width: initial;
     flex-direction: column;
     padding: 5px 0 0;
+    overflow-x: initial;
     .MessageLayout_sidebar {
       max-width: initial;
       width: 100%;
+      position: relative;
+      z-index: $headerZIndex + 2;
+    }
+    .MessageLayout_sidebarTitle{
+      padding: 10px;
+      cursor: pointer;
+      &::after{
+        content: '';
+        width: 20px;
+        height: 20px;
+        background-image: url(#{$assetPath}/icon-toggle-gray.svg);
+        background-size: cover;
+        background-position: center;
+        margin-left: 10px;
+        transition: $transitionBasis;
+        -webkit-transition: -webkit-transform $transitionBasis;
+      }
+      &.--open{
+        &::after {
+          transform: rotate(180deg);
+        }
+      }
     }
     .MessageLayout_roomList{
-      display: none;
+      position: absolute;
+      top: 40px;
+      left: 0;
+      width: 100%;
+      transition: $transitionBasis;
+      -webkit-transition: -webkit-transform $transitionBasis;
+      transform-origin: center top;
+      transform: scale3d(1, 0, 1);
+      background: $white;
+      max-height: calc(100vh - #{$headerHeight} - 35px);
+      &::-webkit-scrollbar{
+        display: none;
+      }
+      &.--open{
+        transform: none;
+      }
+    }
+    .MessageLayout_roomWrap{
+      width: 100%;
     }
     .MessageLayout_room{
       border-left: 0;
     }
+    .MessageLayout_box{
+      max-height: calc(100vh - #{$headerHeight} - 40px - #{$headerHeight} - 45px);
+    }
     .MessageLayout_footer{
+      background: #fefefe;
+      z-index: $headerZIndex + 1;
       position: fixed;
       bottom: 0;
       left: 0;
       right: 0;
-      background: #fefefe;
-      z-index: $headerZIndex + 1;
     }
   }
   @include media(sm-y){

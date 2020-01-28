@@ -53,7 +53,7 @@ class CustomerController extends Controller
       DB::rollback();
       throw $exception;
     }
-    return response($this->customerService->customerById([], $createdCustomer->id), 201);
+    return response($this->customerService->customerById(['professionTypes', 'user', 'works.professionType', 'messageNotes', 'followers', 'followees', 'reviewers.reviewer'], $createdCustomer->id), 201);
   }
 
   /**
