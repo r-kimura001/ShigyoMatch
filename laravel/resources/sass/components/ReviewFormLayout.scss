@@ -82,7 +82,7 @@
       background-size: 20px;
       background-repeat: no-repeat;
       background-position: center;
-      background-image: url(#{$assetPath}/icon-toggle-gray.svg);
+      background-image: url(#{$assetPath}/icon-toggle-no-border.svg);
       transform-origin: center;
       transition: transform $transitionBasis;
       -webkit-transition: -webkit-transform $transitionBasis;

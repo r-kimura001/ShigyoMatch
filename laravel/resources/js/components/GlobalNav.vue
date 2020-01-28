@@ -10,14 +10,6 @@
       <span class="Globalnav_toggleLine --third"></span>
     </button>
     <ul class="GlobalNav_menu" :class="{ '--open': isOpen }">
-      <RouterLink
-        to="/greeting"
-        tag="li"
-        exact-active-class="--current"
-        class="GlobalNav_item"
-      >
-        制作者紹介
-      </RouterLink>
       <li
         v-for="(item, index) in navs"
         :key="index"
@@ -25,7 +17,7 @@
         @mouseenter="showChildren(index)"
         @mouseleave="showChildren(null)"
       >
-        <span>{{ item.name }}</span>
+        <span class="GlobalNav_itemText" :style="bgImage(item.src, 'other')">{{ item.name }}</span>
         <span class="GlobalNav_childrenToggle" @click="toggleChildren(index)" :class="{'--open': currentChildren === index}"></span>
         <ul class="GlobalNav_children" :class="{'--show': currentChildren === index}">
           <RouterLink
@@ -70,6 +62,7 @@ export default {
         {
           path: '/works',
           name: '案件を探す',
+          src: 'assets/icon-shop2-nav.svg',
           children: [
             {
               id: 1,
@@ -92,6 +85,7 @@ export default {
         {
           path: '/customers',
           name: '人材を探す',
+          src: 'assets/icon-office-nav.svg',
           children: [
             {
               id: 1,
@@ -117,7 +111,7 @@ export default {
     }
   },
   watch: {
-    // ルートが変更されたらfetchDataメソッドを再び呼び出す
+
     $route: {
       async handler(){
         await this.fetchData()

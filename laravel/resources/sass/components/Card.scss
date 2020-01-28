@@ -3,8 +3,9 @@
   max-width: $cardMaxWidth;
 
   .Card_thumb{
+    background: $gray-4;
     position: relative;
-    padding-top: 67%;
+    padding-top: 125%;
     overflow: hidden;
     z-index: 1;
     &:hover{
@@ -15,7 +16,7 @@
         opacity: 1;
       }
       .Card_thumbSrc{
-        transform: translate(-50%, -50%) scale3d(1.1, 1.1, 1);
+        transform: scale3d(1.1, 1.1, 1);
       }
     }
   }
@@ -54,15 +55,14 @@
 
   .Card_thumbSrc{
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     transition: 0.6s;
     z-index: -1;
-    img {
-      width: 100%;
-    }
+    background-size: cover;
+    background-position: center;
   }
 
   .Card_summary{

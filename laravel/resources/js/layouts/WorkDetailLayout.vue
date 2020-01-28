@@ -1,7 +1,7 @@
 <template>
   <div class="WorkDetailLayout">
     <div class="WorkDetailLayout_box">
-      <div class="WorkDetailLayout_heading" :style="{ backgroundImage: `url(${thumbSrc(work.file_name)})` }">
+      <div class="WorkDetailLayout_heading" :style="{ backgroundImage: `url(${thumbSrc(work.file_name, 'work')})` }">
         <h2 class="WorkDetailLayout_title">{{ work.title }}</h2>
         <p class="WorkDetailLayout_customer">{{ work.customer.name }}</p>
         <div
