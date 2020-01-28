@@ -1927,8 +1927,9 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _mixins_styles__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/mixins/styles */ "./resources/js/mixins/styles.js");
-/* harmony import */ var _components_Review__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/components/Review */ "./resources/js/components/Review.vue");
-/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/util */ "./resources/js/util.js");
+/* harmony import */ var _mixins_reviewCalc__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/mixins/reviewCalc */ "./resources/js/mixins/reviewCalc.js");
+/* harmony import */ var _components_Review__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/components/Review */ "./resources/js/components/Review.vue");
+/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/util */ "./resources/js/util.js");
 //
 //
 //
@@ -1971,16 +1972,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    Review: _components_Review__WEBPACK_IMPORTED_MODULE_1__["default"]
+    Review: _components_Review__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
-  mixins: [_mixins_styles__WEBPACK_IMPORTED_MODULE_0__["default"]],
+  mixins: [_mixins_styles__WEBPACK_IMPORTED_MODULE_0__["default"], _mixins_reviewCalc__WEBPACK_IMPORTED_MODULE_1__["default"]],
   props: {
-    item: {
+    customer: {
       type: Object,
       required: true,
       "default": function _default() {
@@ -1996,10 +1999,10 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     professionTypes: function professionTypes() {
-      return this.item.profession_types;
+      return this.customer.profession_types;
     },
     date: function date() {
-      return Object(_util__WEBPACK_IMPORTED_MODULE_2__["dateReplace"])(this.item.created_at);
+      return Object(_util__WEBPACK_IMPORTED_MODULE_3__["dateReplace"])(this.customer.created_at);
     }
   }
 });
@@ -2423,6 +2426,54 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     VueLoading: vue_loading_template__WEBPACK_IMPORTED_MODULE_0__["VueLoading"]
   }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/MainContent.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/MainContent.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _mixins_switchDisplay__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/mixins/switchDisplay */ "./resources/js/mixins/switchDisplay.js");
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  mixins: [_mixins_switchDisplay__WEBPACK_IMPORTED_MODULE_0__["default"]],
+  computed: {
+    title: function title() {
+      if (this.$route.matched.some(function (obj) {
+        return obj.meta.title;
+      })) {
+        return this.$route.meta.title;
+      } else {
+        return '士業マッチングサイト';
+      }
+    },
+    pageMod: function pageMod() {
+      var path = this.$route.path;
+
+      if (path.indexOf('/customers') != -1) {
+        return {
+          '--customers': true
+        };
+      } else if (path.indexOf('/mypage') != -1) {
+        return {
+          '--mypage': true
+        };
+      }
+    }
+  },
+  methods: {}
 });
 
 /***/ }),
@@ -4668,8 +4719,30 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/util */ "./resources/js/util.js");
-/* harmony import */ var _mixins_styles__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/mixins/styles */ "./resources/js/mixins/styles.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/util */ "./resources/js/util.js");
+/* harmony import */ var _mixins_styles__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/mixins/styles */ "./resources/js/mixins/styles.js");
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -4695,7 +4768,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mixins: [_mixins_styles__WEBPACK_IMPORTED_MODULE_1__["default"]],
+  mixins: [_mixins_styles__WEBPACK_IMPORTED_MODULE_2__["default"]],
   data: function data() {
     return {
       introductions: {
@@ -4735,17 +4808,51 @@ __webpack_require__.r(__webpack_exports__);
             }
           }
         }
-      }
+      },
+      isVisible: {
+        title: false,
+        1: false,
+        2: false,
+        3: false
+      },
+      isFadeout: false
     };
   },
+  watch: {
+    $route: {
+      handler: function handler() {
+        var _this = this;
+
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function handler$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                setTimeout(function () {
+                  _this.isFadeout = true;
+                }, 1100);
+
+              case 1:
+              case "end":
+                return _context.stop();
+            }
+          }
+        });
+      },
+      immediate: true
+    }
+  },
   methods: {
-    visible: function visible(key) {
-      var base = 2;
+    delay: function delay(key) {
+      var base = 0.85;
       var interval = 0.3;
       var delay = key * interval + base;
       return {
-        animationDelay: "".concat(delay, "s")
+        transitionDelay: "".concat(delay, "s")
       };
+    },
+    visibilityChanged: function visibilityChanged(isVisible, entry, key) {
+      this.isVisible[key] = isVisible;
+      console.log(entry);
     }
   }
 });
@@ -5036,6 +5143,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -5043,6 +5151,9 @@ __webpack_require__.r(__webpack_exports__);
   computed: {
     customer: function customer() {
       return this.work.customer;
+    },
+    favoriteStatus: function favoriteStatus() {
+      return this.work.is_favorite ? '「気になる」解除' : '「気になる」に登録する';
     }
   },
   mixins: [_mixins_styles__WEBPACK_IMPORTED_MODULE_3__["default"], _mixins_worksData__WEBPACK_IMPORTED_MODULE_2__["default"]],
@@ -6313,6 +6424,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _layouts_CustomerListLayout__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/layouts/CustomerListLayout */ "./resources/js/layouts/CustomerListLayout.vue");
 /* harmony import */ var _mixins_apiIndexHandler__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/mixins/apiIndexHandler */ "./resources/js/mixins/apiIndexHandler.js");
+/* harmony import */ var _mixins_styles__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/mixins/styles */ "./resources/js/mixins/styles.js");
 //
 //
 //
@@ -6344,14 +6456,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     CustomerListLayout: _layouts_CustomerListLayout__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
-  mixins: [_mixins_apiIndexHandler__WEBPACK_IMPORTED_MODULE_1__["default"]]
+  mixins: [_mixins_apiIndexHandler__WEBPACK_IMPORTED_MODULE_1__["default"], _mixins_styles__WEBPACK_IMPORTED_MODULE_2__["default"]]
 });
 
 /***/ }),
@@ -7226,15 +7338,15 @@ __webpack_require__.r(__webpack_exports__);
               if (response.status !== _util__WEBPACK_IMPORTED_MODULE_1__["OK"]) {
                 this.hasFavorited = false;
               } else {
-                this.favorited_members = response.data.map(function (work) {
-                  work.favorites.forEach(function (favorite) {
+                this.favorited_members = Object.keys(response.data).map(function (key) {
+                  response.data[key].favorites.forEach(function (favorite) {
                     favorite.work = {
-                      id: work.id,
-                      title: work.title,
-                      file_name: work.file_name
+                      id: response.data[key].id,
+                      title: response.data[key].title,
+                      file_name: response.data[key].file_name
                     };
                   });
-                  return work.favorites;
+                  return response.data[key].favorites;
                 }).flat();
                 this.favorited_members.sort(function (a, b) {
                   return a.pivot.created_at < b.pivot.created_at ? 1 : -1;
@@ -9296,7 +9408,8 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _layouts_WorkListLayout__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/layouts/WorkListLayout */ "./resources/js/layouts/WorkListLayout.vue");
 /* harmony import */ var _mixins_apiIndexHandler__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/mixins/apiIndexHandler */ "./resources/js/mixins/apiIndexHandler.js");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _mixins_styles__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/mixins/styles */ "./resources/js/mixins/styles.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -9333,7 +9446,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
+
 
 
 
@@ -9341,8 +9454,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   components: {
     WorkListLayout: _layouts_WorkListLayout__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
-  mixins: [_mixins_apiIndexHandler__WEBPACK_IMPORTED_MODULE_1__["default"]],
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapState"])({
+  mixins: [_mixins_apiIndexHandler__WEBPACK_IMPORTED_MODULE_1__["default"], _mixins_styles__WEBPACK_IMPORTED_MODULE_2__["default"]],
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapState"])({
     author: function author(state) {
       return state.auth.customer;
     }
@@ -15261,7 +15374,7 @@ var render = function() {
               "RouterLink",
               {
                 staticClass: "BorderButton",
-                attrs: { to: "/customers/" + _vm.item.id, tag: "button" }
+                attrs: { to: "/customers/" + _vm.customer.id, tag: "button" }
               },
               [_vm._v("more")]
             )
@@ -15272,19 +15385,27 @@ var render = function() {
         _c(
           "div",
           { staticClass: "Card_review" },
-          [_c("Review", { attrs: { score: Number(3.5) } })],
+          [
+            !_vm.hasReview
+              ? _c("p", { staticClass: "Text -nodata -fz14 u-alignCenter" }, [
+                  _vm._v("レビューはありません")
+                ])
+              : _c("Review", { attrs: { score: _vm.averageReview } })
+          ],
           1
         )
       ]),
       _vm._v(" "),
       _c("div", {
         staticClass: "Card_thumbSrc",
-        style: _vm.bgImage(_vm.item.file_name)
+        style: _vm.bgImage(_vm.customer.file_name)
       })
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "Card_summary" }, [
-      _c("h3", { staticClass: "Card_name" }, [_vm._v(_vm._s(_vm.item.name))]),
+      _c("h3", { staticClass: "Card_name" }, [
+        _vm._v(_vm._s(_vm.customer.name))
+      ]),
       _vm._v(" "),
       _c(
         "ul",
@@ -15564,10 +15685,10 @@ var render = function() {
               _c(
                 "RouterLink",
                 {
-                  staticClass: "HorizontalLayout_col",
+                  staticClass: "HorizontalLayout_col --stretch",
                   attrs: { to: "/", tag: "h1" }
                 },
-                [_vm._v("士業のマッチングサイトです")]
+                [_c("span", { staticClass: "SiteLogo" })]
               ),
               _vm._v(" "),
               _c("GlobalNav", { staticClass: "HorizontalLayout_col --flex" }),
@@ -15693,7 +15814,20 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("main", { staticClass: "MainContent" }, [_c("RouterView")], 1)
+  return _c(
+    "main",
+    { staticClass: "MainContent", class: _vm.pageMod },
+    [
+      _vm.isOnly("MainContentTitle")
+        ? _c("h1", { staticClass: "MainContent_title" }, [
+            _vm._v(_vm._s(_vm.title))
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _c("RouterView")
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -16145,7 +16279,10 @@ var render = function() {
                                   _c("span", {
                                     staticClass: "Table_icon",
                                     style: _vm.bgImage(
-                                      _vm.thumbSrc(record[labelObj.withIcon])
+                                      _vm.thumbSrc(
+                                        record[labelObj.withIcon],
+                                        "work"
+                                      )
                                     )
                                   })
                                 ]
@@ -16245,7 +16382,8 @@ var render = function() {
                                   _c("span", {
                                     staticClass: "Table_icon",
                                     style: _vm.bgImage(
-                                      record[labelObj.withIcon]
+                                      record[labelObj.withIcon],
+                                      "work"
                                     )
                                   })
                                 ]
@@ -16370,7 +16508,7 @@ var render = function() {
     [
       _vm.showable
         ? _c("div", {
-            staticClass: "WorkCard_mark u-tip-bottom",
+            staticClass: "WorkCard_mark u-tip --bottom",
             class: { "--favorite": _vm.work.is_favorite },
             attrs: { "data-desc": _vm.favoriteStatus },
             on: { click: _vm.onClickStar }
@@ -17401,7 +17539,9 @@ var render = function() {
       _c("div", { staticClass: "Modal_overlay" }),
       _vm._v(" "),
       _c("div", { staticClass: "Modal_content" }, [
-        _c("div", [_vm._v("一度削除すると元に戻せません。削除しますか？")]),
+        _c("div", { staticClass: "Modal_message" }, [
+          _vm._v("一度削除すると元に戻せません。削除しますか？")
+        ]),
         _vm._v(" "),
         _c("div", { staticClass: "Modal_buttons u-alignCenter u-mt20" }, [
           _c(
@@ -17862,7 +18002,7 @@ var render = function() {
       _vm._v(" "),
       _c("section", { staticClass: "CustomerInfoLayout_mainBox u-mt50" }, [
         _c("h2", { staticClass: "BaseTitle" }, [
-          _c("span", { staticClass: "BaseTitle_text" }, [
+          _c("span", { staticClass: "BaseTitle_text --review" }, [
             _vm._v(_vm._s(_vm.customer.name) + "さんへのレビュー")
           ])
         ]),
@@ -17923,7 +18063,9 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("h2", { staticClass: "BaseTitle" }, [
-      _c("span", { staticClass: "BaseTitle_text" }, [_vm._v("募集中の案件")])
+      _c("span", { staticClass: "BaseTitle_text --work" }, [
+        _vm._v("募集中の案件")
+      ])
     ])
   }
 ]
@@ -17956,7 +18098,7 @@ var render = function() {
         return _c(
           "li",
           { key: customer.key, staticClass: "CustomerList_item" },
-          [_c("Card", { attrs: { item: customer } })],
+          [_c("Card", { attrs: { customer: customer } })],
           1
         )
       }),
@@ -18119,54 +18261,100 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "ul",
-    { staticClass: "Introductions" },
-    _vm._l(_vm.introductions, function(item, index, key) {
-      return _c(
-        "li",
-        {
-          key: key,
-          staticClass: "Introductions_item",
-          style: _vm.visible(key)
-        },
-        [
-          _c("div", { staticClass: "Introductions_heading" }, [
-            _c("div", {
-              staticClass: "Introductions_thumb",
-              style: _vm.bgImage(item.image)
-            })
-          ]),
-          _vm._v(" "),
-          _c("h3", { staticClass: "Introductions_title" }, [
-            _vm._v(_vm._s(item.title))
-          ]),
-          _vm._v(" "),
-          _c("p", { staticClass: "Introductions_desc" }, [
-            _vm._v(_vm._s(item.desc))
-          ]),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "Introductions_link u-alignCenter" },
-            [
-              _c(
-                "RouterLink",
-                {
-                  staticClass: "Button --small --hasShadow",
-                  class: item.link.class,
-                  attrs: { tag: "button", to: item.link.path }
+  return _vm.isFadeout
+    ? _c("div", { staticClass: "Introductions" }, [
+        _c(
+          "h2",
+          {
+            directives: [
+              {
+                name: "observe-visibility",
+                rawName: "v-observe-visibility",
+                value: {
+                  callback: function(isVisible, entry) {
+                    return _vm.visibilityChanged(isVisible, entry, "title")
+                  },
+                  once: true
                 },
-                [_vm._v(_vm._s(item.link.text))]
-              )
+                expression:
+                  "{\n      callback: (isVisible, entry) => visibilityChanged(isVisible, entry, 'title'),\n      once: true\n    }"
+              }
             ],
-            1
-          )
-        ]
-      )
-    }),
-    0
-  )
+            staticClass: "BaseTitle --intro",
+            class: { "--visible": _vm.isVisible.title }
+          },
+          [
+            _c("span", { staticClass: "BaseTitle_text --customer" }, [
+              _vm._v("サービスご紹介")
+            ])
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "ul",
+          { staticClass: "Introductions_body u-mt20" },
+          _vm._l(_vm.introductions, function(item, key, index) {
+            return _c(
+              "li",
+              {
+                directives: [
+                  {
+                    name: "observe-visibility",
+                    rawName: "v-observe-visibility",
+                    value: {
+                      callback: function(isVisible, entry) {
+                        return _vm.visibilityChanged(isVisible, entry, key)
+                      },
+                      once: true
+                    },
+                    expression:
+                      "{\n        callback: (isVisible, entry) => visibilityChanged(isVisible, entry, key),\n        once: true\n      }"
+                  }
+                ],
+                key: key,
+                staticClass: "Introductions_item",
+                class: { "--visible": _vm.isVisible[key] },
+                style: _vm.delay(key)
+              },
+              [
+                _c("div", { staticClass: "Introductions_heading" }, [
+                  _c("div", {
+                    staticClass: "Introductions_thumb",
+                    style: _vm.bgImage(item.image)
+                  })
+                ]),
+                _vm._v(" "),
+                _c("h3", { staticClass: "Introductions_title" }, [
+                  _vm._v(_vm._s(item.title))
+                ]),
+                _vm._v(" "),
+                _c("p", { staticClass: "Introductions_desc" }, [
+                  _vm._v(_vm._s(item.desc))
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "Introductions_link u-alignCenter" },
+                  [
+                    _c(
+                      "RouterLink",
+                      {
+                        staticClass: "Button --small --hasShadow",
+                        class: item.link.class,
+                        attrs: { tag: "button", to: item.link.path }
+                      },
+                      [_vm._v(_vm._s(item.link.text))]
+                    )
+                  ],
+                  1
+                )
+              ]
+            )
+          }),
+          0
+        )
+      ])
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -18343,8 +18531,9 @@ var render = function() {
           _vm._v(" "),
           _vm.showable
             ? _c("div", {
-                staticClass: "WorkDetailLayout_mark",
+                staticClass: "WorkDetailLayout_mark u-tip --left",
                 class: { "--favorite": _vm.work.is_favorite },
+                attrs: { "data-desc": _vm.favoriteStatus },
                 on: { click: _vm.onClickStar }
               })
             : _vm._e()
@@ -18688,7 +18877,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "u-mt50" }, [
     _c(
       "form",
       {
@@ -19566,8 +19755,6 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "p-works" }, [
     _c("div", { staticClass: "MainLayout --customers" }, [
-      _c("h1", { staticClass: "MainLayout_heading" }, [_vm._v("人材を探す")]),
-      _vm._v(" "),
       _c("div", { staticClass: "MainLayout_boxList" }, [
         _c("section", { staticClass: "MainLayout_box" }, [
           !_vm.hasData
@@ -19582,9 +19769,18 @@ var render = function() {
                       "div",
                       [
                         _c("h2", { staticClass: "BaseTitle" }, [
-                          _c("span", { staticClass: "BaseTitle_text" }, [
-                            _vm._v(_vm._s(_vm.skill) + "事務所一覧")
-                          ])
+                          _c(
+                            "span",
+                            { staticClass: "BaseTitle_text --customer" },
+                            [
+                              _c(
+                                "span",
+                                { style: _vm.fontColor(_vm.professionId) },
+                                [_vm._v(_vm._s(_vm.skill))]
+                              ),
+                              _vm._v("事務所一覧")
+                            ]
+                          )
                         ]),
                         _vm._v(" "),
                         _vm.lastPage > 1
@@ -19738,7 +19934,7 @@ var render = function() {
                               "RouterLink",
                               {
                                 staticClass: "Table_dataText --link --hasIcon",
-                                style: _vm.bgImage(work.file_name),
+                                style: _vm.bgImage(work.file_name, "work"),
                                 attrs: { to: "/works/" + work.id, tag: "span" }
                               },
                               [
@@ -19876,7 +20072,10 @@ var render = function() {
                               "RouterLink",
                               {
                                 staticClass: "Table_dataText --link --hasIcon",
-                                style: _vm.bgImage(applier.work.file_name),
+                                style: _vm.bgImage(
+                                  applier.work.file_name,
+                                  "work"
+                                ),
                                 attrs: {
                                   to: "/works/" + applier.work.id,
                                   tag: "span"
@@ -20399,7 +20598,10 @@ var render = function() {
                               [
                                 _c("div", {
                                   staticClass: "FavoritedList_workThumb",
-                                  style: _vm.bgImage(favorite.work.file_name)
+                                  style: _vm.bgImage(
+                                    favorite.work.file_name,
+                                    "work"
+                                  )
                                 }),
                                 _vm._v(" "),
                                 _c(
@@ -20431,7 +20633,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("h3", { staticClass: "BaseTitle u-px10" }, [
-      _c("span", { staticClass: "BaseTitle_text" }, [
+      _c("span", { staticClass: "BaseTitle_text --favorite" }, [
         _vm._v("気になるした案件")
       ])
     ])
@@ -20441,7 +20643,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("h3", { staticClass: "BaseTitle u-px10" }, [
-      _c("span", { staticClass: "BaseTitle_text" }, [
+      _c("span", { staticClass: "BaseTitle_text --favorite" }, [
         _vm._v("気になるされた案件")
       ])
     ])
@@ -20557,7 +20759,7 @@ var render = function() {
         _vm._v(" "),
         _c("section", { staticClass: "MypageContent_box" }, [
           _c("h3", { staticClass: "BaseTitle" }, [
-            _c("span", { staticClass: "BaseTitle_text" }, [
+            _c("span", { staticClass: "BaseTitle_text --work" }, [
               _vm._v("投稿中の募集案件")
             ]),
             _vm._v(" "),
@@ -20608,7 +20810,9 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("h3", { staticClass: "BaseTitle" }, [
-      _c("span", { staticClass: "BaseTitle_text" }, [_vm._v("活動レポート")])
+      _c("span", { staticClass: "BaseTitle_text --report" }, [
+        _vm._v("活動レポート")
+      ])
     ])
   }
 ]
@@ -20661,7 +20865,7 @@ var render = function() {
                         "RouterLink",
                         {
                           staticClass: "Table_dataText --link --hasIcon",
-                          style: _vm.bgImage(apply.work.file_name),
+                          style: _vm.bgImage(apply.work.file_name, "work"),
                           attrs: { to: "/works/" + apply.work.id, tag: "span" }
                         },
                         [
@@ -20768,7 +20972,9 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("h3", { staticClass: "BaseTitle" }, [
-      _c("span", { staticClass: "BaseTitle_text" }, [_vm._v("マッチした案件")])
+      _c("span", { staticClass: "BaseTitle_text --match" }, [
+        _vm._v("マッチした案件")
+      ])
     ])
   },
   function() {
@@ -21169,7 +21375,7 @@ var render = function() {
                         _c("div", { staticClass: "ScoutList_scoutInfo" }, [
                           _c("div", {
                             staticClass: "ScoutList_scoutThumb",
-                            style: _vm.bgImage(work.file_name)
+                            style: _vm.bgImage(work.file_name, "work")
                           }),
                           _vm._v(" "),
                           _c("p", { staticClass: "ScoutList_text u-ml20" }, [
@@ -21239,7 +21445,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("h3", { staticClass: "BaseTitle" }, [
-      _c("span", { staticClass: "BaseTitle_text" }, [
+      _c("span", { staticClass: "BaseTitle_text --scout" }, [
         _vm._v("スカウトを受けた案件")
       ])
     ])
@@ -21249,7 +21455,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("h3", { staticClass: "BaseTitle" }, [
-      _c("span", { staticClass: "BaseTitle_text" }, [
+      _c("span", { staticClass: "BaseTitle_text --scout" }, [
         _vm._v("スカウトした案件")
       ])
     ])
@@ -21672,8 +21878,6 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "p-works" }, [
     _c("div", { staticClass: "MainLayout --hasWorks" }, [
-      _c("h1", { staticClass: "MainLayout_heading" }, [_vm._v("案件を探す")]),
-      _vm._v(" "),
       _c("div", { staticClass: "MainLayout_boxList" }, [
         _c("section", { staticClass: "MainLayout_box" }, [
           !_vm.hasData
@@ -21682,8 +21886,11 @@ var render = function() {
                 "div",
                 [
                   _c("h2", { staticClass: "BaseTitle" }, [
-                    _c("span", { staticClass: "BaseTitle_text" }, [
-                      _vm._v(_vm._s(_vm.skill) + "の案件一覧")
+                    _c("span", { staticClass: "BaseTitle_text --work" }, [
+                      _c("span", { style: _vm.fontColor(_vm.professionId) }, [
+                        _vm._v(_vm._s(_vm.skill))
+                      ]),
+                      _vm._v("の案件一覧")
                     ])
                   ]),
                   _vm._v(" "),
@@ -42351,15 +42558,17 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _MainContent_vue_vue_type_template_id_305b4f65___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MainContent.vue?vue&type=template&id=305b4f65& */ "./resources/js/components/MainContent.vue?vue&type=template&id=305b4f65&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _MainContent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MainContent.vue?vue&type=script&lang=js& */ "./resources/js/components/MainContent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
-var script = {}
+
+
 
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
-  script,
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _MainContent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
   _MainContent_vue_vue_type_template_id_305b4f65___WEBPACK_IMPORTED_MODULE_0__["render"],
   _MainContent_vue_vue_type_template_id_305b4f65___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
@@ -42373,6 +42582,20 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 if (false) { var api; }
 component.options.__file = "resources/js/components/MainContent.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/MainContent.vue?vue&type=script&lang=js&":
+/*!**************************************************************************!*\
+  !*** ./resources/js/components/MainContent.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MainContent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./MainContent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/MainContent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MainContent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
@@ -45809,8 +46032,10 @@ __webpack_require__.r(__webpack_exports__);
         return {
           backgroundImage: "url(".concat(_util__WEBPACK_IMPORTED_MODULE_0__["BASE_STORAGE_URL"], "/assets/thumb-office-no-image.svg)")
         };
-      } else {
-        return false;
+      } else if (flag === 'work') {
+        return {
+          backgroundImage: "url(".concat(_util__WEBPACK_IMPORTED_MODULE_0__["BASE_STORAGE_URL"], "/assets/thumb-work-no-image.svg)")
+        };
       }
     },
     colorById: function colorById(id) {
@@ -45846,6 +46071,11 @@ __webpack_require__.r(__webpack_exports__);
       return {
         backgroundColor: this.colorById(id)
       };
+    },
+    fontColor: function fontColor(id) {
+      return {
+        color: this.colorById(id)
+      };
     }
   }
 });
@@ -45872,7 +46102,8 @@ __webpack_require__.r(__webpack_exports__);
       },
       // 記載のパスでだけ表示してほしい
       onlyPathes: {
-        MainVisual: ['/']
+        MainVisual: ['/'],
+        MainContentTitle: ['/works', '/customers']
       }
     };
   },
@@ -48016,7 +48247,14 @@ vue__WEBPACK_IMPORTED_MODULE_0__["default"].use(vue_router__WEBPACK_IMPORTED_MOD
 
 var routes = [{
   path: '/',
-  component: _pages_Top_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
+  component: _pages_Top_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
+  meta: {
+    title: '士業マッチングサイト',
+    breadcrumbs: [{
+      path: '/',
+      name: 'トップ'
+    }]
+  }
 }, {
   path: '/greeting',
   component: _pages_Greeting_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
@@ -48044,6 +48282,13 @@ var routes = [{
       paramPath: 'works',
       skill: !skill ? '弁護士' : skill
     };
+  },
+  meta: {
+    title: '案件を探す',
+    breadcrumbs: [{
+      path: '/works',
+      name: '案件一覧'
+    }]
   }
 }, {
   path: '/works/create',
@@ -48078,6 +48323,13 @@ var routes = [{
       paramPath: 'customers',
       skill: !skill ? '弁護士' : skill
     };
+  },
+  meta: {
+    title: '人材を探す',
+    breadcrumbs: [{
+      path: '/customers',
+      name: '事務所一覧'
+    }]
   }
 }, {
   path: '/customers/:id',
@@ -48116,7 +48368,14 @@ var routes = [{
     },
     children: [{
       path: '/',
-      component: _pages_mypage_Home_vue__WEBPACK_IMPORTED_MODULE_18__["default"]
+      component: _pages_mypage_Home_vue__WEBPACK_IMPORTED_MODULE_18__["default"],
+      meta: {
+        title: 'マイページHOME',
+        breadcrumbs: [{
+          path: '/',
+          name: 'マイページHOME'
+        }]
+      }
     }, {
       path: 'applies',
       component: _pages_mypage_Applies_vue__WEBPACK_IMPORTED_MODULE_19__["default"]

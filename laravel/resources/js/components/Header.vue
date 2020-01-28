@@ -3,9 +3,9 @@
     <div class="Header_nav">
       <div class="ContentBox u-px20">
         <div class="HorizontalLayout --vertical">
-          <RouterLink to="/" tag="h1" class="HorizontalLayout_col"
-            >士業のマッチングサイトです</RouterLink
-          >
+          <RouterLink to="/" tag="h1" class="HorizontalLayout_col --stretch">
+            <span class="SiteLogo"></span>
+          </RouterLink>
           <GlobalNav class="HorizontalLayout_col --flex"></GlobalNav>
           <div v-if="isLogin()" class="HorizontalLayout_col">
             <AuthNav :customer="customer" @clickLogout="logout"></AuthNav>

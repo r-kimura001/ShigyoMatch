@@ -12,7 +12,7 @@
     z-index: $headerZIndex;
 
     @include media(){
-      padding: 10px 0;
+      padding: 9px 0;
     }
 
   }
@@ -21,10 +21,6 @@
     width: 100px;
     height: 0;
     margin-top: $headerHeight;
-
-    @include media(){
-      margin-top: 51px;
-    }
   }
 
   .Header_buttons{

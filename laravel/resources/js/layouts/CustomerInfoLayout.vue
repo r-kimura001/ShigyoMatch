@@ -123,7 +123,7 @@
     <div class="CustomerInfoLayout_main">
       <section class="CustomerInfoLayout_mainBox">
         <h2 class="BaseTitle">
-          <span class="BaseTitle_text">募集中の案件</span>
+          <span class="BaseTitle_text --work">募集中の案件</span>
         </h2>
         <p v-if="!hasData">募集中の案件はありません</p>
         <div v-else>
@@ -138,7 +138,7 @@
       </section>
       <section class="CustomerInfoLayout_mainBox u-mt50">
         <h2 class="BaseTitle">
-          <span class="BaseTitle_text">{{ customer.name }}さんへのレビュー</span>
+          <span class="BaseTitle_text --review">{{ customer.name }}さんへのレビュー</span>
         </h2>
         <ul class="ReviewListLayout">
           <li v-if="!hasReview" class="Text -nodata -fz14">レビューはありません</li>

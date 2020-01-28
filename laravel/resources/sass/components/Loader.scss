@@ -1,7 +1,7 @@
 .Loader{
   transition: $transitionBasis;
   position: fixed;
-  top: 0;
+  top: $headerHeight;
   left: 0;
   right: 0;
   bottom: 0;
@@ -15,7 +15,7 @@
 
   .Loader_overlay{
     position: fixed;
-    top: 0;
+    top: $headerHeight;
     left: 0;
     right: 0;
     bottom: 0;
@@ -25,7 +25,6 @@
 
   .Loader_content{
     padding: 30px;
-    // background: $black;
     position: fixed;
     top: 50%;
     left: 0;

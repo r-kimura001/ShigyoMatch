@@ -39,7 +39,7 @@
                   :to="`/works/${work.id}`"
                   tag="span"
                   class="Table_dataText --link --hasIcon"
-                  :style="bgImage(work.file_name)"
+                  :style="bgImage(work.file_name, 'work')"
                 >
                   {{ work.title }}
                 </RouterLink>
@@ -103,7 +103,7 @@
                     :to="`/works/${applier.work.id}`"
                     tag="span"
                     class="Table_dataText --link --hasIcon"
-                    :style="bgImage(applier.work.file_name)"
+                    :style="bgImage(applier.work.file_name, 'work')"
                   >
                     {{ applier.work.title }}
                   </RouterLink>

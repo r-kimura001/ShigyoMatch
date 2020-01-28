@@ -35,7 +35,7 @@
               <div v-if="hasIcon(labelObj)" class="HorizontalLayout_col">
                 <span
                   class="Table_icon"
-                  :style="bgImage(thumbSrc(record[labelObj.withIcon]))"
+                  :style="bgImage(thumbSrc(record[labelObj.withIcon], 'work'))"
                 ></span>
               </div>
               <div class="HorizontalLayout_col">
@@ -82,7 +82,7 @@
               <div v-if="hasIcon(labelObj)" class="HorizontalLayout_col">
                 <span
                   class="Table_icon"
-                  :style="bgImage(record[labelObj.withIcon])"
+                  :style="bgImage(record[labelObj.withIcon], 'work')"
                 ></span>
               </div>
               <div class="HorizontalLayout_col">

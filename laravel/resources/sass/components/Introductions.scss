@@ -1,4 +1,10 @@
 .Introductions{
+  margin: 90px 0;
+  @include media(){
+    margin: 25px 0;
+  }
+}
+.Introductions_body{
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -12,7 +18,13 @@
     margin: 10px;
     border: 1px solid $gray-3;
     opacity: 0;
-    animation: phrasein 3s ease-in-out forwards;
+    transition: all 1.2s;
+    -webkit-transition: all 1.2s;
+    transform: translateY(20px);
+    &.--visible{
+      opacity: 1;
+      transform: none;
+    }
   }
   .Introductions_heading{
     padding-top: calc(100% - 60px);
@@ -48,7 +60,7 @@
     }
   }
   .Introductions_link{
-    padding: 0 25px 20px;
+    padding: 0 10px 20px;
   }
 
   @include media(sm-y){

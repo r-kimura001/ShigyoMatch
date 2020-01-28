@@ -7,10 +7,32 @@
     font-weight: bold;
     padding: 10px 35px 10px 55px;
     border-bottom: 2px solid $orange;
-    background-size: 45px;
+    background-size: 30px;
     background-repeat: no-repeat;
-    background-position: 5px center;
+    background-position: 15px;
     flex-shrink: 0;
+
+    &.--work{
+      background-image: url(#{$assetPath}/icon-shop2-nav.svg);
+    }
+    &.--customer{
+      background-image: url(#{$assetPath}/icon-office-nav.svg);
+    }
+    &.--review{
+      background-image: url(#{$assetPath}/icon-no-user-thumb.svg);
+    }
+    &.--report{
+      background-image: url(#{$assetPath}/icon-report.svg);
+    }
+    &.--scout{
+      background-image: url(#{$assetPath}/icon-scout-simple.svg);
+    }
+    &.--match{
+      background-image: url(#{$assetPath}/icon-match.svg);
+    }
+    &.--favorite{
+      background-image: url(#{$assetPath}/icon-favorite.svg);
+    }
   }
   .BaseTitle_button{
     flex-grow: 1;
@@ -27,6 +49,37 @@
       padding-right: 0;
       margin-top: 30px;
       width: 100%;
+    }
+  }
+
+  &.--center{
+    justify-content: center;
+  }
+  &.--intro{
+    justify-content: center;
+    opacity: 0;
+    transition: all 1s;
+    -webkit-transition: all 1s;
+    transition-delay: 0.6s;
+    &.--visible{
+      opacity: 1;
+    }
+    .BaseTitle_text{
+      padding: 20px 35px 15px 85px;
+      background-image: url(#{$assetPath}/icon-kaba.svg);
+      background-size: 60px;
+      background-repeat: no-repeat;
+      background-position: 10px calc(50% - 5px);
+      font-size: 3rem;
+
+      @include media(){
+        font-size: 2rem;
+        background-size: 40px;
+        padding: 20px 35px 15px 60px;
+      }
+    }
+    @include media(sm){
+      flex-direction: row;
     }
   }
 }

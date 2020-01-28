@@ -2,7 +2,7 @@
   <div class="WorkCard" :data-fee="work.fee.toLocaleString()">
     <div
       v-if="showable"
-      class="WorkCard_mark u-tip-bottom"
+      class="WorkCard_mark u-tip --bottom"
       :class="{ '--favorite': work.is_favorite }"
       @click="onClickStar"
       :data-desc="favoriteStatus"

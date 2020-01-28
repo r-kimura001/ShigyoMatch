@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="u-mt50">
     <form action="" @submit.prevent="upload">
       <input type="file" @change="onFileChange" />
       <output v-if="preview">

@@ -50,6 +50,15 @@ const routes = [
   {
     path: '/',
     component: Top,
+    meta: {
+      title: '士業マッチングサイト',
+      breadcrumbs: [
+        {
+          path: '/',
+          name: 'トップ',
+        },
+      ],
+    },
   },
   {
     path: '/greeting',
@@ -81,7 +90,16 @@ const routes = [
         paramPath: 'works',
         skill: !skill ? '弁護士' : skill
       }
-    }
+    },
+    meta: {
+      title: '案件を探す',
+      breadcrumbs: [
+        {
+          path: '/works',
+          name: '案件一覧',
+        },
+      ],
+    },
   },
   {
     path: '/works/create',
@@ -120,6 +138,15 @@ const routes = [
         paramPath: 'customers',
         skill: !skill ? '弁護士' : skill
       }
+    },
+    meta: {
+      title: '人材を探す',
+      breadcrumbs: [
+        {
+          path: '/customers',
+          name: '事務所一覧',
+        },
+      ],
     },
   },
   {
@@ -162,6 +189,15 @@ const routes = [
           {
             path: '/',
             component: Home,
+            meta: {
+              title: 'マイページHOME',
+              breadcrumbs: [
+                {
+                  path: '/',
+                  name: 'マイページHOME',
+                },
+              ],
+            },
           },
           {
             path: 'applies',

@@ -1,0 +1,16 @@
+.SiteLogo{
+  font-size: 1.9rem;
+  font-weight: bold;
+  display: block;
+  width: 240px;
+  height: 100%;
+  cursor: pointer;
+  position: relative;
+  background-image: url(#{$assetPath}/site-logo.png);
+  background-size: cover;
+  background-position: center;
+
+  @include media(sm){
+    width: 180px;
+  }
+}

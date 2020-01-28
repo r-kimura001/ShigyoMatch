@@ -1,13 +1,12 @@
 <template>
   <div class="p-works">
     <div class="MainLayout --hasWorks">
-      <h1 class="MainLayout_heading">案件を探す</h1>
       <div class="MainLayout_boxList">
         <section class="MainLayout_box">
           <div v-if="!hasData">現在募集中の案件はありません</div>
           <div v-else>
             <h2 class="BaseTitle">
-              <span class="BaseTitle_text">{{ skill }}の案件一覧</span>
+              <span class="BaseTitle_text --work"><span :style="fontColor(professionId)">{{ skill }}</span>の案件一覧</span>
             </h2>
             <Pager
               v-if="lastPage > 1"
@@ -32,10 +31,11 @@
 <script>
 import WorkListLayout from '@/layouts/WorkListLayout'
 import apiIndexHandler from '@/mixins/apiIndexHandler'
+import styles from '@/mixins/styles'
 import { mapState } from 'vuex'
 export default {
   components: { WorkListLayout },
-  mixins: [apiIndexHandler],
+  mixins: [apiIndexHandler, styles],
   computed: {
     ...mapState({
       author: state => state.auth.customer

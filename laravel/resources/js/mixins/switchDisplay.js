@@ -5,7 +5,7 @@ export default {
       ignorePathes: {
         Header: [
           '/admin',
-          '/500'
+          '/500',
         ],
         Footer: [
           '/500',
@@ -20,7 +20,10 @@ export default {
         MainVisual: [
           '/',
         ],
-
+        MainContentTitle: [
+          '/works',
+          '/customers',
+        ]
       }
 
     }

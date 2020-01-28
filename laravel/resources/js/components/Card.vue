@@ -5,21 +5,22 @@
       <div class="Card_decription">
         <div class="Card_moreLink">
           <RouterLink
-            :to="`/customers/${item.id}`"
+            :to="`/customers/${customer.id}`"
             tag="button"
             class="BorderButton"
             >more</RouterLink
           >
         </div>
         <div class="Card_review">
-          <Review :score="Number(3.5)"></Review>
+          <p v-if="!hasReview" class="Text -nodata -fz14 u-alignCenter">レビューはありません</p>
+          <Review v-else :score="averageReview"></Review>
         </div>
       </div>
       <!-- Card_review -->
-      <div class="Card_thumbSrc" :style="bgImage(item.file_name)"></div>
+      <div class="Card_thumbSrc" :style="bgImage(customer.file_name)"></div>
     </div>
     <div class="Card_summary">
-      <h3 class="Card_name">{{ item.name }}</h3>
+      <h3 class="Card_name">{{ customer.name }}</h3>
       <ul class="Card_tags">
         <li
           v-for="(professionType, index) in professionTypes"
@@ -42,15 +43,16 @@
 </template>
 <script>
 import styles from '@/mixins/styles'
+import reviewCalc from '@/mixins/reviewCalc'
 import Review from '@/components/Review'
 import { dateReplace } from '@/util'
 export default {
   components: {
     Review,
   },
-  mixins: [styles],
+  mixins: [styles, reviewCalc],
   props: {
-    item: {
+    customer: {
       type: Object,
       required: true,
       default: () => ({
@@ -64,10 +66,10 @@ export default {
   },
   computed: {
     professionTypes() {
-      return this.item.profession_types
+      return this.customer.profession_types
     },
     date(){
-      return dateReplace(this.item.created_at)
+      return dateReplace(this.customer.created_at)
     }
   },
 }
