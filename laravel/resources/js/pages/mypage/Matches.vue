@@ -1,5 +1,6 @@
 <template>
   <div class="p-matches">
+    <h2 class="MypageContent_heading">マッチング履歴</h2>
     <section class="MypageContent_box">
       <h3 class="BaseTitle">
         <span class="BaseTitle_text --match">マッチした案件</span>

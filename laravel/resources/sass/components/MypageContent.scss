@@ -7,7 +7,17 @@
     margin: 15px 0;
     font-weight: bold;
   }
-
+  .MypageContent_title{
+    margin: 20px 0;
+    align-items: center;
+    display: inline-block;
+    color: $white;
+    font-size: 1.4rem;
+    border-radius: 0 9999px 9999px 0 / 0 9999px 9999px 0;
+    @include iconFix(13px, 35px, 10px, 20px);
+    background-color: $green;
+    background-image: url(#{$assetPath}/icon-office-white.svg);
+  }
   .MypageContent_main{
     margin-left: $sidebarWidth;
     background: $customerDetailBg;

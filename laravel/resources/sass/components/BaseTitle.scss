@@ -24,6 +24,9 @@
     &.--report{
       background-image: url(#{$assetPath}/icon-report.svg);
     }
+    &.--profile{
+      background-image: url(#{$assetPath}/icon-profile.svg);
+    }
     &.--scout{
       background-image: url(#{$assetPath}/icon-scout-simple.svg);
     }
@@ -60,7 +63,7 @@
     opacity: 0;
     transition: all 1s;
     -webkit-transition: all 1s;
-    transition-delay: 0.6s;
+    transition-delay: 0.4s;
     &.--visible{
       opacity: 1;
     }

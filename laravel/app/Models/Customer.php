@@ -19,7 +19,7 @@ class Customer extends Model implements CanDeleteRelationInterface
 
   const TEST_ID = 1;
   const COUNT_PER_PAGE = 12;
-  const RELATIONS_ARRAY = [ 'professionTypes', 'user', 'works.skills', 'works.professionType', 'applyWorks', 'messageNotes', 'followers', 'followees'];
+  const RELATIONS_ARRAY = ['professionTypes', 'user', 'works.professionType', 'messageNotes', 'followers', 'followees', 'reviewers.reviewer'];
 
   protected $fillable = [
     'name',

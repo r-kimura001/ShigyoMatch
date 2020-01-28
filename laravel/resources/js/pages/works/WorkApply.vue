@@ -1,7 +1,9 @@
 <template>
   <div class="MainLayout">
-    <h1 class="MainLayout_heading">お申し込みフォーム</h1>
     <div class="MainLayout_boxList">
+      <h1 class="BaseTitle --center">
+        <span class="BaseTitle_text --customer">お申し込みフォーム</span>
+      </h1>
       <section class="MainLayout_box">
         <RouterLink :to="`/works/${work.id}`" tag="button" class="Button --minimum --secondary">募集内容に戻る</RouterLink>
         <div class="ApplyFormLayout">

@@ -23,18 +23,20 @@ export default {
         MainContentTitle: [
           '/works',
           '/customers',
-        ]
+        ],
       }
 
     }
   },
   methods: {
     ignore(componentName){
-      const ignore = this.ignorePathes[componentName].filter( url => { return this.$route.path.indexOf(url) !== -1} )
+      const ignore = this.ignorePathes[componentName].filter( url => {
+        return this.$route.path.indexOf(url) !== -1
+      })
       return !!ignore.length
     },
     isOnly(componentName){
-      const isOnly = this.onlyPathes[componentName].filter( url => { return url === this.$route.path} )
+      const isOnly = this.onlyPathes[componentName].filter( url => { return url === this.$route.path })
       return !!isOnly.length
     }
   },

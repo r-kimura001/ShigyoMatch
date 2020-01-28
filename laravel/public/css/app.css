@@ -1062,6 +1062,24 @@ td {
           transform: none;
 }
 
+.BackButton {
+  display: inline-block;
+  font-size: 2rem;
+  padding: 10px;
+  font-weight: bold;
+  border-radius: 9999px;
+  border: 2px solid #a8a3a7;
+  color: #a8a3a7;
+  cursor: pointer;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.BackButton:hover {
+  color: #fefefe;
+  background: #a8a3a7;
+}
+
 .BaseTitle {
   display: -webkit-box;
   display: flex;
@@ -1095,6 +1113,10 @@ td {
 
 .BaseTitle .BaseTitle_text.\--report {
   background-image: url(https://asset.shigyo-match.site/assets/icon-report.svg);
+}
+
+.BaseTitle .BaseTitle_text.\--profile {
+  background-image: url(https://asset.shigyo-match.site/assets/icon-profile.svg);
 }
 
 .BaseTitle .BaseTitle_text.\--scout {
@@ -1144,8 +1166,8 @@ td {
   opacity: 0;
   transition: all 1s;
   -webkit-transition: all 1s;
-  -webkit-transition-delay: 0.6s;
-          transition-delay: 0.6s;
+  -webkit-transition-delay: 0.4s;
+          transition-delay: 0.4s;
 }
 
 .BaseTitle.\--intro.\--visible {
@@ -2773,36 +2795,43 @@ td {
   background: #fefefe;
 }
 
-.MainContent .MainContent_title {
-  display: inline-block;
+.MainContent .MainContent_heading {
   margin: 30px 0 0 80px;
-  color: #fefefe;
-  font-size: 1.4rem;
-  border-radius: 0 9999px 9999px 0/0 9999px 9999px 0;
-  background-color: #33ba7c;
-  padding: 8px 8px 8px 35px;
-  background-position: left 10px center;
-  background-size: 20px;
-  background-repeat: no-repeat;
-  background-image: url(https://asset.shigyo-match.site/assets/icon-glass-white.svg);
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
 }
 
 @media screen and (max-width: 1180px) {
-  .MainContent .MainContent_title {
+  .MainContent .MainContent_heading {
     margin-left: 10px;
   }
 }
 
 @media screen and (max-width: 768px) {
-  .MainContent .MainContent_title {
+  .MainContent .MainContent_heading {
     margin-left: 40px;
   }
 }
 
 @media screen and (max-width: 480px) {
-  .MainContent .MainContent_title {
+  .MainContent .MainContent_heading {
     margin-left: 20px;
   }
+}
+
+.MainContent .MainContent_title {
+  display: inline-block;
+  color: #fefefe;
+  font-size: 1.4rem;
+  border-radius: 0 9999px 9999px 0/0 9999px 9999px 0;
+  padding: 8px 8px 8px 35px;
+  background-position: left 10px center;
+  background-size: 20px;
+  background-repeat: no-repeat;
+  background-color: #33ba7c;
+  background-image: url(https://asset.shigyo-match.site/assets/icon-glass-white.svg);
 }
 
 .MainLayout {
@@ -3483,6 +3512,22 @@ td {
   padding: 5px;
   margin: 15px 0;
   font-weight: bold;
+}
+
+.MypageContent .MypageContent_title {
+  margin: 20px 0;
+  -webkit-box-align: center;
+          align-items: center;
+  display: inline-block;
+  color: #fefefe;
+  font-size: 1.4rem;
+  border-radius: 0 9999px 9999px 0/0 9999px 9999px 0;
+  padding: 13px 13px 13px 35px;
+  background-position: left 10px center;
+  background-size: 20px;
+  background-repeat: no-repeat;
+  background-color: #33ba7c;
+  background-image: url(https://asset.shigyo-match.site/assets/icon-office-white.svg);
 }
 
 .MypageContent .MypageContent_main {

@@ -1,6 +1,6 @@
 <template>
   <div class="p-scouts">
-    <h2>Scouts</h2>
+    <h2 class="MypageContent_heading">スカウト</h2>
     <section class="MypageContent_box">
       <div class="MypageContent_tabs">
         <Tab
