@@ -46,7 +46,7 @@ class CustomerService extends Service
    */
   public function customersByProfession(array $data)
   {
-    $relations = ['customers.professionTypes'];
+    $relations = ['customers.professionTypes', 'customers.reviewers'];
     return $this->professionTypeRep->findById($relations, $data['professionTypeId']);
   }
 

@@ -1,7 +1,6 @@
 <template>
   <div class="p-works">
     <div class="MainLayout --customers">
-      <h1 class="MainLayout_heading">人材を探す</h1>
       <div class="MainLayout_boxList">
         <section class="MainLayout_box">
           <div v-if="!hasData">登録された事務所はありません</div>
@@ -12,7 +11,7 @@
             <div>
               <div>
                 <h2 class="BaseTitle">
-                  <span class="BaseTitle_text">{{ skill }}事務所一覧</span>
+                  <span class="BaseTitle_text --customer"><span :style="fontColor(professionId)">{{ skill }}</span>事務所一覧</span>
                 </h2>
                 <Pager
                   v-if="lastPage > 1"
@@ -33,9 +32,10 @@
 <script>
 import CustomerListLayout from '@/layouts/CustomerListLayout'
 import apiIndexHandler from '@/mixins/apiIndexHandler'
+import styles from '@/mixins/styles'
 
 export default {
   components: { CustomerListLayout },
-  mixins: [apiIndexHandler],
+  mixins: [apiIndexHandler, styles],
 }
 </script>

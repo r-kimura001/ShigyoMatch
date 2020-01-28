@@ -6,9 +6,10 @@
         <p class="WorkDetailLayout_customer">{{ work.customer.name }}</p>
         <div
           v-if="showable"
-          class="WorkDetailLayout_mark"
+          class="WorkDetailLayout_mark u-tip --left"
           :class="{ '--favorite': work.is_favorite }"
-          @click="onClickStar"></div>
+          @click="onClickStar"
+          :data-desc="favoriteStatus"></div>
       </div>
       <div class="WorkDetailLayout_body">
         <dl class="WorkDetailLayout_list">
@@ -87,6 +88,9 @@
     computed: {
       customer(){
         return this.work.customer
+      },
+      favoriteStatus(){
+        return this.work.is_favorite ? '「気になる」解除' : '「気になる」に登録する'
       },
     },
     mixins: [styles, worksData],

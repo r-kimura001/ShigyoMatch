@@ -4,7 +4,7 @@
       <h2 class="MypageContent_heading">HOME</h2>
       <section class="MypageContent_box">
         <h3 class="BaseTitle">
-          <span class="BaseTitle_text">活動レポート</span>
+          <span class="BaseTitle_text --report">活動レポート</span>
         </h3>
         <ul class="MypageContent_aggregate">
           <li class="MypageContent_aggregateItem">
@@ -52,7 +52,7 @@
       </section>
       <section class="MypageContent_box">
         <h3 class="BaseTitle">
-          <span class="BaseTitle_text">投稿中の募集案件</span>
+          <span class="BaseTitle_text --work">投稿中の募集案件</span>
           <span class="BaseTitle_button">
             <RouterLink to="/works/create" tag="button" class="Button --small --pink">募集案件を投稿する</RouterLink>
           </span>

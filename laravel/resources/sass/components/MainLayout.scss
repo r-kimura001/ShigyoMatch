@@ -1,6 +1,5 @@
 .MainLayout{
   padding: 40px 60px;
-  background: $customerDetailBg;
 
   @include media(lg){
     padding: 40px 10px;
@@ -39,13 +38,9 @@
   }
 
   &.--customers{
-    background: $customersBg;
     .MainLayout_box{
       background: inherit;
     }
-  }
-  &.--login{
-    background: $gray-5;
   }
   &.--signup{
     .MainLayout_box {

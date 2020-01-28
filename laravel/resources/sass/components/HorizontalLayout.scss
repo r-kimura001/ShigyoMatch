@@ -23,6 +23,10 @@
       &.--disable{
         background: $gray-2;
       }
+
+      &.--stretch{
+        align-self: stretch;
+      }
     }
 
     &.--vertical{

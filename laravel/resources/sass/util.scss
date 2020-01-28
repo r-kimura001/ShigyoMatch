@@ -197,6 +197,7 @@
 }
 
 .u-tip{
+  // default(top)
   &::after {
     content: attr(data-desc);
     position: absolute;
@@ -206,9 +207,10 @@
     font-size: 1rem;
     color: $white;
     background: $deepGray;
-    padding: 8px;
+    padding: 5px 8px;
     border-radius: 5px;
     min-width: 100px;
+    line-height: 1.25;
     opacity: 0;
     pointer-events: none;
     transition: $transitionBasis;
@@ -235,46 +237,37 @@
       pointer-events: initial;
     }
   }
-}
-
-.u-tip-bottom{
-  &::after {
-    content: attr(data-desc);
-    position: absolute;
-    bottom: -100%;
-    left: 50%;
-    right: -50%;
-    display: block;
-    transform: translateY(50%);
-    font-size: 1rem;
-    color: $white;
-    background: $deepGray;
-    padding: 5px 8px;
-    border-radius: 5px;
-    min-width: 90px;
-    line-height: 1.2;
-    opacity: 0;
-    pointer-events: none;
+  // left
+  &.--left{
+    &::after {
+      top: 50%;
+      left: 0;
+      transform: translateX(calc(-100% - 8px));
+    }
+    &::before{
+      top: 50%;
+      left: 0;
+      border-width: 0 0 12px 12px;
+      border-color: transparent transparent transparent $deepGray;
+      transform: translate(-12px, 50%);
+    }
   }
-  &::before{
-    content: '';
-    position: absolute;
-    bottom: -100%;
-    left: calc(50% + 5px);
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-width: 0 12px 12px 0;
-    border-color: transparent transparent $deepGray transparent;
-    transform: translateY(-90%);
-    color: $white;
-    opacity: 0;
-    pointer-events: none;
-  }
-  &:hover {
-    &::after, &::before{
-      opacity: 1;
-      pointer-events: initial;
+  // bottom
+  &.--bottom{
+    &::after {
+      top: initial;
+      bottom: -100%;
+      left: 50%;
+      right: -50%;
+      transform: translateY(50%);
+    }
+    &::before{
+      top: initial;
+      bottom: -100%;
+      left: calc(50% + 5px);
+      border-width: 0 12px 12px 0;
+      border-color: transparent transparent $deepGray transparent;
+      transform: translateY(-90%);
     }
   }
 }

@@ -2,7 +2,7 @@
   <div class="p-matches">
     <section class="MypageContent_box">
       <h3 class="BaseTitle">
-        <span class="BaseTitle_text">マッチした案件</span>
+        <span class="BaseTitle_text --match">マッチした案件</span>
       </h3>
       <div class="MypageContent_body">
         <div class="Table">
@@ -26,7 +26,7 @@
                   :to="`/works/${apply.work.id}`"
                   tag="span"
                   class="Table_dataText --link --hasIcon"
-                  :style="bgImage(apply.work.file_name)"
+                  :style="bgImage(apply.work.file_name, 'work')"
                 >
                   {{ apply.work.title }}
                 </RouterLink>

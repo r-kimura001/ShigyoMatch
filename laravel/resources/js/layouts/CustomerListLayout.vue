@@ -6,7 +6,7 @@
         :key="customer.key"
         class="CustomerList_item"
       >
-        <Card :item="customer"></Card>
+        <Card :customer="customer"></Card>
       </li>
     </ul>
   </div>

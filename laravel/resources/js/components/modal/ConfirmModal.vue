@@ -2,7 +2,7 @@
   <div class="Modal --confirm" :class="{ '--hidden': !modalData.isShow }">
     <div class="Modal_overlay"></div>
     <div class="Modal_content">
-      <div>一度削除すると元に戻せません。削除しますか？</div>
+      <div class="Modal_message">一度削除すると元に戻せません。削除しますか？</div>
       <div class="Modal_buttons u-alignCenter u-mt20">
         <div class="Button --secondary" @click="close()">キャンセル</div>
         <div class="Button --danger" @click="confirmed()">

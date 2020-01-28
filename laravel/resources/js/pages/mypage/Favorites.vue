@@ -12,7 +12,7 @@
       </div>
       <div v-if="currentFlag===favoriteFlag" class="MypageContent_body u-bgGray">
         <h3 class="BaseTitle u-px10">
-          <span class="BaseTitle_text">気になるした案件</span>
+          <span class="BaseTitle_text --favorite">気になるした案件</span>
         </h3>
         <p v-if="!hasFavorite">気になるした募集案件はありません</p>
         <WorkListLayout
@@ -23,7 +23,7 @@
       </div>
       <div v-if="currentFlag===favoritedFlag" class="MypageContent_body">
         <h3 class="BaseTitle u-px10">
-          <span class="BaseTitle_text">気になるされた案件</span>
+          <span class="BaseTitle_text --favorite">気になるされた案件</span>
         </h3>
         <p v-if="!hasFavorited">気になるされた募集案件はありません</p>
         <ul v-else class="FavoritedList u-py20">
@@ -37,7 +37,7 @@
                 <MemberLink :customer="favorite" unit="さんから「気になる」が届きました"></MemberLink>
               </div>
               <div class="FavoritedList_work">
-                <div class="FavoritedList_workThumb" :style="bgImage(favorite.work.file_name)"></div>
+                <div class="FavoritedList_workThumb" :style="bgImage(favorite.work.file_name, 'work')"></div>
                 <RouterLink :to="`/works/${favorite.work.id}`" class="Text -blue u-mx5">{{ favorite.work.title }}</RouterLink>
               </div>
             </div>
@@ -110,15 +110,15 @@ export default {
       if (response.status !== OK) {
         this.hasFavorited = false
       } else {
-        this.favorited_members = response.data.map( work => {
-          work.favorites.forEach( favorite => {
+        this.favorited_members = Object.keys(response.data).map( key => {
+          response.data[key].favorites.forEach( favorite => {
             favorite.work = {
-              id: work.id,
-              title: work.title,
-              file_name: work.file_name,
+              id: response.data[key].id,
+              title: response.data[key].title,
+              file_name: response.data[key].file_name,
             }
           })
-          return work.favorites
+          return response.data[key].favorites
         }).flat()
         this.favorited_members.sort( (a, b) => a.pivot.created_at < b.pivot.created_at ? 1 : -1)
         this.hasFavorited = !!this.favorited_members.length

@@ -10,8 +10,10 @@ export default {
         return {
           backgroundImage: `url(${BASE_STORAGE_URL}/assets/thumb-office-no-image.svg)`,
         }
-      }else{
-        return false
+      }else if(flag === 'work'){
+        return {
+          backgroundImage: `url(${BASE_STORAGE_URL}/assets/thumb-work-no-image.svg)`,
+        }
       }
     },
     colorById(id){
@@ -42,6 +44,11 @@ export default {
         backgroundColor: this.colorById(id),
       }
     },
+    fontColor(id){
+      return {
+        color: this.colorById(id)
+      }
+    }
 
   }
 }
