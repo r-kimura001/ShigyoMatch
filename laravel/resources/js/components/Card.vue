@@ -16,9 +16,7 @@
         </div>
       </div>
       <!-- Card_review -->
-      <div class="Card_thumbSrc">
-        <img :src="thumbSrc(item.file_name)" alt="customer.image" />
-      </div>
+      <div class="Card_thumbSrc" :style="bgImage(item.file_name)"></div>
     </div>
     <div class="Card_summary">
       <h3 class="Card_name">{{ item.name }}</h3>

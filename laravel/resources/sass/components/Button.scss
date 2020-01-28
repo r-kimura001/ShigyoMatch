@@ -45,11 +45,21 @@
       width: 280px;
       z-index: $modalZIndex - 1;
     }
-
+    &.--hasIcon{
+      padding: 10px 12px 10px 36px;
+      background-position: 12px;
+      background-size: 20px;
+      background-repeat: no-repeat;
+    }
     &.--small{
       font-size: 1.4rem;
       padding: 8px 10px;
       min-width: initial;
+      &.--hasIcon{
+        padding: 8px 10px 8px 32px;
+        background-position: 8px;
+        background-size: 18px;
+      }
     }
     &.--minimum{
       font-size: 1.2rem;
@@ -89,7 +99,6 @@
           top: 4px;
       }
     }
-
     &.--close{
       background-image: url(#{$assetPath}/icon-close-white.svg);
       background-size: 18px;

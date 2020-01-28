@@ -1285,10 +1285,23 @@ td {
   z-index: 129;
 }
 
+.Button.\--hasIcon {
+  padding: 10px 12px 10px 36px;
+  background-position: 12px;
+  background-size: 20px;
+  background-repeat: no-repeat;
+}
+
 .Button.\--small {
   font-size: 1.4rem;
   padding: 8px 10px;
   min-width: initial;
+}
+
+.Button.\--small.\--hasIcon {
+  padding: 8px 10px 8px 32px;
+  background-position: 8px;
+  background-size: 18px;
 }
 
 .Button.\--minimum {
@@ -1396,8 +1409,9 @@ td {
 }
 
 .Card .Card_thumb {
+  background: #f0f0f0;
   position: relative;
-  padding-top: 67%;
+  padding-top: 125%;
   overflow: hidden;
   z-index: 1;
 }
@@ -1411,8 +1425,8 @@ td {
 }
 
 .Card .Card_thumb:hover .Card_thumbSrc {
-  -webkit-transform: translate(-50%, -50%) scale3d(1.1, 1.1, 1);
-          transform: translate(-50%, -50%) scale3d(1.1, 1.1, 1);
+  -webkit-transform: scale3d(1.1, 1.1, 1);
+          transform: scale3d(1.1, 1.1, 1);
 }
 
 .Card .Card_overlay {
@@ -1451,18 +1465,15 @@ td {
 
 .Card .Card_thumbSrc {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-  width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   -webkit-transition: 0.6s;
   transition: 0.6s;
   z-index: -1;
-}
-
-.Card .Card_thumbSrc img {
-  width: 100%;
+  background-size: cover;
+  background-position: center;
 }
 
 .Card .Card_summary {
@@ -1959,11 +1970,11 @@ td {
   background-image: url(https://asset.shigyo-match.site/assets/icon-office.svg);
 }
 
-.Form .Form_row .Form_label[name=zip_code] {
-  background-image: url(https://asset.shigyo-match.site/assets/icon-post.svg);
+.Form .Form_row .Form_label[name=title] {
+  background-image: url(https://asset.shigyo-match.site/assets/icon-title.svg);
 }
 
-.Form .Form_row .Form_label[name=title] {
+.Form .Form_row .Form_label[name=zip_code] {
   background-image: url(https://asset.shigyo-match.site/assets/icon-post.svg);
 }
 
@@ -2067,11 +2078,11 @@ td {
   background-image: url(https://asset.shigyo-match.site/assets/icon-office.svg);
 }
 
-.Form .Form_row .Form_text[name=zip_code] {
-  background-image: url(https://asset.shigyo-match.site/assets/icon-post.svg);
+.Form .Form_row .Form_text[name=title] {
+  background-image: url(https://asset.shigyo-match.site/assets/icon-title.svg);
 }
 
-.Form .Form_row .Form_text[name=title] {
+.Form .Form_row .Form_text[name=zip_code] {
   background-image: url(https://asset.shigyo-match.site/assets/icon-post.svg);
 }
 
@@ -2229,8 +2240,8 @@ td {
   -webkit-transition: 0.3s;
   transition: 0.3s;
   text-align: center;
-  font-size: 1.4rem;
-  padding: 20px 10px;
+  font-size: 1.3rem;
+  padding: 15px 10px;
   position: relative;
   display: -webkit-box;
   display: flex;
@@ -2258,6 +2269,13 @@ td {
   display: none;
 }
 
+.GlobalNav .GlobalNav_menu .GlobalNav_item .GlobalNav_itemText {
+  padding: 5px 0 5px 25px;
+  background-position: 0;
+  background-size: 20px;
+  background-repeat: no-repeat;
+}
+
 .GlobalNav .GlobalNav_menu .GlobalNav_item .GlobalNav_childrenToggle {
   display: none;
   cursor: pointer;
@@ -2278,12 +2296,12 @@ td {
   content: "";
   position: absolute;
   top: 50%;
-  right: 20px;
+  right: 50px;
   width: 20px;
   height: 20px;
   background-size: cover;
   background-position: center;
-  background-image: url(https://asset.shigyo-match.site/assets/icon-toggle-gray.svg);
+  background-image: url(https://asset.shigyo-match.site/assets/icon-toggle-no-border.svg);
   -webkit-transform-origin: center;
           transform-origin: center;
   -webkit-transform: translateY(-50%);
@@ -3189,7 +3207,7 @@ td {
     content: "";
     width: 20px;
     height: 20px;
-    background-image: url(https://asset.shigyo-match.site/assets/icon-toggle-gray.svg);
+    background-image: url(https://asset.shigyo-match.site/assets/icon-toggle-no-border.svg);
     background-size: cover;
     background-position: center;
     margin-left: 10px;
@@ -3813,7 +3831,7 @@ td {
   background-size: 20px;
   background-repeat: no-repeat;
   background-position: center;
-  background-image: url(https://asset.shigyo-match.site/assets/icon-toggle-gray.svg);
+  background-image: url(https://asset.shigyo-match.site/assets/icon-toggle-no-border.svg);
   -webkit-transform-origin: center;
           transform-origin: center;
   transition: -webkit-transform 0.3s;
@@ -4236,6 +4254,7 @@ td {
 }
 
 .Text.\--hasIcon {
+  display: inline-block;
   padding: 10px 10px 10px 10px;
   background-position: left 10px center;
   background-size: 24px;
@@ -4398,10 +4417,15 @@ td {
   background-position: center;
   background-color: #cad9e1;
   position: relative;
-  max-width: 480px;
   margin: 0 auto;
-  padding-top: 67%;
+  padding-top: 40%;
   overflow: hidden;
+}
+
+@media screen and (max-width: 768px) {
+  .WorkDetailLayout .WorkDetailLayout_heading {
+    padding-top: 56.25%;
+  }
 }
 
 .WorkDetailLayout .WorkDetailLayout_heading::before {

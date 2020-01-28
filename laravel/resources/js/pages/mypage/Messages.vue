@@ -51,7 +51,7 @@
                 <div v-if="message.is_own" class="Message_senderIcon" :style="bgImage(customer.file_name)"></div>
                 <div v-else class="Message_senderIcon" :style="bgImage(target(currentRoom).file_name)"></div>
                 <div class="Message_info">
-                  <span class="Message_date">{{ message.updated_at }}</span>
+                  <span class="Message_date">{{ createdAt(message.created_at) }}</span>
                   <p class="Message_text">{{ message.body }}</p>
                 </div>
               </div>
@@ -84,14 +84,13 @@
   </div>
 </template>
 <script>
-  import { OK, CREATED, DELETED } from '@/util'
+  import { OK, CREATED, DELETED, dateReplace } from '@/util'
   import styles from '@/mixins/styles'
   import WorkListLayout from '@/layouts/WorkListLayout'
   import WorkTableLayout from '@/layouts/WorkTableLayout'
   import Tab from '@/components/Tab'
   import ApplyDetail from '@/pages/mypage/ApplyDetail'
   import maxBy from 'lodash/maxBy'
-
   export default {
     components: { WorkListLayout, WorkTableLayout, Tab, ApplyDetail },
     props: {
@@ -259,6 +258,9 @@
       },
       toggleRoom(){
         this.isOpen = !this.isOpen
+      },
+      createdAt(created_at){
+        return dateReplace(created_at)
       }
     },
   }

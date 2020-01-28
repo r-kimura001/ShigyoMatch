@@ -9,7 +9,7 @@
     ></div>
     <RouterLink :to="`/works/${work.id}`" tag="div" class="WorkCard_face">
       <div class="WorkCard_thumb">
-        <img :src="thumbSrc(work.file_name)" alt="" />
+        <img :src="thumbSrc(work.file_name, 'work')" alt="work.image" />
       </div>
     </RouterLink>
     <div class="WorkCard_cover">

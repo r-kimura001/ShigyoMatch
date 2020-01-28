@@ -47,7 +47,7 @@
                 <dl class="DefinitionLayout">
                   <dt class="DefinitionLayout_term">プロフィール画像</dt>
                   <dd class="DefinitionLayout_desc">
-                    <img :src="thumbSrc(customer.file_name)" alt="">
+                    <img :src="thumbSrc(customer.file_name)" alt="applier.image">
                   </dd>
                 </dl>
               </li>

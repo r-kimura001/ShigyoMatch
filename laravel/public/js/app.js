@@ -1971,8 +1971,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 
 
@@ -2176,14 +2174,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -2195,6 +2185,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       navs: [{
         path: '/works',
         name: '案件を探す',
+        src: 'assets/icon-shop2-nav.svg',
         children: [{
           id: 1,
           name: '弁護士'
@@ -2211,6 +2202,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }, {
         path: '/customers',
         name: '人材を探す',
+        src: 'assets/icon-office-nav.svg',
         children: [{
           id: 1,
           name: '弁護士'
@@ -2230,7 +2222,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   watch: {
-    // ルートが変更されたらfetchDataメソッドを再び呼び出す
     $route: {
       handler: function handler() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function handler$(_context) {
@@ -3347,7 +3338,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _mixins_formOptions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/mixins/formOptions */ "./resources/js/mixins/formOptions.js");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _mixins_styles__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/mixins/styles */ "./resources/js/mixins/styles.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -3397,14 +3389,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mixins: [_mixins_formOptions__WEBPACK_IMPORTED_MODULE_1__["default"]],
+  mixins: [_mixins_formOptions__WEBPACK_IMPORTED_MODULE_1__["default"], _mixins_styles__WEBPACK_IMPORTED_MODULE_2__["default"]],
   data: function data() {
     return {
       preview: null
     };
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapState"])({
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapState"])({
     deleteImageReview: function deleteImageReview(state) {
       return state.form.deleteImageReview;
     }
@@ -4045,7 +4038,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _mixins_styles__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/mixins/styles */ "./resources/js/mixins/styles.js");
 /* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/util */ "./resources/js/util.js");
-/* harmony import */ var _mixins_switchDisplay__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/mixins/switchDisplay */ "./resources/js/mixins/switchDisplay.js");
 //
 //
 //
@@ -4070,11 +4062,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mixins: [_mixins_styles__WEBPACK_IMPORTED_MODULE_0__["default"], _mixins_switchDisplay__WEBPACK_IMPORTED_MODULE_2__["default"]],
+  mixins: [_mixins_styles__WEBPACK_IMPORTED_MODULE_0__["default"]],
   props: {
     id: {
       type: Number,
@@ -4082,7 +4073,6 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   watch: {
-    // ルートが変更されたらfetchDataメソッドを再び呼び出す
     $route: {
       handler: function handler() {
         this.o_middleDevice = _util__WEBPACK_IMPORTED_MODULE_1__["CLIENT_WIDTH"] > 768;
@@ -8097,6 +8087,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     toggleRoom: function toggleRoom() {
       this.isOpen = !this.isOpen;
+    },
+    createdAt: function createdAt(created_at) {
+      return Object(_util__WEBPACK_IMPORTED_MODULE_1__["dateReplace"])(created_at);
     }
   }
 });
@@ -15284,14 +15277,10 @@ var render = function() {
         )
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "Card_thumbSrc" }, [
-        _c("img", {
-          attrs: {
-            src: _vm.thumbSrc(_vm.item.file_name),
-            alt: "customer.image"
-          }
-        })
-      ])
+      _c("div", {
+        staticClass: "Card_thumbSrc",
+        style: _vm.bgImage(_vm.item.file_name)
+      })
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "Card_summary" }, [
@@ -15443,19 +15432,6 @@ var render = function() {
       "ul",
       { staticClass: "GlobalNav_menu", class: { "--open": _vm.isOpen } },
       [
-        _c(
-          "RouterLink",
-          {
-            staticClass: "GlobalNav_item",
-            attrs: {
-              to: "/greeting",
-              tag: "li",
-              "exact-active-class": "--current"
-            }
-          },
-          [_vm._v("\n      制作者紹介\n    ")]
-        ),
-        _vm._v(" "),
         _vm._l(_vm.navs, function(item, index) {
           return _c(
             "li",
@@ -15472,7 +15448,14 @@ var render = function() {
               }
             },
             [
-              _c("span", [_vm._v(_vm._s(item.name))]),
+              _c(
+                "span",
+                {
+                  staticClass: "GlobalNav_itemText",
+                  style: _vm.bgImage(item.src, "other")
+                },
+                [_vm._v(_vm._s(item.name))]
+              ),
               _vm._v(" "),
               _c("span", {
                 staticClass: "GlobalNav_childrenToggle",
@@ -16403,7 +16386,10 @@ var render = function() {
         [
           _c("div", { staticClass: "WorkCard_thumb" }, [
             _c("img", {
-              attrs: { src: _vm.thumbSrc(_vm.work.file_name), alt: "" }
+              attrs: {
+                src: _vm.thumbSrc(_vm.work.file_name, "work"),
+                alt: "work.image"
+              }
             })
           ])
         ]
@@ -16698,7 +16684,8 @@ var render = function() {
         _c(
           "button",
           {
-            staticClass: "Button --small --pink",
+            staticClass: "Button --small --pink --hasIcon",
+            style: _vm.bgImage("assets/icon-camera-white.svg"),
             attrs: { type: "button" },
             on: {
               click: function($event) {
@@ -16706,7 +16693,7 @@ var render = function() {
               }
             }
           },
-          [_vm._v("\n        画像を選択\n      ")]
+          [_vm._v("画像を選択\n      ")]
         )
       ]),
       _vm._v(" "),
@@ -18341,7 +18328,8 @@ var render = function() {
         {
           staticClass: "WorkDetailLayout_heading",
           style: {
-            backgroundImage: "url(" + _vm.thumbSrc(_vm.work.file_name) + ")"
+            backgroundImage:
+              "url(" + _vm.thumbSrc(_vm.work.file_name, "work") + ")"
           }
         },
         [
@@ -20944,7 +20932,9 @@ var render = function() {
                             _vm._v(" "),
                             _c("div", { staticClass: "Message_info" }, [
                               _c("span", { staticClass: "Message_date" }, [
-                                _vm._v(_vm._s(message.updated_at))
+                                _vm._v(
+                                  _vm._s(_vm.createdAt(message.created_at))
+                                )
                               ]),
                               _vm._v(" "),
                               _c("p", { staticClass: "Message_text" }, [
@@ -21417,7 +21407,7 @@ var render = function() {
                         _c("img", {
                           attrs: {
                             src: _vm.thumbSrc(_vm.customer.file_name),
-                            alt: ""
+                            alt: "applier.image"
                           }
                         })
                       ])
@@ -45809,14 +45799,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   methods: {
     bgImage: function bgImage(imageSrc) {
+      var flag = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'office';
+
       if (imageSrc) {
         return {
           backgroundImage: "url(".concat(_util__WEBPACK_IMPORTED_MODULE_0__["BASE_STORAGE_URL"], "/").concat(imageSrc, ")")
         };
-      } else {
+      } else if (flag === 'office') {
         return {
-          backgroundImage: "url(".concat(_util__WEBPACK_IMPORTED_MODULE_0__["BASE_STORAGE_URL"], "/assets/icon-no-image.png)")
+          backgroundImage: "url(".concat(_util__WEBPACK_IMPORTED_MODULE_0__["BASE_STORAGE_URL"], "/assets/thumb-office-no-image.svg)")
         };
+      } else {
+        return false;
       }
     },
     colorById: function colorById(id) {
@@ -45838,10 +45832,14 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     thumbSrc: function thumbSrc(fileName) {
+      var flag = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'office';
+
       if (fileName) {
         return "".concat(_util__WEBPACK_IMPORTED_MODULE_0__["BASE_STORAGE_URL"], "/").concat(fileName);
+      } else if (flag === 'office') {
+        return "".concat(_util__WEBPACK_IMPORTED_MODULE_0__["BASE_STORAGE_URL"], "/assets/thumb-office-no-image.svg");
       } else {
-        return "".concat(_util__WEBPACK_IMPORTED_MODULE_0__["BASE_STORAGE_URL"], "/assets/icon-no-image.png");
+        return "".concat(_util__WEBPACK_IMPORTED_MODULE_0__["BASE_STORAGE_URL"], "/assets/thumb-work-no-image.svg");
       }
     },
     bgColor: function bgColor(id) {
@@ -48692,7 +48690,11 @@ function dateReplace(datetime) {
 
     var _date = createDate.getDate();
 
-    return "".concat(_month, "\u6708").concat(_date, "\u65E5");
+    var hour = createDate.getHours();
+
+    var _minute = createDate.getMinutes();
+
+    return "".concat(_month, "\u6708").concat(_date, "\u65E5 ").concat(hour, ":").concat(_minute);
   }
 }
 var OK = 200;

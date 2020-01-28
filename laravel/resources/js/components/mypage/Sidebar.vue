@@ -25,9 +25,8 @@
 <script>
 import styles from '@/mixins/styles'
 import { CLIENT_WIDTH } from '@/util'
-import switchDisplay from '@/mixins/switchDisplay'
 export default {
-  mixins: [styles, switchDisplay],
+  mixins: [styles],
   props: {
     id: {
       type: Number,
@@ -35,7 +34,7 @@ export default {
     },
   },
   watch: {
-    // ルートが変更されたらfetchDataメソッドを再び呼び出す
+
     $route: {
       handler(){
         this.o_middleDevice = CLIENT_WIDTH > 768

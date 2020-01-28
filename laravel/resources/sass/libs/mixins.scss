@@ -38,10 +38,10 @@
   &[name=name]{
     background-image: url(#{$assetPath}/icon-office.svg);
   }
-  &[name=zip_code]{
-    background-image: url(#{$assetPath}/icon-post.svg);
-  }
   &[name=title]{
+    background-image: url(#{$assetPath}/icon-title.svg);
+  }
+  &[name=zip_code]{
     background-image: url(#{$assetPath}/icon-post.svg);
   }
   &[name=fee]{

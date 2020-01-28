@@ -48,7 +48,9 @@ export function dateReplace(datetime) {
   }else{
     const month = createDate.getMonth() + 1
     const date = createDate.getDate()
-    return `${month}月${date}日`
+    const hour = createDate.getHours()
+    const minute = createDate.getMinutes()
+    return `${month}月${date}日 ${hour}:${minute}`
   }
 }
 

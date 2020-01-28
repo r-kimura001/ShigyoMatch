@@ -10,10 +10,10 @@
       <div class="HorizontalLayou_col">
         <button
           type="button"
-          class="Button --small --pink"
+          class="Button --small --pink --hasIcon"
           @click="selectFile()"
-        >
-          画像を選択
+          :style="bgImage('assets/icon-camera-white.svg')"
+        >画像を選択
         </button>
       </div>
       <div v-if="previewUrl" class="HorizontalLayout_col u-ml20">
@@ -39,9 +39,10 @@
 </template>
 <script>
 import formOptions from '@/mixins/formOptions'
+import styles from '@/mixins/styles'
 import { mapState } from 'vuex'
 export default {
-  mixins: [formOptions],
+  mixins: [formOptions, styles],
   data() {
     return {
       preview: null,
