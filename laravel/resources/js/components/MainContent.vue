@@ -1,6 +1,10 @@
 <template>
   <main class="MainContent" :class="pageMod">
     <h1 class="MainContent_title" v-if="isOnly('MainContentTitle')">{{ title }}</h1>
+<!--    <ul class="BreadCrumb">-->
+<!--      <li><a :href="$router.go(-1)">一つ前</a></li>-->
+<!--      <li><a :href="$router.go(-2)">二つ前</a></li>-->
+<!--    </ul>-->
     <RouterView></RouterView>
   </main>
 </template>

@@ -2446,6 +2446,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mixins: [_mixins_switchDisplay__WEBPACK_IMPORTED_MODULE_0__["default"]],
@@ -4829,7 +4833,7 @@ __webpack_require__.r(__webpack_exports__);
               case 0:
                 setTimeout(function () {
                   _this.isFadeout = true;
-                }, 1100);
+                }, 1400);
 
               case 1:
               case "end":
@@ -4843,7 +4847,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     delay: function delay(key) {
-      var base = 0.85;
+      var base = 0.5;
       var interval = 0.3;
       var delay = key * interval + base;
       return {

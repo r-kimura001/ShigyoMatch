@@ -1144,8 +1144,8 @@ td {
   opacity: 0;
   transition: all 1s;
   -webkit-transition: all 1s;
-  -webkit-transition-delay: 0.6s;
-          transition-delay: 0.6s;
+  -webkit-transition-delay: 0.4s;
+          transition-delay: 0.4s;
 }
 
 .BaseTitle.\--intro.\--visible {

@@ -53,7 +53,7 @@ class CustomerController extends Controller
       DB::rollback();
       throw $exception;
     }
-    return response($this->customerService->customerById(['professionTypes', 'user', 'works.professionType', 'messageNotes', 'followers', 'followees', 'reviewers.reviewer'], $createdCustomer->id), 201);
+    return response($this->customerService->customerById(Customer::RELATIONS_ARRAY, $createdCustomer->id), 201);
   }
 
   /**
@@ -64,7 +64,7 @@ class CustomerController extends Controller
    */
   public function update(UpdateRequest $request, int $id)
   {
-    $customer = $this->customerService->customerById([], $id);
+    $customer = $this->customerService->customerById(Customer::RELATIONS_ARRAY, $id);
     $data = $request->all();
     $putPath = 'customers/'.$id;
 
@@ -101,7 +101,8 @@ class CustomerController extends Controller
    */
   public function show(int $id)
   {
-    return $this->customerService->customerById(['works', 'followers', 'professionTypes', 'reviewers.reviewer'],$id);
+    $relations = ['works', 'followers', 'professionTypes', 'reviewers.reviewer'];
+    return $this->customerService->customerById($relations, $id);
   }
 
   /**
@@ -185,6 +186,6 @@ class CustomerController extends Controller
 
   public function customer()
   {
-    return Auth::check() ? $this->customerService->customerById(['professionTypes', 'user', 'works.professionType', 'messageNotes', 'followers', 'followees', 'reviewers.reviewer'], Auth::user()->customer_id) : '';
+    return Auth::check() ? $this->customerService->customerById(Customer::RELATIONS_ARRAY, Auth::user()->customer_id) : '';
   }
 }

@@ -98,14 +98,14 @@
         async handler() {
           setTimeout( () => {
             this.isFadeout = true
-          }, 1100)
+          }, 1400)
         },
         immediate: true
       },
     },
     methods: {
       delay(key){
-        const base = 0.85
+        const base = 0.5
         const interval = 0.3
         const delay = key * interval + base
         return {
