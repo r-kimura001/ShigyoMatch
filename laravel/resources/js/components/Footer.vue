@@ -1,5 +1,5 @@
 <template>
-  <footer class="Footer" v-if>
+  <footer class="Footer">
     <div class="Footer_content">
       <p class="Footer_text">
         &copy; Kaba {{ createdYear }}{{ currentYear() }} All Rights Reserved.

@@ -9,8 +9,11 @@ export default {
         ],
         Footer: [
           '/500',
-          '/mypage/16/messages',
+          '/messages',
         ],
+        Sidebar: [
+
+        ]
       },
       // 記載のパスでだけ表示してほしい
       onlyPathes: {
@@ -24,7 +27,7 @@ export default {
   },
   methods: {
     ignore(componentName){
-      const ignore = this.ignorePathes[componentName].filter( url => { return url === this.$route.path} )
+      const ignore = this.ignorePathes[componentName].filter( url => { return this.$route.path.indexOf(url) !== -1} )
       return !!ignore.length
     },
     isOnly(componentName){

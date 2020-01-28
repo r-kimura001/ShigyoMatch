@@ -3,14 +3,15 @@
     <h2>Messages</h2>
     <div class="MessageLayout">
       <div class="MessageLayout_sidebar">
-        <h3 class="u-pa20 u-alignCenter">
+        <h3 class="MessageLayout_sidebarTitle" :class="{'--open': isOpen}" @click="toggleRoom">
           <span class="Text -bold">お相手一覧</span>
         </h3>
-        <ul class="MessageLayout_roomList">
+        <ul class="MessageLayout_roomList" :class="{'--open': isOpen}">
           <li
             v-for="(room, index) in rooms"
             :key="index"
             @click="setCurrentRoom(room)"
+            class="MessageLayout_roomWrap"
           >
             <div class="MessageLayout_room"
                  :class="roomClassList(room)"
@@ -109,6 +110,7 @@
         rows: 1,
         maxStrLen: 1000,
         targetIndex: null,
+        isOpen: true
       }
     },
     watch: {
@@ -211,6 +213,7 @@
       },
       async setCurrentRoom(room){
         this.currentRoom = room
+        this.toggleRoom()
         this.body = ''
         const response = await this.read(room)
         this.$emit('readed', {
@@ -253,6 +256,9 @@
         const lastChat = this.$el.querySelector("#end")
         const positionY = lastChat.offsetTop
         chatLog.scrollTo(0, positionY)
+      },
+      toggleRoom(){
+        this.isOpen = !this.isOpen
       }
     },
   }

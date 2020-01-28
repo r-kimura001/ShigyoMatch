@@ -2249,7 +2249,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             }
           }
         }, null, this);
-      }
+      },
+      immediate: true
     }
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapGetters"])({
@@ -4043,6 +4044,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _mixins_styles__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/mixins/styles */ "./resources/js/mixins/styles.js");
+/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/util */ "./resources/js/util.js");
+/* harmony import */ var _mixins_switchDisplay__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/mixins/switchDisplay */ "./resources/js/mixins/switchDisplay.js");
 //
 //
 //
@@ -4068,12 +4071,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mixins: [_mixins_styles__WEBPACK_IMPORTED_MODULE_0__["default"]],
+  mixins: [_mixins_styles__WEBPACK_IMPORTED_MODULE_0__["default"], _mixins_switchDisplay__WEBPACK_IMPORTED_MODULE_2__["default"]],
   props: {
     id: {
       type: Number,
       required: true
+    }
+  },
+  watch: {
+    // ルートが変更されたらfetchDataメソッドを再び呼び出す
+    $route: {
+      handler: function handler() {
+        this.o_middleDevice = _util__WEBPACK_IMPORTED_MODULE_1__["CLIENT_WIDTH"] > 768;
+      },
+      immediate: true
     }
   },
   data: function data() {
@@ -4082,21 +4096,11 @@ __webpack_require__.r(__webpack_exports__);
         name: 'HOME',
         path: '',
         iconSrc: 'icon-home.svg'
-      }, // {
-      //   name: 'プロフィール',
-      //   path: '/profile',
-      //   iconSrc: 'icon-profile.svg',
-      // },
-      {
+      }, {
         name: 'マッチング履歴',
         path: '/matches',
         iconSrc: 'icon-match.svg'
-      }, // {
-      //   name: 'スカウト',
-      //   path: '/scouts',
-      //   iconSrc: 'icon-scout.svg',
-      // },
-      {
+      }, {
         name: '申込',
         path: '/applies',
         iconSrc: ''
@@ -4104,13 +4108,15 @@ __webpack_require__.r(__webpack_exports__);
         name: '気になる',
         path: '/favorites',
         iconSrc: 'icon-favorite.svg'
-      } // {
-      //   name: 'メッセージ',
-      //   path: '/messages',
-      //   iconSrc: 'icon-mail-line.svg',
-      // },
-      ]
+      }],
+      o_middleDevice: false
     };
+  },
+  computed: {
+    ignore: function ignore() {
+      var currentPath = this.$route.path;
+      return !this.o_middleDevice && currentPath.indexOf('messages') != -1;
+    }
   }
 });
 
@@ -7767,6 +7773,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -7798,7 +7805,8 @@ __webpack_require__.r(__webpack_exports__);
       body: '',
       rows: 1,
       maxStrLen: 1000,
-      targetIndex: null
+      targetIndex: null,
+      isOpen: true
     };
   },
   watch: {
@@ -8009,11 +8017,12 @@ __webpack_require__.r(__webpack_exports__);
           switch (_context6.prev = _context6.next) {
             case 0:
               this.currentRoom = room;
+              this.toggleRoom();
               this.body = '';
-              _context6.next = 4;
+              _context6.next = 5;
               return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(this.read(room));
 
-            case 4:
+            case 5:
               response = _context6.sent;
               this.$emit('readed', {
                 prop: 'message_notes',
@@ -8034,7 +8043,7 @@ __webpack_require__.r(__webpack_exports__);
 
               this.scrollToEnd();
 
-            case 8:
+            case 9:
             case "end":
               return _context6.stop();
           }
@@ -8085,6 +8094,9 @@ __webpack_require__.r(__webpack_exports__);
       var lastChat = this.$el.querySelector("#end");
       var positionY = lastChat.offsetTop;
       chatLog.scrollTo(0, positionY);
+    },
+    toggleRoom: function toggleRoom() {
+      this.isOpen = !this.isOpen;
     }
   }
 });
@@ -17563,47 +17575,51 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("aside", { staticClass: "Sidebar" }, [
-    _c(
-      "div",
-      { staticClass: "Sidebar_list" },
-      _vm._l(_vm.menuList, function(list, index) {
-        return _c(
-          "div",
-          { key: index, staticClass: "Sidebar_listItem" },
-          [
-            _c(
-              "RouterLink",
-              {
-                staticClass: "Sidebar_listBody",
-                attrs: {
-                  to: "/mypage/" + _vm.id + list.path,
-                  tag: "div",
-                  "exact-active-class": "--current"
-                }
-              },
-              [
-                _c(
-                  "div",
-                  {
-                    staticClass: "Sidebar_listLabel",
-                    style: _vm.bgImage("assets/" + list.iconSrc)
-                  },
-                  [
-                    _c("span", { staticClass: "Sidebar_listText" }, [
-                      _vm._v(_vm._s(list.name))
-                    ])
-                  ]
-                )
-              ]
-            )
-          ],
-          1
-        )
-      }),
-      0
-    )
-  ])
+  return _c(
+    "aside",
+    { staticClass: "Sidebar", class: { "--hidden": _vm.ignore } },
+    [
+      _c(
+        "div",
+        { staticClass: "Sidebar_list" },
+        _vm._l(_vm.menuList, function(list, index) {
+          return _c(
+            "div",
+            { key: index, staticClass: "Sidebar_listItem" },
+            [
+              _c(
+                "RouterLink",
+                {
+                  staticClass: "Sidebar_listBody",
+                  attrs: {
+                    to: "/mypage/" + _vm.id + list.path,
+                    tag: "div",
+                    "exact-active-class": "--current"
+                  }
+                },
+                [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "Sidebar_listLabel",
+                      style: _vm.bgImage("assets/" + list.iconSrc)
+                    },
+                    [
+                      _c("span", { staticClass: "Sidebar_listText" }, [
+                        _vm._v(_vm._s(list.name))
+                      ])
+                    ]
+                  )
+                ]
+              )
+            ],
+            1
+          )
+        }),
+        0
+      )
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -20578,7 +20594,7 @@ var render = function() {
             "div",
             { staticClass: "MypageContent_body" },
             [
-              !_vm.hasData
+              !_vm.hasPost
                 ? _c("p", [_vm._v("募集案件の投稿はありません")])
                 : _c("WorkTableLayout", {
                     attrs: { works: _vm.works },
@@ -20812,16 +20828,28 @@ var render = function() {
     _vm._v(" "),
     _c("div", { staticClass: "MessageLayout" }, [
       _c("div", { staticClass: "MessageLayout_sidebar" }, [
-        _vm._m(0),
+        _c(
+          "h3",
+          {
+            staticClass: "MessageLayout_sidebarTitle",
+            class: { "--open": _vm.isOpen },
+            on: { click: _vm.toggleRoom }
+          },
+          [_c("span", { staticClass: "Text -bold" }, [_vm._v("お相手一覧")])]
+        ),
         _vm._v(" "),
         _c(
           "ul",
-          { staticClass: "MessageLayout_roomList" },
+          {
+            staticClass: "MessageLayout_roomList",
+            class: { "--open": _vm.isOpen }
+          },
           _vm._l(_vm.rooms, function(room, index) {
             return _c(
               "li",
               {
                 key: index,
+                staticClass: "MessageLayout_roomWrap",
                 on: {
                   click: function($event) {
                     return _vm.setCurrentRoom(room)
@@ -21011,16 +21039,7 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("h3", { staticClass: "u-pa20 u-alignCenter" }, [
-      _c("span", { staticClass: "Text -bold" }, [_vm._v("お相手一覧")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -45850,7 +45869,8 @@ __webpack_require__.r(__webpack_exports__);
       // 記載のパスでは無視
       ignorePathes: {
         Header: ['/admin', '/500'],
-        Footer: ['/500', '/mypage/16/messages']
+        Footer: ['/500', '/messages'],
+        Sidebar: []
       },
       // 記載のパスでだけ表示してほしい
       onlyPathes: {
@@ -45863,7 +45883,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       var ignore = this.ignorePathes[componentName].filter(function (url) {
-        return url === _this.$route.path;
+        return _this.$route.path.indexOf(url) !== -1;
       });
       return !!ignore.length;
     },

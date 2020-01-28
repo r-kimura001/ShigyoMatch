@@ -26,6 +26,9 @@
   }
 
   @include media() {
+    &.--hidden{
+      display: none;
+    }
     .Sidebar_list {
       display: flex;
       align-items: center;
