@@ -24,13 +24,13 @@ class WorkRepository extends Repository
    * @param int $perPage
    * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
    */
-  public function paginate(int $professionTypeId, array $relations, int $perPage=parent::COUNT_PER_PAGE)
+  public function paginate(array $relations, array $filter, int $perPage=parent::COUNT_PER_PAGE)
   {
-    return $this->getBuilder()
-      ->with($relations)
-      ->where('profession_type_id', $professionTypeId)
-      ->latest()
-      ->paginate($perPage);
+    $query = $this->getBuilder()
+                ->with($relations)
+                ->where('profession_type_id', $filter['professionTypeId']);
+    $query->order($filter);
+    return $query->paginate($perPage);
   }
 
   /**

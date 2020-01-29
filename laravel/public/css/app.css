@@ -844,6 +844,17 @@ td {
   line-height: 3rem;
 }
 
+.AggregateBox .AggregateBox_num.\--link {
+  color: #349d9d;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.AggregateBox .AggregateBox_num.\--link:hover {
+  color: #1c91df;
+}
+
 .AggregateBox .AggregateBox_unit {
   font-size: 1.2rem;
 }
@@ -1094,6 +1105,7 @@ td {
   padding: 10px 35px 10px 55px;
   border-bottom: 2px solid #EC7211;
   background-size: 30px;
+  line-height: 1.35;
   background-repeat: no-repeat;
   background-position: 15px;
   flex-shrink: 0;
@@ -3060,6 +3072,39 @@ td {
   text-decoration: none;
 }
 
+.MemberList {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 30px 0;
+}
+
+.MemberList .MemberList_item {
+  padding: 15px;
+}
+
+.MemberList .MemberList_item:not(:last-of-type) {
+  border-bottom: 1px solid #dedede;
+}
+
+@media screen and (max-width: 480px) {
+  .MemberList .MemberList_item {
+    padding: 15px 5px;
+  }
+}
+
+.MemberList .MemberList_greeting {
+  padding: 5px 25px;
+  font-size: 1.1rem;
+  color: #cccccc;
+  line-height: 1.35;
+}
+
+@media screen and (max-width: 480px) {
+  .MemberList .MemberList_greeting {
+    padding: 5px 10px;
+  }
+}
+
 .Message {
   display: -webkit-box;
   display: flex;
@@ -4054,6 +4099,13 @@ td {
 .ReviewListLayout .ReviewListLayout_comment {
   font-size: 1.4rem;
   white-space: pre-line;
+  line-height: 1.25;
+}
+
+@media screen and (max-width: 670px) {
+  .ReviewListLayout .ReviewListLayout_comment {
+    font-size: 1.2rem;
+  }
 }
 
 @media screen and (max-width: 670px) {
@@ -4343,6 +4395,15 @@ td {
   -webkit-transition: 0.3s;
   transition: 0.3s;
   display: inline-block;
+}
+
+.Tag.\--link {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.Tag.\--link:hover {
+  opacity: 1;
 }
 
 .Text.-fz10 {
@@ -5141,6 +5202,10 @@ td {
 
 .u-icon {
   width: 18px;
+}
+
+.u-tip {
+  position: relative;
 }
 
 .u-tip::after {

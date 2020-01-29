@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Repositories\WorkRepository;
+use App\Repositories\ProfessionTypeRepository;
 use App\Models\Work;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -10,16 +11,19 @@ use Illuminate\Auth\Events\Registered;
 class WorkService extends Service
 {
   protected $workRep;
+  protected $professionTypeRep;
 
   /**
    * WorkService constructor.
    * @param WorkRepository $workRep
    */
   public function __construct(
-    WorkRepository $workRep
+    WorkRepository $workRep,
+    ProfessionTypeRepository $professionTypeRep
   )
   {
     $this->workRep = $workRep;
+    $this->professionTypeRep = $professionTypeRep;
   }
 
   public function all()
@@ -29,7 +33,17 @@ class WorkService extends Service
 
   public function paginate(array $data)
   {
-    return $this->workRep->paginate($data['professionTypeId'], Work::RELATIONS_ARRAY, Work::COUNT_PER_PAGE);
+    return $this->workRep->paginate(Work::RELATIONS_ARRAY, $data, Work::COUNT_PER_PAGE);
+  }
+
+  /**
+   * @param array $data
+   * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model|object|null
+   */
+  public function worksByProfession(array $data)
+  {
+    $relations = ['works.professionType', 'works.skills'];
+    return $this->professionTypeRep->findById($relations, $data['professionTypeId']);
   }
 
   public function store($data)

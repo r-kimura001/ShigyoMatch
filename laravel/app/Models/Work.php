@@ -7,6 +7,8 @@ use App\Models\Traits\HandledByUser;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Interfaces\CanDeleteRelationInterface;
+use Illuminate\Database\Eloquent\Builder;
+
 class Work extends Model implements CanDeleteRelationInterface
 {
   use HandledByUser;
@@ -152,6 +154,20 @@ class Work extends Model implements CanDeleteRelationInterface
     'favorite_count'
   ];
   protected $hidden = ['customer_id'];
+
+  /**
+   * ソート
+   * @param Builder $builder
+   * @param array $filter
+   */
+  public function scopeOrder(Builder $builder, array $filter)
+  {
+    if (!empty($filter['order_by'])) {
+      $orderBy = (empty($filter['order_by']) ? 'created_at' : $filter['order_by']);
+      $asc = (empty($filter['asc']) ? 'asc' : $filter['asc']);
+      $builder->orderBy($orderBy, $asc);
+    }
+  }
 
   public function getDeleteRelations()
   {

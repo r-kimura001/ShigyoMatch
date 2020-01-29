@@ -142,7 +142,9 @@ export default {
           classOption: {
             '--greeting': true,
           },
-          options: {}
+          options: {
+            maxLength: 140
+          }
         },
       },
     }

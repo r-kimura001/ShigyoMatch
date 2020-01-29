@@ -197,6 +197,7 @@
 }
 
 .u-tip{
+  position: relative;
   // default(top)
   &::after {
     content: attr(data-desc);

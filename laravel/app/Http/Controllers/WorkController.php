@@ -32,7 +32,7 @@ class WorkController extends Controller
    */
   public function index(Request $request)
   {
-    return response($this->workService->paginate($request->all()), 200);
+    return response($this->workService->worksByProfession($request->all()), 200);
   }
 
   /**

@@ -27,7 +27,7 @@ class UpdateRequest extends FormRequest
   public function rules()
   {
     return [
-      'title' => 'required|string',
+      'title' => 'required|string|max:30',
       'fee' => 'nullable|integer|max:999999',
       'file_name' => 'nullable|image|max:'.self::MAX_FILE_SIZE,
       'body' => 'required|string',

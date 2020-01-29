@@ -6,4 +6,12 @@
   color: $white;
   transition: $transitionBasis;
   display: inline-block;
+
+  &.--link{
+    cursor: pointer;
+    opacity: 0.7;
+    &:hover{
+      opacity: 1;
+    }
+  }
 }

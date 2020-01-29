@@ -15,7 +15,12 @@
     <div class="WorkCard_cover">
       <div class="HorizontalLayout --wrap">
         <div class="HorizontalLayout_col u-ma5" v-for="(skill, index) in work.skills" :key="index">
-          <span class="Tag u-op7" :style="bgColor(work.profession_type_id)">{{ skill.body }}</span>
+          <span
+            class="Tag --link u-tip"
+            data-desc="スキル分野で絞り込む"
+            :style="bgColor(work.profession_type_id)"
+            @click="$emit('onClickSkill', skill.id)"
+          >{{ skill.body }}</span>
         </div>
       </div>
       <ul class="HorizontalLayout --stretch">

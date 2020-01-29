@@ -77,9 +77,9 @@
               />
               <span>フォロワー</span>
             </h4>
-            <p class="Text -deepGreen -bold u-alignCenter">
+            <RouterLink :to="`/customers/${customer.id}/followers`" tag="p" class="Text -deepGreen -bold u-alignCenter">
               {{ customer.followers.length }}
-            </p>
+            </RouterLink>
           </li>
           <li class="HorizontalLayout_col --equal">
             <h4 class="Text -fz12 -bold u-alignCenter u-h20">

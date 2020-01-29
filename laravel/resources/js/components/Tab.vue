@@ -27,12 +27,10 @@
     props: {
       applyFlag: {
         type: Number,
-        required: true,
         default: 0
       },
       recruitFlag: {
         type: Number,
-        required: true,
         default: 1
       },
       currentFlag: {

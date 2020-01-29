@@ -5,7 +5,9 @@
       :key="index"
       class="WorkListLayout_item"
     >
-      <WorkCard :work="work"></WorkCard>
+      <WorkCard
+        :work="work"
+        @onClickSkill="sendSkillId"></WorkCard>
     </div>
   </div>
 </template>
@@ -20,5 +22,10 @@ export default {
       default: () => [],
     },
   },
+  methods: {
+    sendSkillId(id){
+      this.$emit('sendSkillId', id)
+    }
+  }
 }
 </script>

@@ -6,16 +6,28 @@
           <div v-if="!hasData">現在募集中の案件はありません</div>
           <div v-else>
             <h2 class="BaseTitle">
-              <span class="BaseTitle_text --work"><span :style="fontColor(professionId)">{{ skill }}</span>の案件一覧</span>
+              <span class="BaseTitle_text --work"><span :style="fontColor(professionId)">{{ professionTypeName }}</span>の案件一覧</span>
             </h2>
+            <div class="SearchStatus" v-if="isSearch">
+              {{ `${searchingSkill[0].body}で絞り込み` }}
+              <div class="BorderButton --minimum" @click="clearSearch">クリア</div>
+            </div>
+            <div class="Sort">
+              <select @change="sortChange" v-model="sortKey">
+                <option v-for="item in sortList" :value="item.value">{{ item.label }}</option>
+              </select>
+            </div>
             <Pager
               v-if="lastPage > 1"
               :current-page="currentPage"
               :last-page="lastPage"
               path="works"
-              :professionType="skill"
+              :professionType="professionTypeName"
             ></Pager>
-            <WorkListLayout :works="list"></WorkListLayout>
+            <WorkListLayout
+              :works="list"
+              @sendSkillId="searchBySkill"
+            ></WorkListLayout>
           </div>
         </section>
       </div>
@@ -36,6 +48,20 @@ import { mapState } from 'vuex'
 export default {
   components: { WorkListLayout },
   mixins: [apiIndexHandler, styles],
+  data(){
+    return {
+      sortList: [
+        {
+          value: 'created_at.desc',
+          label: '登録日時の新しい順'
+        },
+        {
+          value: 'created_at.asc',
+          label: '登録日時の古い順'
+        },
+      ]
+    }
+  },
   computed: {
     ...mapState({
       author: state => state.auth.customer

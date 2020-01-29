@@ -28,6 +28,16 @@
       color: $gray;
       line-height: 3rem;
     }
+
+    &.--link{
+      color: $deepGreen;
+      transition: $transitionBasis;
+      cursor: pointer;
+
+      &:hover{
+        color: $blue;
+      }
+    }
   }
   .AggregateBox_unit{
     font-size: 1.2rem;
