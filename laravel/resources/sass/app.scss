@@ -30,6 +30,7 @@
 @import "./components/MainLayout";
 @import "./components/MainVisual";
 @import "./components/MemberLink";
+@import "./components/MemberList";
 @import "./components/Message";
 @import "./components/MessageLayout";
 @import "./components/Modal";
@@ -46,9 +47,11 @@
 @import "./components/ReviewFormLayout";
 @import "./components/ReviewListLayout";
 @import "./components/ScoutList";
+@import "./components/SearchList";
 @import "./components/Selectbox";
 @import "./components/Sidebar";
 @import "./components/SiteLogo";
+@import "./components/SortBox";
 @import "./components/Tab";
 @import "./components/Table";
 @import "./components/Tag";
@@ -62,6 +65,7 @@
 
 
 // pages
+@import "./pages/Follows";
 @import "./pages/Login";
 @import "./pages/Signup";
 @import "./pages/Top";

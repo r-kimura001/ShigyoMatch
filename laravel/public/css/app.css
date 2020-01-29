@@ -844,6 +844,17 @@ td {
   line-height: 3rem;
 }
 
+.AggregateBox .AggregateBox_num.\--link {
+  color: #349d9d;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.AggregateBox .AggregateBox_num.\--link:hover {
+  color: #1c91df;
+}
+
 .AggregateBox .AggregateBox_unit {
   font-size: 1.2rem;
 }
@@ -1094,6 +1105,7 @@ td {
   padding: 10px 35px 10px 55px;
   border-bottom: 2px solid #EC7211;
   background-size: 30px;
+  line-height: 1.35;
   background-repeat: no-repeat;
   background-position: 15px;
   flex-shrink: 0;
@@ -1381,7 +1393,7 @@ td {
 
 .Button.\--hasIcon {
   padding: 10px 12px 10px 36px;
-  background-position: 12px;
+  background-position: 20px;
   background-size: 20px;
   background-repeat: no-repeat;
 }
@@ -3060,6 +3072,39 @@ td {
   text-decoration: none;
 }
 
+.MemberList {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 30px 0;
+}
+
+.MemberList .MemberList_item {
+  padding: 15px;
+}
+
+.MemberList .MemberList_item:not(:last-of-type) {
+  border-bottom: 1px solid #dedede;
+}
+
+@media screen and (max-width: 480px) {
+  .MemberList .MemberList_item {
+    padding: 15px 5px;
+  }
+}
+
+.MemberList .MemberList_greeting {
+  padding: 5px 25px;
+  font-size: 1.1rem;
+  color: #cccccc;
+  line-height: 1.35;
+}
+
+@media screen and (max-width: 480px) {
+  .MemberList .MemberList_greeting {
+    padding: 5px 10px;
+  }
+}
+
 .Message {
   display: -webkit-box;
   display: flex;
@@ -4054,6 +4099,13 @@ td {
 .ReviewListLayout .ReviewListLayout_comment {
   font-size: 1.4rem;
   white-space: pre-line;
+  line-height: 1.25;
+}
+
+@media screen and (max-width: 670px) {
+  .ReviewListLayout .ReviewListLayout_comment {
+    font-size: 1.2rem;
+  }
 }
 
 @media screen and (max-width: 670px) {
@@ -4090,6 +4142,89 @@ td {
 
 .ScoutList .ScoutListitem:hover .ScoutList_text {
   text-decoration: underline;
+}
+
+.SearchList {
+  max-width: 1380px;
+  margin: 0 auto;
+  background: #fefefe;
+  border-radius: 6px;
+  position: relative;
+  z-index: 99;
+}
+
+.SearchList .SearchList_tags {
+  display: -webkit-box;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.SearchList .SearchList_title {
+  font-weight: bold;
+  padding: 15px;
+}
+
+.SearchList .SearchList_title .SearchList_titleText {
+  display: inline-block;
+  padding: 0 10px;
+  position: relative;
+  cursor: pointer;
+}
+
+.SearchList .SearchList_title .SearchList_titleText::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -10px;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-image: url(https://asset.shigyo-match.site/assets/icon-toggle-no-border.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  transition: -webkit-transform 0.15s;
+  transition: transform 0.15s;
+  transition: transform 0.15s, -webkit-transform 0.15s;
+  -webkit-transition: -webkit-transform 0.15s;
+}
+
+.SearchList .SearchList_body {
+  position: absolute;
+  top: 45px;
+  left: 0;
+  right: 0;
+  padding: 15px;
+  background: #fefefe;
+  -webkit-transform-origin: center top;
+          transform-origin: center top;
+  -webkit-transform: scale3d(1, 0, 1);
+          transform: scale3d(1, 0, 1);
+  -webkit-transition: 0.15s;
+  transition: 0.15s;
+}
+
+.SearchList .SearchList_tag {
+  cursor: pointer;
+  -webkit-transition: 0.15s;
+  transition: 0.15s;
+}
+
+.SearchList .SearchList_tag:hover {
+  opacity: 0.7;
+}
+
+.SearchList.\--open .SearchList_titleText::after {
+  -webkit-transform: translateY(-50%) rotate(180deg);
+          transform: translateY(-50%) rotate(180deg);
+}
+
+.SearchList.\--open .SearchList_body {
+  font-size: initial;
+  -webkit-transform: none;
+          transform: none;
 }
 
 .Selectbox {
@@ -4207,6 +4342,31 @@ td {
   .SiteLogo {
     width: 180px;
   }
+}
+
+.SortBox {
+  display: inline-block;
+  padding: 8px 28px 8px 12px;
+  border: 2px solid #a8a3a7;
+  border-radius: 5px;
+  position: relative;
+}
+
+.SortBox::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 5px;
+  width: 20px;
+  height: 20px;
+  margin-top: -10px;
+  background-image: url(https://asset.shigyo-match.site/assets/icon-select-toggle.svg);
+  background-size: cover;
+  background-position: center;
+}
+
+.SortBox select {
+  cursor: pointer;
 }
 
 .Tab {
@@ -4343,6 +4503,15 @@ td {
   -webkit-transition: 0.3s;
   transition: 0.3s;
   display: inline-block;
+}
+
+.Tag.\--link {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.Tag.\--link:hover {
+  opacity: 1;
 }
 
 .Text.-fz10 {
@@ -5015,6 +5184,10 @@ td {
   margin: 0 5px;
 }
 
+.u-my15 {
+  margin: 15px 0;
+}
+
 .u-ma5 {
   margin: 5px;
 }
@@ -5141,6 +5314,10 @@ td {
 
 .u-icon {
   width: 18px;
+}
+
+.u-tip {
+  position: relative;
 }
 
 .u-tip::after {

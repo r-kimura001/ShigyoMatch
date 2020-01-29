@@ -34,7 +34,11 @@
             <div class="AggregateBox">
               <h4 class="AggregateBox_heading">フォロワー</h4>
               <div class="AggregateBox_body">
-                <span class="AggregateBox_num">{{ customer.followers.length }}</span>
+                <RouterLink
+                  :to="`/customers/${customer.id}/followers`"
+                  tag="span"
+                  class="AggregateBox_num --link"
+                >{{ customer.followers.length }}</RouterLink>
                 <span class="AggregateBox_unit"></span>
               </div>
             </div>
@@ -43,7 +47,11 @@
             <div class="AggregateBox">
               <h4 class="AggregateBox_heading">フォロー</h4>
               <div class="AggregateBox_body">
-                <span class="AggregateBox_num">{{ customer.followees.length }}</span>
+                <RouterLink
+                  :to="`/customers/${customer.id}/followees`"
+                  tag="span"
+                  class="AggregateBox_num --link"
+                >{{ customer.followees.length }}</RouterLink>
                 <span class="AggregateBox_unit"></span>
               </div>
             </div>

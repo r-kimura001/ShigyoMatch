@@ -101,7 +101,7 @@ class CustomerController extends Controller
    */
   public function show(int $id)
   {
-    $relations = ['works', 'followers', 'professionTypes', 'reviewers.reviewer'];
+    $relations = ['works', 'followers.followers', 'followees.followers', 'professionTypes', 'reviewers.reviewer'];
     return $this->customerService->customerById($relations, $id);
   }
 

@@ -17,6 +17,7 @@
       :rows="item.rows"
       class="Form_textarea"
       :placeholder="item.placeholder"
+      :maxlength="maxLength"
       :required="isRequired"
       :autofocus="isAutoFocus"
     ></textarea>

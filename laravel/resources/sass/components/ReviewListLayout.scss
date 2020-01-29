@@ -21,7 +21,10 @@
   .ReviewListLayout_comment{
     font-size: 1.4rem;
     white-space: pre-line;
-
+    line-height: 1.25;
+    @include media(sm-y){
+      font-size: 1.2rem;
+    }
   }
 
   @include media(sm-y){

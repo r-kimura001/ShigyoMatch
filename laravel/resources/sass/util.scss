@@ -89,6 +89,9 @@
 .u-mx5{
   margin: 0 5px;
 }
+.u-my15{
+  margin: 15px 0;
+}
 .u-ma5{
   margin: 5px;
 }
@@ -197,6 +200,7 @@
 }
 
 .u-tip{
+  position: relative;
   // default(top)
   &::after {
     content: attr(data-desc);

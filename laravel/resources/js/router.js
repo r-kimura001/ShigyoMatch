@@ -19,6 +19,7 @@ import Customers from '@/pages/customers/Customers.vue'
 import CustomerDetail from '@/pages/customers/CustomerDetail.vue'
 import CustomerShow from '@/pages/customers/CustomerShow.vue'
 import CustomerScout from '@/pages/customers/CustomerScout.vue'
+import Follows from '@/pages/customers/Follows.vue'
 
 // mypage
 import MyPage from '@/pages/mypage/MyPage.vue'
@@ -77,7 +78,7 @@ const routes = [
       return {
         page: /^[1-9[0-9]*$/.test(page) ? page * 1 : 1,
         paramPath: 'works',
-        skill: !skill ? '弁護士' : skill
+        professionTypeName: !skill ? '弁護士' : skill
       }
     },
     meta: {
@@ -126,7 +127,7 @@ const routes = [
       return {
         page: /^[1-9[0-9]*$/.test(page) ? page * 1 : 1,
         paramPath: 'customers',
-        skill: !skill ? '弁護士' : skill
+        professionTypeName: !skill ? '弁護士' : skill
       }
     },
     meta: {
@@ -149,6 +150,19 @@ const routes = [
       {
         path: 'scout',
         component: CustomerScout,
+      },
+      {
+        path: ':followParam',
+        component: Follows,
+        props: route => ({ followParam: route.params.followParam }),
+        beforeEnter (to, from, next) {
+          const reg = /^followe[er]s$/g
+          if (!to.params.followParam.match(reg)) {
+            next('/not-found')
+          } else {
+            next()
+          }
+        },
       },
     ]
   },

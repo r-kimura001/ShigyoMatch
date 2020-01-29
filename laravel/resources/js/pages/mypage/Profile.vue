@@ -152,6 +152,12 @@ export default {
         })
         validationCount++
       }
+      if(this.formData.greeting.value.length > this.formData.greeting.maxLength){
+        this.$store.commit('error/setMessage', {
+          greeting: [ `${this.formData.greeting.maxLength}文字を超えています` ]
+        })
+        validationCount++
+      }
       this.formData.profession_types.value.forEach( professionId => {
         if( !this.formData.profession_types.registerNumbers.hasOwnProperty(professionId) || this.formData.profession_types.registerNumbers[professionId] === ''){
           this.$store.commit('error/setMessage', {
