@@ -2889,6 +2889,36 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SortBox.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/SortBox.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    sortList: {
+      type: Array,
+      "default": function _default() {
+        return [];
+      }
+    },
+    sortKey: {}
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Tab.vue?vue&type=script&lang=js&":
 /*!**************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Tab.vue?vue&type=script&lang=js& ***!
@@ -6459,11 +6489,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 
@@ -9699,6 +9724,38 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -16446,6 +16503,70 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SortBox.vue?vue&type=template&id=261b7e32&":
+/*!**********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/SortBox.vue?vue&type=template&id=261b7e32& ***!
+  \**********************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "SortBox" }, [
+    _c(
+      "select",
+      {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.sortKey,
+            expression: "sortKey"
+          }
+        ],
+        on: {
+          change: [
+            function($event) {
+              var $$selectedVal = Array.prototype.filter
+                .call($event.target.options, function(o) {
+                  return o.selected
+                })
+                .map(function(o) {
+                  var val = "_value" in o ? o._value : o.value
+                  return val
+                })
+              _vm.sortKey = $event.target.multiple
+                ? $$selectedVal
+                : $$selectedVal[0]
+            },
+            function($event) {
+              return _vm.$emit("sortChange")
+            }
+          ]
+        }
+      },
+      _vm._l(_vm.sortList, function(item) {
+        return _c("option", { domProps: { value: item.value } }, [
+          _vm._v(_vm._s(item.label))
+        ])
+      }),
+      0
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Tab.vue?vue&type=template&id=8dbef60c&":
 /*!******************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Tab.vue?vue&type=template&id=8dbef60c& ***!
@@ -20084,92 +20205,77 @@ var render = function() {
         _c("section", { staticClass: "MainLayout_box" }, [
           !_vm.hasData
             ? _c("div", [_vm._v("登録された事務所はありません")])
-            : _c("div", [
-                _c("div", {}),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  [
-                    _c(
-                      "div",
-                      [
-                        _c("h2", { staticClass: "BaseTitle" }, [
-                          _c(
-                            "span",
-                            { staticClass: "BaseTitle_text --customer" },
-                            [
-                              _c(
-                                "span",
-                                { style: _vm.fontColor(_vm.professionId) },
-                                [_vm._v(_vm._s(_vm.skill))]
-                              ),
-                              _vm._v("事務所一覧")
-                            ]
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "Sort" }, [
-                          _c(
-                            "select",
+            : _c(
+                "div",
+                [
+                  _c("h2", { staticClass: "BaseTitle" }, [
+                    _c("span", { staticClass: "BaseTitle_text --customer" }, [
+                      _c("span", { style: _vm.fontColor(_vm.professionId) }, [
+                        _vm._v(_vm._s(_vm.professionTypeName))
+                      ]),
+                      _vm._v("事務所一覧")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "u-alignCenter u-mb20" }, [
+                    _c("div", { staticClass: "SortBox" }, [
+                      _c(
+                        "select",
+                        {
+                          directives: [
                             {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.sortKey,
-                                  expression: "sortKey"
-                                }
-                              ],
-                              on: {
-                                change: [
-                                  function($event) {
-                                    var $$selectedVal = Array.prototype.filter
-                                      .call($event.target.options, function(o) {
-                                        return o.selected
-                                      })
-                                      .map(function(o) {
-                                        var val =
-                                          "_value" in o ? o._value : o.value
-                                        return val
-                                      })
-                                    _vm.sortKey = $event.target.multiple
-                                      ? $$selectedVal
-                                      : $$selectedVal[0]
-                                  },
-                                  _vm.sortChange
-                                ]
-                              }
-                            },
-                            _vm._l(_vm.sortList, function(item) {
-                              return _c(
-                                "option",
-                                { domProps: { value: item.value } },
-                                [_vm._v(_vm._s(item.label))]
-                              )
-                            }),
-                            0
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.sortKey,
+                              expression: "sortKey"
+                            }
+                          ],
+                          on: {
+                            change: [
+                              function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.sortKey = $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              },
+                              _vm.sortChange
+                            ]
+                          }
+                        },
+                        _vm._l(_vm.sortList, function(item) {
+                          return _c(
+                            "option",
+                            { domProps: { value: item.value } },
+                            [_vm._v(_vm._s(item.label))]
                           )
-                        ]),
-                        _vm._v(" "),
-                        _vm.lastPage > 1
-                          ? _c("Pager", {
-                              attrs: {
-                                "current-page": _vm.currentPage,
-                                "last-page": _vm.lastPage,
-                                path: "customers",
-                                professionType: _vm.skill
-                              }
-                            })
-                          : _vm._e()
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c("CustomerListLayout", { attrs: { customers: _vm.list } })
-                  ],
-                  1
-                )
-              ])
+                        }),
+                        0
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _vm.lastPage > 1
+                    ? _c("Pager", {
+                        attrs: {
+                          "current-page": _vm.currentPage,
+                          "last-page": _vm.lastPage,
+                          path: "customers",
+                          professionType: _vm.professionTypeName
+                        }
+                      })
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _c("CustomerListLayout", { attrs: { customers: _vm.list } })
+                ],
+                1
+              )
         ])
       ])
     ])
@@ -22402,6 +22508,100 @@ var render = function() {
   return _c("div", { staticClass: "p-works" }, [
     _c("div", { staticClass: "MainLayout --hasWorks" }, [
       _c("div", { staticClass: "MainLayout_boxList" }, [
+        _c(
+          "div",
+          { staticClass: "SearchList u-mt20", class: { "--open": _vm.isOpen } },
+          [
+            _c("h2", { staticClass: "SearchList_title" }, [
+              _c(
+                "span",
+                {
+                  staticClass: "SearchList_titleText",
+                  on: { click: _vm.toggleBody }
+                },
+                [_vm._v("絞り込み検索")]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "SearchList_body" }, [
+              _c(
+                "ul",
+                { staticClass: "SearchList_tags" },
+                _vm._l(_vm.skills, function(skill) {
+                  return _c(
+                    "li",
+                    { key: skill.id, staticClass: "SearchList_item" },
+                    [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.targetSkills,
+                            expression: "targetSkills"
+                          }
+                        ],
+                        attrs: { type: "checkbox", id: "skill_" + skill.id },
+                        domProps: {
+                          value: skill.id,
+                          checked: Array.isArray(_vm.targetSkills)
+                            ? _vm._i(_vm.targetSkills, skill.id) > -1
+                            : _vm.targetSkills
+                        },
+                        on: {
+                          change: function($event) {
+                            var $$a = _vm.targetSkills,
+                              $$el = $event.target,
+                              $$c = $$el.checked ? true : false
+                            if (Array.isArray($$a)) {
+                              var $$v = skill.id,
+                                $$i = _vm._i($$a, $$v)
+                              if ($$el.checked) {
+                                $$i < 0 &&
+                                  (_vm.targetSkills = $$a.concat([$$v]))
+                              } else {
+                                $$i > -1 &&
+                                  (_vm.targetSkills = $$a
+                                    .slice(0, $$i)
+                                    .concat($$a.slice($$i + 1)))
+                              }
+                            } else {
+                              _vm.targetSkills = $$c
+                            }
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "label",
+                        {
+                          staticClass: "SearchList_tag Tag u-ma5",
+                          style: _vm.colorByIsSelect(skill.id),
+                          attrs: { for: "skill_" + skill.id }
+                        },
+                        [_vm._v(_vm._s(skill.body))]
+                      )
+                    ]
+                  )
+                }),
+                0
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "u-mt15 u-alignCenter" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "Button --blue --hasIcon",
+                    style: _vm.bgImage("assets/icon-glass-white.svg"),
+                    on: { click: _vm.searchByMultiSkill }
+                  },
+                  [_vm._v("検索")]
+                )
+              ])
+            ])
+          ]
+        ),
+        _vm._v(" "),
         _c("section", { staticClass: "MainLayout_box" }, [
           !_vm.hasData
             ? _c("div", [_vm._v("現在募集中の案件はありません")])
@@ -22418,63 +22618,77 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _vm.isSearch
-                    ? _c("div", { staticClass: "SearchStatus" }, [
-                        _vm._v(
-                          "\n            " +
-                            _vm._s(_vm.searchingSkill[0].body + "で絞り込み") +
-                            "\n            "
-                        ),
-                        _c(
-                          "div",
-                          {
-                            staticClass: "BorderButton --minimum",
-                            on: { click: _vm.clearSearch }
-                          },
-                          [_vm._v("クリア")]
-                        )
-                      ])
+                    ? _c(
+                        "div",
+                        { staticClass: "SearchStatus" },
+                        [
+                          _vm._l(_vm.searchingWords, function(word, index) {
+                            return _c(
+                              "span",
+                              {
+                                key: index,
+                                staticClass: "Tag u-ma5",
+                                style: _vm.bgColor(_vm.professionId)
+                              },
+                              [_vm._v(_vm._s(word))]
+                            )
+                          }),
+                          _vm._v("で絞り込み\n            "),
+                          _c(
+                            "div",
+                            {
+                              staticClass: "BorderButton --minimum",
+                              on: { click: _vm.clearSearch }
+                            },
+                            [_vm._v("クリア")]
+                          )
+                        ],
+                        2
+                      )
                     : _vm._e(),
                   _vm._v(" "),
-                  _c("div", { staticClass: "Sort" }, [
-                    _c(
-                      "select",
-                      {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.sortKey,
-                            expression: "sortKey"
+                  _c("div", { staticClass: "u-alignCenter u-mb20" }, [
+                    _c("div", { staticClass: "SortBox" }, [
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.sortKey,
+                              expression: "sortKey"
+                            }
+                          ],
+                          on: {
+                            change: [
+                              function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.sortKey = $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              },
+                              _vm.sortChange
+                            ]
                           }
-                        ],
-                        on: {
-                          change: [
-                            function($event) {
-                              var $$selectedVal = Array.prototype.filter
-                                .call($event.target.options, function(o) {
-                                  return o.selected
-                                })
-                                .map(function(o) {
-                                  var val = "_value" in o ? o._value : o.value
-                                  return val
-                                })
-                              _vm.sortKey = $event.target.multiple
-                                ? $$selectedVal
-                                : $$selectedVal[0]
-                            },
-                            _vm.sortChange
-                          ]
-                        }
-                      },
-                      _vm._l(_vm.sortList, function(item) {
-                        return _c(
-                          "option",
-                          { domProps: { value: item.value } },
-                          [_vm._v(_vm._s(item.label))]
-                        )
-                      }),
-                      0
-                    )
+                        },
+                        _vm._l(_vm.sortList, function(item) {
+                          return _c(
+                            "option",
+                            { domProps: { value: item.value } },
+                            [_vm._v(_vm._s(item.label))]
+                          )
+                        }),
+                        0
+                      )
+                    ])
                   ]),
                   _vm._v(" "),
                   _vm.lastPage > 1
@@ -84699,6 +84913,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/SortBox.vue":
+/*!*********************************************!*\
+  !*** ./resources/js/components/SortBox.vue ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _SortBox_vue_vue_type_template_id_261b7e32___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SortBox.vue?vue&type=template&id=261b7e32& */ "./resources/js/components/SortBox.vue?vue&type=template&id=261b7e32&");
+/* harmony import */ var _SortBox_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SortBox.vue?vue&type=script&lang=js& */ "./resources/js/components/SortBox.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _SortBox_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _SortBox_vue_vue_type_template_id_261b7e32___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _SortBox_vue_vue_type_template_id_261b7e32___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/SortBox.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/SortBox.vue?vue&type=script&lang=js&":
+/*!**********************************************************************!*\
+  !*** ./resources/js/components/SortBox.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SortBox_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./SortBox.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SortBox.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SortBox_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/SortBox.vue?vue&type=template&id=261b7e32&":
+/*!****************************************************************************!*\
+  !*** ./resources/js/components/SortBox.vue?vue&type=template&id=261b7e32& ***!
+  \****************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SortBox_vue_vue_type_template_id_261b7e32___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./SortBox.vue?vue&type=template&id=261b7e32& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SortBox.vue?vue&type=template&id=261b7e32&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SortBox_vue_vue_type_template_id_261b7e32___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SortBox_vue_vue_type_template_id_261b7e32___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/Tab.vue":
 /*!*****************************************!*\
   !*** ./resources/js/components/Tab.vue ***!
@@ -86713,12 +86996,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/util */ "./resources/js/util.js");
 /* harmony import */ var _components_Pager__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/components/Pager */ "./resources/js/components/Pager.vue");
+/* harmony import */ var _components_SortBox__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/components/SortBox */ "./resources/js/components/SortBox.vue");
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    Pager: _components_Pager__WEBPACK_IMPORTED_MODULE_2__["default"]
+    Pager: _components_Pager__WEBPACK_IMPORTED_MODULE_2__["default"],
+    SortBox: _components_SortBox__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
   props: {
     page: {
@@ -86739,7 +87025,8 @@ __webpack_require__.r(__webpack_exports__);
       source: [],
       searchedWorks: [],
       skills: [],
-      searchingSkill: null,
+      targetSkills: [],
+      searchingSkill: [],
       from: null,
       to: null,
       currentPage: null,
@@ -86747,7 +87034,7 @@ __webpack_require__.r(__webpack_exports__);
       hasData: true,
       professionId: 1,
       sortKey: 'created_at.desc',
-      test: null
+      isOpen: false
     };
   },
   watch: {
@@ -86784,7 +87071,15 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     isSearch: function isSearch() {
-      return !!this.searchingSkill;
+      return this.searchingSkill.length;
+    },
+    searchingWords: function searchingWords() {
+      this.searchingSkill.sort(function (a, b) {
+        return a.id - b.id;
+      });
+      return this.searchingSkill.map(function (skill) {
+        return skill.body;
+      });
     }
   },
   methods: {
@@ -86840,7 +87135,7 @@ __webpack_require__.r(__webpack_exports__);
                 this.lastPage = response.data.last_page;
               } else {
                 this.source = response.data[this.paramPath];
-                this.searchedWorks = response.data[this.paramPath];
+                this.searchedWorks = this.source;
                 this.sortBySelect();
                 this.setPaginate();
                 this.lastPage = Math.ceil(this.source.length / _util__WEBPACK_IMPORTED_MODULE_1__["PER_PAGE"]);
@@ -86906,16 +87201,32 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     searchBySkill: function searchBySkill(id) {
+      this.targetSkills = [id];
+      this.searchingSkill = [];
+      this.searchedWorks = [];
       this.setSearchingSkill(id);
-      this.searchedWorks = this.source.filter(function (work) {
-        if (!work.skills.length) {
-          return false;
-        }
+      this.setSearchedWork(id);
+      this.searchingSkill = this.searchingSkill.flat();
+      this.searchedWorks = this.searchedWorks.flat();
+      this.page = 1;
+      var count = !this.searchedWorks.length ? 1 : this.searchedWorks.length;
+      this.lastPage = Math.ceil(count / _util__WEBPACK_IMPORTED_MODULE_1__["PER_PAGE"]);
+      this.setPaginate();
+      this.list = this.searchedWorks.slice(this.from - 1, this.to);
+    },
+    searchByMultiSkill: function searchByMultiSkill() {
+      var _this = this;
 
-        return work.skills.some(function (skill) {
-          return skill.id === id;
-        });
+      this.toggleBody();
+      this.searchingSkill = [];
+      this.searchedWorks = [];
+      this.targetSkills.forEach(function (id) {
+        _this.setSearchingSkill(id);
+
+        _this.setSearchedWork(id);
       });
+      this.searchingSkill = this.searchingSkill.flat();
+      this.searchedWorks = this.searchedWorks.flat();
       this.page = 1;
       var count = !this.searchedWorks.length ? 1 : this.searchedWorks.length;
       this.lastPage = Math.ceil(count / _util__WEBPACK_IMPORTED_MODULE_1__["PER_PAGE"]);
@@ -86923,17 +87234,46 @@ __webpack_require__.r(__webpack_exports__);
       this.list = this.searchedWorks.slice(this.from - 1, this.to);
     },
     setSearchingSkill: function setSearchingSkill(id) {
-      this.searchingSkill = this.skills.filter(function (skill) {
+      this.searchingSkill.push(this.skills.filter(function (skill) {
         return skill.id === id;
-      });
+      }));
+    },
+    setSearchedWork: function setSearchedWork(id) {
+      this.searchedWorks.push(this.source.filter(function (work) {
+        if (!work.skills.length) {
+          return false;
+        }
+
+        return work.skills.some(function (skill) {
+          return skill.id === id;
+        });
+      }));
     },
     clearSearch: function clearSearch() {
       this.searchedWorks = this.source;
-      this.searchingSkill = null;
+      this.searchingSkill = [];
+      this.targetSkills = [];
       this.page = 1;
       this.setPaginate();
       this.lastPage = Math.ceil(this.source.length / _util__WEBPACK_IMPORTED_MODULE_1__["PER_PAGE"]);
       this.list = this.source.slice(this.from - 1, this.to);
+    },
+    toggleBody: function toggleBody() {
+      this.isOpen = !this.isOpen;
+    },
+    checked: function checked(skillId) {
+      return this.targetSkills.some(function (id) {
+        return id === skillId;
+      });
+    },
+    colorByIsSelect: function colorByIsSelect(skillId) {
+      if (!this.targetSkills.length) {
+        return this.bgColor();
+      } else if (this.checked(skillId)) {
+        return this.bgColor(this.professionId);
+      } else {
+        return this.bgColor();
+      }
     }
   }
 });
@@ -87832,7 +88172,8 @@ __webpack_require__.r(__webpack_exports__);
         return "".concat(_util__WEBPACK_IMPORTED_MODULE_0__["BASE_STORAGE_URL"], "/assets/thumb-work-no-image.svg");
       }
     },
-    bgColor: function bgColor(id) {
+    bgColor: function bgColor() {
+      var id = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
       return {
         backgroundColor: this.colorById(id)
       };

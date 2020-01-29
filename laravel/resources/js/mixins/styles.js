@@ -39,7 +39,7 @@ export default {
         return `${BASE_STORAGE_URL}/assets/thumb-work-no-image.svg`
       }
     },
-    bgColor(id) {
+    bgColor(id=0) {
       return {
         backgroundColor: this.colorById(id),
       }

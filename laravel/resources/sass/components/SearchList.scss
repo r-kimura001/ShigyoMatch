@@ -1,0 +1,68 @@
+.SearchList{
+  max-width: $baseWidth;
+  margin: 0 auto;
+  background: $white;
+  border-radius: 6px;
+  position: relative;
+  z-index: $headerZIndex - 1;
+
+  .SearchList_tags{
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .SearchList_title{
+    font-weight: bold;
+    padding: 15px;
+
+    .SearchList_titleText{
+      display: inline-block;
+      padding: 0 10px;
+      position: relative;
+      cursor: pointer;
+      &::after{
+        content: '';
+        position: absolute;
+        top: 50%;
+        right: -10px;
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        background-image: url(#{$assetPath}/icon-toggle-no-border.svg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        transform: translateY(-50%);
+        transition: transform $transitionBasis / 2;
+        -webkit-transition: -webkit-transform $transitionBasis / 2;
+      }
+    }
+  }
+  .SearchList_body{
+    position: absolute;
+    top: 45px;
+    left: 0;
+    right: 0;
+    padding: 15px;
+    background: $white;
+    transform-origin: center top;
+    transform: scale3d(1, 0, 1);
+    transition: $transitionBasis / 2;
+  }
+  .SearchList_tag{
+    cursor: pointer;
+    transition: $transitionBasis / 2;
+    &:hover{
+      opacity: 0.7;
+    }
+  }
+
+  &.--open{
+    .SearchList_titleText::after{
+      transform: translateY(-50%) rotate(180deg);
+    }
+    .SearchList_body{
+      font-size: initial;
+      transform: none;
+    }
+  }
+}

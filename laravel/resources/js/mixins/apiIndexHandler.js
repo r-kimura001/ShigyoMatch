@@ -1,7 +1,9 @@
 import { OK, PER_PAGE } from '@/util'
 import Pager from '@/components/Pager'
+import SortBox from '@/components/SortBox'
+
 export default {
-  components: { Pager },
+  components: { Pager, SortBox },
   props: {
     page: {
       type: Number,
@@ -21,7 +23,8 @@ export default {
       source: [],
       searchedWorks: [],
       skills: [],
-      searchingSkill: null,
+      targetSkills: [],
+      searchingSkill: [],
       from: null,
       to: null,
       currentPage: null,
@@ -29,7 +32,7 @@ export default {
       hasData: true,
       professionId: 1,
       sortKey: 'created_at.desc',
-      test: null
+      isOpen: false
     }
   },
   watch: {
@@ -46,7 +49,11 @@ export default {
   },
   computed:{
     isSearch(){
-      return !!this.searchingSkill
+      return this.searchingSkill.length
+    },
+    searchingWords(){
+      this.searchingSkill.sort((a,b) => a.id - b.id)
+      return this.searchingSkill.map( skill => skill.body )
     }
   },
   methods: {
@@ -76,7 +83,7 @@ export default {
         this.lastPage = response.data.last_page
       }else{
         this.source = response.data[this.paramPath]
-        this.searchedWorks = response.data[this.paramPath]
+        this.searchedWorks = this.source
         this.sortBySelect()
         this.setPaginate()
         this.lastPage = Math.ceil(this.source.length / PER_PAGE)
@@ -110,13 +117,29 @@ export default {
       }
     },
     searchBySkill(id){
+      this.targetSkills = [id]
+      this.searchingSkill = []
+      this.searchedWorks = []
       this.setSearchingSkill(id)
-      this.searchedWorks = this.source.filter( work => {
-        if(!work.skills.length){
-          return false
-        }
-        return work.skills.some( skill => skill.id === id )
+      this.setSearchedWork(id)
+      this.searchingSkill = this.searchingSkill.flat()
+      this.searchedWorks = this.searchedWorks.flat()
+      this.page = 1
+      const count = !this.searchedWorks.length ? 1 : this.searchedWorks.length
+      this.lastPage = Math.ceil(count / PER_PAGE)
+      this.setPaginate()
+      this.list = this.searchedWorks.slice(this.from-1, this.to)
+    },
+    searchByMultiSkill(){
+      this.toggleBody()
+      this.searchingSkill = []
+      this.searchedWorks = []
+      this.targetSkills.forEach( id => {
+        this.setSearchingSkill(id)
+        this.setSearchedWork(id)
       })
+      this.searchingSkill = this.searchingSkill.flat()
+      this.searchedWorks = this.searchedWorks.flat()
       this.page = 1
       const count = !this.searchedWorks.length ? 1 : this.searchedWorks.length
       this.lastPage = Math.ceil(count / PER_PAGE)
@@ -124,15 +147,39 @@ export default {
       this.list = this.searchedWorks.slice(this.from-1, this.to)
     },
     setSearchingSkill(id){
-      this.searchingSkill = this.skills.filter( skill => skill.id === id )
+      this.searchingSkill.push(this.skills.filter( skill => skill.id === id ))
+    },
+    setSearchedWork(id){
+      this.searchedWorks.push(this.source.filter( work => {
+        if(!work.skills.length){
+          return false
+        }
+        return work.skills.some( skill => skill.id === id )
+      }))
     },
     clearSearch(){
       this.searchedWorks = this.source
-      this.searchingSkill = null
+      this.searchingSkill = []
+      this.targetSkills = []
       this.page = 1
       this.setPaginate()
       this.lastPage = Math.ceil(this.source.length / PER_PAGE)
       this.list = this.source.slice(this.from-1, this.to)
+    },
+    toggleBody(){
+      this.isOpen = !this.isOpen
+    },
+    checked(skillId){
+      return this.targetSkills.some( id => id === skillId )
+    },
+    colorByIsSelect(skillId){
+      if(!this.targetSkills.length){
+        return this.bgColor()
+      }else if(this.checked(skillId)){
+        return this.bgColor(this.professionId)
+      }else {
+        return this.bgColor()
+      }
     }
   },
 }

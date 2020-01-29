@@ -5,29 +5,24 @@
         <section class="MainLayout_box">
           <div v-if="!hasData">登録された事務所はありません</div>
           <div v-else>
-            <div class="">
-              <!-- menubar -->
-            </div>
-            <div>
-              <div>
-                <h2 class="BaseTitle">
-                  <span class="BaseTitle_text --customer"><span :style="fontColor(professionId)">{{ skill }}</span>事務所一覧</span>
-                </h2>
-                <div class="Sort">
-                  <select @change="sortChange" v-model="sortKey">
-                    <option v-for="item in sortList" :value="item.value">{{ item.label }}</option>
-                  </select>
-                </div>
-                <Pager
-                  v-if="lastPage > 1"
-                  :current-page="currentPage"
-                  :last-page="lastPage"
-                  path="customers"
-                  :professionType="skill"
-                ></Pager>
+            <h2 class="BaseTitle">
+              <span class="BaseTitle_text --customer"><span :style="fontColor(professionId)">{{ professionTypeName }}</span>事務所一覧</span>
+            </h2>
+            <div class="u-alignCenter u-mb20">
+              <div class="SortBox">
+                <select @change="sortChange" v-model="sortKey">
+                  <option v-for="item in sortList" :value="item.value">{{ item.label }}</option>
+                </select>
               </div>
-              <CustomerListLayout :customers="list"></CustomerListLayout>
             </div>
+            <Pager
+              v-if="lastPage > 1"
+              :current-page="currentPage"
+              :last-page="lastPage"
+              path="customers"
+              :professionType="professionTypeName"
+            ></Pager>
+            <CustomerListLayout :customers="list"></CustomerListLayout>
           </div>
         </section>
       </div>
