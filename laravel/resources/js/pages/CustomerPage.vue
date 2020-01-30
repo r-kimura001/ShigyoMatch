@@ -1,5 +1,5 @@
 <template>
-  <div class="PageContent">
+  <div class="PageContent" :class="pageMod">
     <div class="PageContent_layout">
       <Header v-if="!ignore('Header')"></Header>
     </div>
@@ -24,13 +24,31 @@ export default {
     MainContent,
     Footer,
   },
+  data(){
+    return {
+      test: null,
+    }
+  },
   mixins: [switchDisplay],
   computed: {
     ...mapGetters({
       isLogin: 'auth/isLogin',
       apiStatus: 'auth/apiStatus',
       customerId: 'auth/customerId'
-    })
+    }),
+    pageMod(){
+      const path = this.$route.path
+      this.test = path
+      if(path.indexOf('/customers') != -1) {
+        return {
+          '--customers': true
+        }
+      } else if(path.indexOf('/mypage') != -1) {
+        return {
+          '--mypage': true
+        }
+      }
+    }
   },
   methods: {
     async preLogin(){
@@ -45,7 +63,7 @@ export default {
       if (this.apiStatus) {
         this.$router.push(`/mypage/${this.customerId}`)
       }
-    }
+    },
   }
 }
 </script>

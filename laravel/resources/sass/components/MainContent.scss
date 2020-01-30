@@ -1,12 +1,5 @@
 .MainContent{
   flex-grow: 1;
-  background: $customerDetailBg;
-  &.--customers{
-    background: $customersBg;
-  }
-  &.--mypage{
-    background: $white;
-  }
 
   .MainContent_heading{
     margin: 30px 0 0 80px;

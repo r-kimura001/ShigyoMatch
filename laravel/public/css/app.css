@@ -2827,15 +2827,6 @@ td {
 .MainContent {
   -webkit-box-flex: 1;
           flex-grow: 1;
-  background: #F4F4F4;
-}
-
-.MainContent.\--customers {
-  background: #F6F9FE;
-}
-
-.MainContent.\--mypage {
-  background: #fefefe;
 }
 
 .MainContent .MainContent_heading {
@@ -3743,6 +3734,15 @@ td {
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
           flex-direction: column;
+  background: #F4F4F4;
+}
+
+.PageContent.\--customers {
+  background: #F6F9FE;
+}
+
+.PageContent.\--mypage {
+  background: #fefefe;
 }
 
 .PageContent .PageContent_layout.\--flex {
@@ -4183,7 +4183,7 @@ td {
   background: #fefefe;
   border-radius: 6px;
   position: relative;
-  z-index: 99;
+  z-index: 98;
 }
 
 .SearchList .SearchList_tags {

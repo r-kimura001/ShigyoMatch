@@ -2465,19 +2465,6 @@ __webpack_require__.r(__webpack_exports__);
     isDetail: function isDetail() {
       var path = this.$route.path;
       return !!path.match(/^\/(works|customers)\/[1-9]?[0-9]+$/g);
-    },
-    pageMod: function pageMod() {
-      var path = this.$route.path;
-
-      if (path.indexOf('/customers') != -1) {
-        return {
-          '--customers': true
-        };
-      } else if (path.indexOf('/mypage') != -1) {
-        return {
-          '--mypage': true
-        };
-      }
     }
   }
 });
@@ -5644,12 +5631,32 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     MainContent: _components_MainContent__WEBPACK_IMPORTED_MODULE_4__["default"],
     Footer: _components_Footer__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
+  data: function data() {
+    return {
+      test: null
+    };
+  },
   mixins: [_mixins_switchDisplay__WEBPACK_IMPORTED_MODULE_1__["default"]],
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_5__["mapGetters"])({
     isLogin: 'auth/isLogin',
     apiStatus: 'auth/apiStatus',
     customerId: 'auth/customerId'
-  })),
+  }), {
+    pageMod: function pageMod() {
+      var path = this.$route.path;
+      this.test = path;
+
+      if (path.indexOf('/customers') != -1) {
+        return {
+          '--customers': true
+        };
+      } else if (path.indexOf('/mypage') != -1) {
+        return {
+          '--mypage': true
+        };
+      }
+    }
+  }),
   methods: {
     preLogin: function preLogin() {
       var formData;
@@ -16183,7 +16190,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "main",
-    { staticClass: "MainContent", class: _vm.pageMod },
+    { staticClass: "MainContent" },
     [
       _c("div", { staticClass: "MainContent_heading" }, [
         _vm.isDetail
@@ -19426,7 +19433,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "PageContent" }, [
+  return _c("div", { staticClass: "PageContent", class: _vm.pageMod }, [
     _c(
       "div",
       { staticClass: "PageContent_layout" },

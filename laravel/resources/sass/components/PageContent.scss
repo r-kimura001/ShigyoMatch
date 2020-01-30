@@ -2,6 +2,14 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background: $customerDetailBg;
+  &.--customers{
+    background: $customersBg;
+  }
+  &.--mypage{
+    background: $white;
+  }
+
   .PageContent_layout{
     &.--flex{
       flex-grow: 1;
