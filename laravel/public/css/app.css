@@ -1759,6 +1759,25 @@ td {
   line-height: 1.3;
 }
 
+.CustomerInfoLayout .CustomerInfoLayout_review {
+  position: relative;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: center;
+          justify-content: center;
+}
+
+.CustomerInfoLayout .CustomerInfoLayout_review .CustomerInfoLayout_reviewCount {
+  position: absolute;
+  top: 6px;
+  right: 0;
+  line-height: 1;
+  display: inline-block;
+  font-size: 1.2rem;
+  -webkit-transform: translateX(110%);
+          transform: translateX(110%);
+}
+
 .CustomerInfoLayout .CustomerInfoLayout_greeting {
   font-size: 1.2rem;
   color: #a8a3a7;
@@ -1781,6 +1800,18 @@ td {
   background-position: left 10px center;
   background-size: 20px;
   background-repeat: no-repeat;
+}
+
+.CustomerInfoLayout .CustomerInfoLayout_followersNum {
+  color: #349d9d;
+  font-weight: bold;
+  cursor: pointer;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.CustomerInfoLayout .CustomerInfoLayout_followersNum:hover {
+  color: #cccccc;
 }
 
 .CustomerInfoLayout .CustomerInfoLayout_skill {
@@ -2756,7 +2787,7 @@ td {
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 10000;
+  z-index: 99;
   opacity: 0;
   pointer-events: none;
 }
@@ -4064,17 +4095,12 @@ td {
 
 .ReviewListLayout {
   background: #fefefe;
-  padding: 20px;
+  padding: 10px 20px 20px;
 }
 
 .ReviewListLayout .ReviewListLayout_item {
-  padding: 10px 12px;
-  border-radius: 6px;
-  border: 1px solid #dedede;
-}
-
-.ReviewListLayout .ReviewListLayout_item:not(:last-of-type) {
-  margin-bottom: 15px;
+  padding: 15px 12px;
+  border-bottom: 1px solid #dedede;
 }
 
 .ReviewListLayout .ReviewListLayout_heading {
@@ -4082,33 +4108,40 @@ td {
   display: flex;
   -webkit-box-align: center;
           align-items: center;
-  -webkit-box-pack: end;
-          justify-content: flex-end;
+  margin-bottom: 10px;
 }
 
-@media screen and (max-width: 670px) {
+@media screen and (max-width: 480px) {
   .ReviewListLayout .ReviewListLayout_heading {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
             flex-direction: column;
-    -webkit-box-align: end;
-            align-items: flex-end;
+    -webkit-box-align: start;
+            align-items: flex-start;
+  }
+
+  .ReviewListLayout .ReviewListLayout_heading .ReviewListLayout_point {
+    padding: 10px 0 10px 20px;
   }
 }
 
 .ReviewListLayout .ReviewListLayout_comment {
-  font-size: 1.4rem;
+  padding-left: 20px;
+  font-size: 1.3rem;
   white-space: pre-line;
-  line-height: 1.25;
+  line-height: 1.3;
+  color: #a8a3a7;
+  font-style: oblique;
 }
 
-@media screen and (max-width: 670px) {
+@media screen and (max-width: 480px) {
   .ReviewListLayout .ReviewListLayout_comment {
+    padding-left: 10px;
     font-size: 1.2rem;
   }
 }
 
-@media screen and (max-width: 670px) {
+@media screen and (max-width: 480px) {
   .ReviewListLayout {
     padding: 10px;
   }

@@ -14,7 +14,14 @@
         <p class="CustomerInfoLayout_greeting">
           {{ customer.greeting }}
         </p>
-        <Review :score="averageReview" class="u-pb20" v-if="hasReview"></Review>
+        <div v-if="hasReview" class="HorizontalLayout --justifyCenter">
+          <div class="HorizontalLayout_col ">
+            <div class="CustomerInfoLayout_review">
+              <Review :score="averageReview" class="u-pb20"></Review>
+              <span class="CustomerInfoLayout_reviewCount">（{{ customer.reviewers.length }}件）</span>
+            </div>
+          </div>
+        </div>
         <p class="Text -fz12 -nodata u-alignCenter u-pb20" v-else>レビューはありません</p>
         <div class="HorizontalLayout --justifyCenter">
           <div class="HorizontalLayout_col">
@@ -77,9 +84,11 @@
               />
               <span>フォロワー</span>
             </h4>
-            <RouterLink :to="`/customers/${customer.id}/followers`" tag="p" class="Text -deepGreen -bold u-alignCenter">
-              {{ customer.followers.length }}
-            </RouterLink>
+            <p class="u-alignCenter">
+              <RouterLink :to="`/customers/${customer.id}/followers`" tag="span" class="CustomerInfoLayout_followersNum">
+                {{ customer.followers.length }}
+              </RouterLink>
+            </p>
           </li>
           <li class="HorizontalLayout_col --equal">
             <h4 class="Text -fz12 -bold u-alignCenter u-h20">
@@ -147,7 +156,6 @@
             class="ReviewListLayout_item"
             v-for="(review, index) in reviewers"
             :key="index">
-            <div class="ReviewListLayout_comment">{{ review.comment }}</div>
             <div class="ReviewListLayout_heading">
               <div class="ReviewListLayout_reviewer">
                 <MemberLink :customer="review.reviewer"></MemberLink>
@@ -156,6 +164,7 @@
                 <Review :score="review.point" :small="true"></Review>
               </div>
             </div>
+            <div class="ReviewListLayout_comment">{{ review.comment }}</div>
           </li>
         </ul>
       </section>

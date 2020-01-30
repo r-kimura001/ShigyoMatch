@@ -4407,6 +4407,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -18226,72 +18235,87 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "CustomerInfoLayout" }, [
     _c("div", { staticClass: "CustomerInfoLayout_heading" }, [
-      _c(
-        "div",
-        { staticClass: "CustomerInfoLayout_headingBox" },
-        [
-          _c("div", {
-            staticClass: "CustomerInfoLayout_thumb",
-            style: {
-              backgroundImage:
-                "url(" + _vm.thumbSrc(_vm.customer.file_name) + ")"
-            }
-          }),
-          _vm._v(" "),
-          _c("h2", { staticClass: "CustomerInfoLayout_name" }, [
-            _vm._v("\n        " + _vm._s(_vm.customer.name) + "\n      ")
-          ]),
-          _vm._v(" "),
-          _c("p", { staticClass: "CustomerInfoLayout_greeting" }, [
-            _vm._v("\n        " + _vm._s(_vm.customer.greeting) + "\n      ")
-          ]),
-          _vm._v(" "),
-          _vm.hasReview
-            ? _c("Review", {
-                staticClass: "u-pb20",
-                attrs: { score: _vm.averageReview }
-              })
-            : _c(
-                "p",
-                { staticClass: "Text -fz12 -nodata u-alignCenter u-pb20" },
-                [_vm._v("レビューはありません")]
-              ),
-          _vm._v(" "),
-          _c("div", { staticClass: "HorizontalLayout --justifyCenter" }, [
-            _c(
-              "div",
-              { staticClass: "HorizontalLayout_col" },
-              [
-                !_vm.self
-                  ? _c("FollowButton", {
-                      attrs: {
-                        id: _vm.customer.id,
-                        author: _vm.author,
-                        isFollow: _vm.isFollow
-                      },
-                      on: { followClick: _vm.followClick }
-                    })
-                  : _vm._e()
-              ],
-              1
+      _c("div", { staticClass: "CustomerInfoLayout_headingBox" }, [
+        _c("div", {
+          staticClass: "CustomerInfoLayout_thumb",
+          style: {
+            backgroundImage: "url(" + _vm.thumbSrc(_vm.customer.file_name) + ")"
+          }
+        }),
+        _vm._v(" "),
+        _c("h2", { staticClass: "CustomerInfoLayout_name" }, [
+          _vm._v("\n        " + _vm._s(_vm.customer.name) + "\n      ")
+        ]),
+        _vm._v(" "),
+        _c("p", { staticClass: "CustomerInfoLayout_greeting" }, [
+          _vm._v("\n        " + _vm._s(_vm.customer.greeting) + "\n      ")
+        ]),
+        _vm._v(" "),
+        _vm.hasReview
+          ? _c("div", { staticClass: "HorizontalLayout --justifyCenter" }, [
+              _c("div", { staticClass: "HorizontalLayout_col " }, [
+                _c(
+                  "div",
+                  { staticClass: "CustomerInfoLayout_review" },
+                  [
+                    _c("Review", {
+                      staticClass: "u-pb20",
+                      attrs: { score: _vm.averageReview }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "span",
+                      { staticClass: "CustomerInfoLayout_reviewCount" },
+                      [
+                        _vm._v(
+                          "（" + _vm._s(_vm.customer.reviewers.length) + "件）"
+                        )
+                      ]
+                    )
+                  ],
+                  1
+                )
+              ])
+            ])
+          : _c(
+              "p",
+              { staticClass: "Text -fz12 -nodata u-alignCenter u-pb20" },
+              [_vm._v("レビューはありません")]
             ),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "HorizontalLayout_col u-ml5" },
-              [
-                !_vm.self
-                  ? _c("ScoutButton", {
-                      attrs: { id: _vm.customer.id, author: _vm.author }
-                    })
-                  : _vm._e()
-              ],
-              1
-            )
-          ])
-        ],
-        1
-      ),
+        _vm._v(" "),
+        _c("div", { staticClass: "HorizontalLayout --justifyCenter" }, [
+          _c(
+            "div",
+            { staticClass: "HorizontalLayout_col" },
+            [
+              !_vm.self
+                ? _c("FollowButton", {
+                    attrs: {
+                      id: _vm.customer.id,
+                      author: _vm.author,
+                      isFollow: _vm.isFollow
+                    },
+                    on: { followClick: _vm.followClick }
+                  })
+                : _vm._e()
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "HorizontalLayout_col u-ml5" },
+            [
+              !_vm.self
+                ? _c("ScoutButton", {
+                    attrs: { id: _vm.customer.id, author: _vm.author }
+                  })
+                : _vm._e()
+            ],
+            1
+          )
+        ])
+      ]),
       _vm._v(" "),
       _c("div", { staticClass: "CustomerInfoLayout_headingBox" }, [
         _c(
@@ -18349,47 +18373,45 @@ var render = function() {
         ),
         _vm._v(" "),
         _c("ul", { staticClass: "HorizontalLayout u-py10" }, [
-          _c(
-            "li",
-            { staticClass: "HorizontalLayout_col --equal" },
-            [
-              _c(
-                "h4",
-                { staticClass: "Text -fz12 -bold u-alignCenter u-h20" },
-                [
-                  _c("img", {
-                    staticClass: "u-mr5",
-                    attrs: {
-                      src: _vm.imageSrc("icon-follow3.png"),
-                      width: "20px",
-                      alt: "icon_follower"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("span", [_vm._v("フォロワー")])
-                ]
-              ),
+          _c("li", { staticClass: "HorizontalLayout_col --equal" }, [
+            _c("h4", { staticClass: "Text -fz12 -bold u-alignCenter u-h20" }, [
+              _c("img", {
+                staticClass: "u-mr5",
+                attrs: {
+                  src: _vm.imageSrc("icon-follow3.png"),
+                  width: "20px",
+                  alt: "icon_follower"
+                }
+              }),
               _vm._v(" "),
-              _c(
-                "RouterLink",
-                {
-                  staticClass: "Text -deepGreen -bold u-alignCenter",
-                  attrs: {
-                    to: "/customers/" + _vm.customer.id + "/followers",
-                    tag: "p"
-                  }
-                },
-                [
-                  _vm._v(
-                    "\n            " +
-                      _vm._s(_vm.customer.followers.length) +
-                      "\n          "
-                  )
-                ]
-              )
-            ],
-            1
-          ),
+              _c("span", [_vm._v("フォロワー")])
+            ]),
+            _vm._v(" "),
+            _c(
+              "p",
+              { staticClass: "u-alignCenter" },
+              [
+                _c(
+                  "RouterLink",
+                  {
+                    staticClass: "CustomerInfoLayout_followersNum",
+                    attrs: {
+                      to: "/customers/" + _vm.customer.id + "/followers",
+                      tag: "span"
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\n              " +
+                        _vm._s(_vm.customer.followers.length) +
+                        "\n            "
+                    )
+                  ]
+                )
+              ],
+              1
+            )
+          ]),
           _vm._v(" "),
           _c("li", { staticClass: "HorizontalLayout_col --equal" }, [
             _c("h4", { staticClass: "Text -fz12 -bold u-alignCenter u-h20" }, [
@@ -18493,10 +18515,6 @@ var render = function() {
                     "li",
                     { key: index, staticClass: "ReviewListLayout_item" },
                     [
-                      _c("div", { staticClass: "ReviewListLayout_comment" }, [
-                        _vm._v(_vm._s(review.comment))
-                      ]),
-                      _vm._v(" "),
                       _c("div", { staticClass: "ReviewListLayout_heading" }, [
                         _c(
                           "div",
@@ -18519,6 +18537,10 @@ var render = function() {
                           ],
                           1
                         )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "ReviewListLayout_comment" }, [
+                        _vm._v(_vm._s(review.comment))
                       ])
                     ]
                   )
