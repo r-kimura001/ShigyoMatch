@@ -10,7 +10,7 @@
           @tabClick="change"
         ></Tab>
       </div>
-      <div v-if="currentFlag===scoutedFlag" class="MypageContent_body u-bgBlue">
+      <div v-if="currentFlag===scoutedFlag" class="MypageContent_body">
         <h3 class="BaseTitle">
           <span class="BaseTitle_text --scout">スカウトを受けた案件</span>
         </h3>
@@ -43,7 +43,7 @@
           </ul>
         </div>
       </div>
-      <div  v-if="currentFlag===scoutFlag" class="MypageContent_body u-bgGray">
+      <div  v-if="currentFlag===scoutFlag" class="MypageContent_body">
         <h3 class="BaseTitle">
           <span class="BaseTitle_text --scout">スカウトした案件</span>
         </h3>

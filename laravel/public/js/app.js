@@ -22335,7 +22335,7 @@ var render = function() {
         ),
         _vm._v(" "),
         _vm.currentFlag === _vm.scoutedFlag
-          ? _c("div", { staticClass: "MypageContent_body u-bgBlue" }, [
+          ? _c("div", { staticClass: "MypageContent_body" }, [
               _vm._m(0),
               _vm._v(" "),
               !_vm.hasScouted
@@ -22432,7 +22432,7 @@ var render = function() {
           : _vm._e(),
         _vm._v(" "),
         _vm.currentFlag === _vm.scoutFlag
-          ? _c("div", { staticClass: "MypageContent_body u-bgGray" }, [
+          ? _c("div", { staticClass: "MypageContent_body" }, [
               _vm._m(2),
               _vm._v(" "),
               !_vm.hasScout
