@@ -43,7 +43,7 @@
                 </RouterLink>
               </td>
               <td>
-                <div class="Table_dataText">{{ apply.updated_at }}</div>
+                <div class="Table_dataText">{{ replacedDate(apply.updated_at) }}</div>
               </td>
               <td>
                 <button
@@ -72,7 +72,7 @@
 </template>
 <script>
 import ReviewFormLayout from '@/layouts/ReviewFormLayout'
-import { OK } from '@/util'
+import { OK, dateReplace } from '@/util'
 import styles from '@/mixins/styles'
 import matches from '@/mixins/matches'
 export default {
@@ -134,6 +134,9 @@ export default {
     },
     reviewResult(apply){
       return apply.is_review ? 'レビュー済み' : 'レビューを書く'
+    },
+    replacedDate(dateTime){
+      return dateReplace(dateTime)
     }
   }
 

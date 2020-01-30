@@ -2719,6 +2719,10 @@ __webpack_require__.r(__webpack_exports__);
     datetime: {
       type: String,
       "default": '2020-01-08 12:30'
+    },
+    action: {
+      type: String,
+      "default": '登録'
     }
   },
   computed: {
@@ -4220,7 +4224,7 @@ __webpack_require__.r(__webpack_exports__);
       }, {
         name: '申込',
         path: '/applies',
-        iconSrc: ''
+        iconSrc: 'icon-postBox.svg'
       }, {
         name: '気になる',
         path: '/favorites',
@@ -8129,6 +8133,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     reviewResult: function reviewResult(apply) {
       return apply.is_review ? 'レビュー済み' : 'レビューを書く';
+    },
+    replacedDate: function replacedDate(dateTime) {
+      return Object(_util__WEBPACK_IMPORTED_MODULE_2__["dateReplace"])(dateTime);
     }
   }
 });
@@ -8858,6 +8865,76 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/mypage/ScoutDetail.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/mypage/ScoutDetail.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['scout'],
+  data: function data() {
+    return {
+      isShow: false,
+      formItem: {
+        name: 'body',
+        value: '',
+        formLabel: {
+          name: 'メッセージ',
+          style: this.bgImage('assets/icon-mail.svg')
+        },
+        placeholder: 'メッセージ本文',
+        rows: 10
+      }
+    };
+  },
+  computed: {
+    hasData: function hasData() {
+      return !!this.scout;
+    }
+  },
+  methods: {
+    out: function out() {
+      this.$emit('onClickOut');
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/mypage/Scouts.vue?vue&type=script&lang=js&":
 /*!*******************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/mypage/Scouts.vue?vue&type=script&lang=js& ***!
@@ -8870,10 +8947,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/util */ "./resources/js/util.js");
-/* harmony import */ var _layouts_WorkListLayout__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/layouts/WorkListLayout */ "./resources/js/layouts/WorkListLayout.vue");
-/* harmony import */ var _layouts_CustomerListLayout__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/layouts/CustomerListLayout */ "./resources/js/layouts/CustomerListLayout.vue");
-/* harmony import */ var _components_Tab__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/components/Tab */ "./resources/js/components/Tab.vue");
-/* harmony import */ var _mixins_styles__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/mixins/styles */ "./resources/js/mixins/styles.js");
+/* harmony import */ var _pages_mypage_ScoutDetail__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/pages/mypage/ScoutDetail */ "./resources/js/pages/mypage/ScoutDetail.vue");
+/* harmony import */ var _layouts_WorkListLayout__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/layouts/WorkListLayout */ "./resources/js/layouts/WorkListLayout.vue");
+/* harmony import */ var _layouts_CustomerListLayout__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/layouts/CustomerListLayout */ "./resources/js/layouts/CustomerListLayout.vue");
+/* harmony import */ var _components_Tab__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/components/Tab */ "./resources/js/components/Tab.vue");
+/* harmony import */ var _components_MemberLink__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/components/MemberLink */ "./resources/js/components/MemberLink.vue");
+/* harmony import */ var _components_ReplacedDate__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/components/ReplacedDate */ "./resources/js/components/ReplacedDate.vue");
+/* harmony import */ var _mixins_styles__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @/mixins/styles */ "./resources/js/mixins/styles.js");
 
 //
 //
@@ -8924,6 +9004,45 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
 
 
 
@@ -8931,11 +9050,14 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    WorkListLayout: _layouts_WorkListLayout__WEBPACK_IMPORTED_MODULE_2__["default"],
-    CustomerListLayout: _layouts_CustomerListLayout__WEBPACK_IMPORTED_MODULE_3__["default"],
-    Tab: _components_Tab__WEBPACK_IMPORTED_MODULE_4__["default"]
+    ScoutDetail: _pages_mypage_ScoutDetail__WEBPACK_IMPORTED_MODULE_2__["default"],
+    WorkListLayout: _layouts_WorkListLayout__WEBPACK_IMPORTED_MODULE_3__["default"],
+    CustomerListLayout: _layouts_CustomerListLayout__WEBPACK_IMPORTED_MODULE_4__["default"],
+    Tab: _components_Tab__WEBPACK_IMPORTED_MODULE_5__["default"],
+    MemberLink: _components_MemberLink__WEBPACK_IMPORTED_MODULE_6__["default"],
+    ReplacedDate: _components_ReplacedDate__WEBPACK_IMPORTED_MODULE_7__["default"]
   },
-  mixins: [_mixins_styles__WEBPACK_IMPORTED_MODULE_5__["default"]],
+  mixins: [_mixins_styles__WEBPACK_IMPORTED_MODULE_8__["default"]],
   props: {
     customer: {
       type: Object,
@@ -8949,6 +9071,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       scout_works: [],
       scouted_works: [],
+      currentScout: null,
       hasScout: true,
       hasScouted: true,
       scoutedFlag: 0,
@@ -8994,7 +9117,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     scoutWorks: function scoutWorks() {
-      var response;
+      var response, works;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function scoutWorks$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
@@ -9008,8 +9131,22 @@ __webpack_require__.r(__webpack_exports__);
               if (response.status !== _util__WEBPACK_IMPORTED_MODULE_1__["OK"]) {
                 this.hasScout = false;
               } else {
-                this.scout_works = response.data.filter(function (work) {
+                works = response.data.filter(function (work) {
                   return !!work.scouts.length;
+                });
+                this.scout_works = works.map(function (work) {
+                  work.scouts.forEach(function (targetCustomer) {
+                    targetCustomer.work = {
+                      id: work.id,
+                      title: work.title,
+                      fee: work.fee,
+                      file_name: work.file_name
+                    };
+                  });
+                  return work.scouts;
+                }).flat();
+                this.scout_works.sort(function (a, b) {
+                  return a.pivot.created_at < b.pivot.created_at ? 1 : -1;
                 });
                 this.hasScout = !!this.scout_works.length;
               }
@@ -9052,6 +9189,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     change: function change(flag) {
       this.currentFlag = flag;
+    },
+    showDetail: function showDetail(scout) {
+      this.currentScout = scout;
     }
   }
 });
@@ -16491,7 +16631,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "ReplacedDate" }, [
-    _c("span", [_vm._v("登録日時:")]),
+    _c("span", [_vm._v(_vm._s(_vm.action) + "日時:")]),
     _vm._v(" "),
     _c("span", [_vm._v(_vm._s(_vm.replacedDate))])
   ])
@@ -20886,7 +21026,9 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("h3", { staticClass: "BaseTitle" }, [
-      _c("span", { staticClass: "BaseTitle_text" }, [_vm._v("申込をした案件")])
+      _c("span", { staticClass: "BaseTitle_text --apply" }, [
+        _vm._v("申込をした案件")
+      ])
     ])
   },
   function() {
@@ -21663,7 +21805,7 @@ var render = function() {
                   _vm._v(" "),
                   _c("td", [
                     _c("div", { staticClass: "Table_dataText" }, [
-                      _vm._v(_vm._s(apply.updated_at))
+                      _vm._v(_vm._s(_vm.replacedDate(apply.updated_at)))
                     ])
                   ]),
                   _vm._v(" "),
@@ -22077,6 +22219,83 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/mypage/ScoutDetail.vue?vue&type=template&id=1445baa4&":
+/*!****************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/mypage/ScoutDetail.vue?vue&type=template&id=1445baa4& ***!
+  \****************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "ApplyDetail", class: { "--show": _vm.hasData } },
+    [
+      _vm.hasData
+        ? _c("div", { staticClass: "ApplyDetail_content" }, [
+            _c("div", { staticClass: "ApplyFormLayout" }, [
+              _vm._m(0),
+              _vm._v(" "),
+              _c("div", { staticClass: "ApplyFormLayout_info" }, [
+                _c("ul", { staticClass: "ApplyFormLayout_infoList" }, [
+                  _c("li", { staticClass: "ApplyFormLayout_infoItem" }, [
+                    _c("dl", { staticClass: "DefinitionLayout" }, [
+                      _c("dt", { staticClass: "DefinitionLayout_term" }, [
+                        _vm._v("タイトル")
+                      ]),
+                      _vm._v(" "),
+                      _c("dd", { staticClass: "DefinitionLayout_desc" }, [
+                        _vm._v(_vm._s(_vm.scout.title))
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", { staticClass: "ApplyFormLayout_infoItem" }, [
+                    _c("dl", { staticClass: "DefinitionLayout" }, [
+                      _c("dt", { staticClass: "DefinitionLayout_term" }, [
+                        _vm._v("内容")
+                      ]),
+                      _vm._v(" "),
+                      _c("dd", { staticClass: "DefinitionLayout_desc" }, [
+                        _vm._v(_vm._s(_vm.scout.body))
+                      ])
+                    ])
+                  ])
+                ])
+              ])
+            ])
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _c("button", { staticClass: "ApplyDetail_close", on: { click: _vm.out } })
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h2", { staticClass: "ApplyFormLayout_title" }, [
+      _c("span", { staticClass: "ApplyFormLayout_titleText" }, [
+        _vm._v("スカウトの内容")
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/mypage/Scouts.vue?vue&type=template&id=18ac3890&":
 /*!***********************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/mypage/Scouts.vue?vue&type=template&id=18ac3890& ***!
@@ -22092,110 +22311,238 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "p-scouts" }, [
-    _c("h2", { staticClass: "MypageContent_heading" }, [_vm._v("スカウト")]),
-    _vm._v(" "),
-    _c("section", { staticClass: "MypageContent_box" }, [
-      _c(
-        "div",
-        { staticClass: "MypageContent_tabs" },
-        [
-          _c("Tab", {
-            attrs: {
-              "current-flag": _vm.currentFlag,
-              "apply-flag": _vm.scoutedFlag,
-              "recruit-flag": _vm.scoutFlag
-            },
-            on: { tabClick: _vm.change }
-          })
-        ],
-        1
-      ),
+  return _c(
+    "div",
+    { staticClass: "p-scouts" },
+    [
+      _c("h2", { staticClass: "MypageContent_heading" }, [_vm._v("スカウト")]),
       _vm._v(" "),
-      _vm.currentFlag === _vm.scoutedFlag
-        ? _c("div", { staticClass: "MypageContent_body u-bgBlue" }, [
-            _vm._m(0),
-            _vm._v(" "),
-            !_vm.hasScouted
-              ? _c("p", { staticClass: "u-pa20" }, [
-                  _vm._v("スカウトを受けた案件はありません")
-                ])
-              : _c(
-                  "div",
-                  { staticClass: "u-py20" },
-                  _vm._l(_vm.scouted_works, function(work, index) {
-                    return _c("ul", { key: index, staticClass: "ScoutList" }, [
-                      _c("li", { staticClass: "ScoutList_item" }, [
-                        _c("div", { staticClass: "ScoutList_targetInfo" }, [
-                          _vm._v(_vm._s(work.customer.name))
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "ScoutList_scoutInfo" }, [
-                          _c("div", {
-                            staticClass: "ScoutList_scoutThumb",
-                            style: _vm.bgImage(work.file_name, "work")
-                          }),
-                          _vm._v(" "),
-                          _c("p", { staticClass: "ScoutList_text u-ml20" }, [
-                            _vm._v(_vm._s(work.pivot.title))
+      _c("section", { staticClass: "MypageContent_box" }, [
+        _c(
+          "div",
+          { staticClass: "MypageContent_tabs" },
+          [
+            _c("Tab", {
+              attrs: {
+                "current-flag": _vm.currentFlag,
+                "apply-flag": _vm.scoutedFlag,
+                "recruit-flag": _vm.scoutFlag
+              },
+              on: { tabClick: _vm.change }
+            })
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _vm.currentFlag === _vm.scoutedFlag
+          ? _c("div", { staticClass: "MypageContent_body u-bgBlue" }, [
+              _vm._m(0),
+              _vm._v(" "),
+              !_vm.hasScouted
+                ? _c("p", { staticClass: "u-pa20" }, [
+                    _vm._v("スカウトを受けた案件はありません")
+                  ])
+                : _c(
+                    "div",
+                    {},
+                    _vm._l(_vm.scouted_works, function(work, index) {
+                      return _c(
+                        "ul",
+                        { key: index, staticClass: "ScoutList" },
+                        [
+                          _c("li", { staticClass: "ScoutList_item" }, [
+                            _c("div", { staticClass: "ScoutList_targetInfo" }, [
+                              _c(
+                                "div",
+                                { staticClass: "u-pl20" },
+                                [
+                                  _c("ReplacedDate", {
+                                    attrs: {
+                                      action: "スカウトを受けた",
+                                      datetime: work.pivot.updated_at
+                                    }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                {
+                                  staticClass:
+                                    "HorizontalLayout --vertical u-mt10"
+                                },
+                                [
+                                  _c(
+                                    "div",
+                                    { staticClass: "HorizontalLayout_col" },
+                                    [
+                                      _c("MemberLink", {
+                                        attrs: { customer: work.customer }
+                                      })
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _vm._m(1, true)
+                                ]
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "ScoutList_scoutInfo" },
+                              [
+                                _c("div", {
+                                  staticClass: "ScoutList_scoutThumb",
+                                  style: _vm.bgImage(work.file_name)
+                                }),
+                                _vm._v(" "),
+                                _c(
+                                  "RouterLink",
+                                  {
+                                    staticClass: "ScoutList_workLink u-ml10",
+                                    attrs: { to: "/works/" + work.id, tag: "p" }
+                                  },
+                                  [_vm._v(_vm._s(work.title))]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "button",
+                                  {
+                                    staticClass: "Button --minimum u-ml10",
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.showDetail(work.pivot)
+                                      }
+                                    }
+                                  },
+                                  [_vm._v("スカウトの内容")]
+                                )
+                              ],
+                              1
+                            )
                           ])
-                        ])
-                      ])
-                    ])
-                  }),
-                  0
-                )
-          ])
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.currentFlag === _vm.scoutFlag
-        ? _c("div", { staticClass: "MypageContent_body u-bgGray" }, [
-            _vm._m(1),
-            _vm._v(" "),
-            !_vm.hasScout
-              ? _c("p", { staticClass: "u-pa20" }, [
-                  _vm._v("スカウトした案件はありません")
-                ])
-              : _c(
-                  "div",
-                  { staticClass: "u-py20" },
-                  _vm._l(_vm.scout_works, function(work, index) {
-                    return _c(
+                        ]
+                      )
+                    }),
+                    0
+                  )
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.currentFlag === _vm.scoutFlag
+          ? _c("div", { staticClass: "MypageContent_body u-bgGray" }, [
+              _vm._m(2),
+              _vm._v(" "),
+              !_vm.hasScout
+                ? _c("p", { staticClass: "u-pa20" }, [
+                    _vm._v("スカウトした案件はありません")
+                  ])
+                : _c("div", {}, [
+                    _c(
                       "ul",
-                      { key: index, staticClass: "ScoutList" },
-                      _vm._l(work.scouts, function(targetCustomer, idx) {
+                      { staticClass: "ScoutList" },
+                      _vm._l(_vm.scout_works, function(target, idx) {
                         return _c(
                           "li",
                           { key: idx, staticClass: "ScoutList_item" },
                           [
                             _c("div", { staticClass: "ScoutList_targetInfo" }, [
-                              _vm._v(_vm._s(targetCustomer.name))
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "ScoutList_scoutInfo" }, [
-                              _c("div", {
-                                staticClass: "ScoutList_targetThumb",
-                                style: _vm.bgImage(targetCustomer.file_name)
-                              }),
+                              _c(
+                                "div",
+                                { staticClass: "u-pl20" },
+                                [
+                                  _c("ReplacedDate", {
+                                    attrs: {
+                                      action: "スカウト",
+                                      datetime: target.pivot.updated_at
+                                    }
+                                  })
+                                ],
+                                1
+                              ),
                               _vm._v(" "),
                               _c(
-                                "p",
-                                { staticClass: "ScoutList_text u-ml20" },
-                                [_vm._v(_vm._s(targetCustomer.pivot.title))]
+                                "div",
+                                {
+                                  staticClass:
+                                    "HorizontalLayout --vertical u-mt10"
+                                },
+                                [
+                                  _c(
+                                    "div",
+                                    { staticClass: "HorizontalLayout_col" },
+                                    [
+                                      _c("MemberLink", {
+                                        attrs: { customer: target }
+                                      })
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _vm._m(3, true)
+                                ]
                               )
-                            ])
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "ScoutList_scoutInfo" },
+                              [
+                                _c("div", {
+                                  staticClass: "ScoutList_scoutThumb",
+                                  style: _vm.bgImage(target.work.file_name)
+                                }),
+                                _vm._v(" "),
+                                _c(
+                                  "RouterLink",
+                                  {
+                                    staticClass: "ScoutList_workLink u-ml10",
+                                    attrs: {
+                                      to: "/works/" + target.work.id,
+                                      tag: "p"
+                                    }
+                                  },
+                                  [_vm._v(_vm._s(target.work.title))]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "button",
+                                  {
+                                    staticClass: "Button --minimum u-ml10",
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.showDetail(target.pivot)
+                                      }
+                                    }
+                                  },
+                                  [_vm._v("スカウトの内容")]
+                                )
+                              ],
+                              1
+                            )
                           ]
                         )
                       }),
                       0
                     )
-                  }),
-                  0
-                )
-          ])
-        : _vm._e()
-    ])
-  ])
+                  ])
+            ])
+          : _vm._e()
+      ]),
+      _vm._v(" "),
+      _c("ScoutDetail", {
+        attrs: { scout: _vm.currentScout },
+        on: {
+          onClickOut: function($event) {
+            _vm.currentScout = null
+          }
+        }
+      })
+    ],
+    1
+  )
 }
 var staticRenderFns = [
   function() {
@@ -22212,10 +22559,26 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "HorizontalLayout_col" }, [
+      _c("span", [_vm._v("さんからスカウトが届きました")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c("h3", { staticClass: "BaseTitle" }, [
       _c("span", { staticClass: "BaseTitle_text --scout" }, [
         _vm._v("スカウトした案件")
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "HorizontalLayout_col" }, [
+      _c("span", [_vm._v("さんにスカウトを送りました")])
     ])
   }
 ]
@@ -90010,6 +90373,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Profile_vue_vue_type_template_id_2958a0de___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Profile_vue_vue_type_template_id_2958a0de___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/pages/mypage/ScoutDetail.vue":
+/*!***************************************************!*\
+  !*** ./resources/js/pages/mypage/ScoutDetail.vue ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ScoutDetail_vue_vue_type_template_id_1445baa4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ScoutDetail.vue?vue&type=template&id=1445baa4& */ "./resources/js/pages/mypage/ScoutDetail.vue?vue&type=template&id=1445baa4&");
+/* harmony import */ var _ScoutDetail_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ScoutDetail.vue?vue&type=script&lang=js& */ "./resources/js/pages/mypage/ScoutDetail.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _ScoutDetail_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ScoutDetail_vue_vue_type_template_id_1445baa4___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _ScoutDetail_vue_vue_type_template_id_1445baa4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/pages/mypage/ScoutDetail.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/pages/mypage/ScoutDetail.vue?vue&type=script&lang=js&":
+/*!****************************************************************************!*\
+  !*** ./resources/js/pages/mypage/ScoutDetail.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ScoutDetail_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./ScoutDetail.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/mypage/ScoutDetail.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ScoutDetail_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/pages/mypage/ScoutDetail.vue?vue&type=template&id=1445baa4&":
+/*!**********************************************************************************!*\
+  !*** ./resources/js/pages/mypage/ScoutDetail.vue?vue&type=template&id=1445baa4& ***!
+  \**********************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ScoutDetail_vue_vue_type_template_id_1445baa4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./ScoutDetail.vue?vue&type=template&id=1445baa4& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/mypage/ScoutDetail.vue?vue&type=template&id=1445baa4&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ScoutDetail_vue_vue_type_template_id_1445baa4___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ScoutDetail_vue_vue_type_template_id_1445baa4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

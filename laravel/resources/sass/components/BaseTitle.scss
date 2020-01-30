@@ -37,6 +37,9 @@
     &.--favorite{
       background-image: url(#{$assetPath}/icon-favorite.svg);
     }
+    &.--apply{
+      background-image: url(#{$assetPath}/icon-postBox.svg);
+    }
   }
   .BaseTitle_button{
     flex-grow: 1;

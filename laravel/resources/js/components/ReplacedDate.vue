@@ -1,6 +1,6 @@
 <template>
   <div class="ReplacedDate">
-    <span>登録日時:</span>
+    <span>{{ action }}日時:</span>
     <span>{{ replacedDate }}</span>
   </div>
 </template>
@@ -11,6 +11,10 @@
       datetime: {
         type: String,
         default: '2020-01-08 12:30'
+      },
+      action: {
+        type: String,
+        default: '登録'
       }
     },
     computed: {

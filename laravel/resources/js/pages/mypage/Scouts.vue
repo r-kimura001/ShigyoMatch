@@ -15,13 +15,29 @@
           <span class="BaseTitle_text --scout">スカウトを受けた案件</span>
         </h3>
         <p v-if="!hasScouted" class="u-pa20">スカウトを受けた案件はありません</p>
-        <div v-else class="u-py20">
+        <div v-else class="">
           <ul v-for="(work, index) in scouted_works" :key="index" class="ScoutList">
             <li class="ScoutList_item">
-              <div class="ScoutList_targetInfo">{{ work.customer.name }}</div>
+              <div class="ScoutList_targetInfo">
+                <div class="u-pl20">
+                  <ReplacedDate
+                    action="スカウトを受けた"
+                    :datetime="work.pivot.updated_at"
+                  ></ReplacedDate>
+                </div>
+                <div class="HorizontalLayout --vertical u-mt10">
+                  <div class="HorizontalLayout_col">
+                    <MemberLink :customer="work.customer"></MemberLink>
+                  </div>
+                  <div class="HorizontalLayout_col">
+                    <span>さんからスカウトが届きました</span>
+                  </div>
+                </div>
+              </div>
               <div class="ScoutList_scoutInfo">
-                <div class="ScoutList_scoutThumb" :style="bgImage(work.file_name, 'work')"></div>
-                <p class="ScoutList_text u-ml20">{{ work.pivot.title }}</p>
+                <div class="ScoutList_scoutThumb" :style="bgImage(work.file_name)"></div>
+                <RouterLink :to="`/works/${work.id}`" tag="p" class="ScoutList_workLink u-ml10">{{ work.title }}</RouterLink>
+                <button class="Button --minimum u-ml10" @click="showDetail(work.pivot)">スカウトの内容</button>
               </div>
             </li>
           </ul>
@@ -32,29 +48,52 @@
           <span class="BaseTitle_text --scout">スカウトした案件</span>
         </h3>
         <p v-if="!hasScout" class="u-pa20">スカウトした案件はありません</p>
-        <div v-else class="u-py20">
-          <ul v-for="(work, index) in scout_works" :key="index" class="ScoutList">
-            <li v-for="(targetCustomer, idx) in work.scouts" :key="idx" class="ScoutList_item">
-              <div class="ScoutList_targetInfo">{{ targetCustomer.name }}</div>
+        <div v-else class="">
+          <ul class="ScoutList">
+            <li v-for="(target, idx) in scout_works" :key="idx" class="ScoutList_item">
+              <div class="ScoutList_targetInfo">
+                <div class="u-pl20">
+                  <ReplacedDate
+                    action="スカウト"
+                    :datetime="target.pivot.updated_at"
+                  ></ReplacedDate>
+                </div>
+                <div class="HorizontalLayout --vertical u-mt10">
+                  <div class="HorizontalLayout_col">
+                    <MemberLink :customer="target"></MemberLink>
+                  </div>
+                  <div class="HorizontalLayout_col">
+                    <span>さんにスカウトを送りました</span>
+                  </div>
+                </div>
+              </div>
               <div class="ScoutList_scoutInfo">
-                <div class="ScoutList_targetThumb" :style="bgImage(targetCustomer.file_name)"></div>
-                <p class="ScoutList_text u-ml20">{{ targetCustomer.pivot.title }}</p>
+                <div class="ScoutList_scoutThumb" :style="bgImage(target.work.file_name)"></div>
+                <RouterLink :to="`/works/${target.work.id}`" tag="p" class="ScoutList_workLink u-ml10">{{ target.work.title }}</RouterLink>
+                <button class="Button --minimum u-ml10" @click="showDetail(target.pivot)">スカウトの内容</button>
               </div>
             </li>
           </ul>
         </div>
       </div>
     </section>
+    <ScoutDetail
+      :scout="currentScout"
+      @onClickOut="currentScout = null"
+    ></ScoutDetail>
   </div>
 </template>
 <script>
   import { OK } from '@/util'
+  import ScoutDetail from '@/pages/mypage/ScoutDetail'
   import WorkListLayout from '@/layouts/WorkListLayout'
   import CustomerListLayout from '@/layouts/CustomerListLayout'
   import Tab from '@/components/Tab'
+  import MemberLink from '@/components/MemberLink'
+  import ReplacedDate from '@/components/ReplacedDate'
   import styles from '@/mixins/styles'
   export default {
-    components: { WorkListLayout, CustomerListLayout, Tab },
+    components: { ScoutDetail, WorkListLayout, CustomerListLayout, Tab, MemberLink, ReplacedDate },
     mixins: [styles],
     props: {
       customer: {
@@ -67,6 +106,7 @@
       return {
         scout_works: [],
         scouted_works: [],
+        currentScout: null,
         hasScout: true,
         hasScouted: true,
         scoutedFlag: 0,
@@ -99,7 +139,19 @@
         if (response.status !== OK) {
           this.hasScout = false
         } else {
-          this.scout_works = response.data.filter(work => !!work.scouts.length)
+          const works = response.data.filter(work => !!work.scouts.length)
+          this.scout_works = works.map( work => {
+            work.scouts.forEach( targetCustomer => {
+              targetCustomer.work = {
+                id: work.id,
+                title: work.title,
+                fee: work.fee,
+                file_name: work.file_name,
+              }
+            })
+            return work.scouts
+          }).flat()
+          this.scout_works.sort( (a, b) => a.pivot.created_at < b.pivot.created_at ? 1 : -1)
           this.hasScout = !!this.scout_works.length
         }
       },
@@ -117,6 +169,9 @@
       },
       change(flag) {
         this.currentFlag = flag
+      },
+      showDetail(scout){
+        this.currentScout = scout
       }
     }
   }

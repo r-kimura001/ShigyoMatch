@@ -58,7 +58,7 @@ export default {
         {
           name: '申込',
           path: '/applies',
-          iconSrc: '',
+          iconSrc: 'icon-postBox.svg',
         },
         {
           name: '気になる',

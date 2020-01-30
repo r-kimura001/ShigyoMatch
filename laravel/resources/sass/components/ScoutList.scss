@@ -1,8 +1,19 @@
 .ScoutList{
+  padding: 30px 20px;
+  border-radius: 6px;
+  background: $white;
+  font-size: 1.4rem;
+  @include media(sm-y){
+    padding: 15px;
+  }
+  .ScoutList_item{
+    padding: 10px 0;
+    border-bottom: 1px solid $gray-2;
+  }
   .ScoutList_scoutInfo{
-    padding: 10px;
     display: flex;
     align-items: center;
+    padding: 10px 40px 0 40px;
 
     .ScoutList_scoutThumb{
       width: 60px;
@@ -11,13 +22,24 @@
       background-position: center;
       background-size: cover;
     }
+
+    .ScoutList_workLink{
+      flex-grow: 1;
+      color: $blue;
+      cursor: pointer;
+      font-weight: bold;
+      transition: $transitionBasis;
+      font-size: 1.4rem;
+      &:hover{
+        opacity: 0.7;
+      }
+    }
+
   }
   .ScoutList_targetInfo{
-    font-size: 1.2rem;
     padding-left: 10px;
   }
   .ScoutList_text{
-    font-size: 1.4rem;
     color: $paleBlue;
   }
 

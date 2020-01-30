@@ -1143,6 +1143,10 @@ td {
   background-image: url(https://asset.shigyo-match.site/assets/icon-favorite.svg);
 }
 
+.BaseTitle .BaseTitle_text.\--apply {
+  background-image: url(https://asset.shigyo-match.site/assets/icon-postBox.svg);
+}
+
 .BaseTitle .BaseTitle_button {
   -webkit-box-flex: 1;
           flex-grow: 1;
@@ -3876,7 +3880,7 @@ td {
 
 .ReplacedDate {
   display: inline-block;
-  font-size: 1rem;
+  font-size: 1.2rem;
   color: #a8a3a7;
 }
 
@@ -4153,12 +4157,30 @@ td {
   }
 }
 
+.ScoutList {
+  padding: 30px 20px;
+  border-radius: 6px;
+  background: #fefefe;
+  font-size: 1.4rem;
+}
+
+@media screen and (max-width: 670px) {
+  .ScoutList {
+    padding: 15px;
+  }
+}
+
+.ScoutList .ScoutList_item {
+  padding: 10px 0;
+  border-bottom: 1px solid #cccccc;
+}
+
 .ScoutList .ScoutList_scoutInfo {
-  padding: 10px;
   display: -webkit-box;
   display: flex;
   -webkit-box-align: center;
           align-items: center;
+  padding: 10px 40px 0 40px;
 }
 
 .ScoutList .ScoutList_scoutInfo .ScoutList_scoutThumb {
@@ -4169,13 +4191,26 @@ td {
   background-size: cover;
 }
 
+.ScoutList .ScoutList_scoutInfo .ScoutList_workLink {
+  -webkit-box-flex: 1;
+          flex-grow: 1;
+  color: #1c91df;
+  cursor: pointer;
+  font-weight: bold;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  font-size: 1.4rem;
+}
+
+.ScoutList .ScoutList_scoutInfo .ScoutList_workLink:hover {
+  opacity: 0.7;
+}
+
 .ScoutList .ScoutList_targetInfo {
-  font-size: 1.2rem;
   padding-left: 10px;
 }
 
 .ScoutList .ScoutList_text {
-  font-size: 1.4rem;
   color: #2992d9;
 }
 
