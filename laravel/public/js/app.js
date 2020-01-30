@@ -4457,18 +4457,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     isFollow: function isFollow() {
       var _this = this;
 
-      var isFollow = false;
+      if (!this.isLogin) {
+        return false;
+      }
 
       if (!this.customer.followers.length) {
         return false;
       }
 
-      this.customer.followers.forEach(function (follower) {
-        if (follower.id === _this.author.id) {
-          isFollow = true;
-        }
+      return this.customer.followers.some(function (follower) {
+        return follower.id === _this.author.id;
       });
-      return isFollow;
     }
   }),
   methods: {
@@ -6584,6 +6583,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 
@@ -6653,18 +6653,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     checkFollow: function checkFollow(member) {
       var _this = this;
 
-      var isFollow = false;
-
       if (!member.followers.length) {
         return false;
       }
 
-      member.followers.forEach(function (follower) {
-        if (follower.id === _this.author.id) {
-          isFollow = true;
-        }
+      return member.followers.some(function (follower) {
+        return follower.id === _this.author.id;
       });
-      return isFollow;
     },
     followClick: function followClick(member) {
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function followClick$(_context) {
@@ -20329,55 +20324,67 @@ var render = function() {
               on: { tabClick: _vm.changeParam }
             }),
             _vm._v(" "),
-            _c(
-              "ul",
-              { staticClass: "MemberList" },
-              _vm._l(_vm.list, function(member, index) {
-                return _c(
-                  "li",
-                  { key: member.id, staticClass: "MemberList_item" },
-                  [
-                    _c("div", { staticClass: "HorizontalLayout --vertical" }, [
-                      _c(
-                        "div",
-                        { staticClass: "HorizontalLayout_col --flex" },
-                        [
-                          _c("MemberLink", { attrs: { customer: member } }),
-                          _vm._v(" "),
-                          _c("p", { staticClass: "MemberList_greeting" }, [
-                            _vm._v(_vm._s(member.greeting))
-                          ])
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: "HorizontalLayout_col" },
-                        [
-                          !_vm.self(member)
-                            ? _c("FollowButton", {
-                                attrs: {
-                                  id: member.id,
-                                  author: _vm.author,
-                                  isFollow: _vm.checkFollow(member)
-                                },
-                                on: {
-                                  followClick: function($event) {
-                                    return _vm.followClick(member)
-                                  }
-                                }
-                              })
-                            : _vm._e()
-                        ],
-                        1
-                      )
-                    ])
-                  ]
+            !_vm.list.length
+              ? _c("p", { staticClass: "Text -nodata u-py40 u-alignCenter" }, [
+                  _vm._v(_vm._s(_vm.currentStatus) + "はありません")
+                ])
+              : _c(
+                  "ul",
+                  { staticClass: "MemberList" },
+                  _vm._l(_vm.list, function(member, index) {
+                    return _c(
+                      "li",
+                      { key: member.id, staticClass: "MemberList_item" },
+                      [
+                        _c(
+                          "div",
+                          { staticClass: "HorizontalLayout --vertical" },
+                          [
+                            _c(
+                              "div",
+                              { staticClass: "HorizontalLayout_col --flex" },
+                              [
+                                _c("MemberLink", {
+                                  attrs: { customer: member }
+                                }),
+                                _vm._v(" "),
+                                _c(
+                                  "p",
+                                  { staticClass: "MemberList_greeting" },
+                                  [_vm._v(_vm._s(member.greeting))]
+                                )
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "HorizontalLayout_col" },
+                              [
+                                !_vm.self(member)
+                                  ? _c("FollowButton", {
+                                      attrs: {
+                                        id: member.id,
+                                        author: _vm.author,
+                                        isFollow: _vm.checkFollow(member)
+                                      },
+                                      on: {
+                                        followClick: function($event) {
+                                          return _vm.followClick(member)
+                                        }
+                                      }
+                                    })
+                                  : _vm._e()
+                              ],
+                              1
+                            )
+                          ]
+                        )
+                      ]
+                    )
+                  }),
+                  0
                 )
-              }),
-              0
-            )
           ],
           1
         )

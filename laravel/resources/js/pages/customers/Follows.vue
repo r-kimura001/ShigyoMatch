@@ -12,7 +12,8 @@
             :currentFlag="currentFlag"
             @tabClick="changeParam"
           ></Tab>
-          <ul class="MemberList">
+          <p v-if="!list.length" class="Text -nodata u-py40 u-alignCenter">{{ currentStatus }}はありません</p>
+          <ul v-else class="MemberList">
             <li
               class="MemberList_item"
               v-for="(member, index) in list"
@@ -100,16 +101,10 @@
         return member.id === this.author.id
       },
       checkFollow(member){
-        let isFollow = false
         if(!member.followers.length){
           return false
         }
-        member.followers.forEach(follower => {
-          if(follower.id === this.author.id){
-            isFollow = true
-          }
-        })
-        return isFollow
+        return member.followers.some(follower => follower.id === this.author.id)
       },
       async followClick(member){
         if(this.checkFollow(member)){

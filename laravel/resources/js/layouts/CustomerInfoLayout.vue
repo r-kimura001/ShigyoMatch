@@ -210,16 +210,13 @@ export default {
       return this.customer.id === this.author.id
     },
     isFollow(){
-      let isFollow = false
+      if(!this.isLogin){
+        return false
+      }
       if(!this.customer.followers.length){
         return false
       }
-      this.customer.followers.forEach(follower => {
-        if(follower.id === this.author.id){
-          isFollow = true
-        }
-      })
-      return isFollow
+      return this.customer.followers.some(follower => follower.id === this.author.id)
     },
   },
   methods: {
