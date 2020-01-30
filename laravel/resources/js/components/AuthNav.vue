@@ -7,7 +7,10 @@
     ></button>
     <ul class="AuthNav_menu">
       <li class="AuthNav_item --title">
-        <h3 class="AuthNav_menuTitle">{{ customer.name }}様</h3>
+        <h3 class="AuthNav_menuTitle">
+          <span>{{ customer.name }}様</span>
+          <div class="Text -gray">[ ID: {{ customer.user.login_id }} ]</div>
+        </h3>
       </li>
       <RouterLink :to="`/mypage/${customer.id}`" tag="li" class="AuthNav_item"
         >マイページ</RouterLink

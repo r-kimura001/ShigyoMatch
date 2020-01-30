@@ -36,16 +36,18 @@
         tag="li"
         class="GlobalNav_item --u-md"
         exact-active-class="--current"
-        >ログイン</RouterLink
       >
+        <span class="GlobalNav_itemText">ログイン</span>
+      </RouterLink>
       <RouterLink
         v-if="!isLogin()"
         to="/signup"
         tag="li"
         class="GlobalNav_item --u-md"
         exact-active-class="--current"
-        >新規登録</RouterLink
-      >
+        >
+          <span class="GlobalNav_itemText">新規登録</span>
+      </RouterLink>
     </ul>
   </nav>
 </template>

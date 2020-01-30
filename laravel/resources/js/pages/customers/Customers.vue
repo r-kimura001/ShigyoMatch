@@ -3,7 +3,7 @@
     <div class="MainLayout --customers">
       <div class="MainLayout_boxList">
         <section class="MainLayout_box">
-          <div v-if="!hasData">登録された事務所はありません</div>
+          <div v-if="!hasData" class="Text -nodata u-py40 u-alignCenter">結果がありません</div>
           <div v-else>
             <h2 class="BaseTitle">
               <span class="BaseTitle_text --customer"><span :style="fontColor(professionId)">{{ professionTypeName }}</span>事務所一覧</span>
@@ -22,7 +22,9 @@
               path="customers"
               :professionType="professionTypeName"
             ></Pager>
-            <CustomerListLayout :customers="list"></CustomerListLayout>
+            <CustomerListLayout
+              :customers="list"
+            ></CustomerListLayout>
           </div>
         </section>
       </div>

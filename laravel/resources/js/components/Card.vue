@@ -37,6 +37,9 @@
           </RouterLink>
         </li>
       </ul>
+      <div class="u-alignCenter">
+        <ReplacedDate :datetime="customer.created_at"></ReplacedDate>
+      </div>
     </div>
     <!-- Card_summary -->
   </div>
@@ -45,10 +48,10 @@
 import styles from '@/mixins/styles'
 import reviewCalc from '@/mixins/reviewCalc'
 import Review from '@/components/Review'
-import { dateReplace } from '@/util'
+import ReplacedDate from '@/components/ReplacedDate'
 export default {
   components: {
-    Review,
+    Review, ReplacedDate
   },
   mixins: [styles, reviewCalc],
   props: {
@@ -68,9 +71,6 @@ export default {
     professionTypes() {
       return this.customer.profession_types
     },
-    date(){
-      return dateReplace(this.customer.created_at)
-    }
   },
 }
 </script>

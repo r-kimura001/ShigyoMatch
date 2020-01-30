@@ -129,9 +129,14 @@ export default {
       this.lastPage = Math.ceil(count / PER_PAGE)
       this.setPaginate()
       this.list = this.searchedWorks.slice(this.from-1, this.to)
+      this.hasData = !!this.list.length
     },
     searchByMultiSkill(){
       this.toggleBody()
+      if(!this.targetSkills.length){
+        this.clearSearch()
+        return true
+      }
       this.searchingSkill = []
       this.searchedWorks = []
       this.targetSkills.forEach( id => {
@@ -145,6 +150,7 @@ export default {
       this.lastPage = Math.ceil(count / PER_PAGE)
       this.setPaginate()
       this.list = this.searchedWorks.slice(this.from-1, this.to)
+      this.hasData = !!this.list.length
     },
     setSearchingSkill(id){
       this.searchingSkill.push(this.skills.filter( skill => skill.id === id ))
@@ -165,6 +171,7 @@ export default {
       this.setPaginate()
       this.lastPage = Math.ceil(this.source.length / PER_PAGE)
       this.list = this.source.slice(this.from-1, this.to)
+      this.hasData = !!this.list.length
     },
     toggleBody(){
       this.isOpen = !this.isOpen

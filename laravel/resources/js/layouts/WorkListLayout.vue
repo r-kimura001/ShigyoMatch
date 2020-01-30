@@ -21,6 +21,10 @@ export default {
       required: true,
       default: () => [],
     },
+    hasData: {
+      type: Boolean,
+      default: true
+    }
   },
   methods: {
     sendSkillId(id){

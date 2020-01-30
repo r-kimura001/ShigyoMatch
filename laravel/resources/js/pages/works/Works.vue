@@ -4,7 +4,7 @@
       <div class="MainLayout_boxList">
         <div class="SearchList u-mt20" :class="{ '--open': isOpen }">
           <h2 class="SearchList_title">
-            <span class="SearchList_titleText" @click="toggleBody">絞り込み検索</span>
+            <span class="SearchList_titleText" @click="toggleBody">タグで絞り込む</span>
           </h2>
           <div class="SearchList_body">
             <ul class="SearchList_tags">
@@ -29,19 +29,19 @@
           </div>
         </div>
         <section class="MainLayout_box">
-          <div v-if="!hasData">現在募集中の案件はありません</div>
+          <div class="SearchStatus" v-if="isSearch">
+            <span
+              v-for="(word, index) in searchingWords"
+              :key="index"
+              class="Tag u-ma5"
+              :style="bgColor(professionId)">{{ word }}</span>で絞り込み
+            <div class="BorderButton --minimum" @click="clearSearch">クリア</div>
+          </div>
+          <div v-if="!hasData" class="Text -nodata u-py40 u-alignCenter">結果がありません</div>
           <div v-else>
             <h2 class="BaseTitle">
               <span class="BaseTitle_text --work"><span :style="fontColor(professionId)">{{ professionTypeName }}</span>の案件一覧</span>
             </h2>
-            <div class="SearchStatus" v-if="isSearch">
-              <span
-                v-for="(word, index) in searchingWords"
-                :key="index"
-                class="Tag u-ma5"
-                :style="bgColor(professionId)">{{ word }}</span>で絞り込み
-              <div class="BorderButton --minimum" @click="clearSearch">クリア</div>
-            </div>
             <div class="u-alignCenter u-mb20">
               <div class="SortBox">
                 <select @change="sortChange" v-model="sortKey">

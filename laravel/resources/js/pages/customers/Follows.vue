@@ -29,7 +29,7 @@
                     v-if="!self(member)"
                     :id="member.id"
                     :author="author"
-                    :isFollow="checkFollow(member)"
+                    :isFollow="checkIsFollow(member)"
                     @followClick="followClick(member)"
                   ></FollowButton>
                 </div>
@@ -100,14 +100,17 @@
         }
         return member.id === this.author.id
       },
-      checkFollow(member){
+      checkIsFollow(member){
+        if(!this.author){
+          return false
+        }
         if(!member.followers.length){
           return false
         }
         return member.followers.some(follower => follower.id === this.author.id)
       },
       async followClick(member){
-        if(this.checkFollow(member)){
+        if(this.checkIsFollow(member)){
           await this.unfollow(member)
         }else{
           await this.follow(member)

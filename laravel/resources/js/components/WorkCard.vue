@@ -27,7 +27,7 @@
         <li class="HorizontalLayout_col --flex">
           <div class="WorkCard_text">
             <p class="WorkCard_title">{{ work.title }}</p>
-            <p class="WorkCard_time">{{ date }}</p>
+            <p><ReplacedDate :datetime="work.created_at"></ReplacedDate></p>
           </div>
         </li>
         <li class="HorizontalLayout_col">
@@ -40,18 +40,17 @@
   </div>
 </template>
 <script>
-import { OK, dateReplace } from '@/util'
+import { OK } from '@/util'
 import styles from '@/mixins/styles'
 import worksData from '@/mixins/worksData'
+import ReplacedDate from '@/components/ReplacedDate'
 export default {
   mixins: [styles, worksData],
+  components: { ReplacedDate },
   computed: {
     favoriteStatus(){
       return this.work.is_favorite ? '「気になる」解除' : '「気になる」に登録する'
     },
-    date(){
-      return dateReplace(this.work.created_at)
-    }
   },
   methods: {
     onClickStar() {
