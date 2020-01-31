@@ -137,13 +137,11 @@
 <script>
   import { OK, dateReplace } from '@/util'
   import styles from '@/mixins/styles'
-  import WorkListLayout from '@/layouts/WorkListLayout'
-  import WorkTableLayout from '@/layouts/WorkTableLayout'
   import Tab from '@/components/Tab'
   import ApplyDetail from '@/pages/mypage/ApplyDetail'
 
   export default {
-    components: { WorkListLayout, WorkTableLayout, Tab, ApplyDetail },
+    components: { Tab, ApplyDetail },
     props: {
       customer: {
         type: Object,

@@ -44,6 +44,11 @@ export default {
             bgColorKey: 'id',
           },
         },
+        {
+          key: 'created_at',
+          name: '投稿日時',
+          isDate: true,
+        },
       ],
       test: '',
     }

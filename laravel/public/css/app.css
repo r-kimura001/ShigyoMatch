@@ -1392,7 +1392,7 @@ td {
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
   width: 280px;
-  z-index: 129;
+  z-index: 98;
 }
 
 .Button.\--hasIcon {
@@ -2411,6 +2411,7 @@ td {
 }
 
 .GlobalNav .GlobalNav_menu .GlobalNav_item .GlobalNav_itemText {
+  display: inline-block;
   padding: 5px 0 5px 30px;
   background-position: 0;
   background-size: 20px;
@@ -5363,6 +5364,10 @@ td {
 
 .u-h20 {
   height: 20px;
+}
+
+.u-w100 {
+  width: 100px;
 }
 
 .u-minWidth300 {

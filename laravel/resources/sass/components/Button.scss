@@ -43,7 +43,7 @@
       left: 50%;
       transform: translateX(-50%);
       width: 280px;
-      z-index: $modalZIndex - 1;
+      z-index: $loaderZIndex - 1;
     }
     &.--hasIcon{
       padding: 10px 12px 10px 36px;

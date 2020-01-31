@@ -92,7 +92,7 @@
                     `/${labelObj.link.path}/${record[labelObj.link.paramKey]}`
                   "
                   tag="span"
-                  class="Table_dataText --link"
+                  class="Table_dataText"
                 >
                   {{ dataFormat(record[labelObj.key], labelObj.key) }}
                 </RouterLink>
@@ -110,6 +110,16 @@
                     )
                   }}
                 </span>
+                <span
+                  v-else-if="isDate(labelObj)"
+                  class="Table_dataText --date"
+                >
+                  {{
+                    replacedDate(
+                      record[labelObj.key]
+                    )
+                  }}
+                </span>
                 <span v-else class="Table_dataText">{{
                   dataFormat(record[labelObj.key], labelObj.key)
                 }}</span>
@@ -124,6 +134,7 @@
 </template>
 <script>
 import styles from '@/mixins/styles'
+import { dateReplace } from '@/util'
 export default {
   mixins: [styles],
   props: {
@@ -156,12 +167,18 @@ export default {
     hasTag(obj) {
       return 'tag' in obj
     },
+    isDate(obj){
+      return 'isDate' in obj
+    },
     dataFormat(text, key) {
       if (key === 'fee') {
         return `${text.toLocaleString()}円`
       } else {
         return text
       }
+    },
+    replacedDate(date) {
+      return dateReplace(date)
     },
     justify(obj) {
       return {

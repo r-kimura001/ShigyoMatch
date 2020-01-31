@@ -52,15 +52,14 @@ import { OK } from '@/util'
 import styles from '@/mixins/styles'
 import MemberLink from '@/components/MemberLink'
 import WorkListLayout from '@/layouts/WorkListLayout'
-import WorkTableLayout from '@/layouts/WorkTableLayout'
 import Tab from '@/components/Tab'
 
 export default {
   components: {
     MemberLink,
     WorkListLayout,
-    WorkTableLayout,
-    Tab },
+    Tab
+  },
   mixins: [ styles ],
   props: {
     customer: {

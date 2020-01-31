@@ -3025,6 +3025,17 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _mixins_styles__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/mixins/styles */ "./resources/js/mixins/styles.js");
+/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/util */ "./resources/js/util.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -3150,6 +3161,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   mixins: [_mixins_styles__WEBPACK_IMPORTED_MODULE_0__["default"]],
   props: {
@@ -3186,12 +3198,18 @@ __webpack_require__.r(__webpack_exports__);
     hasTag: function hasTag(obj) {
       return 'tag' in obj;
     },
+    isDate: function isDate(obj) {
+      return 'isDate' in obj;
+    },
     dataFormat: function dataFormat(text, key) {
       if (key === 'fee') {
         return "".concat(text.toLocaleString(), "\u5186");
       } else {
         return text;
       }
+    },
+    replacedDate: function replacedDate(date) {
+      return Object(_util__WEBPACK_IMPORTED_MODULE_1__["dateReplace"])(date);
     },
     justify: function justify(obj) {
       return {
@@ -5482,6 +5500,10 @@ __webpack_require__.r(__webpack_exports__);
         tag: {
           bgColorKey: 'id'
         }
+      }, {
+        key: 'created_at',
+        name: '投稿日時',
+        isDate: true
       }],
       test: ''
     };
@@ -6840,10 +6862,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/util */ "./resources/js/util.js");
 /* harmony import */ var _mixins_styles__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/mixins/styles */ "./resources/js/mixins/styles.js");
-/* harmony import */ var _layouts_WorkListLayout__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/layouts/WorkListLayout */ "./resources/js/layouts/WorkListLayout.vue");
-/* harmony import */ var _layouts_WorkTableLayout__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/layouts/WorkTableLayout */ "./resources/js/layouts/WorkTableLayout.vue");
-/* harmony import */ var _components_Tab__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/components/Tab */ "./resources/js/components/Tab.vue");
-/* harmony import */ var _pages_mypage_ApplyDetail__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/pages/mypage/ApplyDetail */ "./resources/js/pages/mypage/ApplyDetail.vue");
+/* harmony import */ var _components_Tab__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/components/Tab */ "./resources/js/components/Tab.vue");
+/* harmony import */ var _pages_mypage_ApplyDetail__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/pages/mypage/ApplyDetail */ "./resources/js/pages/mypage/ApplyDetail.vue");
 
 //
 //
@@ -6981,18 +7001,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
-
 
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    WorkListLayout: _layouts_WorkListLayout__WEBPACK_IMPORTED_MODULE_3__["default"],
-    WorkTableLayout: _layouts_WorkTableLayout__WEBPACK_IMPORTED_MODULE_4__["default"],
-    Tab: _components_Tab__WEBPACK_IMPORTED_MODULE_5__["default"],
-    ApplyDetail: _pages_mypage_ApplyDetail__WEBPACK_IMPORTED_MODULE_6__["default"]
+    Tab: _components_Tab__WEBPACK_IMPORTED_MODULE_3__["default"],
+    ApplyDetail: _pages_mypage_ApplyDetail__WEBPACK_IMPORTED_MODULE_4__["default"]
   },
   props: {
     customer: {
@@ -7539,8 +7555,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _mixins_styles__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/mixins/styles */ "./resources/js/mixins/styles.js");
 /* harmony import */ var _components_MemberLink__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/components/MemberLink */ "./resources/js/components/MemberLink.vue");
 /* harmony import */ var _layouts_WorkListLayout__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/layouts/WorkListLayout */ "./resources/js/layouts/WorkListLayout.vue");
-/* harmony import */ var _layouts_WorkTableLayout__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/layouts/WorkTableLayout */ "./resources/js/layouts/WorkTableLayout.vue");
-/* harmony import */ var _components_Tab__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/components/Tab */ "./resources/js/components/Tab.vue");
+/* harmony import */ var _components_Tab__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/components/Tab */ "./resources/js/components/Tab.vue");
 
 //
 //
@@ -7591,7 +7606,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
 
 
 
@@ -7601,8 +7615,7 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     MemberLink: _components_MemberLink__WEBPACK_IMPORTED_MODULE_3__["default"],
     WorkListLayout: _layouts_WorkListLayout__WEBPACK_IMPORTED_MODULE_4__["default"],
-    WorkTableLayout: _layouts_WorkTableLayout__WEBPACK_IMPORTED_MODULE_5__["default"],
-    Tab: _components_Tab__WEBPACK_IMPORTED_MODULE_6__["default"]
+    Tab: _components_Tab__WEBPACK_IMPORTED_MODULE_5__["default"]
   },
   mixins: [_mixins_styles__WEBPACK_IMPORTED_MODULE_2__["default"]],
   props: {
@@ -8155,12 +8168,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/util */ "./resources/js/util.js");
 /* harmony import */ var _mixins_styles__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/mixins/styles */ "./resources/js/mixins/styles.js");
-/* harmony import */ var _layouts_WorkListLayout__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/layouts/WorkListLayout */ "./resources/js/layouts/WorkListLayout.vue");
-/* harmony import */ var _layouts_WorkTableLayout__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/layouts/WorkTableLayout */ "./resources/js/layouts/WorkTableLayout.vue");
-/* harmony import */ var _components_Tab__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/components/Tab */ "./resources/js/components/Tab.vue");
-/* harmony import */ var _pages_mypage_ApplyDetail__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/pages/mypage/ApplyDetail */ "./resources/js/pages/mypage/ApplyDetail.vue");
-/* harmony import */ var lodash_maxBy__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! lodash/maxBy */ "./node_modules/lodash/maxBy.js");
-/* harmony import */ var lodash_maxBy__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(lodash_maxBy__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _components_Tab__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/components/Tab */ "./resources/js/components/Tab.vue");
+/* harmony import */ var _pages_mypage_ApplyDetail__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/pages/mypage/ApplyDetail */ "./resources/js/pages/mypage/ApplyDetail.vue");
+/* harmony import */ var lodash_maxBy__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! lodash/maxBy */ "./node_modules/lodash/maxBy.js");
+/* harmony import */ var lodash_maxBy__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(lodash_maxBy__WEBPACK_IMPORTED_MODULE_5__);
 
 //
 //
@@ -8247,8 +8258,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
-
 
 
 
@@ -8256,10 +8265,8 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    WorkListLayout: _layouts_WorkListLayout__WEBPACK_IMPORTED_MODULE_3__["default"],
-    WorkTableLayout: _layouts_WorkTableLayout__WEBPACK_IMPORTED_MODULE_4__["default"],
-    Tab: _components_Tab__WEBPACK_IMPORTED_MODULE_5__["default"],
-    ApplyDetail: _pages_mypage_ApplyDetail__WEBPACK_IMPORTED_MODULE_6__["default"]
+    Tab: _components_Tab__WEBPACK_IMPORTED_MODULE_3__["default"],
+    ApplyDetail: _pages_mypage_ApplyDetail__WEBPACK_IMPORTED_MODULE_4__["default"]
   },
   props: {
     customer: {
@@ -8463,7 +8470,7 @@ __webpack_require__.r(__webpack_exports__);
       return room.applier.id === this.customer.id;
     },
     latestDate: function latestDate(apply) {
-      var latestMessage = lodash_maxBy__WEBPACK_IMPORTED_MODULE_7___default()(apply.messages, function (message) {
+      var latestMessage = lodash_maxBy__WEBPACK_IMPORTED_MODULE_5___default()(apply.messages, function (message) {
         return message.updated_at;
       });
       return latestMessage.updated_at;
@@ -17103,7 +17110,7 @@ var render = function() {
                                 ? _c(
                                     "RouterLink",
                                     {
-                                      staticClass: "Table_dataText --link",
+                                      staticClass: "Table_dataText",
                                       attrs: {
                                         to:
                                           "/" +
@@ -17146,6 +17153,22 @@ var render = function() {
                                                 labelObj.key2
                                               ],
                                               labelObj.key2
+                                            )
+                                          ) +
+                                          "\n              "
+                                      )
+                                    ]
+                                  )
+                                : _vm.isDate(labelObj)
+                                ? _c(
+                                    "span",
+                                    { staticClass: "Table_dataText --date" },
+                                    [
+                                      _vm._v(
+                                        "\n                " +
+                                          _vm._s(
+                                            _vm.replacedDate(
+                                              record[labelObj.key]
                                             )
                                           ) +
                                           "\n              "
@@ -20638,7 +20661,10 @@ var render = function() {
                             _vm._v(" "),
                             _c(
                               "div",
-                              { staticClass: "HorizontalLayout_col" },
+                              {
+                                staticClass:
+                                  "HorizontalLayout_col u-w100 u-alignRight"
+                              },
                               [
                                 !_vm.self(member)
                                   ? _c("FollowButton", {

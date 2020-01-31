@@ -24,7 +24,7 @@
                   <MemberLink :customer="member"></MemberLink>
                   <p class="MemberList_greeting">{{ member.greeting }}</p>
                 </div>
-                <div class="HorizontalLayout_col">
+                <div class="HorizontalLayout_col u-w100 u-alignRight">
                   <FollowButton
                     v-if="!self(member)"
                     :id="member.id"

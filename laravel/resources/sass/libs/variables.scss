@@ -65,8 +65,9 @@ $taxAccountantColor: #69D9A1;
 $transitionBasis: .3s;
 
 // z-index
-$headerZIndex: 100;
 $modalZIndex: 130;
+$headerZIndex: 100;
+$loaderZIndex: 99;
 
 // media query
 $breakpoints: (
