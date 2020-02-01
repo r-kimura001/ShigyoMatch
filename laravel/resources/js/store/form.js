@@ -12,6 +12,8 @@ const state = {
     isShow: false,
     exeText: null
   },
+  targetSkills: [],
+  searchingSkill: []
 }
 
 const getters = {
@@ -20,6 +22,8 @@ const getters = {
   deleteMessage: state => state.deleteMessage,
   isLoading: state => state.isLoading,
   confirmModal: state => state.confirmModal,
+  targetSkills: state => state.targetSkills,
+  searchingSkill: state => state.searchingSkill,
 }
 
 
@@ -45,6 +49,12 @@ const mutations = {
   setConfirmModal(state, data) {
     state.confirmModal.isShow = data.isShow
     state.confirmModal.exeText = data.exeText
+  },
+  setTargetSkills(state, data) {
+    state.targetSkills = data
+  },
+  setSearchingSkill(state, data) {
+    state.searchingSkill = data
   },
 }
 

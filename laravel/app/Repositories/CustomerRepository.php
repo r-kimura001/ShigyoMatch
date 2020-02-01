@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Repositories;
 
 use App\Models\Customer;
+use Illuminate\Support\Collection;
 
 class CustomerRepository extends Repository
 {
@@ -28,6 +29,22 @@ class CustomerRepository extends Repository
     return $this->getBuilder()
       ->with($relations)
       ->latest()
+      ->paginate($perPage);
+  }
+  /**
+   * @param array $relations
+   * @param array $data
+   * @param Collection $ids
+   * @param int $perPage
+   * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+   */
+  public function paginateByProfession(array $relations, array $data, Collection $ids, int $perPage=parent::COUNT_PER_PAGE)
+  {
+    $orderBy = explode('.', $data['sortKey']);
+    return $this->getBuilder()
+      ->with($relations)
+      ->whereIn('id', $ids)
+      ->orderBy($orderBy[0], $orderBy[1])
       ->paginate($perPage);
   }
 

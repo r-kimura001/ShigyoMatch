@@ -8,6 +8,7 @@ use App\Models\Work;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\DB;
 class WorkService extends Service
 {
   protected $workRep;
@@ -42,8 +43,22 @@ class WorkService extends Service
    */
   public function worksByProfession(array $data)
   {
-    $relations = ['works.professionType', 'works.skills'];
-    return $this->professionTypeRep->findById($relations, $data['professionTypeId']);
+    $relations = ['professionType', 'skills'];
+    if( empty($data['targetSkills'] ?? '') ){
+      return $this->workRep->paginateByProfession($relations, $data);
+    }else {
+      $workIds = $this->idsBySkill($data['targetSkills']);
+      return $this->workRep->paginateBySkill($relations, $data, $workIds);
+    }
+  }
+
+  /**
+   * @param array $skillIds
+   * @return \Illuminate\Support\Collection
+   */
+  public function idsBySkill(array $skillIds)
+  {
+    return DB::table('work_skills')->whereIn('skill_type_id', $skillIds)->orderBy('skill_type_id')->get()->pluck('work_id');
   }
 
   public function store($data)

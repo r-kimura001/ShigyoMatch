@@ -1,7 +1,7 @@
 import { OK, PER_PAGE } from '@/util'
 import Pager from '@/components/Pager'
 import SortBox from '@/components/SortBox'
-
+import { mapGetters } from 'vuex'
 export default {
   components: { Pager, SortBox },
   props: {
@@ -21,10 +21,8 @@ export default {
     return {
       list: [],
       source: [],
-      searchedWorks: [],
+      targets: [],
       skills: [],
-      targetSkills: [],
-      searchingSkill: [],
       from: null,
       to: null,
       currentPage: null,
@@ -39,6 +37,7 @@ export default {
     $route: {
       async handler() {
         this.$store.commit('form/setIsLoading', true)
+        this.targets = this.targetSkills
         await this.getProfessionId()
         await this.index()
         await this.selectables()
@@ -48,6 +47,10 @@ export default {
     },
   },
   computed:{
+    ...mapGetters({
+      targetSkills: 'form/targetSkills',
+      searchingSkill: 'form/searchingSkill',
+    }),
     isSearch(){
       return this.searchingSkill.length
     },
@@ -69,26 +72,19 @@ export default {
       const response = await axios.get(`/api/${this.paramPath}`, {
         params: {
           page: this.page,
-          professionTypeId: this.professionId
+          professionTypeId: this.professionId,
+          targetSkills: this.targetSkills,
+          sortKey: this.sortKey,
         },
       })
-      this.$store.commit('error/setStatus', response.status)
-      this.$store.commit('error/setMessage', response)
-      const reg = /^(customers|works)$/g
-      if(!this.paramPath.match(reg)){
-        this.list = response.data.data
-        this.from = response.data.from
-        this.to = response.data.to
-        this.currentPage = response.data.current_page
-        this.lastPage = response.data.last_page
-      }else{
-        this.source = response.data[this.paramPath]
-        this.searchedWorks = this.source
-        this.sortBySelect()
-        this.setPaginate()
-        this.lastPage = Math.ceil(this.source.length / PER_PAGE)
-        this.list = this.source.slice(this.from-1, this.to)
-      }
+      this.$store.commit('form/setResponse', response)
+      this.list = response.data.data
+      this.from = response.data.from
+      this.to = response.data.to
+      this.currentPage = response.data.current_page
+      this.lastPage = response.data.last_page
+      // this.$store.commit('error/setStatus', response.status)
+      // this.$store.commit('error/setMessage', response)
       this.hasData = !!this.list.length
     },
     async selectables(){
@@ -102,85 +98,61 @@ export default {
       this.from = (this.page - 1) * PER_PAGE + 1
       this.to = this.from + PER_PAGE - 1
     },
-    sortChange(){
-      this.sortBySelect()
+    async sortChange(){
       this.page = 1
-      this.setPaginate()
-      this.list = this.searchedWorks.slice(this.from-1, this.to)
+      await this.index()
     },
     sortBySelect(){
       const arr = this.sortKey.split('.')
       if(arr[1] === 'desc'){
-        this.searchedWorks.sort( (a, b) => a[arr[0]] < b[arr[0]] ? 1 : -1)
+        this.list.sort( (a, b) => a[arr[0]] < b[arr[0]] ? 1 : -1)
       }else{
-        this.searchedWorks.sort( (a, b) => a[arr[0]] > b[arr[0]] ? 1 : -1)
+        this.list.sort( (a, b) => a[arr[0]] > b[arr[0]] ? 1 : -1)
       }
     },
-    searchBySkill(id){
-      this.targetSkills = [id]
-      this.searchingSkill = []
-      this.searchedWorks = []
-      this.setSearchingSkill(id)
-      this.setSearchedWork(id)
-      this.searchingSkill = this.searchingSkill.flat()
-      this.searchedWorks = this.searchedWorks.flat()
-      this.page = 1
-      const count = !this.searchedWorks.length ? 1 : this.searchedWorks.length
-      this.lastPage = Math.ceil(count / PER_PAGE)
-      this.setPaginate()
-      this.list = this.searchedWorks.slice(this.from-1, this.to)
-      this.hasData = !!this.list.length
+    // WorkCardのタグを押したときの検索
+    async searchBySkill(id){
+      this.$store.commit('form/setIsLoading', true)
+      this.targets = [id];
+      await this.search()
+      this.$store.commit('form/setIsLoading', false)
     },
-    searchByMultiSkill(){
+    // 「タグで絞り込む」から検索
+    async searchByMultiSkill(){
+      this.$store.commit('form/setIsLoading', true)
       this.toggleBody()
-      if(!this.targetSkills.length){
-        this.clearSearch()
-        return true
-      }
-      this.searchingSkill = []
-      this.searchedWorks = []
-      this.targetSkills.forEach( id => {
-        this.setSearchingSkill(id)
-        this.setSearchedWork(id)
-      })
-      this.searchingSkill = this.searchingSkill.flat()
-      this.searchedWorks = this.searchedWorks.flat()
+      await this.search()
+      this.$store.commit('form/setIsLoading', false)
+    },
+    async search(){
+      this.$store.commit('form/setTargetSkills', this.targets)
+      this.setSearchingSkill()
       this.page = 1
-      const count = !this.searchedWorks.length ? 1 : this.searchedWorks.length
-      this.lastPage = Math.ceil(count / PER_PAGE)
-      this.setPaginate()
-      this.list = this.searchedWorks.slice(this.from-1, this.to)
-      this.hasData = !!this.list.length
+      await this.index()
+      this.$scrollTo('.SearchList_titleText')
     },
-    setSearchingSkill(id){
-      this.searchingSkill.push(this.skills.filter( skill => skill.id === id ))
+    setSearchingSkill(){
+      const searchingSkills = this.targets.map( id => this.skills.filter( skill => skill.id === id ))
+      this.$store.commit('form/setSearchingSkill', searchingSkills.flat())
     },
-    setSearchedWork(id){
-      this.searchedWorks.push(this.source.filter( work => {
-        if(!work.skills.length){
-          return false
-        }
-        return work.skills.some( skill => skill.id === id )
-      }))
-    },
-    clearSearch(){
-      this.searchedWorks = this.source
-      this.searchingSkill = []
-      this.targetSkills = []
+    async clearSearch(){
+      this.$store.commit('form/setIsLoading', true)
+      this.targets = []
+      this.$store.commit('form/setSearchingSkill', this.targets)
+      this.$store.commit('form/setTargetSkills', [])
       this.page = 1
-      this.setPaginate()
-      this.lastPage = Math.ceil(this.source.length / PER_PAGE)
-      this.list = this.source.slice(this.from-1, this.to)
-      this.hasData = !!this.list.length
+      await this.index()
+      this.$scrollTo('.SearchList_titleText')
+      this.$store.commit('form/setIsLoading', false)
     },
     toggleBody(){
       this.isOpen = !this.isOpen
     },
     checked(skillId){
-      return this.targetSkills.some( id => id === skillId )
+      return this.targets.some( id => id === skillId )
     },
     colorByIsSelect(skillId){
-      if(!this.targetSkills.length){
+      if(!this.targets.length){
         return this.bgColor()
       }else if(this.checked(skillId)){
         return this.bgColor(this.professionId)

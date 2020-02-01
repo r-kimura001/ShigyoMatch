@@ -3,7 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Work;
-
+use Illuminate\Support\Collection;
 class WorkRepository extends Repository
 {
 
@@ -19,6 +19,7 @@ class WorkRepository extends Repository
   public function createByUser($workData) {
     return $this->builder->createByUser($workData);
   }
+
   /**
    * @param array $relations
    * @param int $perPage
@@ -27,10 +28,44 @@ class WorkRepository extends Repository
   public function paginate(array $relations, array $filter, int $perPage=parent::COUNT_PER_PAGE)
   {
     $query = $this->getBuilder()
-                ->with($relations)
-                ->where('profession_type_id', $filter['professionTypeId']);
+      ->with($relations)
+      ->where('profession_type_id', $filter['professionTypeId']);
     $query->order($filter);
     return $query->paginate($perPage);
+  }
+
+  /**
+   * @param array $relations
+   * @param int $ids
+   * @param int $perPage
+   * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+   */
+  public function paginateByProfession(array $relations, array $data, int $perPage=parent::COUNT_PER_PAGE)
+  {
+    $orderBy = explode('.', $data['sortKey']);
+    return $this->getBuilder()
+      ->with($relations)
+      ->where('profession_type_id', $data['professionTypeId'])
+      ->orderBy($orderBy[0], $orderBy[1])
+      ->paginate($perPage);
+  }
+
+  /**
+   * @param array $relations
+   * @param int $professionId
+   * @param Collection $ids
+   * @param int $perPage
+   * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+   */
+  public function paginateBySkill(array $relations, array $data, Collection $ids, int $perPage=parent::COUNT_PER_PAGE)
+  {
+    $orderBy = explode('.', $data['sortKey']);
+    return $this->getBuilder()
+      ->with($relations)
+      ->where('profession_type_id', $data['professionTypeId'])
+      ->whereIn('id', $ids)
+      ->orderBy($orderBy[0], $orderBy[1])
+      ->paginate($perPage);
   }
 
   /**

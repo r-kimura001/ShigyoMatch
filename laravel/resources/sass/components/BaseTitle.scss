@@ -2,6 +2,9 @@
   display: flex;
   align-items: flex-end;
   margin-bottom: 20px;
+  &.--vertical{
+    align-items: center;
+  }
   .BaseTitle_text{
     display: inline-block;
     font-weight: bold;

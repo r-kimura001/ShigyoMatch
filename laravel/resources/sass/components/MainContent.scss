@@ -2,27 +2,18 @@
   flex-grow: 1;
 
   .MainContent_heading{
-    margin: 30px 0 0 80px;
+    margin-top: 40px;
     display: flex;
+    justify-content: center;
     align-items: center;
-    @include media(lg){
-      margin-left: 10px;
-    }
-    @include media(){
-      margin-left: 40px;
-    }
-    @include media(sm){
-      margin-left: 20px;
-    }
   }
 
   .MainContent_title{
-    display: inline-block;
-    color: $white;
-    font-size: 1.4rem;
-    border-radius: 0 9999px 9999px 0 / 0 9999px 9999px 0;
-    @include iconFix(8px, 35px, 10px, 20px);
-    background-color: $green;
-    background-image: url(#{$assetPath}/icon-glass-white.svg);
+    display: block;
+    .MainContent_titleText{
+      display: inline-block;
+      font-weight: bold;
+      font-size: 1.8rem;
+    }
   }
 }

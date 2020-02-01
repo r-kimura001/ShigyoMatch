@@ -13,7 +13,7 @@ $factory->define(Work::class, function () use ($faker, $now) {
     'profession_type_id' => 1,
     'title' => $faker->sentence(3),
     'body' => $faker->text,
-    'fee' => $faker->numberBetween(100, 50000),
+    'fee' => floor($faker->numberBetween(1000, 200000) / 100) * 100,
     'file_name' => null,
     'created_at' => $now,
     'updated_at' => $now,

@@ -95,6 +95,9 @@
 .u-ma5{
   margin: 5px;
 }
+.u-ma10{
+  margin: 10px;
+}
 
 // padding
 .u-pt10 {
@@ -207,10 +210,11 @@
   // default(top)
   &::after {
     content: attr(data-desc);
+    display: inline-block;
     position: absolute;
-    top: -100%;
+    top: 0;
     left: 50%;
-    transform: translateY(-50%);
+    transform: translateY(-125%);
     font-size: 1rem;
     color: $white;
     background: $deepGray;
@@ -220,6 +224,7 @@
     line-height: 1.25;
     opacity: 0;
     pointer-events: none;
+    text-align: left;
     transition: $transitionBasis;
   }
   &::before{

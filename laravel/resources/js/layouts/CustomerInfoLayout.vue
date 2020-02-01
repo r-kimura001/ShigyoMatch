@@ -100,7 +100,7 @@
               />
               <span>受託件数</span>
             </h4>
-            <p class="Text -deepGreen -bold u-alignCenter">{{ customer.match_count }}</p>
+            <p class="Text -bold u-alignCenter">{{ customer.match_count }}</p>
           </li>
         </ul>
       </div>

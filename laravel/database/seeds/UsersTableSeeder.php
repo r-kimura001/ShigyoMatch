@@ -22,7 +22,7 @@ class UsersTableSeeder extends Seeder
         'email' => 'sample@example',
         'password' => \Hash::make('test1234'),
       ]);
-      $customers = factory(Customer::class, 14)->create();
+      $customers = factory(Customer::class, 120)->create();
       $customers->each(function($customer){
         factory('App\Models\User')->create(['customer_id' => $customer->id]);
       });

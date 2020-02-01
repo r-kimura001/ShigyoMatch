@@ -1,10 +1,15 @@
 .SearchList{
-  max-width: $baseWidth;
   margin: 0 auto;
   background: $white;
-  border-radius: 6px;
-  position: relative;
-  z-index: $headerZIndex - 2;
+  z-index: $loaderZIndex - 1;
+  position: fixed;
+  top: $headerHeight;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: $transitionBasis;
+  -webkit-transition: transform $transitionBasis;
+  transform: translateX(100%);
 
   .SearchList_tags{
     display: flex;
@@ -12,36 +17,17 @@
   }
   .SearchList_title{
     font-weight: bold;
-    padding: 15px;
+    padding: 30px 15px;
+    text-align: center;
 
     .SearchList_titleText{
       display: inline-block;
       padding: 0 10px;
       position: relative;
       cursor: pointer;
-      &::after{
-        content: '';
-        position: absolute;
-        top: 50%;
-        right: -10px;
-        display: inline-block;
-        width: 20px;
-        height: 20px;
-        background-image: url(#{$assetPath}/icon-toggle-no-border.svg);
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center;
-        transform: translateY(-50%);
-        transition: transform $transitionBasis / 2;
-        -webkit-transition: -webkit-transform $transitionBasis / 2;
-      }
     }
   }
   .SearchList_body{
-    position: absolute;
-    top: 45px;
-    left: 0;
-    right: 0;
     padding: 15px;
     background: $white;
     transform-origin: center top;
@@ -57,6 +43,7 @@
   }
 
   &.--open{
+    transform: none;
     .SearchList_titleText::after{
       transform: translateY(-50%) rotate(180deg);
     }

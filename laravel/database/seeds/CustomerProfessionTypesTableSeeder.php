@@ -20,28 +20,9 @@ class CustomerProfessionTypesTableSeeder extends Seeder
     )
     {
       DB::table('customer_profession_types')->truncate();
-
-      $now = Carbon::now();
       $customers = $customerService->all([]);
-      $professionTypes = $professionTypeService->all();
-      $customerId = 1;
-      $professionId = 1;
-
-      $selectableCount = 2; // customerが選べる資格の数
-
-      $recordCount = count($customers) * $selectableCount;
-
-      $customerProfessionTypes = factory(CustomerProfessionType::class, $recordCount)->create();
-
-      foreach($customerProfessionTypes as $customerProfessionType){
-        DB::table('customer_profession_types')
-          ->where('id', $customerProfessionType->id)
-          ->update([
-            'customer_id' => $customerId,
-            'profession_type_id' => $professionId,
-          ]);
-        $customerId = $customerId < count($customers) ? $customerId + 1 : 1;
-        $professionId = $professionId < count($professionTypes) ? $professionId + 1 : 1;
-      }
+      $customers->each( function($customer) {
+        factory(CustomerProfessionType::class)->create(['customer_id' => $customer->id]);
+      });
     }
 }

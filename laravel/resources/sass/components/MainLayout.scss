@@ -1,8 +1,8 @@
 .MainLayout{
-  padding: 40px 60px;
+  padding: 30px 60px;
 
   @include media(lg){
-    padding: 40px 10px;
+    padding: 30px 10px;
   }
   @include media(){
     padding: 20px;

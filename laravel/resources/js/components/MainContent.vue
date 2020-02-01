@@ -2,7 +2,9 @@
   <main class="MainContent">
     <div class="MainContent_heading">
       <button class="BackButton u-mr20" v-if="isDetail" @click="$router.go(-1)">←</button>
-      <h1 class="MainContent_title" v-if="isOnly('MainContentTitle')">{{ title }}</h1>
+      <h1 class="MainContent_title" v-if="isOnly('MainContentTitle')">
+        <span class="MainContent_titleText">{{ title }}</span>
+      </h1>
     </div>
     <RouterView></RouterView>
   </main>

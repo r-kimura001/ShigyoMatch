@@ -59,7 +59,6 @@ class SelectablesTableSeeder extends Seeder
           '遺言・相続',
           '離婚・交際問題',
           '刑事事件',
-          '遺言・相続',
           '会社設立',
           '役員変更',
           '供託',

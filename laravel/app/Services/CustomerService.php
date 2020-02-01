@@ -6,10 +6,12 @@ use App\Repositories\CustomerRepository;
 use App\Repositories\WorkRepository;
 use App\Repositories\ProfessionTypeRepository;
 use App\Models\Customer;
+use App\Models\CustomerProfessionType;
 use App\Models\User;
 use App\Models\Work;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\DB;
 
 class CustomerService extends Service
 {
@@ -46,8 +48,18 @@ class CustomerService extends Service
    */
   public function customersByProfession(array $data)
   {
-    $relations = ['customers.professionTypes', 'customers.reviewers'];
-    return $this->professionTypeRep->findById($relations, $data['professionTypeId']);
+    $relations = ['professionTypes', 'reviewers'];
+    $ids = $this->idsByProfessionType($data['professionTypeId']);
+    return $this->customerRep->paginateByProfession($relations, $data, $ids);
+  }
+
+  /**
+   * @param int $professionId
+   * @return \Illuminate\Support\Collection
+   */
+  public function idsByProfessionType(int $professionId)
+  {
+    return DB::table('customer_profession_types')->orWhere('profession_type_id', $professionId)->orderBy('profession_type_id')->get()->pluck('customer_id');
   }
 
   /**

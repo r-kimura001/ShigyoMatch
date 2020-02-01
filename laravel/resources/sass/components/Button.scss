@@ -81,6 +81,17 @@
       border-radius: 0;
       font-size: 1.2rem;
     }
+    &.--search{
+      border-radius: 6px;
+      min-width: initial;
+      width: 32px;
+      height: 32px;
+      background-color: $blue;
+      background-image: url(#{$assetPath}/icon-glass-white.svg);
+      background-size: 18px;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
     &.--hasShadow{
       min-width: initial;
       padding: 8px 12px;

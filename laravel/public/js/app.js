@@ -2455,6 +2455,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mixins: [_mixins_switchDisplay__WEBPACK_IMPORTED_MODULE_0__["default"]],
@@ -10011,6 +10013,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 
 
@@ -16431,7 +16436,9 @@ var render = function() {
         _vm._v(" "),
         _vm.isOnly("MainContentTitle")
           ? _c("h1", { staticClass: "MainContent_title" }, [
-              _vm._v(_vm._s(_vm.title))
+              _c("span", { staticClass: "MainContent_titleText" }, [
+                _vm._v(_vm._s(_vm.title))
+              ])
             ])
           : _vm._e()
       ]),
@@ -18705,7 +18712,7 @@ var render = function() {
               _c("span", [_vm._v("受託件数")])
             ]),
             _vm._v(" "),
-            _c("p", { staticClass: "Text -deepGreen -bold u-alignCenter" }, [
+            _c("p", { staticClass: "Text -bold u-alignCenter" }, [
               _vm._v(_vm._s(_vm.customer.match_count))
             ])
           ])
@@ -23043,105 +23050,11 @@ var render = function() {
   return _c("div", { staticClass: "p-works" }, [
     _c("div", { staticClass: "MainLayout --hasWorks" }, [
       _c("div", { staticClass: "MainLayout_boxList" }, [
-        _c(
-          "div",
-          { staticClass: "SearchList u-mt20", class: { "--open": _vm.isOpen } },
-          [
-            _c("h2", { staticClass: "SearchList_title" }, [
-              _c(
-                "span",
-                {
-                  staticClass: "SearchList_titleText",
-                  on: { click: _vm.toggleBody }
-                },
-                [_vm._v("タグで絞り込む")]
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "SearchList_body" }, [
-              _c(
-                "ul",
-                { staticClass: "SearchList_tags" },
-                _vm._l(_vm.skills, function(skill) {
-                  return _c(
-                    "li",
-                    { key: skill.id, staticClass: "SearchList_item" },
-                    [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.targetSkills,
-                            expression: "targetSkills"
-                          }
-                        ],
-                        attrs: { type: "checkbox", id: "skill_" + skill.id },
-                        domProps: {
-                          value: skill.id,
-                          checked: Array.isArray(_vm.targetSkills)
-                            ? _vm._i(_vm.targetSkills, skill.id) > -1
-                            : _vm.targetSkills
-                        },
-                        on: {
-                          change: function($event) {
-                            var $$a = _vm.targetSkills,
-                              $$el = $event.target,
-                              $$c = $$el.checked ? true : false
-                            if (Array.isArray($$a)) {
-                              var $$v = skill.id,
-                                $$i = _vm._i($$a, $$v)
-                              if ($$el.checked) {
-                                $$i < 0 &&
-                                  (_vm.targetSkills = $$a.concat([$$v]))
-                              } else {
-                                $$i > -1 &&
-                                  (_vm.targetSkills = $$a
-                                    .slice(0, $$i)
-                                    .concat($$a.slice($$i + 1)))
-                              }
-                            } else {
-                              _vm.targetSkills = $$c
-                            }
-                          }
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c(
-                        "label",
-                        {
-                          staticClass: "SearchList_tag Tag u-ma5",
-                          style: _vm.colorByIsSelect(skill.id),
-                          attrs: { for: "skill_" + skill.id }
-                        },
-                        [_vm._v(_vm._s(skill.body))]
-                      )
-                    ]
-                  )
-                }),
-                0
-              ),
-              _vm._v(" "),
-              _c("div", { staticClass: "u-mt15 u-alignCenter" }, [
-                _c(
-                  "button",
-                  {
-                    staticClass: "Button --blue --hasIcon",
-                    style: _vm.bgImage("assets/icon-glass-white.svg"),
-                    on: { click: _vm.searchByMultiSkill }
-                  },
-                  [_vm._v("検索")]
-                )
-              ])
-            ])
-          ]
-        ),
-        _vm._v(" "),
         _c("section", { staticClass: "MainLayout_box" }, [
           _vm.isSearch
             ? _c(
                 "div",
-                { staticClass: "SearchStatus" },
+                { staticClass: "SearchStatus u-my15" },
                 [
                   _vm._l(_vm.searchingWords, function(word, index) {
                     return _c(
@@ -23154,7 +23067,11 @@ var render = function() {
                       [_vm._v(_vm._s(word))]
                     )
                   }),
-                  _vm._v("で絞り込み\n          "),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "Text -gray -fz14" }, [
+                    _vm._v("で絞り込み中")
+                  ]),
+                  _vm._v(" "),
                   _c(
                     "div",
                     {
@@ -23175,13 +23092,19 @@ var render = function() {
             : _c(
                 "div",
                 [
-                  _c("h2", { staticClass: "BaseTitle" }, [
+                  _c("h2", { staticClass: "BaseTitle --vertical" }, [
                     _c("span", { staticClass: "BaseTitle_text --work" }, [
                       _c("span", { style: _vm.fontColor(_vm.professionId) }, [
                         _vm._v(_vm._s(_vm.professionTypeName))
                       ]),
                       _vm._v("の案件一覧")
-                    ])
+                    ]),
+                    _vm._v(" "),
+                    _c("button", {
+                      staticClass: "Button --search u-ma10 u-tip",
+                      attrs: { "data-desc": "分野タグで絞り込む" },
+                      on: { click: _vm.toggleBody }
+                    })
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "u-alignCenter u-mb20" }, [
@@ -23263,10 +23186,102 @@ var render = function() {
           },
           [_vm._v("案件を募集する")]
         )
-      : _vm._e()
+      : _vm._e(),
+    _vm._v(" "),
+    _c("div", { staticClass: "SearchList", class: { "--open": _vm.isOpen } }, [
+      _c("button", {
+        staticClass: "CloseButton",
+        on: { click: _vm.toggleBody }
+      }),
+      _vm._v(" "),
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "SearchList_body" }, [
+        _c(
+          "ul",
+          { staticClass: "SearchList_tags" },
+          _vm._l(_vm.skills, function(skill) {
+            return _c("li", { key: skill.id, staticClass: "SearchList_item" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.targets,
+                    expression: "targets"
+                  }
+                ],
+                attrs: { type: "checkbox", id: "skill_" + skill.id },
+                domProps: {
+                  value: skill.id,
+                  checked: Array.isArray(_vm.targets)
+                    ? _vm._i(_vm.targets, skill.id) > -1
+                    : _vm.targets
+                },
+                on: {
+                  change: function($event) {
+                    var $$a = _vm.targets,
+                      $$el = $event.target,
+                      $$c = $$el.checked ? true : false
+                    if (Array.isArray($$a)) {
+                      var $$v = skill.id,
+                        $$i = _vm._i($$a, $$v)
+                      if ($$el.checked) {
+                        $$i < 0 && (_vm.targets = $$a.concat([$$v]))
+                      } else {
+                        $$i > -1 &&
+                          (_vm.targets = $$a
+                            .slice(0, $$i)
+                            .concat($$a.slice($$i + 1)))
+                      }
+                    } else {
+                      _vm.targets = $$c
+                    }
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c(
+                "label",
+                {
+                  staticClass: "SearchList_tag Tag u-ma5",
+                  style: _vm.colorByIsSelect(skill.id),
+                  attrs: { for: "skill_" + skill.id }
+                },
+                [_vm._v(_vm._s(skill.body))]
+              )
+            ])
+          }),
+          0
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "u-mt15 u-alignCenter" }, [
+          _c(
+            "button",
+            {
+              staticClass: "Button --blue --hasIcon",
+              style: _vm.bgImage("assets/icon-glass-white.svg"),
+              on: { click: _vm.searchByMultiSkill }
+            },
+            [_vm._v("検索")]
+          )
+        ])
+      ])
+    ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h3", { staticClass: "SearchList_title" }, [
+      _c("span", { staticClass: "SearchList_titleText" }, [
+        _vm._v("分野タグで絞り込む")
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -87603,6 +87618,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/util */ "./resources/js/util.js");
 /* harmony import */ var _components_Pager__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/components/Pager */ "./resources/js/components/Pager.vue");
 /* harmony import */ var _components_SortBox__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/components/SortBox */ "./resources/js/components/SortBox.vue");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -87629,10 +87653,8 @@ __webpack_require__.r(__webpack_exports__);
     return {
       list: [],
       source: [],
-      searchedWorks: [],
+      targets: [],
       skills: [],
-      targetSkills: [],
-      searchingSkill: [],
       from: null,
       to: null,
       currentPage: null,
@@ -87651,21 +87673,22 @@ __webpack_require__.r(__webpack_exports__);
             switch (_context.prev = _context.next) {
               case 0:
                 this.$store.commit('form/setIsLoading', true);
-                _context.next = 3;
+                this.targets = this.targetSkills;
+                _context.next = 4;
                 return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(this.getProfessionId());
 
-              case 3:
-                _context.next = 5;
+              case 4:
+                _context.next = 6;
                 return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(this.index());
 
-              case 5:
-                _context.next = 7;
+              case 6:
+                _context.next = 8;
                 return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(this.selectables());
 
-              case 7:
+              case 8:
                 this.$store.commit('form/setIsLoading', false);
 
-              case 8:
+              case 9:
               case "end":
                 return _context.stop();
             }
@@ -87675,7 +87698,10 @@ __webpack_require__.r(__webpack_exports__);
       immediate: true
     }
   },
-  computed: {
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapGetters"])({
+    targetSkills: 'form/targetSkills',
+    searchingSkill: 'form/searchingSkill'
+  }), {
     isSearch: function isSearch() {
       return this.searchingSkill.length;
     },
@@ -87687,7 +87713,7 @@ __webpack_require__.r(__webpack_exports__);
         return skill.body;
       });
     }
-  },
+  }),
   methods: {
     getProfessionId: function getProfessionId() {
       var response;
@@ -87714,7 +87740,7 @@ __webpack_require__.r(__webpack_exports__);
       }, null, this);
     },
     index: function index() {
-      var response, reg;
+      var response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function index$(_context3) {
         while (1) {
           switch (_context3.prev = _context3.next) {
@@ -87723,34 +87749,25 @@ __webpack_require__.r(__webpack_exports__);
               return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(axios.get("/api/".concat(this.paramPath), {
                 params: {
                   page: this.page,
-                  professionTypeId: this.professionId
+                  professionTypeId: this.professionId,
+                  targetSkills: this.targetSkills,
+                  sortKey: this.sortKey
                 }
               }));
 
             case 2:
               response = _context3.sent;
-              this.$store.commit('error/setStatus', response.status);
-              this.$store.commit('error/setMessage', response);
-              reg = /^(customers|works)$/g;
-
-              if (!this.paramPath.match(reg)) {
-                this.list = response.data.data;
-                this.from = response.data.from;
-                this.to = response.data.to;
-                this.currentPage = response.data.current_page;
-                this.lastPage = response.data.last_page;
-              } else {
-                this.source = response.data[this.paramPath];
-                this.searchedWorks = this.source;
-                this.sortBySelect();
-                this.setPaginate();
-                this.lastPage = Math.ceil(this.source.length / _util__WEBPACK_IMPORTED_MODULE_1__["PER_PAGE"]);
-                this.list = this.source.slice(this.from - 1, this.to);
-              }
+              this.$store.commit('form/setResponse', response);
+              this.list = response.data.data;
+              this.from = response.data.from;
+              this.to = response.data.to;
+              this.currentPage = response.data.current_page;
+              this.lastPage = response.data.last_page; // this.$store.commit('error/setStatus', response.status)
+              // this.$store.commit('error/setMessage', response)
 
               this.hasData = !!this.list.length;
 
-            case 8:
+            case 10:
             case "end":
               return _context3.stop();
           }
@@ -87788,101 +87805,141 @@ __webpack_require__.r(__webpack_exports__);
       this.to = this.from + _util__WEBPACK_IMPORTED_MODULE_1__["PER_PAGE"] - 1;
     },
     sortChange: function sortChange() {
-      this.sortBySelect();
-      this.page = 1;
-      this.setPaginate();
-      this.list = this.searchedWorks.slice(this.from - 1, this.to);
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function sortChange$(_context5) {
+        while (1) {
+          switch (_context5.prev = _context5.next) {
+            case 0:
+              this.page = 1;
+              _context5.next = 3;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(this.index());
+
+            case 3:
+            case "end":
+              return _context5.stop();
+          }
+        }
+      }, null, this);
     },
     sortBySelect: function sortBySelect() {
       var arr = this.sortKey.split('.');
 
       if (arr[1] === 'desc') {
-        this.searchedWorks.sort(function (a, b) {
+        this.list.sort(function (a, b) {
           return a[arr[0]] < b[arr[0]] ? 1 : -1;
         });
       } else {
-        this.searchedWorks.sort(function (a, b) {
+        this.list.sort(function (a, b) {
           return a[arr[0]] > b[arr[0]] ? 1 : -1;
         });
       }
     },
+    // WorkCardのタグを押したときの検索
     searchBySkill: function searchBySkill(id) {
-      this.targetSkills = [id];
-      this.searchingSkill = [];
-      this.searchedWorks = [];
-      this.setSearchingSkill(id);
-      this.setSearchedWork(id);
-      this.searchingSkill = this.searchingSkill.flat();
-      this.searchedWorks = this.searchedWorks.flat();
-      this.page = 1;
-      var count = !this.searchedWorks.length ? 1 : this.searchedWorks.length;
-      this.lastPage = Math.ceil(count / _util__WEBPACK_IMPORTED_MODULE_1__["PER_PAGE"]);
-      this.setPaginate();
-      this.list = this.searchedWorks.slice(this.from - 1, this.to);
-      this.hasData = !!this.list.length;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function searchBySkill$(_context6) {
+        while (1) {
+          switch (_context6.prev = _context6.next) {
+            case 0:
+              this.$store.commit('form/setIsLoading', true);
+              this.targets = [id];
+              _context6.next = 4;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(this.search());
+
+            case 4:
+              this.$store.commit('form/setIsLoading', false);
+
+            case 5:
+            case "end":
+              return _context6.stop();
+          }
+        }
+      }, null, this);
     },
+    // 「タグで絞り込む」から検索
     searchByMultiSkill: function searchByMultiSkill() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function searchByMultiSkill$(_context7) {
+        while (1) {
+          switch (_context7.prev = _context7.next) {
+            case 0:
+              this.$store.commit('form/setIsLoading', true);
+              this.toggleBody();
+              _context7.next = 4;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(this.search());
+
+            case 4:
+              this.$store.commit('form/setIsLoading', false);
+
+            case 5:
+            case "end":
+              return _context7.stop();
+          }
+        }
+      }, null, this);
+    },
+    search: function search() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function search$(_context8) {
+        while (1) {
+          switch (_context8.prev = _context8.next) {
+            case 0:
+              this.$store.commit('form/setTargetSkills', this.targets);
+              this.setSearchingSkill();
+              this.page = 1;
+              _context8.next = 5;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(this.index());
+
+            case 5:
+              this.$scrollTo('.SearchList_titleText');
+
+            case 6:
+            case "end":
+              return _context8.stop();
+          }
+        }
+      }, null, this);
+    },
+    setSearchingSkill: function setSearchingSkill() {
       var _this = this;
 
-      this.toggleBody();
-
-      if (!this.targetSkills.length) {
-        this.clearSearch();
-        return true;
-      }
-
-      this.searchingSkill = [];
-      this.searchedWorks = [];
-      this.targetSkills.forEach(function (id) {
-        _this.setSearchingSkill(id);
-
-        _this.setSearchedWork(id);
-      });
-      this.searchingSkill = this.searchingSkill.flat();
-      this.searchedWorks = this.searchedWorks.flat();
-      this.page = 1;
-      var count = !this.searchedWorks.length ? 1 : this.searchedWorks.length;
-      this.lastPage = Math.ceil(count / _util__WEBPACK_IMPORTED_MODULE_1__["PER_PAGE"]);
-      this.setPaginate();
-      this.list = this.searchedWorks.slice(this.from - 1, this.to);
-      this.hasData = !!this.list.length;
-    },
-    setSearchingSkill: function setSearchingSkill(id) {
-      this.searchingSkill.push(this.skills.filter(function (skill) {
-        return skill.id === id;
-      }));
-    },
-    setSearchedWork: function setSearchedWork(id) {
-      this.searchedWorks.push(this.source.filter(function (work) {
-        if (!work.skills.length) {
-          return false;
-        }
-
-        return work.skills.some(function (skill) {
+      var searchingSkills = this.targets.map(function (id) {
+        return _this.skills.filter(function (skill) {
           return skill.id === id;
         });
-      }));
+      });
+      this.$store.commit('form/setSearchingSkill', searchingSkills.flat());
     },
     clearSearch: function clearSearch() {
-      this.searchedWorks = this.source;
-      this.searchingSkill = [];
-      this.targetSkills = [];
-      this.page = 1;
-      this.setPaginate();
-      this.lastPage = Math.ceil(this.source.length / _util__WEBPACK_IMPORTED_MODULE_1__["PER_PAGE"]);
-      this.list = this.source.slice(this.from - 1, this.to);
-      this.hasData = !!this.list.length;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function clearSearch$(_context9) {
+        while (1) {
+          switch (_context9.prev = _context9.next) {
+            case 0:
+              this.$store.commit('form/setIsLoading', true);
+              this.targets = [];
+              this.$store.commit('form/setSearchingSkill', this.targets);
+              this.$store.commit('form/setTargetSkills', []);
+              this.page = 1;
+              _context9.next = 7;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(this.index());
+
+            case 7:
+              this.$scrollTo('.SearchList_titleText');
+              this.$store.commit('form/setIsLoading', false);
+
+            case 9:
+            case "end":
+              return _context9.stop();
+          }
+        }
+      }, null, this);
     },
     toggleBody: function toggleBody() {
       this.isOpen = !this.isOpen;
     },
     checked: function checked(skillId) {
-      return this.targetSkills.some(function (id) {
+      return this.targets.some(function (id) {
         return id === skillId;
       });
     },
     colorByIsSelect: function colorByIsSelect(skillId) {
-      if (!this.targetSkills.length) {
+      if (!this.targets.length) {
         return this.bgColor();
       } else if (this.checked(skillId)) {
         return this.bgColor(this.professionId);
@@ -91568,7 +91625,9 @@ var state = {
   confirmModal: {
     isShow: false,
     exeText: null
-  }
+  },
+  targetSkills: [],
+  searchingSkill: []
 };
 var getters = {
   address: function address(state) {
@@ -91585,6 +91644,12 @@ var getters = {
   },
   confirmModal: function confirmModal(state) {
     return state.confirmModal;
+  },
+  targetSkills: function targetSkills(state) {
+    return state.targetSkills;
+  },
+  searchingSkill: function searchingSkill(state) {
+    return state.searchingSkill;
   }
 };
 var mutations = {
@@ -91609,6 +91674,12 @@ var mutations = {
   setConfirmModal: function setConfirmModal(state, data) {
     state.confirmModal.isShow = data.isShow;
     state.confirmModal.exeText = data.exeText;
+  },
+  setTargetSkills: function setTargetSkills(state, data) {
+    state.targetSkills = data;
+  },
+  setSearchingSkill: function setSearchingSkill(state, data) {
+    state.searchingSkill = data;
   }
 };
 var actions = {};
