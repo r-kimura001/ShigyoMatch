@@ -2884,10 +2884,27 @@ td {
   margin-top: 40px;
   display: -webkit-box;
   display: flex;
-  -webkit-box-pack: center;
-          justify-content: center;
   -webkit-box-align: center;
           align-items: center;
+  padding: 0 60px;
+}
+
+@media screen and (max-width: 1180px) {
+  .MainContent .MainContent_heading {
+    padding: 0 10px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .MainContent .MainContent_heading {
+    padding: 0 20px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .MainContent .MainContent_heading {
+    padding: 0 10px;
+  }
 }
 
 .MainContent .MainContent_title {

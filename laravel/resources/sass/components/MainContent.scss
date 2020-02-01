@@ -4,8 +4,18 @@
   .MainContent_heading{
     margin-top: 40px;
     display: flex;
-    justify-content: center;
     align-items: center;
+    padding: 0 60px;
+
+    @include media(lg){
+      padding: 0 10px;
+    }
+    @include media(){
+      padding: 0 20px;
+    }
+    @include media(sm){
+      padding: 0 10px;
+    }
   }
 
   .MainContent_title{
