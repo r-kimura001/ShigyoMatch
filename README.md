@@ -1,7 +1,7 @@
 # 士業マッチングサイト
 仕事がほしい事務所と人材がほしい事務所のマッチングサービスです
 
-![TOP画面](https://user-images.githubusercontent.com/47154781/58903541-a9ec4080-8740-11e9-8f59-56733b44169a.png)
+![TOP画面](https://asset.shigyo-match.site/assets/main-visual04.jpg)
 
 # リンク
 * サイトリンク：https://www.shigyo-match.site
