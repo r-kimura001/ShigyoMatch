@@ -15,11 +15,11 @@ class UsersTableSeeder extends Seeder
       DB::table('users')->truncate();
       DB::table('customers')->truncate();
 
-      $customer = factory(Customer::class, 1)->create();
+      $customer = factory(Customer::class, 1)->create(['name' => 'テストユーザー事務所']);
       factory('App\Models\User')->create([
         'customer_id' => 1,
         'login_id' => 'testuser',
-        'email' => 'sample@example',
+        'email' => 'sample@example.com',
         'password' => \Hash::make('test1234'),
       ]);
       $customers = factory(Customer::class, 120)->create();

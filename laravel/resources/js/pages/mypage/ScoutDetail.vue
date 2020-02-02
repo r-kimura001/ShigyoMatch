@@ -31,21 +31,6 @@
 <script>
   export default {
     props: ['scout'],
-    data(){
-      return {
-        isShow: false,
-        formItem: {
-          name: 'body',
-          value: '',
-          formLabel: {
-            name: 'メッセージ',
-            style: this.bgImage('assets/icon-mail.svg'),
-          },
-          placeholder: 'メッセージ本文',
-          rows: 10,
-        },
-      }
-    },
     computed: {
       hasData(){
         return !!this.scout

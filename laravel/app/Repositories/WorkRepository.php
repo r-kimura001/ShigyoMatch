@@ -42,12 +42,27 @@ class WorkRepository extends Repository
    */
   public function paginateByProfession(array $relations, array $data, int $perPage=parent::COUNT_PER_PAGE)
   {
-    $orderBy = explode('.', $data['sortKey']);
+    $orderBy = explode('.', $data['sortKey'] ?? 'created_at.desc');
     return $this->getBuilder()
       ->with($relations)
       ->where('profession_type_id', $data['professionTypeId'])
       ->orderBy($orderBy[0], $orderBy[1])
       ->paginate($perPage);
+  }
+
+  /**
+   * @param array $relations
+   * @param array $data
+   * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
+   */
+  public function worksByProfession(array $relations, array $data)
+  {
+    $orderBy = explode('.', $data['sortKey'] ?? 'created_at.desc');
+    return $this->getBuilder()
+      ->with($relations)
+      ->where('profession_type_id', $data['professionTypeId'])
+      ->orderBy($orderBy[0], $orderBy[1])
+      ->get();
   }
 
   /**

@@ -20,5 +20,7 @@ class DatabaseSeeder extends Seeder
       $this->call(WorksTableSeeder::class);
       $this->call(WorkSkillsTableSeeder::class);
       $this->call(NoteTemplatesTableSeeder::class);
+      $this->call(FollowsTableSeeder::class);
+      $this->call(RelationsTableSeeder::class);
     }
 }

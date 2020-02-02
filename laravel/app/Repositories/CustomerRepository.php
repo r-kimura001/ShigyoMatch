@@ -31,6 +31,7 @@ class CustomerRepository extends Repository
       ->latest()
       ->paginate($perPage);
   }
+
   /**
    * @param array $relations
    * @param array $data
@@ -40,12 +41,28 @@ class CustomerRepository extends Repository
    */
   public function paginateByProfession(array $relations, array $data, Collection $ids, int $perPage=parent::COUNT_PER_PAGE)
   {
-    $orderBy = explode('.', $data['sortKey']);
+    $orderBy = explode('.', $data['sortKey'] ?? 'created_at.desc');
     return $this->getBuilder()
       ->with($relations)
       ->whereIn('id', $ids)
       ->orderBy($orderBy[0], $orderBy[1])
       ->paginate($perPage);
+  }
+
+  /**
+   * @param array $relations
+   * @param array $data
+   * @param Collection $ids
+   * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
+   */
+  public function customersByProfession(array $relations, array $data, Collection $ids)
+  {
+    $orderBy = explode('.', $data['sortKey'] ?? 'created_at.desc');
+    return $this->getBuilder()
+      ->with($relations)
+      ->whereIn('id', $ids)
+      ->orderBy($orderBy[0], $orderBy[1])
+      ->get();
   }
 
 }

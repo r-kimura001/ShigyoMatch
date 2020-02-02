@@ -2,8 +2,8 @@
   display: flex;
   align-items: center;
   cursor: pointer;
-  padding-left: 12px;
   .MemberLink_thumb{
+    flex-shrink: 0;
     display: inline-block;
     width: 36px;
     height: 36px;
@@ -17,6 +17,9 @@
     font-size: 1.4rem;
     margin: 0 5px;
     line-height: 1.2;
+    &.--white{
+      color: $white;
+    }
     &::after{
       content: attr(data-unit);
       color: $gray;
@@ -25,6 +28,16 @@
     &:hover{
       opacity: 0.7;
       &::after{ text-decoration: none; }
+    }
+  }
+
+  &.--noLink{
+    cursor: initial;
+    .MemberLink_text{
+      color: $black;
+    }
+    &:hover{
+      opacity: 1;
     }
   }
 }

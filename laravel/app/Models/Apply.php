@@ -53,7 +53,7 @@ class Apply extends Model implements CanDeleteRelationInterface
    */
   public function reviewers()
   {
-    return $this->belongsToMany(Customer::class, 'reviews','apply_id', 'reviewer_id');
+    return $this->belongsToMany(Customer::class, 'reviews','apply_id', 'reviewer_id')->withTimestamps();
   }
 
   public function reviews()

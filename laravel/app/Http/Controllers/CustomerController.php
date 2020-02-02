@@ -72,6 +72,7 @@ class CustomerController extends Controller
 
     try{
       if(isset($data['file_name'])){
+        $deleteSrc = $customer->file_name;
         $data['file_name'] = $this->fileUploadService->uploadThumb($putPath, $data['file_name']);
       }
       if($data['deleteFlag'] === '1'){
@@ -88,7 +89,7 @@ class CustomerController extends Controller
       throw $exception;
     }
 
-    if($data['deleteFlag'] === '1'){
+    if(!empty($deleteSrc ?? '')){
       $this->fileUploadService->delete($deleteSrc);
     }
 

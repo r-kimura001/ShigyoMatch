@@ -65,7 +65,7 @@
       </div>
       <div v-if="currentFlag===appliedFlag" class="MypageContent_body">
         <h3 class="BaseTitle">
-          <span class="BaseTitle_text">申込を受けた案件</span>
+          <span class="BaseTitle_text --apply">申込を受けた案件</span>
         </h3>
         <div class="Table u-py20">
           <table>

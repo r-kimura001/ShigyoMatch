@@ -882,8 +882,9 @@ td {
 }
 
 .ApplyDetail .ApplyDetail_pr {
-  padding: 12px;
+  padding: 15px 12px;
   white-space: pre-line;
+  line-height: 1.5;
   border: 1px solid #dedede;
   border-radius: 4px;
   font-size: 1.5rem;
@@ -3108,10 +3109,10 @@ td {
   -webkit-box-align: center;
           align-items: center;
   cursor: pointer;
-  padding-left: 12px;
 }
 
 .MemberLink .MemberLink_thumb {
+  flex-shrink: 0;
   display: inline-block;
   width: 36px;
   height: 36px;
@@ -3129,6 +3130,10 @@ td {
   line-height: 1.2;
 }
 
+.MemberLink .MemberLink_text.\--white {
+  color: #fefefe;
+}
+
 .MemberLink .MemberLink_text::after {
   content: attr(data-unit);
   color: #a8a3a7;
@@ -3141,6 +3146,18 @@ td {
 
 .MemberLink .MemberLink_text:hover::after {
   text-decoration: none;
+}
+
+.MemberLink.\--noLink {
+  cursor: initial;
+}
+
+.MemberLink.\--noLink .MemberLink_text {
+  color: #333333;
+}
+
+.MemberLink.\--noLink:hover {
+  opacity: 1;
 }
 
 .MemberList {

@@ -16,8 +16,8 @@
         </h3>
         <p v-if="!hasScouted" class="u-pa20">スカウトを受けた案件はありません</p>
         <div v-else class="">
-          <ul v-for="(work, index) in scouted_works" :key="index" class="ScoutList">
-            <li class="ScoutList_item">
+          <ul class="ScoutList">
+            <li v-for="(work, index) in scouted_works" :key="index" class="ScoutList_item">
               <div class="ScoutList_targetInfo">
                 <div class="u-pl20">
                   <ReplacedDate
@@ -35,9 +35,9 @@
                 </div>
               </div>
               <div class="ScoutList_scoutInfo">
-                <div class="ScoutList_scoutThumb" :style="bgImage(work.file_name)"></div>
+                <div class="ScoutList_scoutThumb" :style="bgImage(work.file_name, 'work')"></div>
                 <RouterLink :to="`/works/${work.id}`" tag="p" class="ScoutList_workLink u-ml10">{{ work.title }}</RouterLink>
-                <button class="Button --minimum u-ml10" @click="showDetail(work.pivot)">スカウトの内容</button>
+                <button class="Button --minimum u-ml10" @click="showDetail(work.pivot)">スカウト詳細</button>
               </div>
             </li>
           </ul>
@@ -50,17 +50,17 @@
         <p v-if="!hasScout" class="u-pa20">スカウトした案件はありません</p>
         <div v-else class="">
           <ul class="ScoutList">
-            <li v-for="(target, idx) in scout_works" :key="idx" class="ScoutList_item">
+            <li v-for="(targetUser, idx) in scout_works" :key="idx" class="ScoutList_item">
               <div class="ScoutList_targetInfo">
                 <div class="u-pl20">
                   <ReplacedDate
                     action="スカウト"
-                    :datetime="target.pivot.updated_at"
+                    :datetime="targetUser.pivot.updated_at"
                   ></ReplacedDate>
                 </div>
                 <div class="HorizontalLayout --vertical u-mt10">
                   <div class="HorizontalLayout_col">
-                    <MemberLink :customer="target"></MemberLink>
+                    <MemberLink :customer="targetUser"></MemberLink>
                   </div>
                   <div class="HorizontalLayout_col">
                     <span>さんにスカウトを送りました</span>
@@ -68,9 +68,9 @@
                 </div>
               </div>
               <div class="ScoutList_scoutInfo">
-                <div class="ScoutList_scoutThumb" :style="bgImage(target.work.file_name)"></div>
-                <RouterLink :to="`/works/${target.work.id}`" tag="p" class="ScoutList_workLink u-ml10">{{ target.work.title }}</RouterLink>
-                <button class="Button --minimum u-ml10" @click="showDetail(target.pivot)">スカウトの内容</button>
+                <div class="ScoutList_scoutThumb" :style="bgImage(targetUser.work.file_name, 'work')"></div>
+                <RouterLink :to="`/works/${targetUser.work.id}`" tag="p" class="ScoutList_workLink u-ml10">{{ targetUser.work.title }}</RouterLink>
+                <button class="Button --minimum u-ml10" @click="showDetail(targetUser.pivot)">スカウト詳細</button>
               </div>
             </li>
           </ul>

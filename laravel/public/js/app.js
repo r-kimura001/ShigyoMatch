@@ -2554,6 +2554,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -2566,6 +2574,14 @@ __webpack_require__.r(__webpack_exports__);
     unit: {
       type: String,
       "default": ''
+    },
+    noLink: {
+      type: Boolean,
+      "default": false
+    },
+    white: {
+      type: Boolean,
+      "default": false
     }
   },
   mixins: [_mixins_styles__WEBPACK_IMPORTED_MODULE_0__["default"]]
@@ -8172,8 +8188,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _mixins_styles__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/mixins/styles */ "./resources/js/mixins/styles.js");
 /* harmony import */ var _components_Tab__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/components/Tab */ "./resources/js/components/Tab.vue");
 /* harmony import */ var _pages_mypage_ApplyDetail__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/pages/mypage/ApplyDetail */ "./resources/js/pages/mypage/ApplyDetail.vue");
-/* harmony import */ var lodash_maxBy__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! lodash/maxBy */ "./node_modules/lodash/maxBy.js");
-/* harmony import */ var lodash_maxBy__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(lodash_maxBy__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _components_MemberLink__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/components/MemberLink */ "./resources/js/components/MemberLink.vue");
+/* harmony import */ var lodash_maxBy__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! lodash/maxBy */ "./node_modules/lodash/maxBy.js");
+/* harmony import */ var lodash_maxBy__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(lodash_maxBy__WEBPACK_IMPORTED_MODULE_6__);
 
 //
 //
@@ -8249,17 +8266,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
 
 
 
@@ -8268,7 +8275,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     Tab: _components_Tab__WEBPACK_IMPORTED_MODULE_3__["default"],
-    ApplyDetail: _pages_mypage_ApplyDetail__WEBPACK_IMPORTED_MODULE_4__["default"]
+    ApplyDetail: _pages_mypage_ApplyDetail__WEBPACK_IMPORTED_MODULE_4__["default"],
+    MemberLink: _components_MemberLink__WEBPACK_IMPORTED_MODULE_5__["default"]
   },
   props: {
     customer: {
@@ -8472,7 +8480,7 @@ __webpack_require__.r(__webpack_exports__);
       return room.applier.id === this.customer.id;
     },
     latestDate: function latestDate(apply) {
-      var latestMessage = lodash_maxBy__WEBPACK_IMPORTED_MODULE_5___default()(apply.messages, function (message) {
+      var latestMessage = lodash_maxBy__WEBPACK_IMPORTED_MODULE_6___default()(apply.messages, function (message) {
         return message.updated_at;
       });
       return latestMessage.updated_at;
@@ -8915,21 +8923,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['scout'],
-  data: function data() {
-    return {
-      isShow: false,
-      formItem: {
-        name: 'body',
-        value: '',
-        formLabel: {
-          name: 'メッセージ',
-          style: this.bgImage('assets/icon-mail.svg')
-        },
-        placeholder: 'メッセージ本文',
-        rows: 10
-      }
-    };
-  },
   computed: {
     hasData: function hasData() {
       return !!this.scout;
@@ -16525,25 +16518,46 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "RouterLink",
-    {
-      staticClass: "MemberLink",
-      attrs: { to: "/customers/" + _vm.customer.id, tag: "div" }
-    },
-    [
-      _c("span", {
-        staticClass: "MemberLink_thumb",
-        style: _vm.bgImage(_vm.customer.file_name)
-      }),
-      _vm._v(" "),
-      _c(
-        "span",
-        { staticClass: "MemberLink_text", attrs: { "data-unit": _vm.unit } },
-        [_vm._v(_vm._s(_vm.customer.name))]
+  return _vm.noLink
+    ? _c("div", { staticClass: "MemberLink --noLink" }, [
+        _c("span", {
+          staticClass: "MemberLink_thumb",
+          style: _vm.bgImage(_vm.customer.file_name)
+        }),
+        _vm._v(" "),
+        _c(
+          "span",
+          {
+            staticClass: "MemberLink_text",
+            class: { "--white": _vm.white },
+            attrs: { "data-unit": _vm.unit }
+          },
+          [_vm._v(_vm._s(_vm.customer.name))]
+        )
+      ])
+    : _c(
+        "RouterLink",
+        {
+          staticClass: "MemberLink",
+          attrs: { to: "/customers/" + _vm.customer.id, tag: "div" }
+        },
+        [
+          _c("span", {
+            staticClass: "MemberLink_thumb",
+            style: _vm.bgImage(_vm.customer.file_name)
+          }),
+          _vm._v(" "),
+          _c(
+            "span",
+            {
+              staticClass: "MemberLink_text",
+              class: { "--white": _vm.white },
+              attrs: { "data-unit": _vm.unit }
+            },
+            [_vm._v(_vm._s(_vm.customer.name))]
+          )
+        ]
       )
-    ]
-  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -21085,7 +21099,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("h3", { staticClass: "BaseTitle" }, [
-      _c("span", { staticClass: "BaseTitle_text" }, [
+      _c("span", { staticClass: "BaseTitle_text --apply" }, [
         _vm._v("申込を受けた案件")
       ])
     ])
@@ -21990,21 +22004,30 @@ var render = function() {
                     attrs: { "data-unread": _vm.unreadCount(room) }
                   },
                   [
-                    _c("div", { staticClass: "HorizontalLayout --vertical" }, [
-                      _c("div", { staticClass: "HorizontalLayout_col" }, [
-                        _c("div", {
-                          staticClass: "MessageLayout_icon",
-                          style: _vm.bgImage(_vm.target(room).file_name)
-                        })
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: "HorizontalLayout_col u-ml10" },
-                        [_vm._v(_vm._s(_vm.target(room).name))]
-                      )
-                    ])
-                  ]
+                    _c(
+                      "RouterLink",
+                      {
+                        staticClass: "HorizontalLayout --vertical",
+                        attrs: { to: "/works/" + room.work.id, tag: "div" }
+                      },
+                      [
+                        _c(
+                          "div",
+                          { staticClass: "HorizontalLayout_col u-ml10" },
+                          [
+                            _c("span", { staticClass: "Text -link -fz12" }, [
+                              _vm._v(_vm._s(room.work.title))
+                            ])
+                          ]
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("MemberLink", {
+                      attrs: { customer: _vm.target(room), "no-link": true }
+                    })
+                  ],
+                  1
                 )
               ]
             )
@@ -22014,28 +22037,19 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "MessageLayout_main" }, [
-        _c("div", { staticClass: "MessageLayout_heading" }, [
-          _c(
-            "div",
-            { staticClass: "HorizontalLayout --vertical --justifyCenter" },
-            [
-              _c("div", { staticClass: "HorizontalLayout_col" }, [
-                !!_vm.currentRoom
-                  ? _c("div", {
-                      staticClass: "MessageLayout_icon",
-                      style: _vm.bgImage(_vm.target(_vm.currentRoom).file_name)
-                    })
-                  : _vm._e()
-              ]),
-              _vm._v(" "),
-              !!_vm.currentRoom
-                ? _c("div", { staticClass: "HorizontalLayout_col u-ml10" }, [
-                    _vm._v(_vm._s(_vm.target(_vm.currentRoom).name))
-                  ])
-                : _vm._e()
-            ]
-          )
-        ]),
+        _c(
+          "div",
+          { staticClass: "MessageLayout_heading" },
+          [
+            !!_vm.currentRoom
+              ? _c("MemberLink", {
+                  staticClass: "HorizontalLayout --vertical --justifyCenter",
+                  attrs: { customer: _vm.target(_vm.currentRoom), white: true }
+                })
+              : _vm._e()
+          ],
+          1
+        ),
         _vm._v(" "),
         _c("div", { staticClass: "MessageLayout_box" }, [
           !!_vm.currentRoom
@@ -22375,15 +22389,15 @@ var render = function() {
                 ? _c("p", { staticClass: "u-pa20" }, [
                     _vm._v("スカウトを受けた案件はありません")
                   ])
-                : _c(
-                    "div",
-                    {},
-                    _vm._l(_vm.scouted_works, function(work, index) {
-                      return _c(
-                        "ul",
-                        { key: index, staticClass: "ScoutList" },
-                        [
-                          _c("li", { staticClass: "ScoutList_item" }, [
+                : _c("div", {}, [
+                    _c(
+                      "ul",
+                      { staticClass: "ScoutList" },
+                      _vm._l(_vm.scouted_works, function(work, index) {
+                        return _c(
+                          "li",
+                          { key: index, staticClass: "ScoutList_item" },
+                          [
                             _c("div", { staticClass: "ScoutList_targetInfo" }, [
                               _c(
                                 "div",
@@ -22428,7 +22442,7 @@ var render = function() {
                               [
                                 _c("div", {
                                   staticClass: "ScoutList_scoutThumb",
-                                  style: _vm.bgImage(work.file_name)
+                                  style: _vm.bgImage(work.file_name, "work")
                                 }),
                                 _vm._v(" "),
                                 _c(
@@ -22450,17 +22464,17 @@ var render = function() {
                                       }
                                     }
                                   },
-                                  [_vm._v("スカウトの内容")]
+                                  [_vm._v("スカウト詳細")]
                                 )
                               ],
                               1
                             )
-                          ])
-                        ]
-                      )
-                    }),
-                    0
-                  )
+                          ]
+                        )
+                      }),
+                      0
+                    )
+                  ])
             ])
           : _vm._e(),
         _vm._v(" "),
@@ -22476,7 +22490,7 @@ var render = function() {
                     _c(
                       "ul",
                       { staticClass: "ScoutList" },
-                      _vm._l(_vm.scout_works, function(target, idx) {
+                      _vm._l(_vm.scout_works, function(targetUser, idx) {
                         return _c(
                           "li",
                           { key: idx, staticClass: "ScoutList_item" },
@@ -22489,7 +22503,7 @@ var render = function() {
                                   _c("ReplacedDate", {
                                     attrs: {
                                       action: "スカウト",
-                                      datetime: target.pivot.updated_at
+                                      datetime: targetUser.pivot.updated_at
                                     }
                                   })
                                 ],
@@ -22508,7 +22522,7 @@ var render = function() {
                                     { staticClass: "HorizontalLayout_col" },
                                     [
                                       _c("MemberLink", {
-                                        attrs: { customer: target }
+                                        attrs: { customer: targetUser }
                                       })
                                     ],
                                     1
@@ -22525,7 +22539,10 @@ var render = function() {
                               [
                                 _c("div", {
                                   staticClass: "ScoutList_scoutThumb",
-                                  style: _vm.bgImage(target.work.file_name)
+                                  style: _vm.bgImage(
+                                    targetUser.work.file_name,
+                                    "work"
+                                  )
                                 }),
                                 _vm._v(" "),
                                 _c(
@@ -22533,11 +22550,11 @@ var render = function() {
                                   {
                                     staticClass: "ScoutList_workLink u-ml10",
                                     attrs: {
-                                      to: "/works/" + target.work.id,
+                                      to: "/works/" + targetUser.work.id,
                                       tag: "p"
                                     }
                                   },
-                                  [_vm._v(_vm._s(target.work.title))]
+                                  [_vm._v(_vm._s(targetUser.work.title))]
                                 ),
                                 _vm._v(" "),
                                 _c(
@@ -22546,11 +22563,11 @@ var render = function() {
                                     staticClass: "Button --minimum u-ml10",
                                     on: {
                                       click: function($event) {
-                                        return _vm.showDetail(target.pivot)
+                                        return _vm.showDetail(targetUser.pivot)
                                       }
                                     }
                                   },
-                                  [_vm._v("スカウトの内容")]
+                                  [_vm._v("スカウト詳細")]
                                 )
                               ],
                               1

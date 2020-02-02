@@ -16,30 +16,19 @@
             <div class="MessageLayout_room"
                  :class="roomClassList(room)"
                  :data-unread="unreadCount(room)">
-              <div class="HorizontalLayout --vertical">
-                <div class="HorizontalLayout_col">
-                  <div class="MessageLayout_icon" :style="bgImage(target(room).file_name)">
-                  </div>
+              <RouterLink :to="`/works/${room.work.id}`" tag="div" class="HorizontalLayout --vertical">
+                <div class="HorizontalLayout_col u-ml10">
+                  <span class="Text -link -fz12">{{ room.work.title }}</span>
                 </div>
-                <div class="HorizontalLayout_col u-ml10">{{ target(room).name }}</div>
-              </div>
+              </RouterLink>
+              <MemberLink :customer="target(room)" :no-link="true"></MemberLink>
             </div>
           </li>
         </ul>
       </div>
       <div class="MessageLayout_main">
         <div class="MessageLayout_heading">
-          <div class="HorizontalLayout --vertical --justifyCenter">
-            <div class="HorizontalLayout_col">
-              <div
-                v-if="!!currentRoom"
-                class="MessageLayout_icon"
-                :style="bgImage(target(currentRoom).file_name)"
-              >
-              </div>
-            </div>
-            <div class="HorizontalLayout_col u-ml10" v-if="!!currentRoom">{{ target(currentRoom).name }}</div>
-          </div>
+          <MemberLink v-if="!!currentRoom" :customer="target(currentRoom)" :white="true" class="HorizontalLayout --vertical --justifyCenter"></MemberLink>
         </div>
         <div class="MessageLayout_box">
           <ul class="MessageLayout_talks" v-if="!!currentRoom">
@@ -88,9 +77,10 @@
   import styles from '@/mixins/styles'
   import Tab from '@/components/Tab'
   import ApplyDetail from '@/pages/mypage/ApplyDetail'
+  import MemberLink from '@/components/MemberLink'
   import maxBy from 'lodash/maxBy'
   export default {
-    components: { Tab, ApplyDetail },
+    components: { Tab, ApplyDetail, MemberLink },
     props: {
       customer: {
         type: Object,
