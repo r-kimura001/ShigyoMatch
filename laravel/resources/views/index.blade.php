@@ -8,6 +8,13 @@
   <title>{{ config('app.name') }}</title>
   <!-- Scripts -->
   <script type="text/javascript" src="{{ asset('js/app.js') }}" defer></script>
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@kaba_farm" />
+  <meta property="og:url" content="https://www.shigyo-match.site" />
+  <meta property="og:title" content="ポートフォリオ『士業マッチングサイト』" />
+  <meta property="og:description" content="キャッチフレーズは『プロフェッショナルをシェアする』。プログラミング学習用のポートフォリオです" />
+  <meta property="og:image" content="https://asset.shigyo-match.site/assets/main-visual04.jpg" />
   <!-- Styles -->
   <link rel="stylesheet" href="{{ asset('css/app.css') }}">
   <!-- Fonts -->
