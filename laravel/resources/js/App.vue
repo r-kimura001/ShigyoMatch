@@ -47,8 +47,12 @@ export default {
       },
       immediate: true,
     },
-    $route() {
-      this.$store.commit('error/setStatus', null)
+    $route: {
+      async handler(){
+        await this.$store.dispatch('auth/currentCustomer')
+        this.$store.commit('error/setStatus', null)
+      },
+      immediate: true
     },
   },
 }

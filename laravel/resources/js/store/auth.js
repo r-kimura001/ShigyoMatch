@@ -110,8 +110,6 @@ const actions = {
     context.commit('setApiStatus', null)
     const response = await axios.get('/api/customer')
     const customer = response.data || null
-    context.commit('setResponse', response)
-
     if (response.status === OK) {
       context.commit('setApiStatus', true)
       context.commit('setCustomer', customer)

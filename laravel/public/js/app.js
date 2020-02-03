@@ -1799,8 +1799,26 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       },
       immediate: true
     },
-    $route: function $route() {
-      this.$store.commit('error/setStatus', null);
+    $route: {
+      handler: function handler() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function handler$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(this.$store.dispatch('auth/currentCustomer'));
+
+              case 2:
+                this.$store.commit('error/setStatus', null);
+
+              case 3:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, null, this);
+      },
+      immediate: true
     }
   }
 });
@@ -91537,10 +91555,9 @@ var actions = {
           case 3:
             response = _context4.sent;
             customer = response.data || null;
-            context.commit('setResponse', response);
 
             if (!(response.status === _util__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
-              _context4.next = 10;
+              _context4.next = 9;
               break;
             }
 
@@ -91548,13 +91565,13 @@ var actions = {
             context.commit('setCustomer', customer);
             return _context4.abrupt("return", false);
 
-          case 10:
+          case 9:
             context.commit('setApiStatus', false);
             context.commit('error/setStatus', response.status, {
               root: true
             });
 
-          case 12:
+          case 11:
           case "end":
             return _context4.stop();
         }
