@@ -20556,9 +20556,7 @@ var render = function() {
             _c("div", { staticClass: "ResultLabel_bg" }),
             _vm._v(" "),
             _c("p", { staticClass: "ResultLabel_text" }, [
-              _c("span", { staticClass: "ResultLabel_num" }, [
-                _vm._v(_vm._s(_vm.total))
-              ]),
+              _c("span", {}, [_vm._v(_vm._s(_vm.total))]),
               _vm._v("件中"),
               _c("span", { staticClass: "ResultLabel_num" }, [
                 _vm._v(_vm._s(_vm.from))
@@ -87868,12 +87866,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               this.from = response.data.from;
               this.to = response.data.to;
               this.currentPage = response.data.current_page;
-              this.lastPage = response.data.last_page; // this.$store.commit('error/setStatus', response.status)
-              // this.$store.commit('error/setMessage', response)
-
+              this.lastPage = response.data.last_page;
+              this.$store.commit('error/setStatus', response.status);
+              this.$store.commit('error/setMessage', response);
               this.hasData = !!this.list.length;
 
-            case 10:
+            case 12:
             case "end":
               return _context3.stop();
           }

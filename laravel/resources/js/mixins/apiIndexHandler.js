@@ -84,8 +84,8 @@ export default {
       this.to = response.data.to
       this.currentPage = response.data.current_page
       this.lastPage = response.data.last_page
-      // this.$store.commit('error/setStatus', response.status)
-      // this.$store.commit('error/setMessage', response)
+      this.$store.commit('error/setStatus', response.status)
+      this.$store.commit('error/setMessage', response)
       this.hasData = !!this.list.length
     },
     async selectables(){

@@ -2910,13 +2910,15 @@ td {
 }
 
 .MainContent .MainContent_title {
-  display: block;
+  background: #33ba7c;
+  opacity: 0.8;
 }
 
 .MainContent .MainContent_title .MainContent_titleText {
   display: inline-block;
-  font-weight: bold;
-  font-size: 1.8rem;
+  color: #fefefe;
+  font-size: 1.6rem;
+  padding: 8px 40px;
 }
 
 .MainLayout {
@@ -3945,29 +3947,12 @@ td {
   color: #a8a3a7;
 }
 
-.ResultLabel {
-  position: relative;
-  z-index: 1;
-}
-
-.ResultLabel_bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: -1;
-  background: -webkit-gradient(linear, left top, left bottom, from(transparent), to(#33ba7c));
-  background: linear-gradient(to bottom, transparent 0%, #33ba7c);
-  opacity: 0.6;
-}
-
-.ResultLabel_text {
+.ResultLabel .ResultLabel_text {
   font-size: 1.2rem;
   padding: 15px 10px 15px 20px;
 }
 
-.ResultLabel_num {
+.ResultLabel .ResultLabel_num {
   font-weight: bold;
   font-size: 1.4rem;
   margin: 0 5px;

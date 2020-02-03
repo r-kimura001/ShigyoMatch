@@ -4,7 +4,7 @@
       <div class="ResultLabel" v-if="!!list.length">
         <div class="ResultLabel_bg"></div>
         <p class="ResultLabel_text">
-          <span class="ResultLabel_num">{{ total }}</span>件中<span class="ResultLabel_num">{{ from }}</span>〜<span class="ResultLabel_num">{{ to }}</span>件を表示
+          <span class="">{{ total }}</span>件中<span class="ResultLabel_num">{{ from }}</span>〜<span class="ResultLabel_num">{{ to }}</span>件を表示
         </p>
       </div>
       <div class="MainLayout_boxList">

@@ -1,25 +1,11 @@
 .ResultLabel{
-  position: relative;
-  z-index: 1;
-}
-.ResultLabel_bg{
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: -1;
-  background: -moz-linear-gradient(top, transparent 0%, $green);
-  background: -webkit-linear-gradient(top, transparent 0%, $green);
-  background: linear-gradient(to bottom, transparent 0%, $green);
-  opacity: 0.6;
-}
-.ResultLabel_text{
-  font-size: 1.2rem;
-  padding: 15px 10px 15px 20px;
-}
-.ResultLabel_num{
-  font-weight: bold;
-  font-size: 1.4rem;
-  margin: 0 5px;
+  .ResultLabel_text{
+    font-size: 1.2rem;
+    padding: 15px 10px 15px 20px;
+  }
+  .ResultLabel_num{
+    font-weight: bold;
+    font-size: 1.4rem;
+    margin: 0 5px;
+  }
 }
