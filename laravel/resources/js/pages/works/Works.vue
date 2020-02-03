@@ -1,6 +1,12 @@
 <template>
   <div class="p-works">
     <div class="MainLayout --hasWorks">
+      <div class="ResultLabel">
+        <div class="ResultLabel_bg"></div>
+        <p class="ResultLabel_text" v-if="!!list.length">
+          <span class="ResultLabel_num">{{ total }}</span>件中<span class="ResultLabel_num">{{ from }}</span>〜<span class="ResultLabel_num">{{ to }}</span>件を表示
+        </p>
+      </div>
       <div class="MainLayout_boxList">
         <section class="MainLayout_box">
           <div class="SearchStatus u-my15" v-if="isSearch">
@@ -16,13 +22,17 @@
           <div v-else>
             <h2 class="BaseTitle --vertical">
               <span class="BaseTitle_text --work"><span :style="fontColor(professionId)">{{ professionTypeName }}</span>の案件一覧</span>
-              <button class="Button --search u-ma10 u-tip" data-desc="分野タグで絞り込む" @click="toggleBody"></button>
             </h2>
-            <div class="u-alignCenter u-mb20">
-              <div class="SortBox">
-                <select @change="sortChange" v-model="sortKey">
-                  <option v-for="item in sortList" :value="item.value">{{ item.label }}</option>
-                </select>
+            <div class="HorizontalLayout --justifyCenter --vertical u-mb20">
+              <div class="HorizontalLayout_col">
+                <div class="SortBox">
+                  <select @change="sortChange" v-model="sortKey">
+                    <option v-for="item in sortList" :value="item.value">{{ item.label }}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="HorizontalLayout_col">
+                <button class="Button --search u-ma10 u-tip" data-desc="分野タグで絞り込む" @click="toggleBody"></button>
               </div>
             </div>
             <Pager

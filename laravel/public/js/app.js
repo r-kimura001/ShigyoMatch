@@ -6617,6 +6617,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -9950,6 +9956,16 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -20535,6 +20551,27 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "p-works" }, [
     _c("div", { staticClass: "MainLayout --customers" }, [
+      !!_vm.list.length
+        ? _c("div", { staticClass: "ResultLabel" }, [
+            _c("div", { staticClass: "ResultLabel_bg" }),
+            _vm._v(" "),
+            _c("p", { staticClass: "ResultLabel_text" }, [
+              _c("span", { staticClass: "ResultLabel_num" }, [
+                _vm._v(_vm._s(_vm.total))
+              ]),
+              _vm._v("件中"),
+              _c("span", { staticClass: "ResultLabel_num" }, [
+                _vm._v(_vm._s(_vm.from))
+              ]),
+              _vm._v("〜"),
+              _c("span", { staticClass: "ResultLabel_num" }, [
+                _vm._v(_vm._s(_vm.to))
+              ]),
+              _vm._v("件を表示\n      ")
+            ])
+          ])
+        : _vm._e(),
+      _vm._v(" "),
       _c("div", { staticClass: "MainLayout_boxList" }, [
         _c("section", { staticClass: "MainLayout_box" }, [
           !_vm.hasData
@@ -20544,7 +20581,7 @@ var render = function() {
             : _c(
                 "div",
                 [
-                  _c("h2", { staticClass: "BaseTitle" }, [
+                  _c("h3", { staticClass: "BaseTitle" }, [
                     _c("span", { staticClass: "BaseTitle_text --customer" }, [
                       _c("span", { style: _vm.fontColor(_vm.professionId) }, [
                         _vm._v(_vm._s(_vm.professionTypeName))
@@ -23084,6 +23121,27 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "p-works" }, [
     _c("div", { staticClass: "MainLayout --hasWorks" }, [
+      _c("div", { staticClass: "ResultLabel" }, [
+        _c("div", { staticClass: "ResultLabel_bg" }),
+        _vm._v(" "),
+        !!_vm.list.length
+          ? _c("p", { staticClass: "ResultLabel_text" }, [
+              _c("span", { staticClass: "ResultLabel_num" }, [
+                _vm._v(_vm._s(_vm.total))
+              ]),
+              _vm._v("件中"),
+              _c("span", { staticClass: "ResultLabel_num" }, [
+                _vm._v(_vm._s(_vm.from))
+              ]),
+              _vm._v("〜"),
+              _c("span", { staticClass: "ResultLabel_num" }, [
+                _vm._v(_vm._s(_vm.to))
+              ]),
+              _vm._v("件を表示\n      ")
+            ])
+          : _vm._e()
+      ]),
+      _vm._v(" "),
       _c("div", { staticClass: "MainLayout_boxList" }, [
         _c("section", { staticClass: "MainLayout_box" }, [
           _vm.isSearch
@@ -23133,58 +23191,70 @@ var render = function() {
                         _vm._v(_vm._s(_vm.professionTypeName))
                       ]),
                       _vm._v("の案件一覧")
-                    ]),
-                    _vm._v(" "),
-                    _c("button", {
-                      staticClass: "Button --search u-ma10 u-tip",
-                      attrs: { "data-desc": "分野タグで絞り込む" },
-                      on: { click: _vm.toggleBody }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "u-alignCenter u-mb20" }, [
-                    _c("div", { staticClass: "SortBox" }, [
-                      _c(
-                        "select",
-                        {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.sortKey,
-                              expression: "sortKey"
-                            }
-                          ],
-                          on: {
-                            change: [
-                              function($event) {
-                                var $$selectedVal = Array.prototype.filter
-                                  .call($event.target.options, function(o) {
-                                    return o.selected
-                                  })
-                                  .map(function(o) {
-                                    var val = "_value" in o ? o._value : o.value
-                                    return val
-                                  })
-                                _vm.sortKey = $event.target.multiple
-                                  ? $$selectedVal
-                                  : $$selectedVal[0]
-                              },
-                              _vm.sortChange
-                            ]
-                          }
-                        },
-                        _vm._l(_vm.sortList, function(item) {
-                          return _c(
-                            "option",
-                            { domProps: { value: item.value } },
-                            [_vm._v(_vm._s(item.label))]
-                          )
-                        }),
-                        0
-                      )
                     ])
                   ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "HorizontalLayout --justifyCenter --vertical u-mb20"
+                    },
+                    [
+                      _c("div", { staticClass: "HorizontalLayout_col" }, [
+                        _c("div", { staticClass: "SortBox" }, [
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.sortKey,
+                                  expression: "sortKey"
+                                }
+                              ],
+                              on: {
+                                change: [
+                                  function($event) {
+                                    var $$selectedVal = Array.prototype.filter
+                                      .call($event.target.options, function(o) {
+                                        return o.selected
+                                      })
+                                      .map(function(o) {
+                                        var val =
+                                          "_value" in o ? o._value : o.value
+                                        return val
+                                      })
+                                    _vm.sortKey = $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  },
+                                  _vm.sortChange
+                                ]
+                              }
+                            },
+                            _vm._l(_vm.sortList, function(item) {
+                              return _c(
+                                "option",
+                                { domProps: { value: item.value } },
+                                [_vm._v(_vm._s(item.label))]
+                              )
+                            }),
+                            0
+                          )
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "HorizontalLayout_col" }, [
+                        _c("button", {
+                          staticClass: "Button --search u-ma10 u-tip",
+                          attrs: { "data-desc": "分野タグで絞り込む" },
+                          on: { click: _vm.toggleBody }
+                        })
+                      ])
+                    ]
+                  ),
                   _vm._v(" "),
                   _vm.lastPage > 1
                     ? _c("Pager", {
@@ -87690,6 +87760,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       source: [],
       targets: [],
       skills: [],
+      total: null,
       from: null,
       to: null,
       currentPage: null,
@@ -87792,8 +87863,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
             case 2:
               response = _context3.sent;
-              this.$store.commit('form/setResponse', response);
               this.list = response.data.data;
+              this.total = response.data.total;
               this.from = response.data.from;
               this.to = response.data.to;
               this.currentPage = response.data.current_page;

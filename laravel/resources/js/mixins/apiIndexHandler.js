@@ -23,6 +23,7 @@ export default {
       source: [],
       targets: [],
       skills: [],
+      total: null,
       from: null,
       to: null,
       currentPage: null,
@@ -77,8 +78,8 @@ export default {
           sortKey: this.sortKey,
         },
       })
-      this.$store.commit('form/setResponse', response)
       this.list = response.data.data
+      this.total = response.data.total
       this.from = response.data.from
       this.to = response.data.to
       this.currentPage = response.data.current_page
@@ -159,6 +160,6 @@ export default {
       }else {
         return this.bgColor()
       }
-    }
+    },
   },
 }

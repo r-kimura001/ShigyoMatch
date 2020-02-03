@@ -1,13 +1,19 @@
 <template>
   <div class="p-works">
     <div class="MainLayout --customers">
+      <div class="ResultLabel" v-if="!!list.length">
+        <div class="ResultLabel_bg"></div>
+        <p class="ResultLabel_text">
+          <span class="ResultLabel_num">{{ total }}</span>件中<span class="ResultLabel_num">{{ from }}</span>〜<span class="ResultLabel_num">{{ to }}</span>件を表示
+        </p>
+      </div>
       <div class="MainLayout_boxList">
         <section class="MainLayout_box">
           <div v-if="!hasData" class="Text -nodata u-py40 u-alignCenter">結果がありません</div>
           <div v-else>
-            <h2 class="BaseTitle">
+            <h3 class="BaseTitle">
               <span class="BaseTitle_text --customer"><span :style="fontColor(professionId)">{{ professionTypeName }}</span>事務所一覧</span>
-            </h2>
+            </h3>
             <div class="u-alignCenter u-mb20">
               <div class="SortBox">
                 <select @change="sortChange" v-model="sortKey">

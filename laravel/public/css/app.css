@@ -2882,7 +2882,8 @@ td {
 }
 
 .MainContent .MainContent_heading {
-  margin-top: 40px;
+  max-width: 1380px;
+  margin: 40px auto 0;
   display: -webkit-box;
   display: flex;
   -webkit-box-align: center;
@@ -2986,8 +2987,6 @@ td {
 }
 
 .MainVisual {
-  max-width: 1380px;
-  margin: 0 auto;
   overflow: hidden;
   position: relative;
   padding-top: 37.5%;
@@ -3946,6 +3945,34 @@ td {
   color: #a8a3a7;
 }
 
+.ResultLabel {
+  position: relative;
+  z-index: 1;
+}
+
+.ResultLabel_bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  background: -webkit-gradient(linear, left top, left bottom, from(transparent), to(#33ba7c));
+  background: linear-gradient(to bottom, transparent 0%, #33ba7c);
+  opacity: 0.6;
+}
+
+.ResultLabel_text {
+  font-size: 1.2rem;
+  padding: 15px 10px 15px 20px;
+}
+
+.ResultLabel_num {
+  font-weight: bold;
+  font-size: 1.4rem;
+  margin: 0 5px;
+}
+
 .ResultMessage {
   position: fixed;
   top: 0;
@@ -4470,7 +4497,7 @@ td {
 
 .SortBox {
   display: inline-block;
-  padding: 8px 28px 8px 12px;
+  padding: 5px 28px 5px 12px;
   border: 2px solid #a8a3a7;
   border-radius: 5px;
   position: relative;
