@@ -134,3 +134,11 @@ th,td{
     opacity: 1;
   }
 }
+@keyframes transY {
+  0% {
+    transform: none;
+  }
+  100% {
+    transform: translateY(5px);
+  }
+}

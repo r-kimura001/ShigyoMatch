@@ -2522,6 +2522,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2538,6 +2539,17 @@ __webpack_require__.r(__webpack_exports__);
         src: 'assets/main-visual04.jpg'
       }]
     };
+  },
+  computed: {
+    deviceHeight: function deviceHeight() {
+      return _util__WEBPACK_IMPORTED_MODULE_1__["CLIENT_HEIGHT"];
+    },
+    height: function height() {
+      var headerHeight = 54;
+      return {
+        height: "".concat(this.deviceHeight - headerHeight, "px")
+      };
+    }
   },
   methods: {
     panelStyle: function panelStyle(panel, index) {
@@ -16553,7 +16565,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "MainVisual" },
+    { staticClass: "MainVisual", style: _vm.height },
     [
       _c("div", { staticClass: "MainVisual_cover" }),
       _vm._v(" "),
@@ -16566,7 +16578,20 @@ var render = function() {
         })
       }),
       _vm._v(" "),
-      _vm._m(0)
+      _vm._m(0),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "MainVisual_scrollBtn",
+          on: {
+            click: function($event) {
+              return _vm.$scrollTo(".MainContent", 2000)
+            }
+          }
+        },
+        [_vm._v("↓")]
+      )
     ],
     2
   )
@@ -16577,7 +16602,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("h1", { staticClass: "MainVisual_phrase" }, [
-      _c("span", { staticClass: "u-pa20" }, [
+      _c("span", [
         _vm._v("プロフェッショナルを"),
         _c("br"),
         _vm._v("シェアする")
@@ -20703,25 +20728,25 @@ var render = function() {
                         }),
                         0
                       )
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "u-mb20" },
-                      [
-                        !!_vm.list.length
-                          ? _c("ResultLabel", {
-                              attrs: {
-                                total: _vm.total,
-                                from: _vm.from,
-                                to: _vm.to
-                              }
-                            })
-                          : _vm._e()
-                      ],
-                      1
-                    )
+                    ])
                   ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "u-mb20" },
+                    [
+                      !!_vm.list.length
+                        ? _c("ResultLabel", {
+                            attrs: {
+                              total: _vm.total,
+                              from: _vm.from,
+                              to: _vm.to
+                            }
+                          })
+                        : _vm._e()
+                    ],
+                    1
+                  ),
                   _vm._v(" "),
                   _vm.lastPage > 1
                     ? _c("Pager", {

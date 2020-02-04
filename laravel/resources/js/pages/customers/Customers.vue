@@ -14,14 +14,14 @@
                   <option v-for="item in sortList" :value="item.value">{{ item.label }}</option>
                 </select>
               </div>
-              <div class="u-mb20">
-                <ResultLabel
-                  v-if="!!list.length"
-                  :total="total"
-                  :from="from"
-                  :to="to"
-                ></ResultLabel>
-              </div>
+            </div>
+            <div class="u-mb20">
+              <ResultLabel
+                v-if="!!list.length"
+                :total="total"
+                :from="from"
+                :to="to"
+              ></ResultLabel>
             </div>
             <Pager
               v-if="lastPage > 1"

@@ -1,5 +1,5 @@
 <template>
-  <div class="MainVisual">
+  <div class="MainVisual" :style="height">
     <div class="MainVisual_cover"></div>
     <div
       class="MainVisual_panel"
@@ -8,13 +8,14 @@
       :data-id="index"
       :style="panelStyle(panel, index)"></div>
     <h1 class="MainVisual_phrase">
-      <span class="u-pa20">プロフェッショナルを<br>シェアする</span>
+      <span>プロフェッショナルを<br>シェアする</span>
     </h1>
+    <div class="MainVisual_scrollBtn" @click="$scrollTo('.MainContent', 2000)">↓</div>
   </div>
 </template>
 <script>
 import styles from '@/mixins/styles'
-import { BASE_STORAGE_URL } from '@/util'
+import { BASE_STORAGE_URL, CLIENT_HEIGHT } from '@/util'
 export default {
   mixins: [styles],
   data(){
@@ -33,6 +34,17 @@ export default {
           src: 'assets/main-visual04.jpg',
         },
       ],
+    }
+  },
+  computed: {
+    deviceHeight(){
+      return CLIENT_HEIGHT
+    },
+    height(){
+      const headerHeight = 54
+      return {
+        height: `${this.deviceHeight - headerHeight}px`
+      }
     }
   },
   methods: {

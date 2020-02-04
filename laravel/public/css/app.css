@@ -806,6 +806,30 @@ td {
   }
 }
 
+@-webkit-keyframes transY {
+  0% {
+    -webkit-transform: none;
+            transform: none;
+  }
+
+  100% {
+    -webkit-transform: translateY(5px);
+            transform: translateY(5px);
+  }
+}
+
+@keyframes transY {
+  0% {
+    -webkit-transform: none;
+            transform: none;
+  }
+
+  100% {
+    -webkit-transform: translateY(5px);
+            transform: translateY(5px);
+  }
+}
+
 .AggregateBox {
   overflow: hidden;
   border-radius: 10px;
@@ -3008,13 +3032,6 @@ td {
 .MainVisual {
   overflow: hidden;
   position: relative;
-  padding-top: 37.5%;
-}
-
-@media screen and (max-width: 768px) {
-  .MainVisual {
-    padding-top: 50%;
-  }
 }
 
 .MainVisual_cover {
@@ -3024,7 +3041,7 @@ td {
   right: 0;
   bottom: 0;
   background: #333333;
-  opacity: 0.15;
+  opacity: 0.25;
   z-index: 1;
 }
 
@@ -3039,12 +3056,14 @@ td {
   opacity: 0;
   -webkit-animation: fuwa 16s linear infinite;
           animation: fuwa 16s linear infinite;
+  -webkit-transform: scale3d(1, 1, 0.75);
+          transform: scale3d(1, 1, 0.75);
 }
 
 .MainVisual_phrase {
   position: absolute;
-  bottom: 0;
-  left: 0;
+  bottom: 10%;
+  left: 10%;
   right: 0;
   -webkit-animation: phrasein 1.5s linear forwards;
           animation: phrasein 1.5s linear forwards;
@@ -3052,7 +3071,7 @@ td {
           animation-delay: 2s;
   font-family: "makiba", YakuHanJP, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", Meiryo, sans-serif;
   z-index: 2;
-  font-size: 6rem;
+  font-size: 10rem;
   color: #fefefe;
   display: -webkit-box;
   display: flex;
@@ -3063,6 +3082,12 @@ td {
   -webkit-transition: 0.3s;
 }
 
+@media screen and (max-width: 1180px) {
+  .MainVisual_phrase {
+    font-size: 7rem;
+  }
+}
+
 @media screen and (max-width: 768px) {
   .MainVisual_phrase {
     font-size: 5rem;
@@ -3071,8 +3096,40 @@ td {
 
 @media screen and (max-width: 480px) {
   .MainVisual_phrase {
-    font-size: 3rem;
+    bottom: initial;
+    top: 5%;
+    left: 0;
+    font-size: 3.2rem;
+    padding: 15px;
   }
+}
+
+.MainVisual_scrollBtn {
+  -webkit-animation: phrasein 1.5s linear forwards, transY 0.3s linear alternate infinite;
+          animation: phrasein 1.5s linear forwards, transY 0.3s linear alternate infinite;
+  -webkit-animation-delay: 3s;
+          animation-delay: 3s;
+  display: block;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  padding: 12px;
+  font-size: 2rem;
+  font-weight: bold;
+  z-index: 2;
+  border-radius: 9999px;
+  background: #fefefe;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: 0.3s;
+  -webkit-transition: 0.3s;
+  opacity: 0;
+}
+
+.MainVisual_scrollBtn:hover {
+  background: transparent;
+  border-color: #fefefe;
+  color: #fefefe;
 }
 
 @-webkit-keyframes fuwa {

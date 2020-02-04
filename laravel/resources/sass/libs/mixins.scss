@@ -81,3 +81,8 @@
 @mixin phrasein(){
   animation: phrasein 1.5s linear forwards;
 }
+@mixin scrollNote(){
+  animation:
+    phrasein 1.5s linear forwards,
+    transY 0.3s linear alternate infinite;
+}
