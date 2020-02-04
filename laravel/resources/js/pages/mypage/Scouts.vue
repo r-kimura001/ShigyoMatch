@@ -17,8 +17,13 @@
         <p v-if="!hasScouted" class="u-pa20">スカウトを受けた案件はありません</p>
         <div v-else class="">
           <ul class="ScoutList">
-            <li v-for="(work, index) in scouted_works" :key="index" class="ScoutList_item">
-              <div class="ScoutList_targetInfo">
+            <li
+              v-for="(work, index) in scouted_works"
+              :key="index"
+              class="ScoutList_item"
+              :class="{'--isNew': isNew(work.pivot.updated_at)}">
+              <div class="ScoutList_targetInfo"
+              >
                 <ReplacedDate
                   action="スカウトを受けた"
                   :datetime="work.pivot.updated_at"
@@ -96,7 +101,7 @@
   </div>
 </template>
 <script>
-  import { OK } from '@/util'
+  import { OK, isNew } from '@/util'
   import ScoutDetail from '@/pages/mypage/ScoutDetail'
   import WorkListLayout from '@/layouts/WorkListLayout'
   import CustomerListLayout from '@/layouts/CustomerListLayout'
@@ -184,6 +189,9 @@
       },
       showDetail(scout){
         this.currentScout = scout
+      },
+      isNew(datetime){
+        return isNew(datetime)
       }
     }
   }

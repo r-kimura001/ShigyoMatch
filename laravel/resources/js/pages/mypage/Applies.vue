@@ -118,7 +118,7 @@
                     {{ applier.name }}
                   </RouterLink>
                 </td>
-                <td>
+                <td :class="{'--isNew': isNew(applier.pivot.created_at)}">
                   <div class="Table_dataText">{{ createdAt(applier.pivot.created_at) }}</div>
                 </td>
               </tr>
@@ -135,7 +135,7 @@
   </div>
 </template>
 <script>
-  import { OK, dateReplace } from '@/util'
+  import { OK, dateReplace, isNew } from '@/util'
   import styles from '@/mixins/styles'
   import Tab from '@/components/Tab'
   import ApplyDetail from '@/pages/mypage/ApplyDetail'
@@ -269,6 +269,9 @@
       },
       createdAt(created_at){
         return dateReplace(created_at)
+      },
+      isNew(datetime){
+        return isNew(datetime)
       }
     },
   }

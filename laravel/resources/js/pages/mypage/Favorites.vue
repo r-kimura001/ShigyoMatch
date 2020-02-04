@@ -31,6 +31,7 @@
             class="FavoritedList_item"
             v-for="(favorite, index) in favorited_members"
             :key="index"
+            :class="{'--isNew': isNew(favorite.pivot.created_at)}"
           >
             <div class="FavoritedList_body u-px10">
               <div class="FavoritedList_member">
@@ -48,7 +49,7 @@
   </div>
 </template>
 <script>
-import { OK } from '@/util'
+import { OK, isNew } from '@/util'
 import styles from '@/mixins/styles'
 import MemberLink from '@/components/MemberLink'
 import WorkListLayout from '@/layouts/WorkListLayout'
@@ -125,6 +126,9 @@ export default {
     },
     change(flag){
       this.currentFlag = flag
+    },
+    isNew(datetime){
+      return isNew(datetime)
     }
   },
 }

@@ -30,14 +30,14 @@ export function dateReplace(datetime) {
   const now = new Date()
   const createDate = new Date(datetime)
   const diff = now - createDate
-  const minute = Math.floor(diff / 1000 / 60)
+  const minutes = Math.floor(diff / 1000 / 60)
   const hours = Math.floor(diff / 1000 / 60 / 60)
   const days = Math.floor(diff / 1000 / 60 / 60 / 24)
 
-  if(minute < 1){
+  if(minutes < 1){
     return 'たった今'
   }else if(hours < 1){
-    return `約${minute}分前`
+    return `約${minutes}分前`
   }else if(days < 1){
     return `約${hours}時間前`
   }else if(now.getFullYear() > createDate.getFullYear()){
@@ -52,6 +52,15 @@ export function dateReplace(datetime) {
     const minute = createDate.getMinutes()
     return `${month}月${date}日 ${hour}:${minute}`
   }
+}
+export function isNew(datetime) {
+  const limitDays = 1
+  const now = new Date()
+  const createDate = new Date(datetime)
+  const diff = now - createDate
+  const days = Math.floor(diff / 1000 / 60 / 60 / 24)
+
+  return days <= limitDays
 }
 
 export const OK = 200

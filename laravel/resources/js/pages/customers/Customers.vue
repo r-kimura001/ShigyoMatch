@@ -1,12 +1,6 @@
 <template>
   <div class="p-works">
     <div class="MainLayout --customers">
-      <div class="ResultLabel" v-if="!!list.length">
-        <div class="ResultLabel_bg"></div>
-        <p class="ResultLabel_text">
-          <span class="">{{ total }}</span>件中<span class="ResultLabel_num">{{ from }}</span>〜<span class="ResultLabel_num">{{ to }}</span>件を表示
-        </p>
-      </div>
       <div class="MainLayout_boxList">
         <section class="MainLayout_box">
           <div v-if="!hasData" class="Text -nodata u-py40 u-alignCenter">結果がありません</div>
@@ -19,6 +13,14 @@
                 <select @change="sortChange" v-model="sortKey">
                   <option v-for="item in sortList" :value="item.value">{{ item.label }}</option>
                 </select>
+              </div>
+              <div class="u-mb20">
+                <ResultLabel
+                  v-if="!!list.length"
+                  :total="total"
+                  :from="from"
+                  :to="to"
+                ></ResultLabel>
               </div>
             </div>
             <Pager

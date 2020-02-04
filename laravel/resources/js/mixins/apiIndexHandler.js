@@ -1,9 +1,10 @@
 import { OK, PER_PAGE } from '@/util'
+import ResultLabel from '@/components/ResultLabel'
 import Pager from '@/components/Pager'
 import SortBox from '@/components/SortBox'
 import { mapGetters } from 'vuex'
 export default {
-  components: { Pager, SortBox },
+  components: { Pager, SortBox, ResultLabel },
   props: {
     page: {
       type: Number,

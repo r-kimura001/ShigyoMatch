@@ -1,12 +1,6 @@
 <template>
   <div class="p-works">
     <div class="MainLayout --hasWorks">
-      <div class="ResultLabel">
-        <div class="ResultLabel_bg"></div>
-        <p class="ResultLabel_text" v-if="!!list.length">
-          <span class="ResultLabel_num">{{ total }}</span>件中<span class="ResultLabel_num">{{ from }}</span>〜<span class="ResultLabel_num">{{ to }}</span>件を表示
-        </p>
-      </div>
       <div class="MainLayout_boxList">
         <section class="MainLayout_box">
           <div class="SearchStatus u-my15" v-if="isSearch">
@@ -34,6 +28,14 @@
               <div class="HorizontalLayout_col">
                 <button class="Button --search u-ma10 u-tip" data-desc="分野タグで絞り込む" @click="toggleBody"></button>
               </div>
+            </div>
+            <div class="u-mb20">
+              <ResultLabel
+                v-if="!!list.length"
+                :total="total"
+                :from="from"
+                :to="to"
+              ></ResultLabel>
             </div>
             <Pager
               v-if="lastPage > 1"

@@ -8,6 +8,25 @@
   .ScoutList_item{
     padding: 10px 0;
     border-bottom: 1px solid $gray-2;
+
+    &.--isNew{
+      background: $lightPink;
+      position: relative;
+      &::after{
+        content: 'NEW!';
+        color: $red;
+        font-size: 2rem;
+        font-weight: bold;
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        font-family: 'makiba', $mainFontFamily;
+      }
+    }
+
+    @include media(sm){
+      padding: 10px;
+    }
   }
 
   .ScoutList_targetInfo{

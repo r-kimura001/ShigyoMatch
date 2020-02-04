@@ -45,6 +45,21 @@
         background: $gray-2;
       }
     }
+    td{
+      &.--isNew{
+        position: relative;
+        &::after{
+          content: 'NEW!';
+          color: $red;
+          font-size: 1.6rem;
+          font-weight: bold;
+          position: absolute;
+          top: 5px;
+          right: 5px;
+          font-family: 'makiba', $mainFontFamily;
+        }
+      }
+    }
   }
 
   .Table_icon{
