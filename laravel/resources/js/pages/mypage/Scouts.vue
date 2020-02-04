@@ -14,7 +14,7 @@
         <h3 class="BaseTitle">
           <span class="BaseTitle_text --scout">スカウトを受けた案件</span>
         </h3>
-        <p v-if="!hasScouted" class="u-pa20">スカウトを受けた案件はありません</p>
+        <p v-if="!hasScouted" class="u-pa20 u-alignCenter">スカウトを受けた案件はありません</p>
         <div v-else class="">
           <ul class="ScoutList">
             <li
@@ -58,7 +58,7 @@
         <h3 class="BaseTitle">
           <span class="BaseTitle_text --scout">スカウトした案件</span>
         </h3>
-        <p v-if="!hasScout" class="u-pa20">スカウトした案件はありません</p>
+        <p v-if="!hasScout" class="u-pa20 u-alignCenter">スカウトした案件はありません</p>
         <div v-else class="">
           <ul class="ScoutList">
             <li v-for="(targetUser, idx) in scout_works" :key="idx" class="ScoutList_item">

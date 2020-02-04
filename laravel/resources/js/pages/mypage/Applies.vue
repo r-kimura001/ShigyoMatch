@@ -60,7 +60,7 @@
             </tr>
             </tbody>
           </table>
-          <p v-if="!hasApplyWorks" class="u-pa20">申込をした募集案件はありません</p>
+          <p v-if="!hasApplyWorks" class="u-pa20 u-alignCenter">申込をした募集案件はありません</p>
         </div>
       </div>
       <div v-if="currentFlag===appliedFlag" class="MypageContent_body">
@@ -124,7 +124,7 @@
               </tr>
             </tbody>
           </table>
-          <p v-if="!hasAppliedWorks" class="u-pa20">申込を受けた募集案件はありません</p>
+          <p v-if="!hasAppliedWorks" class="u-pa20 u-alignCenter">申込を受けた募集案件はありません</p>
         </div>
       </div>
     </section>

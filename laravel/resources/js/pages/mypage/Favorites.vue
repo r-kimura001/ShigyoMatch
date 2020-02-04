@@ -14,7 +14,7 @@
         <h3 class="BaseTitle u-px10">
           <span class="BaseTitle_text --favorite">気になるした案件</span>
         </h3>
-        <p v-if="!hasFavorite">気になるした募集案件はありません</p>
+        <p v-if="!hasFavorite" class="u-alignCenter">気になるした募集案件はありません</p>
         <WorkListLayout
           v-else
           :works="favorite_works"
@@ -25,7 +25,7 @@
         <h3 class="BaseTitle u-px10">
           <span class="BaseTitle_text --favorite">気になるされた案件</span>
         </h3>
-        <p v-if="!hasFavorited">気になるされた募集案件はありません</p>
+        <p v-if="!hasFavorited" class="u-alignCenter">気になるされた募集案件はありません</p>
         <ul v-else class="FavoritedList u-py20">
           <li
             class="FavoritedList_item"
