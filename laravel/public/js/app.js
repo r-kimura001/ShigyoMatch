@@ -9778,6 +9778,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 // mixins
  // other
 
@@ -9924,6 +9926,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 this.$emit('fetchItem');
                 this.$store.commit('error/setMessage', null);
                 this.$store.commit('form/setSuccessMessage', '更新に成功しました');
+                this.$router.push("/mypage/".concat(this.customer.id));
               }
 
             case 16:
@@ -23272,9 +23275,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "p-work-create" }, [
     _c("div", { staticClass: "MainLayout" }, [
-      _c("h1", { staticClass: "MainLayout_heading" }, [
-        _vm._v("募集案件編集フォーム")
-      ]),
+      _vm._m(0),
       _vm._v(" "),
       _c("div", { staticClass: "MainLayout_boxList" }, [
         _c(
@@ -23292,7 +23293,18 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h1", { staticClass: "BaseTitle --center" }, [
+      _c("span", { staticClass: "BaseTitle_text --work" }, [
+        _vm._v("募集案件編集フォーム")
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 

@@ -1,7 +1,9 @@
 <template>
   <div class="p-work-create">
     <div class="MainLayout">
-      <h1 class="MainLayout_heading">募集案件編集フォーム</h1>
+      <h1 class="BaseTitle --center">
+        <span class="BaseTitle_text --work">募集案件編集フォーム</span>
+      </h1>
       <div class="MainLayout_boxList">
         <section class="MainLayout_box">
           <WorkFormLayout
@@ -112,6 +114,7 @@ export default {
         this.$emit('fetchItem')
         this.$store.commit('error/setMessage', null)
         this.$store.commit('form/setSuccessMessage', '更新に成功しました')
+        this.$router.push(`/mypage/${this.customer.id}`)
       }
     },
     bindValue() {
