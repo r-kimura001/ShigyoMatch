@@ -16,6 +16,7 @@
     background-image: url(#{$assetPath}/icon-select-toggle.svg);
     background-size: cover;
     background-position: center;
+    pointer-events: none;
   }
 
   select {

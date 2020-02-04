@@ -3,23 +3,59 @@
   border-radius: 6px;
   font-size: 1.4rem;
   @include media(sm-y){
-    padding: 15px;
+    padding: 15px 5px;
   }
   .ScoutList_item{
     padding: 10px 0;
     border-bottom: 1px solid $gray-2;
   }
+
+  .ScoutList_targetInfo{
+    padding-left: 10px;
+    .ScoutList_message{
+      display: flex;
+      align-items: center;
+    }
+    @include media(sm){
+      padding-left: 0;
+      .ScoutList_message{
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .ScoutList_messagePart{
+        font-size: 1.2rem;
+        padding-left: 40px;
+        position: relative;
+        top: -5px
+      }
+    }
+  }
+
   .ScoutList_scoutInfo{
     display: flex;
     align-items: center;
-    padding: 10px 40px 0 40px;
+    padding: 30px 20px 0;
+
+    @include media(sm){
+      flex-direction: column;
+      padding: 20px 0;
+    }
 
     .ScoutList_scoutThumb{
-      width: 60px;
-      height: 60px;
+      width: 50px;
+      height: 50px;
       overflow: hidden;
+      flex-shrink: 0;
       background-position: center;
       background-size: cover;
+    }
+    .ScoutList_detailButton{
+      flex-shrink: 0;
+      margin-left: 10px;
+
+      @include media(sm){
+        margin: 20px 0 0 0;
+      }
     }
 
     .ScoutList_workLink{
@@ -33,18 +69,6 @@
         opacity: 0.7;
       }
     }
-
-  }
-  .ScoutList_targetInfo{
-    padding-left: 10px;
-  }
-  .ScoutList_text{
-    color: $paleBlue;
   }
 
-  .ScoutListitem:hover{
-    .ScoutList_text{
-      text-decoration: underline;
-    }
-  }
 }

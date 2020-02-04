@@ -19,25 +19,31 @@
           <ul class="ScoutList">
             <li v-for="(work, index) in scouted_works" :key="index" class="ScoutList_item">
               <div class="ScoutList_targetInfo">
-                <div class="u-pl20">
-                  <ReplacedDate
-                    action="スカウトを受けた"
-                    :datetime="work.pivot.updated_at"
-                  ></ReplacedDate>
-                </div>
-                <div class="HorizontalLayout --vertical u-mt10">
-                  <div class="HorizontalLayout_col">
+                <ReplacedDate
+                  action="スカウトを受けた"
+                  :datetime="work.pivot.updated_at"
+                ></ReplacedDate>
+                <div class="ScoutList_message u-mt10">
+                  <div class="">
                     <MemberLink :customer="work.customer"></MemberLink>
                   </div>
-                  <div class="HorizontalLayout_col">
+                  <div class="ScoutList_messagePart">
                     <span>さんからスカウトが届きました</span>
                   </div>
                 </div>
               </div>
               <div class="ScoutList_scoutInfo">
-                <div class="ScoutList_scoutThumb" :style="bgImage(work.file_name, 'work')"></div>
-                <RouterLink :to="`/works/${work.id}`" tag="p" class="ScoutList_workLink u-ml10">{{ work.title }}</RouterLink>
-                <button class="Button --minimum u-ml10" @click="showDetail(work.pivot)">スカウト詳細</button>
+                <div class="HorizontalLayout --vertical">
+                  <div class="HorizontalLayout_col">
+                    <div class="ScoutList_scoutThumb" :style="bgImage(work.file_name, 'work')"></div>
+                  </div>
+                  <div class="HorizontalLayout_col --flex">
+                    <RouterLink :to="`/works/${work.id}`" tag="p" class="ScoutList_workLink u-ml10">{{ work.title }}</RouterLink>
+                  </div>
+                </div>
+                <div class="ScoutList_detailButton">
+                  <button class="Button --minimum u-ml10" @click="showDetail(work.pivot)">スカウト詳細</button>
+                </div>
               </div>
             </li>
           </ul>
@@ -52,25 +58,31 @@
           <ul class="ScoutList">
             <li v-for="(targetUser, idx) in scout_works" :key="idx" class="ScoutList_item">
               <div class="ScoutList_targetInfo">
-                <div class="u-pl20">
-                  <ReplacedDate
-                    action="スカウト"
-                    :datetime="targetUser.pivot.updated_at"
-                  ></ReplacedDate>
-                </div>
-                <div class="HorizontalLayout --vertical u-mt10">
-                  <div class="HorizontalLayout_col">
+                <ReplacedDate
+                  action="スカウト"
+                  :datetime="targetUser.pivot.updated_at"
+                ></ReplacedDate>
+                <div class="ScoutList_message u-mt10">
+                  <div class="">
                     <MemberLink :customer="targetUser"></MemberLink>
                   </div>
-                  <div class="HorizontalLayout_col">
+                  <div class="ScoutList_messagePart">
                     <span>さんにスカウトを送りました</span>
                   </div>
                 </div>
               </div>
               <div class="ScoutList_scoutInfo">
-                <div class="ScoutList_scoutThumb" :style="bgImage(targetUser.work.file_name, 'work')"></div>
-                <RouterLink :to="`/works/${targetUser.work.id}`" tag="p" class="ScoutList_workLink u-ml10">{{ targetUser.work.title }}</RouterLink>
-                <button class="Button --minimum u-ml10" @click="showDetail(targetUser.pivot)">スカウト詳細</button>
+                <div class="HorizontalLayout --vertical">
+                  <div class="HorizontalLayout_col">
+                    <div class="ScoutList_scoutThumb" :style="bgImage(targetUser.work.file_name, 'work')"></div>
+                  </div>
+                  <div class="HorizontalLayout_col --flex">
+                    <RouterLink :to="`/works/${targetUser.work.id}`" tag="p" class="ScoutList_workLink u-ml10">{{ targetUser.work.title }}</RouterLink>
+                  </div>
+                </div>
+                <div class="ScoutList_detailButton">
+                  <button class="Button --minimum" @click="showDetail(targetUser.pivot)">スカウト詳細</button>
+                </div>
               </div>
             </li>
           </ul>

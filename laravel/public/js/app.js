@@ -9066,6 +9066,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -22451,77 +22463,101 @@ var render = function() {
                           "li",
                           { key: index, staticClass: "ScoutList_item" },
                           [
-                            _c("div", { staticClass: "ScoutList_targetInfo" }, [
+                            _c(
+                              "div",
+                              { staticClass: "ScoutList_targetInfo" },
+                              [
+                                _c("ReplacedDate", {
+                                  attrs: {
+                                    action: "スカウトを受けた",
+                                    datetime: work.pivot.updated_at
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  { staticClass: "ScoutList_message u-mt10" },
+                                  [
+                                    _c(
+                                      "div",
+                                      {},
+                                      [
+                                        _c("MemberLink", {
+                                          attrs: { customer: work.customer }
+                                        })
+                                      ],
+                                      1
+                                    ),
+                                    _vm._v(" "),
+                                    _vm._m(1, true)
+                                  ]
+                                )
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "ScoutList_scoutInfo" }, [
                               _c(
                                 "div",
-                                { staticClass: "u-pl20" },
-                                [
-                                  _c("ReplacedDate", {
-                                    attrs: {
-                                      action: "スカウトを受けた",
-                                      datetime: work.pivot.updated_at
-                                    }
-                                  })
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                {
-                                  staticClass:
-                                    "HorizontalLayout --vertical u-mt10"
-                                },
+                                { staticClass: "HorizontalLayout --vertical" },
                                 [
                                   _c(
                                     "div",
                                     { staticClass: "HorizontalLayout_col" },
                                     [
-                                      _c("MemberLink", {
-                                        attrs: { customer: work.customer }
+                                      _c("div", {
+                                        staticClass: "ScoutList_scoutThumb",
+                                        style: _vm.bgImage(
+                                          work.file_name,
+                                          "work"
+                                        )
                                       })
-                                    ],
-                                    1
+                                    ]
                                   ),
                                   _vm._v(" "),
-                                  _vm._m(1, true)
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass: "HorizontalLayout_col --flex"
+                                    },
+                                    [
+                                      _c(
+                                        "RouterLink",
+                                        {
+                                          staticClass:
+                                            "ScoutList_workLink u-ml10",
+                                          attrs: {
+                                            to: "/works/" + work.id,
+                                            tag: "p"
+                                          }
+                                        },
+                                        [_vm._v(_vm._s(work.title))]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "ScoutList_detailButton" },
+                                [
+                                  _c(
+                                    "button",
+                                    {
+                                      staticClass: "Button --minimum u-ml10",
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.showDetail(work.pivot)
+                                        }
+                                      }
+                                    },
+                                    [_vm._v("スカウト詳細")]
+                                  )
                                 ]
                               )
-                            ]),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              { staticClass: "ScoutList_scoutInfo" },
-                              [
-                                _c("div", {
-                                  staticClass: "ScoutList_scoutThumb",
-                                  style: _vm.bgImage(work.file_name, "work")
-                                }),
-                                _vm._v(" "),
-                                _c(
-                                  "RouterLink",
-                                  {
-                                    staticClass: "ScoutList_workLink u-ml10",
-                                    attrs: { to: "/works/" + work.id, tag: "p" }
-                                  },
-                                  [_vm._v(_vm._s(work.title))]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "button",
-                                  {
-                                    staticClass: "Button --minimum u-ml10",
-                                    on: {
-                                      click: function($event) {
-                                        return _vm.showDetail(work.pivot)
-                                      }
-                                    }
-                                  },
-                                  [_vm._v("スカウト詳細")]
-                                )
-                              ],
-                              1
-                            )
+                            ])
                           ]
                         )
                       }),
@@ -22548,83 +22584,103 @@ var render = function() {
                           "li",
                           { key: idx, staticClass: "ScoutList_item" },
                           [
-                            _c("div", { staticClass: "ScoutList_targetInfo" }, [
+                            _c(
+                              "div",
+                              { staticClass: "ScoutList_targetInfo" },
+                              [
+                                _c("ReplacedDate", {
+                                  attrs: {
+                                    action: "スカウト",
+                                    datetime: targetUser.pivot.updated_at
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  { staticClass: "ScoutList_message u-mt10" },
+                                  [
+                                    _c(
+                                      "div",
+                                      {},
+                                      [
+                                        _c("MemberLink", {
+                                          attrs: { customer: targetUser }
+                                        })
+                                      ],
+                                      1
+                                    ),
+                                    _vm._v(" "),
+                                    _vm._m(3, true)
+                                  ]
+                                )
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "ScoutList_scoutInfo" }, [
                               _c(
                                 "div",
-                                { staticClass: "u-pl20" },
-                                [
-                                  _c("ReplacedDate", {
-                                    attrs: {
-                                      action: "スカウト",
-                                      datetime: targetUser.pivot.updated_at
-                                    }
-                                  })
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                {
-                                  staticClass:
-                                    "HorizontalLayout --vertical u-mt10"
-                                },
+                                { staticClass: "HorizontalLayout --vertical" },
                                 [
                                   _c(
                                     "div",
                                     { staticClass: "HorizontalLayout_col" },
                                     [
-                                      _c("MemberLink", {
-                                        attrs: { customer: targetUser }
+                                      _c("div", {
+                                        staticClass: "ScoutList_scoutThumb",
+                                        style: _vm.bgImage(
+                                          targetUser.work.file_name,
+                                          "work"
+                                        )
                                       })
-                                    ],
-                                    1
+                                    ]
                                   ),
                                   _vm._v(" "),
-                                  _vm._m(3, true)
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass: "HorizontalLayout_col --flex"
+                                    },
+                                    [
+                                      _c(
+                                        "RouterLink",
+                                        {
+                                          staticClass:
+                                            "ScoutList_workLink u-ml10",
+                                          attrs: {
+                                            to: "/works/" + targetUser.work.id,
+                                            tag: "p"
+                                          }
+                                        },
+                                        [_vm._v(_vm._s(targetUser.work.title))]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "ScoutList_detailButton" },
+                                [
+                                  _c(
+                                    "button",
+                                    {
+                                      staticClass: "Button --minimum",
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.showDetail(
+                                            targetUser.pivot
+                                          )
+                                        }
+                                      }
+                                    },
+                                    [_vm._v("スカウト詳細")]
+                                  )
                                 ]
                               )
-                            ]),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              { staticClass: "ScoutList_scoutInfo" },
-                              [
-                                _c("div", {
-                                  staticClass: "ScoutList_scoutThumb",
-                                  style: _vm.bgImage(
-                                    targetUser.work.file_name,
-                                    "work"
-                                  )
-                                }),
-                                _vm._v(" "),
-                                _c(
-                                  "RouterLink",
-                                  {
-                                    staticClass: "ScoutList_workLink u-ml10",
-                                    attrs: {
-                                      to: "/works/" + targetUser.work.id,
-                                      tag: "p"
-                                    }
-                                  },
-                                  [_vm._v(_vm._s(targetUser.work.title))]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "button",
-                                  {
-                                    staticClass: "Button --minimum u-ml10",
-                                    on: {
-                                      click: function($event) {
-                                        return _vm.showDetail(targetUser.pivot)
-                                      }
-                                    }
-                                  },
-                                  [_vm._v("スカウト詳細")]
-                                )
-                              ],
-                              1
-                            )
+                            ])
                           ]
                         )
                       }),
@@ -22662,7 +22718,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "HorizontalLayout_col" }, [
+    return _c("div", { staticClass: "ScoutList_messagePart" }, [
       _c("span", [_vm._v("さんからスカウトが届きました")])
     ])
   },
@@ -22680,7 +22736,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "HorizontalLayout_col" }, [
+    return _c("div", { staticClass: "ScoutList_messagePart" }, [
       _c("span", [_vm._v("さんにスカウトを送りました")])
     ])
   }

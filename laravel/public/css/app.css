@@ -1450,7 +1450,7 @@ td {
   width: 32px;
   height: 32px;
   background-color: #1c91df;
-  background-image: url(https://asset.shigyo-match.site/assets/icon-glass-white.svg);
+  background-image: url(https://asset.shigyo-match.site/assets/icon-filter-white.svg);
   background-size: 18px;
   background-repeat: no-repeat;
   background-position: center;
@@ -3949,7 +3949,7 @@ td {
 
 .ResultLabel .ResultLabel_text {
   font-size: 1.2rem;
-  padding: 15px 10px 15px 20px;
+  padding: 15px 10px 0 20px;
 }
 
 .ResultLabel .ResultLabel_num {
@@ -4239,7 +4239,7 @@ td {
 
 @media screen and (max-width: 670px) {
   .ScoutList {
-    padding: 15px;
+    padding: 15px 5px;
   }
 }
 
@@ -4248,20 +4248,73 @@ td {
   border-bottom: 1px solid #cccccc;
 }
 
+.ScoutList .ScoutList_targetInfo {
+  padding-left: 10px;
+}
+
+.ScoutList .ScoutList_targetInfo .ScoutList_message {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+}
+
+@media screen and (max-width: 480px) {
+  .ScoutList .ScoutList_targetInfo {
+    padding-left: 0;
+  }
+
+  .ScoutList .ScoutList_targetInfo .ScoutList_message {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+            flex-direction: column;
+    -webkit-box-align: start;
+            align-items: flex-start;
+  }
+
+  .ScoutList .ScoutList_targetInfo .ScoutList_messagePart {
+    font-size: 1.2rem;
+    padding-left: 40px;
+    position: relative;
+    top: -5px;
+  }
+}
+
 .ScoutList .ScoutList_scoutInfo {
   display: -webkit-box;
   display: flex;
   -webkit-box-align: center;
           align-items: center;
-  padding: 10px 40px 0 40px;
+  padding: 30px 20px 0;
+}
+
+@media screen and (max-width: 480px) {
+  .ScoutList .ScoutList_scoutInfo {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+            flex-direction: column;
+    padding: 20px 0;
+  }
 }
 
 .ScoutList .ScoutList_scoutInfo .ScoutList_scoutThumb {
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   overflow: hidden;
+  flex-shrink: 0;
   background-position: center;
   background-size: cover;
+}
+
+.ScoutList .ScoutList_scoutInfo .ScoutList_detailButton {
+  flex-shrink: 0;
+  margin-left: 10px;
+}
+
+@media screen and (max-width: 480px) {
+  .ScoutList .ScoutList_scoutInfo .ScoutList_detailButton {
+    margin: 20px 0 0 0;
+  }
 }
 
 .ScoutList .ScoutList_scoutInfo .ScoutList_workLink {
@@ -4277,18 +4330,6 @@ td {
 
 .ScoutList .ScoutList_scoutInfo .ScoutList_workLink:hover {
   opacity: 0.7;
-}
-
-.ScoutList .ScoutList_targetInfo {
-  padding-left: 10px;
-}
-
-.ScoutList .ScoutList_text {
-  color: #2992d9;
-}
-
-.ScoutList .ScoutListitem:hover .ScoutList_text {
-  text-decoration: underline;
 }
 
 .SearchList {
@@ -4499,6 +4540,7 @@ td {
   background-image: url(https://asset.shigyo-match.site/assets/icon-select-toggle.svg);
   background-size: cover;
   background-position: center;
+  pointer-events: none;
 }
 
 .SortBox select {
