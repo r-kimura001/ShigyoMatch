@@ -2170,7 +2170,8 @@ td {
 }
 
 .Form .Form_row .Form_errorBox {
-  height: 18px;
+  min-height: 20px;
+  line-height: 1.2;
 }
 
 .Form .Form_row .Form_label {
@@ -3041,7 +3042,7 @@ td {
   right: 0;
   bottom: 0;
   background: #333333;
-  opacity: 0.25;
+  opacity: 0.45;
   z-index: 1;
 }
 
@@ -3071,7 +3072,7 @@ td {
           animation-delay: 2s;
   font-family: "makiba", YakuHanJP, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", Meiryo, sans-serif;
   z-index: 2;
-  font-size: 10rem;
+  font-size: 8rem;
   color: #fefefe;
   display: -webkit-box;
   display: flex;

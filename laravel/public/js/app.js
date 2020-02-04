@@ -6145,6 +6145,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -6164,7 +6174,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         registerNumbers: {}
       },
       professionTypes: null,
-      isWaiting: false
+      isWaiting: false,
+      tst: null
     };
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])({
@@ -6236,8 +6247,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
-              this.$store.commit('form/setIsLoading', true); //フォームデータの整形
+              this.$store.commit('form/setIsLoading', true);
 
+              if (!this.validation()) {
+                _context3.next = 5;
+                break;
+              }
+
+              this.$store.commit('form/setIsLoading', false);
+              this.$scrollTo('.MainLayout', 1000);
+              return _context3.abrupt("return", false);
+
+            case 5:
+              //フォームデータの整形
               formData = new FormData();
               formData.append('email', this.customerData.email);
               formData.append('name', this.customerData.name);
@@ -6246,10 +6268,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               formData.append('professionTypes', this.customerData.professionTypes);
               formData.append('password', this.customerData.password);
               formData.append('password_confirmation', this.customerData.password_confirmation);
-              _context3.next = 11;
+              _context3.next = 15;
               return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(this.$store.dispatch('auth/register', formData));
 
-            case 11:
+            case 15:
               this.$store.commit('form/setIsLoading', false);
 
               if (this.apiStatus) {
@@ -6257,12 +6279,35 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 this.$router.push("/mypage/".concat(this.customerId));
               }
 
-            case 13:
+            case 17:
             case "end":
               return _context3.stop();
           }
         }
       }, null, this);
+    },
+    validation: function validation() {
+      var _this = this;
+
+      var validationCount = 0;
+
+      if (!this.customerData.professionIds.length) {
+        this.$store.commit('auth/setRegisterErrorMessages', {
+          professionIds: ['お持ちの資格にチェックを入れてください']
+        });
+        validationCount++;
+      }
+
+      this.customerData.professionIds.forEach(function (professionId) {
+        if (!_this.customerData.registerNumbers.hasOwnProperty(professionId) || _this.customerData.registerNumbers[professionId] === '') {
+          _this.$store.commit('auth/setRegisterErrorMessages', {
+            professionIds: ['チェックを入れた資格の登録番号を入力してください']
+          });
+
+          validationCount++;
+        }
+      });
+      return validationCount;
     }
   }
 });
@@ -9624,6 +9669,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 this.clearFormValue();
                 this.$store.commit('form/setDeleteReview', true);
                 this.$store.commit('form/setSuccessMessage', '投稿に成功しました');
+                this.$router.push("/mypage/".concat(this.customer.id));
               }
 
             case 14:
@@ -20241,6 +20287,28 @@ var render = function() {
                     "div",
                     { staticClass: "Form_row --fetchInfos" },
                     [
+                      _c("div", { staticClass: "Form_errorBox" }, [
+                        _vm.hasError("professionIds")
+                          ? _c(
+                              "div",
+                              _vm._l(_vm.errorMessages.professionIds, function(
+                                errorMessage,
+                                index
+                              ) {
+                                return _c(
+                                  "small",
+                                  {
+                                    key: index,
+                                    staticClass: "ValidationErrorMessage"
+                                  },
+                                  [_vm._v(_vm._s(errorMessage))]
+                                )
+                              }),
+                              0
+                            )
+                          : _vm._e()
+                      ]),
+                      _vm._v(" "),
                       _c(
                         "div",
                         {
@@ -21885,43 +21953,47 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
-        _c("section", { staticClass: "MypageContent_box" }, [
-          _c("h3", { staticClass: "BaseTitle" }, [
-            _c("span", { staticClass: "BaseTitle_text --work" }, [
-              _vm._v("投稿中の募集案件")
+        _c(
+          "section",
+          { staticClass: "MypageContent_box", attrs: { id: "owner_works" } },
+          [
+            _c("h3", { staticClass: "BaseTitle" }, [
+              _c("span", { staticClass: "BaseTitle_text --work" }, [
+                _vm._v("投稿中の募集案件")
+              ]),
+              _vm._v(" "),
+              _c(
+                "span",
+                { staticClass: "BaseTitle_button" },
+                [
+                  _c(
+                    "RouterLink",
+                    {
+                      staticClass: "Button --small --pink",
+                      attrs: { to: "/works/create", tag: "button" }
+                    },
+                    [_vm._v("募集案件を投稿する")]
+                  )
+                ],
+                1
+              )
             ]),
             _vm._v(" "),
             _c(
-              "span",
-              { staticClass: "BaseTitle_button" },
+              "div",
+              { staticClass: "MypageContent_body" },
               [
-                _c(
-                  "RouterLink",
-                  {
-                    staticClass: "Button --small --pink",
-                    attrs: { to: "/works/create", tag: "button" }
-                  },
-                  [_vm._v("募集案件を投稿する")]
-                )
+                !_vm.hasPost
+                  ? _c("p", [_vm._v("募集案件の投稿はありません")])
+                  : _c("WorkTableLayout", {
+                      attrs: { works: _vm.works },
+                      on: { sendDelete: _vm.openDeleteModal }
+                    })
               ],
               1
             )
-          ]),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "MypageContent_body" },
-            [
-              !_vm.hasPost
-                ? _c("p", [_vm._v("募集案件の投稿はありません")])
-                : _c("WorkTableLayout", {
-                    attrs: { works: _vm.works },
-                    on: { sendDelete: _vm.openDeleteModal }
-                  })
-            ],
-            1
-          )
-        ])
+          ]
+        )
       ]),
       _vm._v(" "),
       _c("ConfirmModal", {

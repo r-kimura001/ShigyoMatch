@@ -54,7 +54,8 @@
     }
 
     .Form_errorBox{
-      height: 18px;
+      min-height: 20px;
+      line-height: 1.2;
     }
     .Form_label{
       @include iconFix(10px, 38px, 10px, 20px);

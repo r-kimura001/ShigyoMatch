@@ -73,6 +73,7 @@ export default {
         this.clearFormValue()
         this.$store.commit('form/setDeleteReview', true)
         this.$store.commit('form/setSuccessMessage', '投稿に成功しました')
+        this.$router.push(`/mypage/${this.customer.id}`)
       }
     },
     fetchProfessions() {

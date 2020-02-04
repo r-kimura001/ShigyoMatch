@@ -48,6 +48,16 @@
                   />
                 </div>
                 <div class="Form_row --fetchInfos">
+                  <div class="Form_errorBox">
+                    <div v-if="hasError('professionIds')">
+                      <small
+                        v-for="(errorMessage, index) in errorMessages.professionIds"
+                        :key="index"
+                        class="ValidationErrorMessage"
+                      >{{ errorMessage }}</small
+                      >
+                    </div>
+                  </div>
                   <div
                     class="Form_infoLoader"
                     :class="{ '--show': isWaiting }"
@@ -157,6 +167,7 @@ export default {
       },
       professionTypes: null,
       isWaiting: false,
+      tst: null
     }
   },
   computed: {
@@ -199,6 +210,12 @@ export default {
 
     async register() {
       this.$store.commit('form/setIsLoading', true)
+
+      if(!!this.validation()){
+        this.$store.commit('form/setIsLoading', false)
+        this.$scrollTo('.MainLayout', 1000)
+        return false
+      }
       //フォームデータの整形
       const formData = new FormData()
       formData.append('email', this.customerData.email)
@@ -223,6 +240,25 @@ export default {
         this.$router.push(`/mypage/${this.customerId}`)
       }
     },
+    validation() {
+      let validationCount = 0
+
+      if(!this.customerData.professionIds.length){
+        this.$store.commit('auth/setRegisterErrorMessages', {
+          professionIds: [ 'お持ちの資格にチェックを入れてください' ]
+        })
+        validationCount++
+      }
+      this.customerData.professionIds.forEach( professionId => {
+        if( !this.customerData.registerNumbers.hasOwnProperty(professionId) || this.customerData.registerNumbers[professionId] === ''){
+          this.$store.commit('auth/setRegisterErrorMessages', {
+            professionIds: [ 'チェックを入れた資格の登録番号を入力してください' ]
+          })
+          validationCount++
+        }
+      })
+      return validationCount
+    }
   },
 }
 </script>
