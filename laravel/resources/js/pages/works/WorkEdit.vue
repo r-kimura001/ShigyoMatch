@@ -77,11 +77,12 @@ export default {
       this.$store.commit('form/setIsLoading', true)
 
       const workData = new FormData()
-      const keys = Object.keys(this.formData).filter(
-        key => !!this.formData[key].value
-      )
-      keys.forEach(key => {
-        workData.append(key, this.formData[key].value)
+      Object.keys(this.formData).forEach( key => {
+        if(this.formData[key].value === null){
+          workData.append(key, '')
+        }else{
+          workData.append(key, this.formData[key].value)
+        }
       })
       workData.append('customer_id', this.customer.id)
       workData.append('deleteFlag', this.formData.file_name.deleteFlag)

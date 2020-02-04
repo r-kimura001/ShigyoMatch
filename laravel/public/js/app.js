@@ -8878,7 +8878,7 @@ __webpack_require__.r(__webpack_exports__);
     update: function update() {
       var _this2 = this;
 
-      var customerData, keys, config, response;
+      var customerData, config, response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function update$(_context4) {
         while (1) {
           switch (_context4.prev = _context4.next) {
@@ -8894,11 +8894,10 @@ __webpack_require__.r(__webpack_exports__);
             case 3:
               this.$store.commit('form/setIsLoading', true);
               customerData = new FormData();
-              keys = Object.keys(this.formData).filter(function (key) {
-                return !!_this2.formData[key].value;
-              });
-              keys.forEach(function (key) {
-                if (key === 'profession_types') {
+              Object.keys(this.formData).forEach(function (key) {
+                if (_this2.formData[key].value === null) {
+                  customerData.append(key, '');
+                } else if (key === 'profession_types') {
                   customerData.append('professionIds', _this2.formData[key].value);
                   customerData.append('registerNumbers', JSON.stringify(_this2.formData[key].registerNumbers));
                 } else {
@@ -8916,15 +8915,15 @@ __webpack_require__.r(__webpack_exports__);
                 }
               };
               config.headers['X-HTTP-Method-Override'] = 'PUT';
-              _context4.next = 12;
+              _context4.next = 11;
               return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(axios.post("/api/customers/".concat(this.customer.id), customerData, config));
 
-            case 12:
+            case 11:
               response = _context4.sent;
               this.$store.commit('form/setIsLoading', false);
 
               if (!(response.status === _util__WEBPACK_IMPORTED_MODULE_3__["UNPROCESSABLE_ENTITY"])) {
-                _context4.next = 20;
+                _context4.next = 19;
                 break;
               }
 
@@ -8932,14 +8931,14 @@ __webpack_require__.r(__webpack_exports__);
               this.$scrollTo('.Header', 1500);
               return _context4.abrupt("return", false);
 
-            case 20:
+            case 19:
               if (response.status === _util__WEBPACK_IMPORTED_MODULE_3__["OK"]) {
                 this.$store.commit('error/setMessage', null);
                 this.$store.commit('auth/setCustomer', response.data);
                 this.$store.commit('form/setSuccessMessage', '更新に成功しました');
               }
 
-            case 21:
+            case 20:
             case "end":
               return _context4.stop();
           }
@@ -8972,7 +8971,7 @@ __webpack_require__.r(__webpack_exports__);
         validationCount++;
       }
 
-      if (this.formData.greeting.value.length > this.formData.greeting.maxLength) {
+      if (this.formData.greeting.value !== null && this.formData.greeting.value.length > this.formData.greeting.maxLength) {
         this.$store.commit('error/setMessage', {
           greeting: ["".concat(this.formData.greeting.maxLength, "\u6587\u5B57\u3092\u8D85\u3048\u3066\u3044\u307E\u3059")]
         });
@@ -9878,18 +9877,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     update: function update() {
       var _this = this;
 
-      var workData, keys, config, response;
+      var workData, config, response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function update$(_context3) {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
               this.$store.commit('form/setIsLoading', true);
               workData = new FormData();
-              keys = Object.keys(this.formData).filter(function (key) {
-                return !!_this.formData[key].value;
-              });
-              keys.forEach(function (key) {
-                workData.append(key, _this.formData[key].value);
+              Object.keys(this.formData).forEach(function (key) {
+                if (_this.formData[key].value === null) {
+                  workData.append(key, '');
+                } else {
+                  workData.append(key, _this.formData[key].value);
+                }
               });
               workData.append('customer_id', this.customer.id);
               workData.append('deleteFlag', this.formData.file_name.deleteFlag);
@@ -9903,15 +9903,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 }
               };
               config.headers['X-HTTP-Method-Override'] = 'PUT';
-              _context3.next = 10;
+              _context3.next = 9;
               return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(axios.post("/api/works/".concat(this.work.id), workData, config));
 
-            case 10:
+            case 9:
               response = _context3.sent;
               this.$store.commit('form/setIsLoading', false);
 
               if (!(response.status === _util__WEBPACK_IMPORTED_MODULE_3__["UNPROCESSABLE_ENTITY"])) {
-                _context3.next = 16;
+                _context3.next = 15;
                 break;
               }
 
@@ -9919,14 +9919,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               this.$scrollTo('.Header', 1500);
               return _context3.abrupt("return", false);
 
-            case 16:
+            case 15:
               if (response.status === _util__WEBPACK_IMPORTED_MODULE_3__["OK"]) {
                 this.$emit('fetchItem');
                 this.$store.commit('error/setMessage', null);
                 this.$store.commit('form/setSuccessMessage', '更新に成功しました');
               }
 
-            case 17:
+            case 16:
             case "end":
               return _context3.stop();
           }

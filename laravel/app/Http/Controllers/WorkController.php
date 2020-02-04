@@ -73,18 +73,21 @@ class WorkController extends Controller
   {
     $work = $this->workService->workById($id);
     $data = $request->all();
-    $putPath = 'works';
-    if($data['deleteFlag'] === '1'){
-      $deleteSrc = $work->file_name;
-      $data['file_name'] = '';
+    if(empty($data['file_name'])){
+      unset($data['file_name']);
     }
+    $putPath = 'works';
 
     DB::beginTransaction();
 
     try{
       if(!empty($data['file_name']??'')){
-        $this->fileUploadService->delete($data['file_name']);
+        $deleteSrc = $work->file_name;
         $data['file_name'] = $this->fileUploadService->uploadThumb($putPath, $data['file_name']);
+      }
+      if($data['deleteFlag'] === '1'){
+        $deleteSrc = $work->file_name;
+        $data['file_name'] = '';
       }
       $this->workService->update($work, $data);
       DB::commit();
@@ -96,7 +99,7 @@ class WorkController extends Controller
       throw $exception;
     }
 
-    if($data['deleteFlag'] === '1'){
+    if(!empty($deleteSrc ?? '')){
       $this->fileUploadService->delete($deleteSrc);
     }
 

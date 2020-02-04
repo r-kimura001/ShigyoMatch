@@ -88,17 +88,16 @@ export default {
       this.$store.commit('form/setIsLoading', true)
 
       const customerData = new FormData()
-      const keys = Object.keys(this.formData).filter(
-        key => !!this.formData[key].value
-      )
-      keys.forEach(key => {
-        if (key === 'profession_types') {
+      Object.keys(this.formData).forEach(key => {
+        if(this.formData[key].value === null){
+          customerData.append(key, '')
+        }else if (key === 'profession_types') {
           customerData.append('professionIds', this.formData[key].value)
           customerData.append(
             'registerNumbers',
             JSON.stringify(this.formData[key].registerNumbers)
           )
-        } else {
+        }else{
           customerData.append(key, this.formData[key].value)
         }
       })
@@ -152,7 +151,7 @@ export default {
         })
         validationCount++
       }
-      if(this.formData.greeting.value.length > this.formData.greeting.maxLength){
+      if(this.formData.greeting.value !== null && this.formData.greeting.value.length > this.formData.greeting.maxLength){
         this.$store.commit('error/setMessage', {
           greeting: [ `${this.formData.greeting.maxLength}文字を超えています` ]
         })

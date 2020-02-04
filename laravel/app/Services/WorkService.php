@@ -79,7 +79,6 @@ class WorkService extends Service
     $work->updateByUser($data);
     if(!empty($data['skill_types']??'')){
       $skill_types = explode(',', $data['skill_types']);
-
     }else{
       $skill_types = [];
     }

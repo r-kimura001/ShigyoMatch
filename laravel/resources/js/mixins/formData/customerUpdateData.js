@@ -143,7 +143,7 @@ export default {
             '--greeting': true,
           },
           options: {
-            maxLength: 140
+            maxLength: 140,
           }
         },
       },

@@ -66,12 +66,15 @@ class CustomerController extends Controller
   {
     $customer = $this->customerService->customerById(Customer::RELATIONS_ARRAY, $id);
     $data = $request->all();
+    if(empty($data['file_name'])){
+      unset($data['file_name']);
+    }
     $putPath = 'customers/'.$id;
 
     DB::beginTransaction();
 
     try{
-      if(isset($data['file_name'])){
+      if(!empty($data['file_name']??'')){
         $deleteSrc = $customer->file_name;
         $data['file_name'] = $this->fileUploadService->uploadThumb($putPath, $data['file_name']);
       }
