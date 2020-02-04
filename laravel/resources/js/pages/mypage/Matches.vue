@@ -11,8 +11,8 @@
             <thead>
             <tr>
               <th class="Table_headText">あなたは</th>
-              <th class="Table_headText">募集タイトル</th>
               <th class="Table_headText">お相手</th>
+              <th class="Table_headText">案件</th>
               <th class="Table_headText">最終更新日時</th>
               <th class="Table_headText">操作</th>
             </tr>
@@ -24,22 +24,22 @@
               </td>
               <td>
                 <RouterLink
-                  :to="`/works/${apply.work.id}`"
-                  tag="span"
-                  class="Table_dataText --link --hasIcon"
-                  :style="bgImage(apply.work.file_name, 'work')"
-                >
-                  {{ apply.work.title }}
-                </RouterLink>
-              </td>
-              <td>
-                <RouterLink
                   :to="`/customers/${target(apply).id}`"
                   tag="span"
                   class="Table_dataText --link --hasIcon"
                   :style="bgImage(target(apply).file_name)"
                 >
                   {{ target(apply).name }}
+                </RouterLink>
+              </td>
+              <td>
+                <RouterLink
+                  :to="`/works/${apply.work.id}`"
+                  tag="span"
+                  class="Table_dataText --link --hasIcon"
+                  :style="bgImage(apply.work.file_name, 'work')"
+                >
+                  {{ apply.work.title }}
                 </RouterLink>
               </td>
               <td>

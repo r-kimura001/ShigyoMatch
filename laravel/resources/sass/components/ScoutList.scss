@@ -10,7 +10,6 @@
     border-bottom: 1px solid $gray-2;
 
     &.--isNew{
-      background: $lightPink;
       position: relative;
       &::after{
         content: 'NEW!';
@@ -18,7 +17,7 @@
         font-size: 2rem;
         font-weight: bold;
         position: absolute;
-        top: 5px;
+        top: 10px;
         right: 5px;
         font-family: 'makiba', $mainFontFamily;
       }

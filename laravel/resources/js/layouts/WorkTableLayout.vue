@@ -34,7 +34,7 @@ export default {
         },
         {
           key: 'fee',
-          name: '費用',
+          name: '報酬',
         },
         {
           key: 'profession_type',

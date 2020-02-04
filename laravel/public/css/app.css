@@ -1110,7 +1110,7 @@ td {
   font-weight: bold;
   padding: 10px 35px 10px 55px;
   border-bottom: 2px solid #EC7211;
-  background-size: 30px;
+  background-size: 25px;
   line-height: 1.35;
   background-repeat: no-repeat;
   background-position: 15px;
@@ -4269,7 +4269,6 @@ td {
 }
 
 .ScoutList .ScoutList_item.\--isNew {
-  background: #ffd3de;
   position: relative;
 }
 
@@ -4279,7 +4278,7 @@ td {
   font-size: 2rem;
   font-weight: bold;
   position: absolute;
-  top: 5px;
+  top: 10px;
   right: 5px;
   font-family: "makiba", YakuHanJP, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", Meiryo, sans-serif;
 }

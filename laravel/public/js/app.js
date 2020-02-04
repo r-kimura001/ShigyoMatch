@@ -5551,7 +5551,7 @@ __webpack_require__.r(__webpack_exports__);
         }
       }, {
         key: 'fee',
-        name: '費用'
+        name: '報酬'
       }, {
         key: 'profession_type',
         key2: 'body',
@@ -21047,7 +21047,7 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 !_vm.hasApplyWorks
-                  ? _c("p", { staticClass: "u-pa20" }, [
+                  ? _c("p", { staticClass: "u-pa20 u-alignCenter" }, [
                       _vm._v("申込をした募集案件はありません")
                     ])
                   : _vm._e()
@@ -21195,7 +21195,7 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 !_vm.hasAppliedWorks
-                  ? _c("p", { staticClass: "u-pa20" }, [
+                  ? _c("p", { staticClass: "u-pa20 u-alignCenter" }, [
                       _vm._v("申込を受けた募集案件はありません")
                     ])
                   : _vm._e()
@@ -21617,7 +21617,9 @@ var render = function() {
               _vm._m(0),
               _vm._v(" "),
               !_vm.hasFavorite
-                ? _c("p", [_vm._v("気になるした募集案件はありません")])
+                ? _c("p", { staticClass: "u-alignCenter" }, [
+                    _vm._v("気になるした募集案件はありません")
+                  ])
                 : _c("WorkListLayout", {
                     staticClass: "u-pa10",
                     attrs: { works: _vm.favorite_works }
@@ -21632,7 +21634,9 @@ var render = function() {
             _vm._m(1),
             _vm._v(" "),
             !_vm.hasFavorited
-              ? _c("p", [_vm._v("気になるされた募集案件はありません")])
+              ? _c("p", { staticClass: "u-alignCenter" }, [
+                  _vm._v("気になるされた募集案件はありません")
+                ])
               : _c(
                   "ul",
                   { staticClass: "FavoritedList u-py20" },
@@ -21968,13 +21972,16 @@ var render = function() {
                         "RouterLink",
                         {
                           staticClass: "Table_dataText --link --hasIcon",
-                          style: _vm.bgImage(apply.work.file_name, "work"),
-                          attrs: { to: "/works/" + apply.work.id, tag: "span" }
+                          style: _vm.bgImage(_vm.target(apply).file_name),
+                          attrs: {
+                            to: "/customers/" + _vm.target(apply).id,
+                            tag: "span"
+                          }
                         },
                         [
                           _vm._v(
                             "\n                " +
-                              _vm._s(apply.work.title) +
+                              _vm._s(_vm.target(apply).name) +
                               "\n              "
                           )
                         ]
@@ -21990,16 +21997,13 @@ var render = function() {
                         "RouterLink",
                         {
                           staticClass: "Table_dataText --link --hasIcon",
-                          style: _vm.bgImage(_vm.target(apply).file_name),
-                          attrs: {
-                            to: "/customers/" + _vm.target(apply).id,
-                            tag: "span"
-                          }
+                          style: _vm.bgImage(apply.work.file_name, "work"),
+                          attrs: { to: "/works/" + apply.work.id, tag: "span" }
                         },
                         [
                           _vm._v(
                             "\n                " +
-                              _vm._s(_vm.target(apply).name) +
+                              _vm._s(apply.work.title) +
                               "\n              "
                           )
                         ]
@@ -22088,9 +22092,9 @@ var staticRenderFns = [
       _c("tr", [
         _c("th", { staticClass: "Table_headText" }, [_vm._v("あなたは")]),
         _vm._v(" "),
-        _c("th", { staticClass: "Table_headText" }, [_vm._v("募集タイトル")]),
-        _vm._v(" "),
         _c("th", { staticClass: "Table_headText" }, [_vm._v("お相手")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "Table_headText" }, [_vm._v("案件")]),
         _vm._v(" "),
         _c("th", { staticClass: "Table_headText" }, [_vm._v("最終更新日時")]),
         _vm._v(" "),
@@ -22544,7 +22548,7 @@ var render = function() {
               _vm._m(0),
               _vm._v(" "),
               !_vm.hasScouted
-                ? _c("p", { staticClass: "u-pa20" }, [
+                ? _c("p", { staticClass: "u-pa20 u-alignCenter" }, [
                     _vm._v("スカウトを受けた案件はありません")
                   ])
                 : _c("div", {}, [
@@ -22671,7 +22675,7 @@ var render = function() {
               _vm._m(2),
               _vm._v(" "),
               !_vm.hasScout
-                ? _c("p", { staticClass: "u-pa20" }, [
+                ? _c("p", { staticClass: "u-pa20 u-alignCenter" }, [
                     _vm._v("スカウトした案件はありません")
                   ])
                 : _c("div", {}, [
