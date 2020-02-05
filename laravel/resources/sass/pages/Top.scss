@@ -1,17 +1,3 @@
 .p-top{
-  .fadein-overlay{
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: $white;
-    pointer-events: none;
-    opacity: 1;
-    z-index: $modalZIndex;
-    transition: $transitionBasis;
-    -webkit-transition: $transitionBasis;
-    @include fadeout();
-  }
 }
 

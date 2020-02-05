@@ -1,5 +1,5 @@
 <template>
-  <div v-if="isFadeout" class="Introductions">
+  <div class="Introductions">
     <h2
       class="BaseTitle --intro"
       :class="{ '--visible': isVisible.title}"
@@ -90,18 +90,7 @@
           2: false,
           3: false,
         },
-        isFadeout: false
       }
-    },
-    watch: {
-      $route: {
-        async handler() {
-          setTimeout( () => {
-            this.isFadeout = true
-          }, 1400)
-        },
-        immediate: true
-      },
     },
     methods: {
       delay(key){

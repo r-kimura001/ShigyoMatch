@@ -2545,7 +2545,7 @@ __webpack_require__.r(__webpack_exports__);
       return _util__WEBPACK_IMPORTED_MODULE_1__["CLIENT_HEIGHT"];
     },
     height: function height() {
-      var headerHeight = 54;
+      var headerHeight = 53;
       return {
         height: "".concat(this.deviceHeight - headerHeight, "px")
       };
@@ -2553,11 +2553,19 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     panelStyle: function panelStyle(panel, index) {
-      var delay = index * this.panels.length;
+      var pageMaskDurarion = 2; //variables.scssの$pageMaskDurarion - 1
+
+      var delay = index * this.panels.length + pageMaskDurarion;
       return {
         backgroundImage: "url(".concat(_util__WEBPACK_IMPORTED_MODULE_1__["BASE_STORAGE_URL"], "/").concat(panel.src, ")"),
         animationDelay: "".concat(delay, "s")
       };
+    },
+    toContent: function toContent() {
+      this.$scrollTo('.MainContent', 1500, {
+        easing: 'ease-out',
+        force: true
+      });
     }
   }
 });
@@ -4900,11 +4908,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/util */ "./resources/js/util.js");
-/* harmony import */ var _mixins_styles__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/mixins/styles */ "./resources/js/mixins/styles.js");
-
+/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/util */ "./resources/js/util.js");
+/* harmony import */ var _mixins_styles__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/mixins/styles */ "./resources/js/mixins/styles.js");
 //
 //
 //
@@ -4949,7 +4954,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mixins: [_mixins_styles__WEBPACK_IMPORTED_MODULE_2__["default"]],
+  mixins: [_mixins_styles__WEBPACK_IMPORTED_MODULE_1__["default"]],
   data: function data() {
     return {
       introductions: {
@@ -4995,32 +5000,8 @@ __webpack_require__.r(__webpack_exports__);
         1: false,
         2: false,
         3: false
-      },
-      isFadeout: false
+      }
     };
-  },
-  watch: {
-    $route: {
-      handler: function handler() {
-        var _this = this;
-
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function handler$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                setTimeout(function () {
-                  _this.isFadeout = true;
-                }, 1400);
-
-              case 1:
-              case "end":
-                return _context.stop();
-            }
-          }
-        });
-      },
-      immediate: true
-    }
   },
   methods: {
     delay: function delay(key) {
@@ -6337,6 +6318,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -6840,7 +6825,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return this.followParam === 'followers' ? this.followerFlag : this.followeeFlag;
     },
     list: function list() {
-      return this.followParam === 'followers' ? this.customer.followers : this.customer.followees;
+      var list = this.followParam === 'followers' ? this.customer.followers : this.customer.followees;
+      list.sort(function (a, b) {
+        return a.pivot.created_at < b.pivot.created_at ? 1 : -1;
+      });
+      return list;
     },
     currentStatus: function currentStatus() {
       return this.followParam === 'followers' ? 'フォロワー' : 'フォロー';
@@ -16635,7 +16624,7 @@ var render = function() {
           staticClass: "MainVisual_scrollBtn",
           on: {
             click: function($event) {
-              return _vm.$scrollTo(".MainContent", 2000)
+              return _vm.toContent()
             }
           }
         },
@@ -19256,10 +19245,40 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.isFadeout
-    ? _c("div", { staticClass: "Introductions" }, [
-        _c(
-          "h2",
+  return _c("div", { staticClass: "Introductions" }, [
+    _c(
+      "h2",
+      {
+        directives: [
+          {
+            name: "observe-visibility",
+            rawName: "v-observe-visibility",
+            value: {
+              callback: function(isVisible, entry) {
+                return _vm.visibilityChanged(isVisible, entry, "title")
+              },
+              once: true
+            },
+            expression:
+              "{\n      callback: (isVisible, entry) => visibilityChanged(isVisible, entry, 'title'),\n      once: true\n    }"
+          }
+        ],
+        staticClass: "BaseTitle --intro",
+        class: { "--visible": _vm.isVisible.title }
+      },
+      [
+        _c("span", { staticClass: "BaseTitle_text --customer" }, [
+          _vm._v("サービスご紹介")
+        ])
+      ]
+    ),
+    _vm._v(" "),
+    _c(
+      "ul",
+      { staticClass: "Introductions_body u-mt20" },
+      _vm._l(_vm.introductions, function(item, key, index) {
+        return _c(
+          "li",
           {
             directives: [
               {
@@ -19267,89 +19286,57 @@ var render = function() {
                 rawName: "v-observe-visibility",
                 value: {
                   callback: function(isVisible, entry) {
-                    return _vm.visibilityChanged(isVisible, entry, "title")
+                    return _vm.visibilityChanged(isVisible, entry, key)
                   },
                   once: true
                 },
                 expression:
-                  "{\n      callback: (isVisible, entry) => visibilityChanged(isVisible, entry, 'title'),\n      once: true\n    }"
+                  "{\n        callback: (isVisible, entry) => visibilityChanged(isVisible, entry, key),\n        once: true\n      }"
               }
             ],
-            staticClass: "BaseTitle --intro",
-            class: { "--visible": _vm.isVisible.title }
+            key: key,
+            staticClass: "Introductions_item",
+            class: { "--visible": _vm.isVisible[key] },
+            style: _vm.delay(key)
           },
           [
-            _c("span", { staticClass: "BaseTitle_text --customer" }, [
-              _vm._v("サービスご紹介")
-            ])
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "ul",
-          { staticClass: "Introductions_body u-mt20" },
-          _vm._l(_vm.introductions, function(item, key, index) {
-            return _c(
-              "li",
-              {
-                directives: [
-                  {
-                    name: "observe-visibility",
-                    rawName: "v-observe-visibility",
-                    value: {
-                      callback: function(isVisible, entry) {
-                        return _vm.visibilityChanged(isVisible, entry, key)
-                      },
-                      once: true
-                    },
-                    expression:
-                      "{\n        callback: (isVisible, entry) => visibilityChanged(isVisible, entry, key),\n        once: true\n      }"
-                  }
-                ],
-                key: key,
-                staticClass: "Introductions_item",
-                class: { "--visible": _vm.isVisible[key] },
-                style: _vm.delay(key)
-              },
+            _c("div", { staticClass: "Introductions_heading" }, [
+              _c("div", {
+                staticClass: "Introductions_thumb",
+                style: _vm.bgImage(item.image)
+              })
+            ]),
+            _vm._v(" "),
+            _c("h3", { staticClass: "Introductions_title" }, [
+              _vm._v(_vm._s(item.title))
+            ]),
+            _vm._v(" "),
+            _c("p", { staticClass: "Introductions_desc" }, [
+              _vm._v(_vm._s(item.desc))
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "Introductions_link u-alignCenter" },
               [
-                _c("div", { staticClass: "Introductions_heading" }, [
-                  _c("div", {
-                    staticClass: "Introductions_thumb",
-                    style: _vm.bgImage(item.image)
-                  })
-                ]),
-                _vm._v(" "),
-                _c("h3", { staticClass: "Introductions_title" }, [
-                  _vm._v(_vm._s(item.title))
-                ]),
-                _vm._v(" "),
-                _c("p", { staticClass: "Introductions_desc" }, [
-                  _vm._v(_vm._s(item.desc))
-                ]),
-                _vm._v(" "),
                 _c(
-                  "div",
-                  { staticClass: "Introductions_link u-alignCenter" },
-                  [
-                    _c(
-                      "RouterLink",
-                      {
-                        staticClass: "Button --small --hasShadow",
-                        class: item.link.class,
-                        attrs: { tag: "button", to: item.link.path }
-                      },
-                      [_vm._v(_vm._s(item.link.text))]
-                    )
-                  ],
-                  1
+                  "RouterLink",
+                  {
+                    staticClass: "Button --small --hasShadow",
+                    class: item.link.class,
+                    attrs: { tag: "button", to: item.link.path }
+                  },
+                  [_vm._v(_vm._s(item.link.text))]
                 )
-              ]
+              ],
+              1
             )
-          }),
-          0
+          ]
         )
-      ])
-    : _vm._e()
+      }),
+      0
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -20585,10 +20572,21 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "fadein-overlay" })
+    _vm._m(0)
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "PageMask" }, [
+      _c("div", { staticClass: "PageMask_mark" }, [
+        _c("div", { staticClass: "PageMask_line" })
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 

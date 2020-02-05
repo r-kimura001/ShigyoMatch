@@ -10,7 +10,7 @@
     <h1 class="MainVisual_phrase">
       <span>プロフェッショナルを<br>シェアする</span>
     </h1>
-    <div class="MainVisual_scrollBtn" @click="$scrollTo('.MainContent', 2000)">↓</div>
+    <div class="MainVisual_scrollBtn" @click="toContent()">↓</div>
   </div>
 </template>
 <script>
@@ -41,7 +41,7 @@ export default {
       return CLIENT_HEIGHT
     },
     height(){
-      const headerHeight = 54
+      const headerHeight = 53
       return {
         height: `${this.deviceHeight - headerHeight}px`
       }
@@ -49,11 +49,18 @@ export default {
   },
   methods: {
     panelStyle(panel, index){
-      const delay = index * this.panels.length
+      const pageMaskDurarion = 2 //variables.scssの$pageMaskDurarion - 1
+      const delay = index * this.panels.length + pageMaskDurarion
       return {
         backgroundImage: `url(${BASE_STORAGE_URL}/${panel.src})`,
         animationDelay: `${delay}s`
       }
+    },
+    toContent(){
+      this.$scrollTo('.MainContent', 1500, {
+        easing: 'ease-out',
+        force: true,
+      })
     }
   }
 }

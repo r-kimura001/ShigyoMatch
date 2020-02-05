@@ -64,6 +64,7 @@ $taxAccountantColor: #69D9A1;
 
 // duration
 $transitionBasis: .3s;
+$pageMaskDurarion: 3;
 
 // z-index
 $modalZIndex: 130;
@@ -80,7 +81,7 @@ $breakpoints: (
 
 $baseWidth: 1380px;
 $sidebarWidth: 240px;
-$headerHeight: 54px;
+$headerHeight: 53px;
 $footerHeight: 92px;
 $basePartition: 1px solid $gray-2;
 $buttonMinWidth: 110px;

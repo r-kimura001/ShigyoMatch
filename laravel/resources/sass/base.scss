@@ -115,12 +115,12 @@ th,td{
 
 @keyframes fadeout {
   0% { opacity: 1; }
-  67% { opacity: 1; }
+  90% { opacity: 1; }
   100% { opacity: 0; }
 }
 @keyframes fadein {
   0% { opacity: 0; }
-  67% { opacity: 0; }
+  90% { opacity: 0; }
   100% { opacity: 1; }
 }
 @keyframes phrasein {
@@ -134,11 +134,22 @@ th,td{
     opacity: 1;
   }
 }
-@keyframes transY {
+@keyframes bound {
   0% {
     transform: none;
   }
   100% {
     transform: translateY(5px);
   }
+}
+@keyframes fuwa {
+  0% { transform: none; }
+  5% { opacity: 1; }
+  25% { opacity: 1; }
+  30% { opacity: 0; }
+  100% { opacity: 0; }
+}
+@keyframes gauge {
+  0% { transform: none; }
+  100% { transform: translateX(90px); }
 }

@@ -1,0 +1,46 @@
+.PageMask{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: $black;
+  pointer-events: none;
+  opacity: 1;
+  z-index: $modalZIndex;
+  transition: $transitionBasis;
+  -webkit-transition: $transitionBasis;
+  @include fadeout($pageMaskDurarion);
+
+  .PageMask_mark{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90px;
+    height: 90px;
+    background-image: url(#{$assetPath}/icon-kaba.svg);
+    background-size: 70px;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  .PageMask_line{
+    display: inline-block;
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    right: 0;
+    height: 5px;
+    overflow: hidden;
+    &::after{
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: 15px;
+      background: $deepGreen;
+      animation: gauge 0.5s linear infinite;
+    }
+  }
+}

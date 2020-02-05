@@ -72,11 +72,11 @@
   bottom: 0;
 }
 
-@mixin fadeout(){
-  animation: fadeout 1.5s linear forwards;
+@mixin fadeout($duration: 1.5){
+  animation: fadeout #{$duration}s linear forwards;
 }
-@mixin fadein(){
-  animation: fadein 1.5s linear forwards;
+@mixin fadein($duration: 1.5){
+  animation: fadein #{$duration}s linear forwards;
 }
 @mixin phrasein(){
   animation: phrasein 1.5s linear forwards;
@@ -84,5 +84,5 @@
 @mixin scrollNote(){
   animation:
     phrasein 1.5s linear forwards,
-    transY 0.3s linear alternate infinite;
+    bound 0.3s linear alternate infinite;
 }

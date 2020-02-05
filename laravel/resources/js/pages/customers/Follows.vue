@@ -73,8 +73,10 @@
       currentFlag(){
         return this.followParam === 'followers' ? this.followerFlag : this.followeeFlag
       },
-      list(){
-        return this.followParam === 'followers' ? this.customer.followers : this.customer.followees
+      list() {
+        const list = this.followParam === 'followers' ? this.customer.followers : this.customer.followees
+        list.sort((a,b) => a.pivot.created_at < b.pivot.created_at ? 1 : -1)
+        return list
       },
       currentStatus(){
         return this.followParam === 'followers' ? 'フォロワー' : 'フォロー'

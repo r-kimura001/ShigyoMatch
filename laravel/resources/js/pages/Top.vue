@@ -7,7 +7,11 @@
         </section>
       </div>
     </div>
-    <div class="fadein-overlay"></div>
+    <div class="PageMask">
+      <div class="PageMask_mark">
+        <div class="PageMask_line"></div>
+      </div>
+    </div>
   </main>
 </template>
 <script>

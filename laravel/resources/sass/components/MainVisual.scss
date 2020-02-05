@@ -14,7 +14,6 @@
   background-position: center;
   opacity: 0;
   animation: fuwa 16s linear infinite;
-  transform: scale3d(1, 1, 0.75);
 }
 .MainVisual_phrase{
   position: absolute;
@@ -22,7 +21,7 @@
   left: 10%;
   right: 0;
   @include phrasein();
-  animation-delay: 2s;
+  animation-delay: #{$pageMaskDurarion}s;
   font-family: 'makiba', $mainFontFamily;
   z-index: 2;
   font-size: 8rem;
@@ -48,7 +47,7 @@
 }
 .MainVisual_scrollBtn{
   @include scrollNote();
-  animation-delay: 3s;
+  animation-delay: #{$pageMaskDurarion + 1}s;
   display: block;
   position: absolute;
   bottom: 20px;
@@ -70,12 +69,4 @@
     border-color: $white;
     color: $white;
   }
-}
-
-@keyframes fuwa {
-  0% { transform: none; }
-  5% { opacity: 1; }
-  25% { opacity: 1; }
-  30% { opacity: 0; }
-  100% { opacity: 0; }
 }
