@@ -138,7 +138,7 @@ export default {
             style: this.bgImage('assets/icon-pen.svg'),
           },
           placeholder: '140字以内',
-          rows: 5,
+          rows: 10,
           classOption: {
             '--greeting': true,
           },

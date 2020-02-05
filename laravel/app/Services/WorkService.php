@@ -158,7 +158,7 @@ class WorkService extends Service
         'body' => $data['body'],
       ]
     ];
-    $work->scouts()->sync($scoutData);
+    $work->scouts()->attach($scoutData);
 
     return $work;
   }

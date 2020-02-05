@@ -1,8 +1,8 @@
 <template>
   <div class="p-customer-scout">
     <div class="MainLayout">
-      <h1 class="MainLayout_heading">
-        {{ customer.name }}さんへのスカウト
+      <h1 class="BaseTitle">
+        <span class="BaseTitle_text --scout">{{ customer.name }}さんへのスカウト</span>
       </h1>
       <div class="MainLayout_boxList">
         <section class="MainLayout_box">

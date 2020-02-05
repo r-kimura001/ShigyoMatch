@@ -24,7 +24,7 @@ export default {
           value: '',
           formLabel: {
             name: 'どの募集案件に対するスカウトか選んでください',
-            style: this.bgImage('assets/icon-map.svg'),
+            style: this.bgImage('assets/icon-shop-gray.svg'),
           },
           classOption: {
             '--short': true,
@@ -45,7 +45,7 @@ export default {
             style: this.bgImage('assets/icon-pen.svg'),
           },
           placeholder: '',
-          rows: 10,
+          rows: 15,
           classOption: {
             '--greeting': true,
           },

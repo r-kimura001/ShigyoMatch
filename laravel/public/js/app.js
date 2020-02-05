@@ -20645,10 +20645,10 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "p-customer-scout" }, [
     _c("div", { staticClass: "MainLayout" }, [
-      _c("h1", { staticClass: "MainLayout_heading" }, [
-        _vm._v(
-          "\n      " + _vm._s(_vm.customer.name) + "さんへのスカウト\n    "
-        )
+      _c("h1", { staticClass: "BaseTitle" }, [
+        _c("span", { staticClass: "BaseTitle_text --scout" }, [
+          _vm._v(_vm._s(_vm.customer.name) + "さんへのスカウト")
+        ])
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "MainLayout_boxList" }, [
@@ -88678,7 +88678,7 @@ __webpack_require__.r(__webpack_exports__);
             style: this.bgImage('assets/icon-pen.svg')
           },
           placeholder: '140字以内',
-          rows: 5,
+          rows: 10,
           classOption: {
             '--greeting': true
           },
@@ -88808,7 +88808,7 @@ __webpack_require__.r(__webpack_exports__);
           value: '',
           formLabel: {
             name: 'どの募集案件に対するスカウトか選んでください',
-            style: this.bgImage('assets/icon-map.svg')
+            style: this.bgImage('assets/icon-shop-gray.svg')
           },
           classOption: {
             '--short': true
@@ -88829,7 +88829,7 @@ __webpack_require__.r(__webpack_exports__);
             style: this.bgImage('assets/icon-pen.svg')
           },
           placeholder: '',
-          rows: 10,
+          rows: 15,
           classOption: {
             '--greeting': true
           },
