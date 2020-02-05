@@ -58,8 +58,7 @@ export default {
     },
     toContent(){
       this.$scrollTo('.MainContent', 1500, {
-        easing: 'ease-out',
-        force: true,
+        easing: 'ease-out'
       })
     }
   }
