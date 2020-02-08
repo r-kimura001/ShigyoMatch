@@ -50,7 +50,6 @@
     position: relative;
     overflow: hidden;
     padding-top: 67%;
-    cursor: pointer;
   }
   .WorkCard_thumb{
     position: absolute;
@@ -63,6 +62,16 @@
       width: 100%;
     }
   }
+  .WorkCard_link{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: $transitionBasis;
+    -webkit-transition: all $transitionBasis;
+    z-index: 1;
+  }
   .WorkCard_cover{
     position: absolute;
     bottom: 0;
@@ -71,6 +80,7 @@
     padding: 5px 10px;
     transition: $transitionBasis;
     transform: translate(0, 100%);
+    z-index: 1;
   }
   .WorkCard_title{
     font-size: 1.4rem;
@@ -103,11 +113,26 @@
     &::after{
       opacity: 0.4;
     }
+    .WorkCard_face{
+      &::after{
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: $black;
+        opacity: 0.5;
+      }
+    }
     .WorkCard_thumb{
       transform: translate(-50%, -50%) scale3d(1.1, 1.1, 1);
     }
     .WorkCard_cover{
       transform: none;
+    }
+    .WorkCard_link{
+      opacity: 1;
     }
   }
 }

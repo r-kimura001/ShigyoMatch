@@ -7,11 +7,14 @@
       @click="onClickStar"
       :data-desc="favoriteStatus"
     ></div>
-    <RouterLink :to="`/works/${work.id}`" tag="div" class="WorkCard_face">
+    <div class="WorkCard_face">
       <div class="WorkCard_thumb">
         <img :src="thumbSrc(work.file_name, 'work')" alt="work.image" />
       </div>
-    </RouterLink>
+      <RouterLink :to="`/works/${work.id}`" tag="div" class="WorkCard_link">
+        <button class="BorderButton">more</button>
+      </RouterLink>
+    </div>
     <div class="WorkCard_cover">
       <div class="HorizontalLayout --wrap">
         <div class="HorizontalLayout_col u-ma5" v-for="(skill, index) in work.skills" :key="index">
