@@ -5067,7 +5067,6 @@ td {
   position: relative;
   overflow: hidden;
   padding-top: 67%;
-  cursor: pointer;
 }
 
 .WorkCard .WorkCard_thumb {
@@ -5085,6 +5084,19 @@ td {
   width: 100%;
 }
 
+.WorkCard .WorkCard_link {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  opacity: 0;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  -webkit-transition: all 0.3s;
+  z-index: 1;
+}
+
 .WorkCard .WorkCard_cover {
   position: absolute;
   bottom: 0;
@@ -5095,6 +5107,7 @@ td {
   transition: 0.3s;
   -webkit-transform: translate(0, 100%);
           transform: translate(0, 100%);
+  z-index: 1;
 }
 
 .WorkCard .WorkCard_title {
@@ -5135,6 +5148,17 @@ td {
   opacity: 0.4;
 }
 
+.WorkCard:hover .WorkCard_face::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #333333;
+  opacity: 0.5;
+}
+
 .WorkCard:hover .WorkCard_thumb {
   -webkit-transform: translate(-50%, -50%) scale3d(1.1, 1.1, 1);
           transform: translate(-50%, -50%) scale3d(1.1, 1.1, 1);
@@ -5143,6 +5167,10 @@ td {
 .WorkCard:hover .WorkCard_cover {
   -webkit-transform: none;
           transform: none;
+}
+
+.WorkCard:hover .WorkCard_link {
+  opacity: 1;
 }
 
 .WorkDetailLayout .WorkDetailLayout_box {

@@ -3362,6 +3362,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 
@@ -17454,11 +17457,8 @@ var render = function() {
         : _vm._e(),
       _vm._v(" "),
       _c(
-        "RouterLink",
-        {
-          staticClass: "WorkCard_face",
-          attrs: { to: "/works/" + _vm.work.id, tag: "div" }
-        },
+        "div",
+        { staticClass: "WorkCard_face" },
         [
           _c("div", { staticClass: "WorkCard_thumb" }, [
             _c("img", {
@@ -17467,8 +17467,18 @@ var render = function() {
                 alt: "work.image"
               }
             })
-          ])
-        ]
+          ]),
+          _vm._v(" "),
+          _c(
+            "RouterLink",
+            {
+              staticClass: "WorkCard_link",
+              attrs: { to: "/works/" + _vm.work.id, tag: "div" }
+            },
+            [_c("button", { staticClass: "BorderButton" }, [_vm._v("more")])]
+          )
+        ],
+        1
       ),
       _vm._v(" "),
       _c("div", { staticClass: "WorkCard_cover" }, [
@@ -17533,8 +17543,7 @@ var render = function() {
           ])
         ])
       ])
-    ],
-    1
+    ]
   )
 }
 var staticRenderFns = []
