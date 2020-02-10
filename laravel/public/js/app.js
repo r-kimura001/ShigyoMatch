@@ -92239,7 +92239,7 @@ function between(str, min, max) {
 }
 function dateReplace(datetime) {
   var now = new Date();
-  var createDate = new Date(datetime);
+  var createDate = new Date(datetime.replace(/-/g, "/"));
   var diff = now - createDate;
   var minutes = Math.floor(diff / 1000 / 60);
   var hours = Math.floor(diff / 1000 / 60 / 60);

@@ -28,7 +28,7 @@ export function between(str, min, max) {
 }
 export function dateReplace(datetime) {
   const now = new Date()
-  const createDate = new Date(datetime)
+  const createDate = new Date(datetime.replace(/-/g,"/"))
   const diff = now - createDate
   const minutes = Math.floor(diff / 1000 / 60)
   const hours = Math.floor(diff / 1000 / 60 / 60)

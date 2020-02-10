@@ -48,7 +48,8 @@ class ApplyService extends Service
       $applierData = [ $data['applier_id'] ];
     }
 
-    $work->appliers()->sync($applierData);
+    $work->appliers()->detach($data['applier_id']);
+    $work->appliers()->attach($applierData);
 
     return $work;
   }
