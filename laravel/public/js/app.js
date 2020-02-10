@@ -4966,7 +4966,7 @@ __webpack_require__.r(__webpack_exports__);
           image: "assets/message.svg",
           link: {
             text: '仕事をお探しの方',
-            path: '/works',
+            path: '/works?skill=司法書士',
             "class": {
               '--blue': true
             }
@@ -4978,7 +4978,7 @@ __webpack_require__.r(__webpack_exports__);
           image: 'assets/lawyer.svg',
           link: {
             text: '人材をお探しの方',
-            path: '/customers',
+            path: '/customers?skill=司法書士',
             "class": {
               '--pink': true
             }
