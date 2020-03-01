@@ -44,9 +44,14 @@ export default {
         backgroundColor: this.colorById(id),
       }
     },
-    fontColor(id){
+    fontColor(id) {
       return {
         color: this.colorById(id)
+      }
+    },
+    forEllipsis() {
+      return {
+        maxWidth: 'calc(100% - 66px)'
       }
     }
 
