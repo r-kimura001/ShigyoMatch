@@ -1715,6 +1715,10 @@ td {
   font-size: 1.6rem;
   line-height: 1.25;
   min-height: 38px;
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .Card .Card_tags {
@@ -5114,6 +5118,9 @@ td {
   font-size: 1.4rem;
   font-weight: bold;
   padding: 5px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 @media screen and (max-width: 480px) {
