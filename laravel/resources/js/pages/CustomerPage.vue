@@ -9,7 +9,7 @@
     <div class="PageContent_layout">
       <Footer v-if="!ignore('Footer')"></Footer>
     </div>
-    <div class="Button --fixed --orange" @click="preLogin" v-if="!isLogin">テストユーザーでログイン</div>
+    <div class="Button --fixed --orange" @click="preLogin" v-if="!isLogin">ゲストユーザーとしてログイン</div>
   </div>
 </template>
 <script>
