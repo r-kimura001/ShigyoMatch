@@ -19957,7 +19957,7 @@ var render = function() {
             staticClass: "Button --fixed --orange",
             on: { click: _vm.preLogin }
           },
-          [_vm._v("テストユーザーでログイン")]
+          [_vm._v("ゲストユーザーとしてログイン")]
         )
       : _vm._e()
   ])
