@@ -24,6 +24,8 @@ export default {
       source: [],
       targets: [],
       skills: [],
+      currentPrefecture: 0,
+      prefectureList: [],
       total: null,
       from: null,
       to: null,
@@ -32,7 +34,8 @@ export default {
       hasData: true,
       professionId: 1,
       sortKey: 'created_at.desc',
-      isOpen: false
+      isOpen: false,
+      test: null
     }
   },
   watch: {
@@ -40,7 +43,9 @@ export default {
       async handler() {
         this.$store.commit('form/setIsLoading', true)
         this.targets = this.targetSkills
+        this.currentPrefecture = this.keepingPrefCode
         await this.getProfessionId()
+        await this.prefectures()
         await this.index()
         await this.selectables()
         this.$store.commit('form/setIsLoading', false)
@@ -51,15 +56,22 @@ export default {
   computed:{
     ...mapGetters({
       targetSkills: 'form/targetSkills',
+      keepingPrefCode: 'form/currentPrefecture',
       searchingSkill: 'form/searchingSkill',
     }),
     isSearch(){
       return this.searchingSkill.length
     },
+    hasCurrentPrefecture(){
+      return this.currentPrefecture > 0
+    },
     searchingWords(){
       this.searchingSkill.sort((a,b) => a.id - b.id)
       return this.searchingSkill.map( skill => skill.body )
-    }
+    },
+    currentPrefObj(){
+      return this.hasCurrentPrefecture ? this.prefectureList.filter( pref => pref.id === this.currentPrefecture )[0] : []
+    },
   },
   methods: {
     async getProfessionId(){
@@ -76,9 +88,11 @@ export default {
           page: this.page,
           professionTypeId: this.professionId,
           targetSkills: this.targetSkills,
+          prefectureId: this.currentPrefecture,
           sortKey: this.sortKey,
         },
       })
+      this.test = response
       this.list = response.data.data
       this.total = response.data.total
       this.from = response.data.from
@@ -89,13 +103,19 @@ export default {
       this.$store.commit('error/setMessage', response)
       this.hasData = !!this.list.length
     },
-    async selectables(){
+    async selectables() {
       const response = await axios.get(`/api/professions/${this.professionId}/selectables`)
       if(response.status === OK){
         this.skills = Object.keys(response.data).map( key => response.data[key] )
       }
     },
-    setPaginate(){
+    async prefectures() {
+      const response = await axios.get('/api/prefectures')
+      if(response.status === OK){
+        this.prefectureList = Object.keys(response.data).map( key => response.data[key] )
+      }
+    },
+    setPaginate() {
       this.currentPage = this.page
       this.from = (this.page - 1) * PER_PAGE + 1
       this.to = this.from + PER_PAGE - 1
@@ -104,7 +124,7 @@ export default {
       this.page = 1
       await this.index()
     },
-    sortBySelect(){
+    sortBySelect() {
       const arr = this.sortKey.split('.')
       if(arr[1] === 'desc'){
         this.list.sort( (a, b) => a[arr[0]] < b[arr[0]] ? 1 : -1)
@@ -113,47 +133,59 @@ export default {
       }
     },
     // WorkCardのタグを押したときの検索
-    async searchBySkill(id){
+    async searchBySkill(id) {
       this.$store.commit('form/setIsLoading', true)
       this.targets = [id];
       await this.search()
       this.$store.commit('form/setIsLoading', false)
     },
     // 「タグで絞り込む」から検索
-    async searchByMultiSkill(){
+    async searchByMultiFactor() {
       this.$store.commit('form/setIsLoading', true)
       this.toggleBody()
       await this.search()
       this.$store.commit('form/setIsLoading', false)
     },
-    async search(){
+    async search() {
       this.$store.commit('form/setTargetSkills', this.targets)
+      this.$store.commit('form/setCurrentPrefecture', this.currentPrefecture)
       this.setSearchingSkill()
       this.page = 1
       await this.index()
       this.$scrollTo('.SearchList_titleText')
     },
-    setSearchingSkill(){
+    setSearchingSkill() {
       const searchingSkills = this.targets.map( id => this.skills.filter( skill => skill.id === id ))
       this.$store.commit('form/setSearchingSkill', searchingSkills.flat())
     },
-    async clearSearch(){
+    async clearSkill(){
       this.$store.commit('form/setIsLoading', true)
       this.targets = []
+      // this.currentPrefecture = 0
       this.$store.commit('form/setSearchingSkill', this.targets)
       this.$store.commit('form/setTargetSkills', [])
+      // this.$store.commit('form/setCurrentPrefecture', this.currentPrefecture)
       this.page = 1
       await this.index()
       this.$scrollTo('.SearchList_titleText')
       this.$store.commit('form/setIsLoading', false)
     },
-    toggleBody(){
+    async clearPref(){
+      this.$store.commit('form/setIsLoading', true)
+      this.currentPrefecture = 0
+      this.$store.commit('form/setCurrentPrefecture', this.currentPrefecture)
+      this.page = 1
+      await this.index()
+      this.$scrollTo('.SearchList_titleText')
+      this.$store.commit('form/setIsLoading', false)
+    },
+    toggleBody() {
       this.isOpen = !this.isOpen
     },
-    checked(skillId){
+    checked(skillId) {
       return this.targets.some( id => id === skillId )
     },
-    colorByIsSelect(skillId){
+    colorByIsSelect(skillId) {
       if(!this.targets.length){
         return this.bgColor()
       }else if(this.checked(skillId)){

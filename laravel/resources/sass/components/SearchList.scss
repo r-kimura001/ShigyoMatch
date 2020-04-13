@@ -1,38 +1,30 @@
 .SearchList{
   margin: 0 auto;
   background: $white;
-  z-index: $loaderZIndex - 1;
-  position: fixed;
-  top: $headerHeight;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  transition: $transitionBasis;
-  -webkit-transition: transform $transitionBasis;
-  transform: translateX(100%);
+  padding: 15px;
+
+  .SearchList_label {
+    font-size: 1.4rem;
+    color: gray;
+    cursor: pointer;
+  }
 
   .SearchList_tags{
     display: flex;
     flex-wrap: wrap;
   }
   .SearchList_title{
-    font-weight: bold;
-    padding: 30px 15px;
-    text-align: center;
-
+    padding-bottom: 10px;
+    font-size: 1.4rem;
     .SearchList_titleText{
       display: inline-block;
-      padding: 0 10px;
-      position: relative;
-      cursor: pointer;
+      padding: 0 20px 5px 5px;
+      border-bottom: 3px solid $paleBlue;
     }
   }
   .SearchList_body{
-    padding: 15px;
+    padding: 15px 0;
     background: $white;
-    transform-origin: center top;
-    transform: scale3d(1, 0, 1);
-    transition: $transitionBasis / 2;
   }
   .SearchList_tag{
     cursor: pointer;
@@ -42,14 +34,5 @@
     }
   }
 
-  &.--open{
-    transform: none;
-    .SearchList_titleText::after{
-      transform: translateY(-50%) rotate(180deg);
-    }
-    .SearchList_body{
-      font-size: initial;
-      transform: none;
-    }
-  }
+
 }

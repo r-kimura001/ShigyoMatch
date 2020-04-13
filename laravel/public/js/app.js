@@ -6692,6 +6692,36 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -10060,6 +10090,32 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -20755,6 +20811,90 @@ var render = function() {
     _c("div", { staticClass: "MainLayout --customers" }, [
       _c("div", { staticClass: "MainLayout_boxList" }, [
         _c("section", { staticClass: "MainLayout_box" }, [
+          _c("div", { staticClass: "SearchList" }, [
+            _c(
+              "h2",
+              {
+                staticClass: "SearchList_label",
+                on: { click: _vm.toggleBody }
+              },
+              [
+                _c("span", [_vm._v("事務所を絞り込む")]),
+                _vm._v(" "),
+                _c("i", { staticClass: "fas fa-caret-down" })
+              ]
+            ),
+            _vm._v(" "),
+            _vm.isOpen
+              ? _c("div", { staticClass: "SearchList_box u-mt30" }, [
+                  _c("div", { staticClass: "u-mt10" }, [
+                    _vm._m(0),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "SearchList_body" }, [
+                      _c("div", { staticClass: "SortBox" }, [
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.currentPrefecture,
+                                expression: "currentPrefecture"
+                              }
+                            ],
+                            on: {
+                              change: function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.currentPrefecture = $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              }
+                            }
+                          },
+                          [
+                            _c("option", { attrs: { value: "0" } }, [
+                              _vm._v("都道府県を選んでください")
+                            ]),
+                            _vm._v(" "),
+                            _vm._l(_vm.prefectureList, function(item) {
+                              return _c(
+                                "option",
+                                { domProps: { value: item.id } },
+                                [_vm._v(_vm._s(item.name))]
+                              )
+                            })
+                          ],
+                          2
+                        )
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "u-alignCenter" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "Button --blue --hasIcon",
+                        style: _vm.bgImage("assets/icon-glass-white.svg"),
+                        on: { click: _vm.searchByMultiFactor }
+                      },
+                      [_vm._v("検索")]
+                    )
+                  ])
+                ])
+              : _vm._e()
+          ])
+        ]),
+        _vm._v(" "),
+        _c("section", { staticClass: "MainLayout_box" }, [
           !_vm.hasData
             ? _c("div", { staticClass: "Text -nodata u-py40 u-alignCenter" }, [
                 _vm._v("結果がありません")
@@ -20852,7 +20992,18 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h3", { staticClass: "SearchList_title" }, [
+      _c("span", { staticClass: "SearchList_titleText" }, [
+        _vm._v("都道府県で絞り込む")
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -23402,6 +23553,162 @@ var render = function() {
     _c("div", { staticClass: "MainLayout --hasWorks" }, [
       _c("div", { staticClass: "MainLayout_boxList" }, [
         _c("section", { staticClass: "MainLayout_box" }, [
+          _c("div", { staticClass: "SearchList" }, [
+            _c(
+              "h2",
+              {
+                staticClass: "SearchList_label",
+                on: { click: _vm.toggleBody }
+              },
+              [
+                _c("span", [_vm._v("案件を絞り込む")]),
+                _vm._v(" "),
+                _c("i", { staticClass: "fas fa-caret-down" })
+              ]
+            ),
+            _vm._v(" "),
+            _vm.isOpen
+              ? _c("div", { staticClass: "SearchList_box u-mt30" }, [
+                  _c("div", [
+                    _vm._m(0),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "SearchList_body" }, [
+                      _c(
+                        "ul",
+                        { staticClass: "SearchList_tags" },
+                        _vm._l(_vm.skills, function(skill) {
+                          return _c(
+                            "li",
+                            { key: skill.id, staticClass: "SearchList_item" },
+                            [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.targets,
+                                    expression: "targets"
+                                  }
+                                ],
+                                attrs: {
+                                  type: "checkbox",
+                                  id: "skill_" + skill.id
+                                },
+                                domProps: {
+                                  value: skill.id,
+                                  checked: Array.isArray(_vm.targets)
+                                    ? _vm._i(_vm.targets, skill.id) > -1
+                                    : _vm.targets
+                                },
+                                on: {
+                                  change: function($event) {
+                                    var $$a = _vm.targets,
+                                      $$el = $event.target,
+                                      $$c = $$el.checked ? true : false
+                                    if (Array.isArray($$a)) {
+                                      var $$v = skill.id,
+                                        $$i = _vm._i($$a, $$v)
+                                      if ($$el.checked) {
+                                        $$i < 0 &&
+                                          (_vm.targets = $$a.concat([$$v]))
+                                      } else {
+                                        $$i > -1 &&
+                                          (_vm.targets = $$a
+                                            .slice(0, $$i)
+                                            .concat($$a.slice($$i + 1)))
+                                      }
+                                    } else {
+                                      _vm.targets = $$c
+                                    }
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c(
+                                "label",
+                                {
+                                  staticClass: "SearchList_tag Tag u-ma5",
+                                  style: _vm.colorByIsSelect(skill.id),
+                                  attrs: { for: "skill_" + skill.id }
+                                },
+                                [_vm._v(_vm._s(skill.body))]
+                              )
+                            ]
+                          )
+                        }),
+                        0
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "u-mt10" }, [
+                    _vm._m(1),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "SearchList_body" }, [
+                      _c("div", { staticClass: "SortBox" }, [
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.currentPrefecture,
+                                expression: "currentPrefecture"
+                              }
+                            ],
+                            on: {
+                              change: function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.currentPrefecture = $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              }
+                            }
+                          },
+                          [
+                            _c("option", { attrs: { value: "0" } }, [
+                              _vm._v("都道府県を選んでください")
+                            ]),
+                            _vm._v(" "),
+                            _vm._l(_vm.prefectureList, function(item) {
+                              return _c(
+                                "option",
+                                { domProps: { value: item.id } },
+                                [_vm._v(_vm._s(item.name))]
+                              )
+                            })
+                          ],
+                          2
+                        )
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "u-alignCenter" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "Button --blue --hasIcon",
+                        style: _vm.bgImage("assets/icon-glass-white.svg"),
+                        on: { click: _vm.searchByMultiFactor }
+                      },
+                      [_vm._v("検索")]
+                    )
+                  ])
+                ])
+              : _vm._e()
+          ])
+        ]),
+        _vm._v(" "),
+        _c("section", { staticClass: "MainLayout_box" }, [
           _vm.isSearch
             ? _c(
                 "div",
@@ -23427,13 +23734,34 @@ var render = function() {
                     "div",
                     {
                       staticClass: "BorderButton --minimum",
-                      on: { click: _vm.clearSearch }
+                      on: { click: _vm.clearSkill }
                     },
                     [_vm._v("クリア")]
                   )
                 ],
                 2
               )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.hasCurrentPrefecture
+            ? _c("div", { staticClass: "SearchStatus u-my15" }, [
+                _c("span", { staticClass: "Tag u-ma5" }, [
+                  _vm._v(_vm._s(_vm.currentPrefObj.name))
+                ]),
+                _vm._v(" "),
+                _c("span", { staticClass: "Text -gray -fz14" }, [
+                  _vm._v("で絞り込み中")
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "BorderButton --minimum",
+                    on: { click: _vm.clearPref }
+                  },
+                  [_vm._v("クリア")]
+                )
+              ])
             : _vm._e(),
           _vm._v(" "),
           !_vm.hasData
@@ -23502,14 +23830,6 @@ var render = function() {
                             0
                           )
                         ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "HorizontalLayout_col" }, [
-                        _c("button", {
-                          staticClass: "Button --search u-ma10 u-tip",
-                          attrs: { "data-desc": "分野タグで絞り込む" },
-                          on: { click: _vm.toggleBody }
-                        })
                       ])
                     ]
                   ),
@@ -23566,88 +23886,7 @@ var render = function() {
           },
           [_vm._v("案件を募集する")]
         )
-      : _vm._e(),
-    _vm._v(" "),
-    _c("div", { staticClass: "SearchList", class: { "--open": _vm.isOpen } }, [
-      _c("button", {
-        staticClass: "CloseButton",
-        on: { click: _vm.toggleBody }
-      }),
-      _vm._v(" "),
-      _vm._m(0),
-      _vm._v(" "),
-      _c("div", { staticClass: "SearchList_body" }, [
-        _c(
-          "ul",
-          { staticClass: "SearchList_tags" },
-          _vm._l(_vm.skills, function(skill) {
-            return _c("li", { key: skill.id, staticClass: "SearchList_item" }, [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.targets,
-                    expression: "targets"
-                  }
-                ],
-                attrs: { type: "checkbox", id: "skill_" + skill.id },
-                domProps: {
-                  value: skill.id,
-                  checked: Array.isArray(_vm.targets)
-                    ? _vm._i(_vm.targets, skill.id) > -1
-                    : _vm.targets
-                },
-                on: {
-                  change: function($event) {
-                    var $$a = _vm.targets,
-                      $$el = $event.target,
-                      $$c = $$el.checked ? true : false
-                    if (Array.isArray($$a)) {
-                      var $$v = skill.id,
-                        $$i = _vm._i($$a, $$v)
-                      if ($$el.checked) {
-                        $$i < 0 && (_vm.targets = $$a.concat([$$v]))
-                      } else {
-                        $$i > -1 &&
-                          (_vm.targets = $$a
-                            .slice(0, $$i)
-                            .concat($$a.slice($$i + 1)))
-                      }
-                    } else {
-                      _vm.targets = $$c
-                    }
-                  }
-                }
-              }),
-              _vm._v(" "),
-              _c(
-                "label",
-                {
-                  staticClass: "SearchList_tag Tag u-ma5",
-                  style: _vm.colorByIsSelect(skill.id),
-                  attrs: { for: "skill_" + skill.id }
-                },
-                [_vm._v(_vm._s(skill.body))]
-              )
-            ])
-          }),
-          0
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "u-mt15 u-alignCenter" }, [
-          _c(
-            "button",
-            {
-              staticClass: "Button --blue --hasIcon",
-              style: _vm.bgImage("assets/icon-glass-white.svg"),
-              on: { click: _vm.searchByMultiSkill }
-            },
-            [_vm._v("検索")]
-          )
-        ])
-      ])
-    ])
+      : _vm._e()
   ])
 }
 var staticRenderFns = [
@@ -23658,6 +23897,16 @@ var staticRenderFns = [
     return _c("h3", { staticClass: "SearchList_title" }, [
       _c("span", { staticClass: "SearchList_titleText" }, [
         _vm._v("分野タグで絞り込む")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h3", { staticClass: "SearchList_title" }, [
+      _c("span", { staticClass: "SearchList_titleText" }, [
+        _vm._v("都道府県で絞り込む")
       ])
     ])
   }
@@ -88107,6 +88356,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       source: [],
       targets: [],
       skills: [],
+      currentPrefecture: 0,
+      prefectureList: [],
       total: null,
       from: null,
       to: null,
@@ -88115,7 +88366,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       hasData: true,
       professionId: 1,
       sortKey: 'created_at.desc',
-      isOpen: false
+      isOpen: false,
+      test: null
     };
   },
   watch: {
@@ -88127,21 +88379,26 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               case 0:
                 this.$store.commit('form/setIsLoading', true);
                 this.targets = this.targetSkills;
-                _context.next = 4;
+                this.currentPrefecture = this.keepingPrefCode;
+                _context.next = 5;
                 return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(this.getProfessionId());
 
-              case 4:
-                _context.next = 6;
+              case 5:
+                _context.next = 7;
+                return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(this.prefectures());
+
+              case 7:
+                _context.next = 9;
                 return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(this.index());
 
-              case 6:
-                _context.next = 8;
+              case 9:
+                _context.next = 11;
                 return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(this.selectables());
 
-              case 8:
+              case 11:
                 this.$store.commit('form/setIsLoading', false);
 
-              case 9:
+              case 12:
               case "end":
                 return _context.stop();
             }
@@ -88153,10 +88410,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_5__["mapGetters"])({
     targetSkills: 'form/targetSkills',
+    keepingPrefCode: 'form/currentPrefecture',
     searchingSkill: 'form/searchingSkill'
   }), {
     isSearch: function isSearch() {
       return this.searchingSkill.length;
+    },
+    hasCurrentPrefecture: function hasCurrentPrefecture() {
+      return this.currentPrefecture > 0;
     },
     searchingWords: function searchingWords() {
       this.searchingSkill.sort(function (a, b) {
@@ -88165,6 +88426,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return this.searchingSkill.map(function (skill) {
         return skill.body;
       });
+    },
+    currentPrefObj: function currentPrefObj() {
+      var _this = this;
+
+      return this.hasCurrentPrefecture ? this.prefectureList.filter(function (pref) {
+        return pref.id === _this.currentPrefecture;
+      })[0] : [];
     }
   }),
   methods: {
@@ -88204,12 +88472,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   page: this.page,
                   professionTypeId: this.professionId,
                   targetSkills: this.targetSkills,
+                  prefectureId: this.currentPrefecture,
                   sortKey: this.sortKey
                 }
               }));
 
             case 2:
               response = _context3.sent;
+              this.test = response;
               this.list = response.data.data;
               this.total = response.data.total;
               this.from = response.data.from;
@@ -88220,7 +88490,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               this.$store.commit('error/setMessage', response);
               this.hasData = !!this.list.length;
 
-            case 12:
+            case 13:
             case "end":
               return _context3.stop();
           }
@@ -88252,23 +88522,48 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }
       }, null, this);
     },
+    prefectures: function prefectures() {
+      var response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function prefectures$(_context5) {
+        while (1) {
+          switch (_context5.prev = _context5.next) {
+            case 0:
+              _context5.next = 2;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(axios.get('/api/prefectures'));
+
+            case 2:
+              response = _context5.sent;
+
+              if (response.status === _util__WEBPACK_IMPORTED_MODULE_1__["OK"]) {
+                this.prefectureList = Object.keys(response.data).map(function (key) {
+                  return response.data[key];
+                });
+              }
+
+            case 4:
+            case "end":
+              return _context5.stop();
+          }
+        }
+      }, null, this);
+    },
     setPaginate: function setPaginate() {
       this.currentPage = this.page;
       this.from = (this.page - 1) * _util__WEBPACK_IMPORTED_MODULE_1__["PER_PAGE"] + 1;
       this.to = this.from + _util__WEBPACK_IMPORTED_MODULE_1__["PER_PAGE"] - 1;
     },
     sortChange: function sortChange() {
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function sortChange$(_context5) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function sortChange$(_context6) {
         while (1) {
-          switch (_context5.prev = _context5.next) {
+          switch (_context6.prev = _context6.next) {
             case 0:
               this.page = 1;
-              _context5.next = 3;
+              _context6.next = 3;
               return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(this.index());
 
             case 3:
             case "end":
-              return _context5.stop();
+              return _context6.stop();
           }
         }
       }, null, this);
@@ -88288,33 +88583,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     // WorkCardのタグを押したときの検索
     searchBySkill: function searchBySkill(id) {
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function searchBySkill$(_context6) {
-        while (1) {
-          switch (_context6.prev = _context6.next) {
-            case 0:
-              this.$store.commit('form/setIsLoading', true);
-              this.targets = [id];
-              _context6.next = 4;
-              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(this.search());
-
-            case 4:
-              this.$store.commit('form/setIsLoading', false);
-
-            case 5:
-            case "end":
-              return _context6.stop();
-          }
-        }
-      }, null, this);
-    },
-    // 「タグで絞り込む」から検索
-    searchByMultiSkill: function searchByMultiSkill() {
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function searchByMultiSkill$(_context7) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function searchBySkill$(_context7) {
         while (1) {
           switch (_context7.prev = _context7.next) {
             case 0:
               this.$store.commit('form/setIsLoading', true);
-              this.toggleBody();
+              this.targets = [id];
               _context7.next = 4;
               return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(this.search());
 
@@ -88328,48 +88602,72 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }
       }, null, this);
     },
-    search: function search() {
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function search$(_context8) {
+    // 「タグで絞り込む」から検索
+    searchByMultiFactor: function searchByMultiFactor() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function searchByMultiFactor$(_context8) {
         while (1) {
           switch (_context8.prev = _context8.next) {
             case 0:
-              this.$store.commit('form/setTargetSkills', this.targets);
-              this.setSearchingSkill();
-              this.page = 1;
-              _context8.next = 5;
-              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(this.index());
+              this.$store.commit('form/setIsLoading', true);
+              this.toggleBody();
+              _context8.next = 4;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(this.search());
+
+            case 4:
+              this.$store.commit('form/setIsLoading', false);
 
             case 5:
-              this.$scrollTo('.SearchList_titleText');
-
-            case 6:
             case "end":
               return _context8.stop();
           }
         }
       }, null, this);
     },
+    search: function search() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function search$(_context9) {
+        while (1) {
+          switch (_context9.prev = _context9.next) {
+            case 0:
+              this.$store.commit('form/setTargetSkills', this.targets);
+              this.$store.commit('form/setCurrentPrefecture', this.currentPrefecture);
+              this.setSearchingSkill();
+              this.page = 1;
+              _context9.next = 6;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(this.index());
+
+            case 6:
+              this.$scrollTo('.SearchList_titleText');
+
+            case 7:
+            case "end":
+              return _context9.stop();
+          }
+        }
+      }, null, this);
+    },
     setSearchingSkill: function setSearchingSkill() {
-      var _this = this;
+      var _this2 = this;
 
       var searchingSkills = this.targets.map(function (id) {
-        return _this.skills.filter(function (skill) {
+        return _this2.skills.filter(function (skill) {
           return skill.id === id;
         });
       });
       this.$store.commit('form/setSearchingSkill', searchingSkills.flat());
     },
-    clearSearch: function clearSearch() {
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function clearSearch$(_context9) {
+    clearSkill: function clearSkill() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function clearSkill$(_context10) {
         while (1) {
-          switch (_context9.prev = _context9.next) {
+          switch (_context10.prev = _context10.next) {
             case 0:
               this.$store.commit('form/setIsLoading', true);
-              this.targets = [];
+              this.targets = []; // this.currentPrefecture = 0
+
               this.$store.commit('form/setSearchingSkill', this.targets);
-              this.$store.commit('form/setTargetSkills', []);
+              this.$store.commit('form/setTargetSkills', []); // this.$store.commit('form/setCurrentPrefecture', this.currentPrefecture)
+
               this.page = 1;
-              _context9.next = 7;
+              _context10.next = 7;
               return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(this.index());
 
             case 7:
@@ -88378,7 +88676,30 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
             case 9:
             case "end":
-              return _context9.stop();
+              return _context10.stop();
+          }
+        }
+      }, null, this);
+    },
+    clearPref: function clearPref() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function clearPref$(_context11) {
+        while (1) {
+          switch (_context11.prev = _context11.next) {
+            case 0:
+              this.$store.commit('form/setIsLoading', true);
+              this.currentPrefecture = 0;
+              this.$store.commit('form/setCurrentPrefecture', this.currentPrefecture);
+              this.page = 1;
+              _context11.next = 6;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(this.index());
+
+            case 6:
+              this.$scrollTo('.SearchList_titleText');
+              this.$store.commit('form/setIsLoading', false);
+
+            case 8:
+            case "end":
+              return _context11.stop();
           }
         }
       }, null, this);
@@ -92084,6 +92405,7 @@ var state = {
     exeText: null
   },
   targetSkills: [],
+  currentPrefecture: 0,
   searchingSkill: []
 };
 var getters = {
@@ -92104,6 +92426,9 @@ var getters = {
   },
   targetSkills: function targetSkills(state) {
     return state.targetSkills;
+  },
+  currentPrefecture: function currentPrefecture(state) {
+    return state.currentPrefecture;
   },
   searchingSkill: function searchingSkill(state) {
     return state.searchingSkill;
@@ -92134,6 +92459,9 @@ var mutations = {
   },
   setTargetSkills: function setTargetSkills(state, data) {
     state.targetSkills = data;
+  },
+  setCurrentPrefecture: function setCurrentPrefecture(state, data) {
+    state.currentPrefecture = data;
   },
   setSearchingSkill: function setSearchingSkill(state, data) {
     state.searchingSkill = data;

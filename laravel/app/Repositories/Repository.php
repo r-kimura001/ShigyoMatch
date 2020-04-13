@@ -26,7 +26,7 @@ class Repository
    */
   public function all(array $relations)
   {
-    return $this->getBuilder()->with($relations)->latest()->get();
+    return $this->getBuilder()->with($relations)->orderBy('id', 'asc')->get();
   }
 
   /**

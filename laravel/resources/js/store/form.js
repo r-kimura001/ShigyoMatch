@@ -13,6 +13,7 @@ const state = {
     exeText: null
   },
   targetSkills: [],
+  currentPrefecture: 0,
   searchingSkill: []
 }
 
@@ -23,6 +24,7 @@ const getters = {
   isLoading: state => state.isLoading,
   confirmModal: state => state.confirmModal,
   targetSkills: state => state.targetSkills,
+  currentPrefecture: state => state.currentPrefecture,
   searchingSkill: state => state.searchingSkill,
 }
 
@@ -52,6 +54,9 @@ const mutations = {
   },
   setTargetSkills(state, data) {
     state.targetSkills = data
+  },
+  setCurrentPrefecture(state, data) {
+    state.currentPrefecture = data
   },
   setSearchingSkill(state, data) {
     state.searchingSkill = data

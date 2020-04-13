@@ -43,22 +43,37 @@ class WorkService extends Service
    */
   public function worksByProfession(array $data)
   {
-    $relations = ['professionType', 'skills'];
-    if( empty($data['targetSkills'] ?? '') ){
+    $relations = ['professionType', 'skills', 'customer'];
+    if( empty($data['targetSkills'] ?? '') && $data['prefectureId'] === '0' ){
       return $this->workRep->paginateByProfession($relations, $data);
-    }else {
-      $workIds = $this->idsBySkill($data['targetSkills']);
+    } else {
+      $workIds = $this->idsByFilteringFactor($data);
       return $this->workRep->paginateBySkill($relations, $data, $workIds);
     }
   }
 
   /**
-   * @param array $skillIds
+   * @param array $data
    * @return \Illuminate\Support\Collection
    */
-  public function idsBySkill(array $skillIds)
+  public function idsByFilteringFactor(array $data)
   {
-    return DB::table('work_skills')->whereIn('skill_type_id', $skillIds)->orderBy('skill_type_id')->get()->pluck('work_id');
+    // 分野タグで絞り込む
+    if (!empty($data['targetSkills'] ?? '')) {
+      $workIds = DB::table('work_skills')->whereIn('skill_type_id', $data['targetSkills'])->orderBy('skill_type_id')->get()->pluck('work_id');
+    } else {
+      $workIds = DB::table('works')->orderBy('id')->get()->pluck('id');
+    }
+
+    // 都道府県で絞り込む
+    if( $data['prefectureId'] !== '0' ) {
+      $works = $this->workRep->worksByIds(['customer'], $workIds);
+      return collect($works->filter(function($work) use ($data){
+        return $work->customer->pref_code == $data['prefectureId'];
+      }))->pluck('id');
+    }
+
+    return $workIds;
   }
 
   public function store($data)

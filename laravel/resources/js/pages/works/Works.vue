@@ -3,6 +3,57 @@
     <div class="MainLayout --hasWorks">
       <div class="MainLayout_boxList">
         <section class="MainLayout_box">
+          <div class="SearchList">
+            <h2 class="SearchList_label" @click="toggleBody">
+              <span>案件を絞り込む</span>
+              <i class="fas fa-caret-down"></i>
+            </h2>
+            <div class="SearchList_box u-mt30" v-if="isOpen">
+              <!-- 分野タグで絞り込む -->
+              <div>
+                <h3 class="SearchList_title">
+                  <span class="SearchList_titleText">分野タグで絞り込む</span>
+                </h3>
+                <div class="SearchList_body">
+                  <ul class="SearchList_tags">
+                    <li class="SearchList_item" v-for="skill in skills" :key="skill.id">
+                      <input
+                        type="checkbox"
+                        :value="skill.id"
+                        v-model="targets"
+                        :id="`skill_${skill.id}`">
+                      <label
+                        :for="`skill_${skill.id}`"
+                        class="SearchList_tag Tag u-ma5"
+                        :style="colorByIsSelect(skill.id)">{{ skill.body }}</label>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <!-- 都道府県で絞り込む -->
+              <div class="u-mt10">
+                <h3 class="SearchList_title">
+                  <span class="SearchList_titleText">都道府県で絞り込む</span>
+                </h3>
+                <div class="SearchList_body">
+                  <div class="SortBox">
+                    <select v-model="currentPrefecture">
+                      <option value="0">都道府県を選んでください</option>
+                      <option v-for="item in prefectureList" :value="item.id">{{ item.name }}</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="u-alignCenter">
+                <button
+                  class="Button --blue --hasIcon"
+                  :style="bgImage('assets/icon-glass-white.svg')"
+                  @click="searchByMultiFactor">検索</button>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="MainLayout_box">
           <div class="SearchStatus u-my15" v-if="isSearch">
             <span
               v-for="(word, index) in searchingWords"
@@ -10,7 +61,12 @@
               class="Tag u-ma5"
               :style="bgColor(professionId)">{{ word }}</span>
             <span class="Text -gray -fz14">で絞り込み中</span>
-            <div class="BorderButton --minimum" @click="clearSearch">クリア</div>
+            <div class="BorderButton --minimum" @click="clearSkill">クリア</div>
+          </div>
+          <div class="SearchStatus u-my15" v-if="hasCurrentPrefecture">
+            <span class="Tag u-ma5">{{ currentPrefObj.name }}</span>
+            <span class="Text -gray -fz14">で絞り込み中</span>
+            <div class="BorderButton --minimum" @click="clearPref">クリア</div>
           </div>
           <div v-if="!hasData" class="Text -nodata u-py40 u-alignCenter">結果がありません</div>
           <div v-else>
@@ -24,9 +80,6 @@
                     <option v-for="item in sortList" :value="item.value">{{ item.label }}</option>
                   </select>
                 </div>
-              </div>
-              <div class="HorizontalLayout_col">
-                <button class="Button --search u-ma10 u-tip" data-desc="分野タグで絞り込む" @click="toggleBody"></button>
               </div>
             </div>
             <div class="u-mb20">
@@ -58,33 +111,6 @@
       @click="toCreate()"
       >案件を募集する</button
     >
-    <div class="SearchList" :class="{ '--open': isOpen }">
-      <button class="CloseButton" @click="toggleBody"></button>
-      <h3 class="SearchList_title">
-        <span class="SearchList_titleText">分野タグで絞り込む</span>
-      </h3>
-      <div class="SearchList_body">
-        <ul class="SearchList_tags">
-          <li class="SearchList_item" v-for="skill in skills" :key="skill.id">
-            <input
-              type="checkbox"
-              :value="skill.id"
-              v-model="targets"
-              :id="`skill_${skill.id}`">
-            <label
-              :for="`skill_${skill.id}`"
-              class="SearchList_tag Tag u-ma5"
-              :style="colorByIsSelect(skill.id)">{{ skill.body }}</label>
-          </li>
-        </ul>
-        <div class="u-mt15 u-alignCenter">
-          <button
-            class="Button --blue --hasIcon"
-            :style="bgImage('assets/icon-glass-white.svg')"
-            @click="searchByMultiSkill">検索</button>
-        </div>
-      </div>
-    </div>
   </div>
 </template>
 <script>
