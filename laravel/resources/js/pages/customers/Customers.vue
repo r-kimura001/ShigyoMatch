@@ -3,6 +3,36 @@
     <div class="MainLayout --customers">
       <div class="MainLayout_boxList">
         <section class="MainLayout_box">
+          <div class="SearchList">
+            <h2 class="SearchList_label" @click="toggleBody">
+              <span>事務所を絞り込む</span>
+              <i class="fas fa-caret-down"></i>
+            </h2>
+            <div class="SearchList_box u-mt30" v-if="isOpen">
+              <!-- 都道府県で絞り込む -->
+              <div class="u-mt10">
+                <h3 class="SearchList_title">
+                  <span class="SearchList_titleText">都道府県で絞り込む</span>
+                </h3>
+                <div class="SearchList_body">
+                  <div class="SortBox">
+                    <select v-model="currentPrefecture">
+                      <option value="0">都道府県を選んでください</option>
+                      <option v-for="item in prefectureList" :value="item.id">{{ item.name }}</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="u-alignCenter">
+                <button
+                  class="Button --blue --hasIcon"
+                  :style="bgImage('assets/icon-glass-white.svg')"
+                  @click="searchByMultiFactor">検索</button>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="MainLayout_box">
           <div v-if="!hasData" class="Text -nodata u-py40 u-alignCenter">結果がありません</div>
           <div v-else>
             <h3 class="BaseTitle">

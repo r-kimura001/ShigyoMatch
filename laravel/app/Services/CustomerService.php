@@ -49,17 +49,18 @@ class CustomerService extends Service
   public function customersByProfession(array $data)
   {
     $relations = ['professionTypes', 'reviewers'];
-    $ids = $this->idsByProfessionType($data['professionTypeId']);
-    return $this->customerRep->paginateByProfession($relations, $data, $ids);
+    $filters['ids'] = $this->idsByProfessionType($data['professionTypeId']);
+    $filters['prefCode'] = $data['prefectureId'];
+    return $this->customerRep->paginateByProfession($relations, $data, $filters);
   }
 
   /**
    * @param int $professionId
    * @return \Illuminate\Support\Collection
    */
-  public function idsByProfessionType(int $professionId)
+  public function idsByProfessionType(int $professionTypeId)
   {
-    return DB::table('customer_profession_types')->orWhere('profession_type_id', $professionId)->orderBy('profession_type_id')->get()->pluck('customer_id');
+    return DB::table('customer_profession_types')->orWhere('profession_type_id', $professionTypeId)->orderBy('profession_type_id')->get()->pluck('customer_id');
   }
 
   /**

@@ -39,14 +39,24 @@ class CustomerRepository extends Repository
    * @param int $perPage
    * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
    */
-  public function paginateByProfession(array $relations, array $data, Collection $ids, int $perPage=parent::COUNT_PER_PAGE)
+  public function paginateByProfession(array $relations, array $data, array $filters, int $perPage=parent::COUNT_PER_PAGE)
   {
     $orderBy = explode('.', $data['sortKey'] ?? 'created_at.desc');
-    return $this->getBuilder()
-      ->with($relations)
-      ->whereIn('id', $ids)
-      ->orderBy($orderBy[0], $orderBy[1])
-      ->paginate($perPage);
+
+    if ($filters['prefCode'] !== '0') {
+      return $this->getBuilder()
+        ->with($relations)
+        ->whereIn('id', $filters['ids'])
+        ->where('pref_code', $filters['prefCode'])
+        ->orderBy($orderBy[0], $orderBy[1])
+        ->paginate($perPage);
+    } else {
+      return $this->getBuilder()
+        ->with($relations)
+        ->whereIn('id', $filters['ids'])
+        ->orderBy($orderBy[0], $orderBy[1])
+        ->paginate($perPage);
+    }
   }
 
   /**

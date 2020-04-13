@@ -77,10 +77,25 @@ class WorkRepository extends Repository
     $orderBy = explode('.', $data['sortKey']);
     return $this->getBuilder()
       ->with($relations)
-      ->where('profession_type_id', $data['professionTypeId'])
       ->whereIn('id', $ids)
+      ->where('profession_type_id', $data['professionTypeId'])
       ->orderBy($orderBy[0], $orderBy[1])
       ->paginate($perPage);
+  }
+
+  public function worksByIds(array $relations, Collection $ids)
+  {
+    if (!!$ids) {
+      return $this->getBuilder()
+        ->with($relations)
+        ->whereIn('id', $ids)
+        ->get();
+    } else {
+      $this->getBuilder()
+        ->with($relations)
+        ->whereIn('id', $ids)
+        ->get();
+    }
   }
 
   /**
