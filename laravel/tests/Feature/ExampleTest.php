@@ -18,14 +18,4 @@ class ExampleTest extends TestCase
 
         $response->assertStatus(200);
     }
-
-    /**
-     * @test
-     * @group env
-     * @return mixed
-     */
-    public function confirmEnvValue()
-    {
-      dd(config('mail.from.address'));
-    }
 }
