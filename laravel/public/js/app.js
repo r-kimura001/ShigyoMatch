@@ -91996,7 +91996,7 @@ var routes = [{
     },
     beforeEnter: function beforeEnter(to, from, next) {
       if (!_store__WEBPACK_IMPORTED_MODULE_29__["default"].getters['auth/isLogin']) {
-        next('/');
+        next('/login');
       } else {
         next();
       }

@@ -178,7 +178,7 @@ const routes = [
         }),
         beforeEnter (to, from, next) {
           if (!store.getters['auth/isLogin']) {
-            next('/')
+            next('/login')
           } else {
             next()
           }

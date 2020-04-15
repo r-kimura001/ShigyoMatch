@@ -8,6 +8,8 @@ use App\Http\Requests\Customer\StoreRequest;
 use App\Services\CustomerService;
 use App\Models\User;
 use App\Models\Customer;
+use App\Mail\AuthenticatedMail;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Services\FileUploadService;
@@ -53,7 +55,11 @@ class CustomerController extends Controller
       DB::rollback();
       throw $exception;
     }
-    return response($this->customerService->customerById(Customer::RELATIONS_ARRAY, $createdCustomer->id), 201);
+    $author = $this->customerService->customerById(Customer::RELATIONS_ARRAY, $createdCustomer->id);
+
+    Mail::to($author->user->email)->send(new AuthenticatedMail( $author ));
+
+    return response($author, 201);
   }
 
   /**

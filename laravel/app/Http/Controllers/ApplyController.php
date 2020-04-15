@@ -3,21 +3,27 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\AppliedMail;
 use App\Services\WorkService;
+use App\Services\CustomerService;
 use App\Services\ApplyService;
 
 class ApplyController extends Controller
 {
   protected $workService;
+  protected $customerService;
   protected $applyService;
 
   public function __construct(
     WorkService $workService,
+    CustomerService $customerService,
     ApplyService $applyService
   )
   {
     $this->middleware('auth');
     $this->workService = $workService;
+    $this->customerService = $customerService;
     $this->applyService = $applyService;
   }
 
@@ -50,6 +56,21 @@ class ApplyController extends Controller
     public function store(Request $request, int $workId)
     {
         $work = $this->applyService->apply($workId, $request->all());
+
+        // メール送信
+        $applier = $this->customerService->customerById(['user'], $request->input('applier_id'));
+
+        // 募集者側に送信
+        $recruiter = $work->customer;
+        Mail::to($work->customer->user->email)->send(new AppliedMail(
+          $applier, $recruiter, $work, 'recruiter'
+        ));
+
+        // 応募者側に送信
+        Mail::to($applier->user->email)->send(new AppliedMail(
+          $applier, $applier, $work, 'applier'
+        ));
+
         return response($work, 201);
     }
 

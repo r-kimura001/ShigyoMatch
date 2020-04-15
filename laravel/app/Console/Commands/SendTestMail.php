@@ -2,9 +2,12 @@
 
 namespace App\Console\Commands;
 
+use App\Mail\FavoritedMail;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ShigyoMail;
+use App\Repositories\CustomerRepository;
+use App\Repositories\WorkRepository;
 
 class SendTestMail extends Command
 {
@@ -21,24 +24,34 @@ class SendTestMail extends Command
    * @var string
    */
   protected $description = 'テストメールを送信します。';
+  protected $customerRep;
+  protected $workRep;
 
   /**
    * Create a new command instance.
    *
    * @return void
    */
-  public function __construct()
+  public function __construct(
+    CustomerRepository $customerRep,
+    WorkRepository $workRep
+  )
   {
     parent::__construct();
+    $this->customerRep = $customerRep;
+    $this->workRep = $workRep;
   }
 
   /**
-   * Execute the console command.
    *
-   * @return mixed
    */
   public function handle()
   {
-    Mail::to('sample@example.com')->send(new ShigyoMail());
+    $favoriter = $this->customerRep->findById([], 1);
+    $receiver = $this->customerRep->findById(['user'], 122);
+    $work = $this->workRep->findById([], 1);
+    Mail::to($receiver->user->email)->send(new FavoritedMail(
+      $favoriter, $receiver, $work
+    ));
   }
 }
