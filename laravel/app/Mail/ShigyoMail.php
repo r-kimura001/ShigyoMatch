@@ -6,28 +6,32 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use App\Models\Customer;
 
 class ShigyoMail extends Mailable
 {
-    use Queueable, SerializesModels;
+  use Queueable, SerializesModels;
 
-    /**
-     * Create a new message instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        //
-    }
+  protected $mailReceiver;
+  protected $subjectPrefix = '【ShigyoMatch】';
 
-    /**
-     * Build the message.
-     *
-     * @return $this
-     */
-    public function build()
-    {
-        return $this->view('mail.example');
-    }
+  /**
+   * ShigyoMail constructor.
+   * @param Customer $mailReceiver
+   */
+  public function __construct(Customer $mailReceiver)
+  {
+    $this->mailReceiver = $mailReceiver;
+  }
+
+  /**
+   * @return ShigyoMail
+   */
+  public function build()
+  {
+    return $this->view('mail.example')
+      ->with([
+        'mailReceiverName' => $this->mailReceiver->name,
+      ]);
+  }
 }

@@ -12,6 +12,8 @@ use App\Models\Work;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\FollowedMail;
 
 class CustomerService extends Service
 {
@@ -228,8 +230,20 @@ class CustomerService extends Service
   public function follow(int $id)
   {
     $followee = $this->customerById(['followers'], $id);
-    $followee->followers()->detach(Auth::user()->customer_id);
-    $followee->followers()->attach(Auth::user()->customer_id);
+
+    DB::beginTransaction();
+
+    try {
+      $followee->followers()->detach(Auth::user()->customer_id);
+      $followee->followers()->attach(Auth::user()->customer_id);
+      DB::commit();
+    } catch (\Exception $exception) {
+      throw $exception;
+    }
+
+    $follower = $this->customerById(['user'], Auth::user()->customer_id);
+    Mail::to($followee->user->email)->send(new FollowedMail( $follower, $followee ));
+
     return $this->customerById(['followers'], $id);
   }
   /**
