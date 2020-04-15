@@ -76,7 +76,7 @@ GitHubはBacklogで切った課題のキーをブランチ名のsuffixとし、p
 
 * Laravel、Vue.jsの連携によるSPAサイトを作成しました
 * AWSの基礎的なサービスを使い、SSL化、ロードバランシング、SDN配信などを達成しました
-* ローカル環境にDocker for Mac、本番環境にECS、SCRを採用し、コンテナ基盤による開発環境を構築しました
+* ローカル環境にDocker for Mac、本番環境にECS、ECRを採用し、コンテナ基盤による開発環境を構築しました
 * GitHubにCircleCIを連携させ、ビルド、テスト、デプロイの自動化を達成しました
 * ESLintとPrettierによるコード整形、作業ごとにGitブランチの切り、push時はプルリクエストを作成するなど、チームによる開発を意識して開発を進めました
 
