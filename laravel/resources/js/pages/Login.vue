@@ -53,6 +53,9 @@
                 </div>
               </form>
             </div>
+            <div class="u-alignCenter">
+              <TwitterLoginButton class="u-mt40"></TwitterLoginButton>
+            </div>
           </div>
         </section>
         <!-- MainLayout_box -->
@@ -64,8 +67,10 @@
   <!-- p-login -->
 </template>
 <script>
+  import TwitterLoginButton from '@/components/TwitterLoginButton'
 import { mapState, mapGetters } from 'vuex'
 export default {
+    components: { TwitterLoginButton },
   data() {
     return {
       loginForm: {

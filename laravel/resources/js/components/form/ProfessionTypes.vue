@@ -2,6 +2,7 @@
   <div>
     <div class="Form_label" :class="setClass()" :style="item.formLabel.style">
       {{ item.formLabel.name }}
+      <RequiredMark></RequiredMark>
     </div>
     <div v-for="(professionType, index) in item.list" :key="index">
       <div class="Checkbox u-pl20">
@@ -27,8 +28,12 @@
 </template>
 <script>
 import formOptions from '@/mixins/formOptions'
+import RequiredMark from '@/components/form/RequiredMark'
 export default {
   mixins: [formOptions],
+  components: {
+    RequiredMark
+  },
   methods: {
     boxChecked(id) {
       return {
