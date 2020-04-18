@@ -78,7 +78,7 @@ class CustomerService extends Service
     // usersへの登録
     $data['login_id'] = str_random(12);
     $data['customer_id'] = $createdCustomer->id;
-    $data['password'] = \Hash::make(str_random(12));
+    $data['password'] = \Hash::make($data['password'] ?? str_random(12));
     $newUser = new User();
     event(new Registered($user = $newUser->createByUser($data)));
 
