@@ -1,0 +1,21 @@
+.p-twitter-callback {
+  background: $paleBlue;
+  color: $white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: $headerZIndex + 1;
+
+  .callback-loading-message {
+    animation: loading-flash 1s infinite alternate;
+    padding: 20px;
+  }
+
+  @keyframes loading-flash {
+    0% { opacity: 1; }
+    25% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+}

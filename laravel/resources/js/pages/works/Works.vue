@@ -118,6 +118,7 @@ import WorkListLayout from '@/layouts/WorkListLayout'
 import apiIndexHandler from '@/mixins/apiIndexHandler'
 import styles from '@/mixins/styles'
 import { mapState } from 'vuex'
+
 export default {
   components: { WorkListLayout },
   mixins: [apiIndexHandler, styles],

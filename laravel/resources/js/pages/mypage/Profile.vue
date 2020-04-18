@@ -38,6 +38,11 @@ export default {
       test: [],
     }
   },
+  computed: {
+    twitterUser(){
+      return !!this.customer.user.twitter_id
+    }
+  },
   watch: {
     // routeを監視してページが切り替わったときにfetchList()が実行されるよう記述
     // さらにimmediate: true にしているのでコンポーネントが生成されたタイミングでも実行される
@@ -69,8 +74,17 @@ export default {
             this.formData.profession_types.registerNumbers[professionData.id] =
               professionData.pivot.register_number
           })
-        } else if (key === 'email' || key === 'login_id') {
+        } else if (key === 'login_id') {
           this.formData[key].value = this.customer.user[key]
+          if (this.twitterUser) {
+            this.formData[key].options.required = false
+            this.formData[key].type = 'hidden'
+          }
+        } else if (key === 'email') {
+          this.formData[key].value = this.customer.user[key]
+          if (this.twitterUser) {
+            this.formData[key].options.required = false
+          }
         } else if (key === 'file_name') {
           this.formData[key].srcPath = this.customer.file_name
             ? `${BASE_STORAGE_URL}/${this.customer.file_name}`

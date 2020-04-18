@@ -39,7 +39,7 @@ export default {
             required: true,
           },
         },
-        profession_types:{
+        profession_types: {
           name: 'professionIds',
           type: 'professionTypes',
           value: [],
@@ -54,7 +54,6 @@ export default {
           classOption: {
             'u-mb20': true,
           },
-
         },
         zip_code: {
           name: 'zip_code',

@@ -10,12 +10,14 @@
     "require": {
         "php": "^7.2",
         "aws/aws-sdk-php": "^3.134",
+        "barryvdh/laravel-cors": "^1.0",
         "doctrine/dbal": "^2.10",
         "fideloper/proxy": "^4.0",
         "fzaninotto/faker": "^1.4",
         "guzzlehttp/guzzle": "^6.5",
         "laravel/framework": "^6.2",
         "laravel/helpers": "^1.1",
+        "laravel/socialite": "^4.3",
         "laravel/tinker": "^1.0",
         "league/flysystem-aws-s3-v3": "^1.0"
     },

@@ -5,6 +5,7 @@ import VueRouter from 'vue-router'
 import Top from '@/pages/Top.vue'
 import Signup from '@/pages/Signup.vue'
 import Login from '@/pages/Login.vue'
+import TwitterCallback from '@/pages/TwitterCallback.vue'
 
 // works
 import Works from '@/pages/works/Works.vue'
@@ -57,6 +58,10 @@ const routes = [
   {
     path: '/signup',
     component: Signup,
+  },
+  {
+    path: '/auth/twitter/callback',
+    component: TwitterCallback,
   },
   {
     path: '/login',

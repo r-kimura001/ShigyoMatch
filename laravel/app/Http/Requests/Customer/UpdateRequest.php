@@ -27,8 +27,8 @@ class UpdateRequest extends FormRequest
   public function rules()
   {
     return [
-      'login_id' => 'required|regex:/^[a-zA-Z0-9]+$/|min:6|max:20|unique:users,login_id,'.Auth::user()->login_id.',login_id',
-      'email' => 'required|email|unique:users,email,'.Auth::user()->email.',email',
+      'login_id' => 'required|regex:/^[a-zA-Z0-9]+$/|min:6|max:50|unique:users,login_id,'.Auth::user()->login_id.',login_id',
+      'email' => 'nullable|email|unique:users,email,'.Auth::user()->email.',email',
       'name' => 'required|max:100',
       'zip_code' => 'nullable|integer|max:9999999',
       'pref_code' => 'nullable|integer|max:47',

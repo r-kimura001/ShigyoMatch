@@ -19,7 +19,7 @@
               v-for="(member, index) in list"
               :key="member.id"
             >
-              <div class="HorizontalLayout --vertical">
+              <div class="HorizontalLayout --smCol --vertical">
                 <div class="HorizontalLayout_col --flex">
                   <MemberLink :customer="member"></MemberLink>
                   <p class="MemberList_greeting">{{ member.greeting }}</p>

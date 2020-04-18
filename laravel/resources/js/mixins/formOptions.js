@@ -25,7 +25,7 @@ export default {
       addrObj: 'form/address'
     }),
     isRequired() {
-      return 'options' in this.item && 'required' in this.item.options
+      return 'options' in this.item && 'required' in this.item.options && this.item.options.required
     },
     isAutoFocus() {
       return 'options' in this.item && 'autofocus' in this.item.options

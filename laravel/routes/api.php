@@ -13,11 +13,19 @@ use Illuminate\Http\Request;
 |
 */
 
-
 //認証
 Route::post('/register', 'CustomerController@register')->name('register');
 Route::post('/login', 'Auth\LoginController@login')->name('login');
 Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
+
+//Twitter認証
+// ログインURL
+Route::get('/auth/twitter', 'Auth\TwitterController@redirectToProvider');
+// コールバックURL
+Route::get('/auth/twitter/callback', 'Auth\TwitterController@handleProviderCallback');
+// ログアウトURL
+Route::get('/auth/twitter/logout', 'Auth\TwitterController@logout');
+
 
 // ログインユーザー
 Route::get('/customer', 'CustomerController@customer')->name('customer');

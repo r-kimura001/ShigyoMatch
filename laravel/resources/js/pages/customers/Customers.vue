@@ -33,6 +33,11 @@
           </div>
         </section>
         <section class="MainLayout_box">
+          <div class="SearchStatus u-my15" v-if="hasCurrentPrefecture">
+            <span class="Tag u-ma5">{{ currentPrefObj.name }}</span>
+            <span class="Text -gray -fz14">で絞り込み中</span>
+            <div class="BorderButton --minimum" @click="clearPref">クリア</div>
+          </div>
           <div v-if="!hasData" class="Text -nodata u-py40 u-alignCenter">結果がありません</div>
           <div v-else>
             <h3 class="BaseTitle">

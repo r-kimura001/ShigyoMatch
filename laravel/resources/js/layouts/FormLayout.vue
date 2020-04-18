@@ -8,6 +8,7 @@
             :error-message="errorMessages[formItem.name]"
           ></ErrorMessage>
         </div>
+        <RequiredMark v-if="isRequired(formItem)"></RequiredMark>
         <Textbox v-if="formItem.type === 'text'" :item="formItem"></Textbox>
         <Number v-if="formItem.type === 'number'" :item="formItem"></Number>
         <Password
@@ -53,6 +54,7 @@
 </template>
 <script>
 import ErrorMessage from '@/components/form/ErrorMessage'
+import RequiredMark from '@/components/form/RequiredMark'
 import Textbox from '@/components/form/Textbox'
 import Number from '@/components/form/Number'
 import Password from '@/components/form/Password'
@@ -69,6 +71,7 @@ import { mapGetters } from 'vuex'
 export default {
   components: {
     ErrorMessage,
+    RequiredMark,
     Textbox,
     Number,
     Password,
@@ -113,6 +116,9 @@ export default {
         this.errorMessages !== null &&
         Object.keys(this.errorMessages).indexOf(prop) >= -1
       )
+    },
+    isRequired(formItem) {
+      return 'options' in formItem && 'required' in formItem.options && formItem.options.required
     },
     sendRadioData(id){
       this.$emit('onRadioCheck', id)

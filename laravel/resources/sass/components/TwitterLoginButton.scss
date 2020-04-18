@@ -1,0 +1,17 @@
+.TwitterLoginButton {
+  display: inline-block;
+  font-size: 1.4rem;
+  background: $paleBlue;
+  color: $white;
+  border-radius: 6px;
+  background-image: url(#{$assetPath}/twitter-brands.svg);
+  background-repeat: no-repeat;
+  background-position: 10px center;
+  background-size: 14px;
+  padding: 10px 10px 10px 30px;
+  transition: $transitionBasis;
+  cursor: pointer;
+  &:hover {
+    opacity: 0.7;
+  }
+}

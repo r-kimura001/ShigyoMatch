@@ -78,7 +78,7 @@ class CustomerService extends Service
     // usersへの登録
     $data['login_id'] = str_random(12);
     $data['customer_id'] = $createdCustomer->id;
-    $data['password'] = \Hash::make($data['password']);
+    $data['password'] = \Hash::make(str_random(12));
     $newUser = new User();
     event(new Registered($user = $newUser->createByUser($data)));
 
@@ -86,13 +86,16 @@ class CustomerService extends Service
     Auth::guard()->login($user);
 
     // customerと資格の紐付け
-    $registerNumbers = json_decode($data['registerNumbers'], true);
-    $professionIds = explode(',', $data['professionIds']);
+    if( empty($data['twitter_id'] ?? '') ) {
+      $registerNumbers = json_decode($data['registerNumbers'], true);
+      $professionIds = explode(',', $data['professionIds']);
 
-    foreach ($professionIds as $professionId) {
-      $professionTypes[$professionId] = ['register_number' => $registerNumbers[$professionId]];
+      foreach ($professionIds as $professionId) {
+        $professionTypes[$professionId] = ['register_number' => $registerNumbers[$professionId]];
+      }
+      $createdCustomer->professionTypes()->sync($professionTypes);
     }
-    $createdCustomer->professionTypes()->sync($professionTypes);
+
     $createdCustomer->login_id = $data['login_id'];
 
     return $createdCustomer;
