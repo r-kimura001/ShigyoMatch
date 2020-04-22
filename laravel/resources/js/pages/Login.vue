@@ -45,6 +45,9 @@
                     placeholder="PASSWORD"
                     required
                   />
+                  <div class="u-alignRight u-mt15">
+                    <RouterLink to="/forgetpassword" tag="span" class="Text -link -fz12">パスワードをお忘れの方</RouterLink>
+                  </div>
                 </div>
                 <div class="Form_row u-alignCenter">
                   <button class="Form_button --radius u-mt20">
@@ -53,8 +56,13 @@
                 </div>
               </form>
             </div>
-            <div class="u-alignCenter">
-              <TwitterLoginButton class="u-mt40"></TwitterLoginButton>
+            <div class="HorizontalLayout --vertical --justifyCenter --smCol u-mt40">
+              <div class="HorizontalLayout_col">
+                <TwitterLoginButton></TwitterLoginButton>
+              </div>
+              <div class="HorizontalLayout_col u-ma20">
+                <RouterLink to="/signup" tag="span" class="Text -link -signin -fz12">新規登録はこちら</RouterLink>
+              </div>
             </div>
           </div>
         </section>

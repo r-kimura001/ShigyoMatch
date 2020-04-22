@@ -14,7 +14,7 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\FollowedMail;
-
+use App\Mail\DeactivatedMail;
 class CustomerService extends Service
 {
   protected $customerRep;
@@ -132,6 +132,16 @@ class CustomerService extends Service
   public function customerById(array $relations, int $customerId)
   {
     return $this->customerRep->findById($relations, $customerId);
+  }
+
+  public function deactivate(Customer $customer, array $data)
+  {
+    // テーブル削除
+    $data['id'] = $data['customer_id'];
+    $email = $customer->user->email;
+    $customer->fill($data);
+    $customer->deleteByUser();
+    Mail::to($email)->send(new DeactivatedMail( $customer ));
   }
 
   /**

@@ -6,6 +6,9 @@ import Top from '@/pages/Top.vue'
 import Signup from '@/pages/Signup.vue'
 import Login from '@/pages/Login.vue'
 import TwitterCallback from '@/pages/TwitterCallback.vue'
+import Deactivated from '@/pages/Deactivated.vue'
+import ForgetPassword from '@/pages/ForgetPassword.vue'
+import ResetPassword from '@/pages/ResetPassword.vue'
 
 // works
 import Works from '@/pages/works/Works.vue'
@@ -34,6 +37,7 @@ import Matches from '@/pages/mypage/Matches.vue'
 import Messages from '@/pages/mypage/Messages.vue'
 import Profile from '@/pages/mypage/Profile.vue'
 import Scouts from '@/pages/mypage/Scouts.vue'
+import Deactivate from '@/pages/mypage/Deactivate.vue'
 
 // errors
 import ServerError from '@/pages/errors/ServerError.vue'
@@ -73,6 +77,18 @@ const routes = [
         next()
       }
     }
+  },
+  {
+    path: '/deactivated',
+    component: Deactivated,
+  },
+  {
+    path: '/forgetpassword',
+    component: ForgetPassword,
+  },
+  {
+    path: '/resetpassword',
+    component: ResetPassword,
   },
   {
     path: '/works',
@@ -223,6 +239,10 @@ const routes = [
           {
             path: 'scouts',
             component: Scouts,
+          },
+          {
+            path: 'deactivate',
+            component: Deactivate,
           },
         ]
       },

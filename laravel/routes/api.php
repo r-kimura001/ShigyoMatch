@@ -17,6 +17,7 @@ use Illuminate\Http\Request;
 Route::post('/register', 'CustomerController@register')->name('register');
 Route::post('/login', 'Auth\LoginController@login')->name('login');
 Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
+Route::post('/deactivate', 'CustomerController@deactivate')->name('deactivate');
 
 //Twitter認証
 // ログインURL

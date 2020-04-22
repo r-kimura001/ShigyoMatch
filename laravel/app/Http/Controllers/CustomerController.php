@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\Customer\UpdateRequest;
 use App\Http\Requests\Customer\StoreRequest;
+use App\Http\Requests\Customer\DeactivateRequest;
 use App\Services\CustomerService;
 use App\Models\User;
 use App\Models\Customer;
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Services\FileUploadService;
+use Illuminate\Http\JsonResponse;
 
 class CustomerController extends Controller
 {
@@ -190,6 +192,32 @@ class CustomerController extends Controller
   public function unfollow(int $id)
   {
     return $this->customerService->unfollow($id);
+  }
+
+  public function deactivate(DeactivateRequest $request)
+  {
+    $customer = $this->customerService->customerById(['user'],$request['customer_id']);
+    $assert = \Hash::check($request['password'], $customer->user->password);
+    if ($assert) {
+      DB::beginTransaction();
+      try {
+        $this->customerService->deactivate($customer, $request->all());
+        DB::commit();
+      }catch (\Exception $exception) {
+        DB::rollback();
+        throw $exception;
+      }
+      return response('',200);
+
+    } else {
+      return new JsonResponse([
+        'errors' => [
+          'password' => [
+            'パスワードが一致しませんでした'
+          ]
+        ]
+      ], 422);
+    }
   }
 
 

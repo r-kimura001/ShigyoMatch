@@ -1,12 +1,12 @@
 <template>
   <div>
     <input
-      v-model="data.value"
-      type="number"
-      :name="data.name"
-      class="Form_text"
+      v-model="item.value"
+      type="password"
+      :name="item.name"
+      class="Form_text --short"
       :class="setClass()"
-      :placeholder="data.placeholder"
+      :placeholder="item.placeholder"
       :required="isRequired"
       :autofocus="isAutoFocus"
     />
