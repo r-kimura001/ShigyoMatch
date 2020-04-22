@@ -5,13 +5,14 @@
         <section class="MainLayout_box">
           <h2 class="BaseTitle --vertical">
             <span class="BaseTitle_text">
-              パスワード再設定のお手続
+              再設定用のパスワードを設定してください
             </span>
           </h2>
+          <p v-if="!!alertMsg" class="Text -success">{{ alertMsg }}</p>
           <FormLayout
             :form-data="formData"
             :submit-button-data="submitButtonData"
-            @send=""
+            @send="resetPassword"
           ></FormLayout>
         </section>
       </div>
@@ -21,41 +22,74 @@
 
 <script>
   import FormLayout from '@/layouts/FormLayout'
+  import { OK, UNPROCESSABLE_ENTITY } from "@/util"
+  import { mapGetters } from 'vuex'
+
   export default {
     components: { FormLayout },
     data() {
       return {
         formData: {
-          email: {
-            type: 'email',
-            name: 'email',
+          password: {
+            type: 'password',
+            name: 'password',
             value: '',
-            placeholder: 'sample@example.com',
+            placeholder: 'PASSWORD(at least 8chars)',
+            options: {
+              required: true,
+            },
+          },
+          password_confirmation: {
+            type: 'password',
+            name: 'password_confirmation',
+            value: '',
+            placeholder: 'PASSWORD(confirm)',
             options: {
               required: true,
             },
           },
         },
         submitButtonData: {
-          text: '送信',
-        }
+          text: '再設定',
+        },
+        alertMsg: null,
+        test: null
       }
     },
-    // methods: {
-    //   async ReSendVerifyEmail(){
-    //     // パスワードリセットのメール送信APIを実行する
-    //     await axios.post('/auth/password/email', this.form)
-    //       .then(data => {
-    //         // 送信完了メッセージ表示
-    //         this.showSuccessAlert = true;
-    //
-    //       })
-    //       .catch(err=> {
-    //
-    //         console.log(err);
-    //       });
-    //   }
-    // }
+    computed: {
+      ...mapGetters({
+        apiStatus: 'auth/apiStatus',
+        customerId: 'auth/customerId'
+      }),
+      queries() {
+        return this.$route.query
+      },
+    },
+    methods: {
+      async resetPassword(){
+        this.$store.commit('form/setIsLoading', true)
+        const params = new FormData()
+        params.append('email', this.$route.query.email)
+        params.append('token', this.$route.query.token)
+        Object.keys(this.formData).forEach( key => {
+          params.append(key, this.formData[key].value)
+        })
+        // パスワードリセットのメール送信APIを実行する
+        const response = await axios.post('/api/password/reset', params)
+        this.test = response
+        this.$store.commit('form/setIsLoading', false)
+        if (response.status === UNPROCESSABLE_ENTITY) {
+          this.$store.commit('error/setMessage', response.data.errors)
+          return false
+        }
+        if (response.status === OK) {
+          this.alertMsg = response.data.message
+          setTimeout( () => {
+            this.$router.push('/login')
+          }, 3000)
+        }
+      }
+    }
 
   }
 </script>

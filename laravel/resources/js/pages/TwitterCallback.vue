@@ -43,7 +43,7 @@
     },
     async mounted () {
       try {
-        const callbackData = await axios.get('/api/auth/twitter/callback', {params: this.$route.query})
+        const callbackData = await axios.get('/api/auth/twitter/callback', { params: this.$route.query })
         this.test = callbackData
         if (callbackData.status === CREATED) {
           this.$store.commit('auth/setApiStatus', true)

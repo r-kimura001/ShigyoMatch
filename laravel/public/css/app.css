@@ -4972,6 +4972,10 @@ td {
   opacity: 0.8;
 }
 
+.Text.-link.-signin {
+  color: #e44963;
+}
+
 .Text.-danger {
   padding: 12px;
   color: #e4406f;

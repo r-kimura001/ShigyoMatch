@@ -18,6 +18,8 @@ Route::post('/register', 'CustomerController@register')->name('register');
 Route::post('/login', 'Auth\LoginController@login')->name('login');
 Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
 Route::post('/deactivate', 'CustomerController@deactivate')->name('deactivate');
+Route::post('/password/email', 'Auth\ForgotPasswordController@sendPasswordResetLink')->name('password.forget');
+Route::post('/password/reset', 'Auth\ResetPasswordController@callResetPassword')->name('password.reset');
 
 //Twitter認証
 // ログインURL

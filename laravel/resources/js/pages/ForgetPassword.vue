@@ -8,7 +8,7 @@
               パスワード再設定のお手続
             </span>
           </h2>
-          <p v-if="showSuccessAlert">再設定用のURLをメール送信いたしました。</p>
+          <p v-if="!!sentStatus" class="Text" :class="alertClass">{{ alertMsg }}</p>
           <FormLayout
             :form-data="formData"
             :submit-button-data="submitButtonData"
@@ -21,6 +21,7 @@
 </template>
 
 <script>
+  import {OK, UNPROCESSABLE_ENTITY} from "@/util";
   import FormLayout from '@/layouts/FormLayout'
   export default {
     components: { FormLayout },
@@ -37,27 +38,40 @@
             },
           },
         },
+        test: null,
+        sentStatus: null,
         submitButtonData: {
           text: '送信',
         },
-        showSuccessAlert: false
+        alertMsg: null
+      }
+    },
+    computed: {
+      alertClass () {
+        const isInvalid = this.sentStatus === UNPROCESSABLE_ENTITY
+
+        return isInvalid ? {
+          '-danger': true
+        } : {
+          '-success': true
+        }
       }
     },
     methods: {
-      async SendPasswordEmail(){
+      async sendPasswordEmail(){
         this.$store.commit('form/setIsLoading', true)
+        const forgetPasswordData = new FormData()
+        forgetPasswordData.append('email', this.formData.email.value)
         // パスワードリセットのメール送信APIを実行する
-        await axios.post('/api/password/email', this.form)
-          .then(data => {
-            this.$store.commit('form/setIsLoading', false)
-            // 送信完了メッセージ表示
-            this.showSuccessAlert = true
-
-          })
-          .catch(err=> {
-            this.$store.commit('form/setIsLoading', false)
-            console.log(err);
-          });
+        const response = await axios.post('/api/password/email', forgetPasswordData)
+        this.$store.commit('form/setIsLoading', false)
+        this.test = response
+        this.sentStatus = response.status
+        if(response.status === UNPROCESSABLE_ENTITY) {
+          this.$store.commit('error/setMessage', response.data.message)
+          this.$scrollTo('.Header', 1500)
+        }
+        this.alertMsg = response.data.message
       }
     }
 
