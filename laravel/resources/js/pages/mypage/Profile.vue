@@ -6,6 +6,9 @@
         <h3 class="BaseTitle u-mb10">
           <span class="BaseTitle_text --profile">プロフィールの編集</span>
         </h3>
+        <div class="u-alignRight">
+          <DeactivateLinkButton :customer-id="customer.id"></DeactivateLinkButton>
+        </div>
         <ProfileFormLayout
           :form-data="formData"
           @profileSubmit="update"
@@ -17,12 +20,13 @@
 <script>
 // components
 import ProfileFormLayout from '@/layouts/mypage/ProfileFormLayout'
+import DeactivateLinkButton from '@/components/DeactivateLinkButton'
 // mixins
 import customerUpdateData from '@/mixins/formData/customerUpdateData'
 // other
 import { BASE_STORAGE_URL, OK, UNPROCESSABLE_ENTITY, alphaNumeric, between } from '@/util'
 export default {
-  components: { ProfileFormLayout },
+  components: { ProfileFormLayout, DeactivateLinkButton },
   mixins: [customerUpdateData],
   props: {
     customer: {

@@ -2066,6 +2066,18 @@ td {
   }
 }
 
+.DeactivateLinkButton {
+  display: inline-block;
+  color: #2995dc;
+  font-size: 1.2rem;
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+.DeactivateLinkButton:hover {
+  opacity: 1;
+}
+
 .DefinitionLayout {
   display: -webkit-box;
   display: flex;
@@ -4960,6 +4972,10 @@ td {
   opacity: 0.8;
 }
 
+.Text.-link.-signin {
+  color: #e44963;
+}
+
 .Text.-danger {
   padding: 12px;
   color: #e4406f;
@@ -5641,6 +5657,10 @@ td {
   margin: 10px;
 }
 
+.u-ma20 {
+  margin: 20px;
+}
+
 .u-pt10 {
   padding-top: 10px;
 }
@@ -5687,6 +5707,10 @@ td {
 
 .u-pr30 {
   padding-right: 30px;
+}
+
+.u-pr40 {
+  padding-right: 40px;
 }
 
 .u-px10 {

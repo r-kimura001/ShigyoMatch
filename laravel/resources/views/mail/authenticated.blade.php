@@ -6,4 +6,3 @@
 
 <p>サービスご利用の前にまず、下記プロフィールページのリンクよりご自身の<strong>ログインIDの変更をしてください</strong>。</p>
 <p><a href="{{ config('app.url') }}/mypage/{{ $newCustomer->id }}/profile">プロフィールページはこちら</a></p>
-]

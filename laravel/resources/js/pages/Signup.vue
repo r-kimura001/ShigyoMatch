@@ -111,7 +111,7 @@
                     type="password"
                     name="password_confirm"
                     class="Form_text"
-                    placeholder="PASSWORD"
+                    placeholder="PASSWORD(at least 8chars)"
                     required
                   />
                 </div>

@@ -192,7 +192,12 @@ class Customer extends Model implements CanDeleteRelationInterface
 
   public function getDeleteRelations()
   {
-    return [$this->user, $this->works];
+    return [
+      $this->user,
+      $this->works,
+      $this->messageNotes,
+      $this->applies,
+    ];
   }
 
 

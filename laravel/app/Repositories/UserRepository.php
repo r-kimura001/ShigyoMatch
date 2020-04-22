@@ -17,4 +17,11 @@ class UserRepository extends Repository
     return $this->builder->createByUser($userData);
   }
 
+  public function findByEmail(string $email)
+  {
+    return $this->getBuilder()
+      ->where('email', $email)
+      ->first();
+  }
+
 }
