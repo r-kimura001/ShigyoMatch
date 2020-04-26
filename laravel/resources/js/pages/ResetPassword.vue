@@ -62,14 +62,14 @@
         customerId: 'auth/customerId'
       }),
       queries() {
-        return this.$route.query
+        return atob(this.$route.query.email)
       },
     },
     methods: {
       async resetPassword(){
         this.$store.commit('form/setIsLoading', true)
         const params = new FormData()
-        params.append('email', this.$route.query.email)
+        params.append('email', atob(this.$route.query.email))
         params.append('token', this.$route.query.token)
         Object.keys(this.formData).forEach( key => {
           params.append(key, this.formData[key].value)

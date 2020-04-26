@@ -1,8 +1,7 @@
 <p>
   士業マッチングサイトです。<br>以下のURLからパスワードの再設定を行ってください。<br>
-  なお、URLの有効期限は1時間です。
 </p>
 
 <p>
-  <a href="{{ $resetUrl }}">{{ $resetUrl }}</a>
+  <a href="{{ $resetUrl }}">再設定のURLはこちら</a>
 </p>

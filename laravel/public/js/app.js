@@ -6312,7 +6312,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     customerId: 'auth/customerId'
   }), {
     queries: function queries() {
-      return this.$route.query;
+      return atob(this.$route.query.email);
     }
   }),
   methods: {
@@ -6326,7 +6326,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             case 0:
               this.$store.commit('form/setIsLoading', true);
               params = new FormData();
-              params.append('email', this.$route.query.email);
+              params.append('email', atob(this.$route.query.email));
               params.append('token', this.$route.query.token);
               Object.keys(this.formData).forEach(function (key) {
                 params.append(key, _this.formData[key].value);
