@@ -47,7 +47,7 @@ class CustomPasswordReset extends Notification
     return (new MailMessage)
       ->subject(__('【ShigyoMatch】パスワード再設定用メール'))
       ->view('mail.forgetPassword', [
-        'resetUrl' => config('app.url')."/resetpassword?token={$this->token}&email={$notifiable->getEmailForPasswordReset()}"
+        'resetUrl' => config('app.url')."/resetpassword?token={$this->token}&email=" . base64_encode($notifiable->getEmailForPasswordReset())
       ]);
   }
 
