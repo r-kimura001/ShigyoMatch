@@ -3444,6 +3444,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 
@@ -18312,30 +18315,28 @@ var render = function() {
         ),
         _vm._v(" "),
         _c("ul", { staticClass: "HorizontalLayout --stretch" }, [
-          _c(
-            "li",
-            {
-              staticClass: "HorizontalLayout_col --flex",
-              style: _vm.forEllipsis()
-            },
-            [
-              _c("div", { staticClass: "WorkCard_text" }, [
-                _c("p", { staticClass: "WorkCard_title" }, [
-                  _vm._v(_vm._s(_vm.work.title))
-                ]),
-                _vm._v(" "),
-                _c(
-                  "p",
-                  [
-                    _c("ReplacedDate", {
-                      attrs: { datetime: _vm.work.created_at }
-                    })
-                  ],
-                  1
-                )
-              ])
-            ]
-          ),
+          _c("li", { staticClass: "HorizontalLayout_col --flex" }, [
+            _c("div", { staticClass: "WorkCard_text" }, [
+              _c(
+                "p",
+                {
+                  staticClass: "WorkCard_title",
+                  staticStyle: { "max-width": "160px" }
+                },
+                [_vm._v(_vm._s(_vm.work.title))]
+              ),
+              _vm._v(" "),
+              _c(
+                "p",
+                [
+                  _c("ReplacedDate", {
+                    attrs: { datetime: _vm.work.created_at }
+                  })
+                ],
+                1
+              )
+            ])
+          ]),
           _vm._v(" "),
           _c("li", { staticClass: "HorizontalLayout_col" }, [
             _c("div", { staticClass: "WorkCard_professionType" }, [
@@ -90932,11 +90933,6 @@ __webpack_require__.r(__webpack_exports__);
     fontColor: function fontColor(id) {
       return {
         color: this.colorById(id)
-      };
-    },
-    forEllipsis: function forEllipsis() {
-      return {
-        maxWidth: 'calc(100% - 66px)'
       };
     }
   }
