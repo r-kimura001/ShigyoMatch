@@ -2,7 +2,7 @@
   <div class="p-login">
     <div class="MainLayout --login">
       <div class="MainLayout_boxList">
-        <section class="MainLayout_box u-mt50">
+        <section class="MainLayout_box">
           <div class="AuthFormLayout --login">
             <h2 class="AuthFormLayout_title">Log in</h2>
             <div class="Form --login">

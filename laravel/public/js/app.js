@@ -9063,6 +9063,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -20928,7 +20937,7 @@ var render = function() {
   return _c("div", { staticClass: "p-login" }, [
     _c("div", { staticClass: "MainLayout --login" }, [
       _c("div", { staticClass: "MainLayout_boxList" }, [
-        _c("section", { staticClass: "MainLayout_box u-mt50" }, [
+        _c("section", { staticClass: "MainLayout_box" }, [
           _c("div", { staticClass: "AuthFormLayout --login" }, [
             _c("h2", { staticClass: "AuthFormLayout_title" }, [
               _vm._v("Log in")
@@ -23507,63 +23516,80 @@ var render = function() {
           [_c("span", { staticClass: "Text -bold" }, [_vm._v("お相手一覧")])]
         ),
         _vm._v(" "),
-        _c(
-          "ul",
-          {
-            staticClass: "MessageLayout_roomList",
-            class: { "--open": _vm.isOpen }
-          },
-          _vm._l(_vm.rooms, function(room, index) {
-            return _c(
-              "li",
+        _vm.rooms.length
+          ? _c(
+              "ul",
               {
-                key: index,
-                staticClass: "MessageLayout_roomWrap",
-                on: {
-                  click: function($event) {
-                    return _vm.setCurrentRoom(room)
-                  }
-                }
+                staticClass: "MessageLayout_roomList",
+                class: { "--open": _vm.isOpen }
               },
-              [
-                _c(
-                  "div",
+              _vm._l(_vm.rooms, function(room, index) {
+                return _c(
+                  "li",
                   {
-                    staticClass: "MessageLayout_room",
-                    class: _vm.roomClassList(room),
-                    attrs: { "data-unread": _vm.unreadCount(room) }
+                    key: index,
+                    staticClass: "MessageLayout_roomWrap",
+                    on: {
+                      click: function($event) {
+                        return _vm.setCurrentRoom(room)
+                      }
+                    }
                   },
                   [
                     _c(
-                      "RouterLink",
+                      "div",
                       {
-                        staticClass: "HorizontalLayout --vertical",
-                        attrs: { to: "/works/" + room.work.id, tag: "div" }
+                        staticClass: "MessageLayout_room",
+                        class: _vm.roomClassList(room),
+                        attrs: { "data-unread": _vm.unreadCount(room) }
                       },
                       [
                         _c(
-                          "div",
-                          { staticClass: "HorizontalLayout_col u-ml10" },
+                          "RouterLink",
+                          {
+                            staticClass: "HorizontalLayout --vertical",
+                            attrs: { to: "/works/" + room.work.id, tag: "div" }
+                          },
                           [
-                            _c("span", { staticClass: "Text -link -fz12" }, [
-                              _vm._v(_vm._s(room.work.title))
-                            ])
+                            _c(
+                              "div",
+                              { staticClass: "HorizontalLayout_col u-ml10" },
+                              [
+                                _c(
+                                  "span",
+                                  { staticClass: "Text -link -fz12" },
+                                  [_vm._v(_vm._s(room.work.title))]
+                                )
+                              ]
+                            )
                           ]
-                        )
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c("MemberLink", {
-                      attrs: { customer: _vm.target(room), "no-link": true }
-                    })
-                  ],
-                  1
+                        ),
+                        _vm._v(" "),
+                        _c("MemberLink", {
+                          attrs: { customer: _vm.target(room), "no-link": true }
+                        })
+                      ],
+                      1
+                    )
+                  ]
+                )
+              }),
+              0
+            )
+          : _c(
+              "p",
+              {
+                staticClass: "MessageLayout_noRoomText",
+                class: { "--open": _vm.isOpen }
+              },
+              [
+                _vm._v("現在お相手はいません。"),
+                _c("br"),
+                _vm._v(
+                  "募集者は任意の申込者に対してメッセージを開始することができます。"
                 )
               ]
             )
-          }),
-          0
-        )
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "MessageLayout_main" }, [
