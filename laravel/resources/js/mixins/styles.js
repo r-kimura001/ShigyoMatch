@@ -49,11 +49,5 @@ export default {
         color: this.colorById(id)
       }
     },
-    forEllipsis() {
-      return {
-        maxWidth: 'calc(100% - 66px)'
-      }
-    }
-
   }
 }

@@ -27,9 +27,12 @@
         </div>
       </div>
       <ul class="HorizontalLayout --stretch">
-        <li class="HorizontalLayout_col --flex" :style="forEllipsis()">
+        <li class="HorizontalLayout_col --flex">
           <div class="WorkCard_text">
-            <p class="WorkCard_title">{{ work.title }}</p>
+            <p
+              class="WorkCard_title"
+              style="max-width: 160px;"
+            >{{ work.title }}</p>
             <p><ReplacedDate :datetime="work.created_at"></ReplacedDate></p>
           </div>
         </li>
