@@ -45,7 +45,7 @@ class WorkRepository extends Repository
     $orderBy = explode('.', $data['sortKey'] ?? 'created_at.desc');
     return $this->getBuilder()
       ->with($relations)
-      ->where('profession_type_id', $data['professionTypeId'])
+      ->where('profession_type_id', $data['professionTypeId'] ?? 1)
       ->orderBy($orderBy[0], $orderBy[1])
       ->paginate($perPage);
   }

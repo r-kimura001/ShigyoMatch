@@ -6,7 +6,11 @@
         <h3 class="MessageLayout_sidebarTitle" :class="{'--open': isOpen}" @click="toggleRoom">
           <span class="Text -bold">お相手一覧</span>
         </h3>
-        <ul class="MessageLayout_roomList" :class="{'--open': isOpen}">
+        <ul
+          v-if="rooms.length"
+          class="MessageLayout_roomList"
+          :class="{'--open': isOpen}"
+        >
           <li
             v-for="(room, index) in rooms"
             :key="index"
@@ -25,6 +29,11 @@
             </div>
           </li>
         </ul>
+        <p
+          v-else
+          class="MessageLayout_noRoomText"
+          :class="{'--open': isOpen}"
+        >現在お相手はいません。<br>募集者は任意の申込者に対してメッセージを開始することができます。</p>
       </div>
       <div class="MessageLayout_main">
         <div class="MessageLayout_heading">

@@ -10,6 +10,7 @@ class HomeTest extends TestCase
 {
     /**
      * A basic feature test example.
+     * @test
      * @group home
      * @return void
      */
@@ -19,5 +20,5 @@ class HomeTest extends TestCase
 
         $response->assertStatus(200);
     }
-    
+
 }
