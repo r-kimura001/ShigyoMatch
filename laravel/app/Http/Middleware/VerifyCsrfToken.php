@@ -18,7 +18,7 @@ class VerifyCsrfToken extends Middleware
     if ( env('APP_ENV') !== 'testing' ) {
       return parent::handle($request, $next);
     }
-    
+
     return $next($request);
 
   }
