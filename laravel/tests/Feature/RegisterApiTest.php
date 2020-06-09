@@ -8,7 +8,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class UserApiTest extends TestCase
+class RegisterApiTest extends TestCase
 {
   use RefreshDatabase;
 
@@ -20,9 +20,9 @@ class UserApiTest extends TestCase
    */
   public function should_新しいユーザーを作成して返却する()
   {
-    $data = [
-      'name' => '森司法事務所',
-      'email' => 'mori@example.com',
+    $expects = [
+      'name' => 'UnitTest事務所',
+      'email' => 'unit-test@example.com',
       'registerNumbers' => json_encode([
         2 => 3333
       ]),
@@ -31,14 +31,19 @@ class UserApiTest extends TestCase
       'password_confirmation' => 'password'
     ];
 
-    $response = $this->json('POST', route('register', $data));
+    $response = $this->json('POST', route('register', $expects));
 
-    $customer = Customer::first();
-    $this->assertEquals($data['name'], $customer->name);
+    $this->assertDatabaseHas('customers', [
+      'name' => $expects['name']
+    ]);
+
+    $this->assertDatabaseHas('users', [
+      'email' => $expects['email']
+    ]);
 
     $response
       ->assertStatus(201)
-      ->assertJson(['name' => $customer->name]);
+      ->assertJson(['name' => $expects['name']]);
   }
 
 }

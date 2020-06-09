@@ -33,7 +33,7 @@
           v-else
           class="MessageLayout_noRoomText"
           :class="{'--open': isOpen}"
-        >現在お相手はいません。<br>募集者は任意の申込者に対してメッセージを開始することができます。</p>
+        >現在お相手はいません。<br>メッセージの開始は、案件の募集者からのみ、任意の申込者に対してすることができます。</p>
       </div>
       <div class="MessageLayout_main">
         <div class="MessageLayout_heading">
