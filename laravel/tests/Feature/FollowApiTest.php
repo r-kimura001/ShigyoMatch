@@ -18,9 +18,14 @@ class FollowApiTest extends TestCase
   public function setUp(): void
   {
     parent::setUp();
-    $followPair = factory(Customer::class, 2)->create([
-      'pref_code' => null
-    ]);
+
+    // prefecturesテーブルが空だと$prefecture->nameが
+    // "Trying to get property 'name' of non-object"と言われるため、
+    // prefecturesテーブルにレコードを入れておく
+    $this->seed('PrefecturesTableSeeder');
+
+    $followPair = factory(Customer::class, 2)->create();
+
     $followPair->each(function ($customer) {
       $customer->user()->save(factory(User::class)->make());
     });
