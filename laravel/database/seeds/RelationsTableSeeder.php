@@ -5,24 +5,30 @@ use Illuminate\Support\Facades\DB;
 use App\Repositories\WorkRepository;
 use App\Repositories\CustomerRepository;
 use App\Services\CustomerService;
+use App\Services\MessageService;
 use Faker\Generator as Faker;
 use App\Models\Apply;
+use App\Models\Customer;
+use Illuminate\Http\Request;
 
 class RelationsTableSeeder extends Seeder
 {
   protected $workRep;
   protected $customerRep;
   protected $customerService;
+  protected $messageService;
 
   public function __construct(
     WorkRepository $workRep,
     CustomerRepository $customerRep,
-    CustomerService $customerService
+    CustomerService $customerService,
+    MessageService $messageService
   )
   {
     $this->workRep = $workRep;
     $this->customerRep = $customerRep;
     $this->customerService = $customerService;
+    $this->messageService = $messageService;
   }
 
   /**
@@ -34,6 +40,8 @@ class RelationsTableSeeder extends Seeder
   {
     DB::table('scouts')->truncate();
     DB::table('applies')->truncate();
+    DB::table('messages')->truncate();
+    DB::table('message_notes')->truncate();
     DB::table('reviews')->truncate();
     DB::table('favorites')->truncate();
     $faker = \Faker\Factory::create('ja_JP');

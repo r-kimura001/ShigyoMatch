@@ -33,7 +33,7 @@ class Customer extends Model implements CanDeleteRelationInterface
     'greeting',
   ];
 
-  public function getPref($id)
+  public function findPrefName($id)
   {
     $prefecture = Prefecture::find($id);
     return $prefecture->name;
@@ -47,7 +47,7 @@ class Customer extends Model implements CanDeleteRelationInterface
     if($this->pref_code === null){
       return '';
     }else{
-      return $this->getPref($this->attributes['pref_code'])
+      return $this->findPrefName($this->attributes['pref_code'])
         .$this->attributes['city']
         .$this->attributes['address']
         .$this->attributes['building'];

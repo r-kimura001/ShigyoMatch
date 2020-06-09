@@ -34,12 +34,7 @@ return [
   */
 
   'connections' => [
-    // ↓追加
-    'sqlite_testing' => [
-      'driver' => 'sqlite',
-      'database' => ':memory:',
-      'prefix' => '',
-    ],
+
     'sqlite' => [
       'driver' => 'sqlite',
       'url' => env('DATABASE_URL'),
@@ -94,6 +89,13 @@ return [
       'charset' => 'utf8',
       'prefix' => '',
       'prefix_indexes' => true,
+    ],
+
+    // ↓追加
+    'sqlite_testing' => [
+      'driver' => 'sqlite',
+      'database' => ':memory:',
+      'prefix' => '',
     ],
   ],
 
