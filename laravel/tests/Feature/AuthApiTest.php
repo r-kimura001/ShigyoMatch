@@ -19,9 +19,12 @@ class AuthApiTest extends TestCase
   {
     parent::setUp();
 
-    $this->customer = factory(Customer::class)->create([
-      'pref_code' => null
-    ]);
+    // prefecturesテーブルが空だと$prefecture->nameが
+    // "Trying to get property 'name' of non-object"と言われるため、
+    // prefecturesテーブルにレコードを入れておく
+    $this->seed('PrefecturesTableSeeder');
+
+    $this->customer = factory(Customer::class)->create();
     $this->customer->user()->save(factory(User::class)->make());
 
   }
@@ -37,7 +40,6 @@ class AuthApiTest extends TestCase
       'login_id' => $this->customer->user->login_id,
       'password' => 'password'
     ]));
-
 
     $response
       ->assertStatus(200)

@@ -28,7 +28,15 @@ class CustomerController extends Controller
   {
     $this->customerService = $customerService;
     $this->fileUploadService = $fileUploadService;
-    $this->middleware('auth')->except(['index', 'register', 'show', 'worksByOwner', 'pagelessWorks', 'deactivate']);
+    $this->middleware('auth')->except([
+      'index',
+      'register',
+      'show',
+      'worksByOwner',
+      'pagelessWorks',
+      'deactivate',
+      'customer'
+    ]);
   }
 
   /**
