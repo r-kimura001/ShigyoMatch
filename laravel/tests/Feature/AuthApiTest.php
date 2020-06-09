@@ -13,6 +13,8 @@ class AuthApiTest extends TestCase
 
   use RefreshDatabase;
 
+  protected $customer;
+
   public function setUp(): void
   {
     parent::setUp();

@@ -12,6 +12,9 @@ class FollowApiTest extends TestCase
 {
   use RefreshDatabase;
 
+  protected $follower;
+  protected $followee;
+
   public function setUp(): void
   {
     parent::setUp();

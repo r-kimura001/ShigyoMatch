@@ -7,11 +7,12 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\Customer;
 use App\Models\User;
-use App\Models\Work;
 
 class WorkRegisterTest extends TestCase
 {
   use RefreshDatabase;
+
+  protected $customer;
 
   public function setUp(): void
   {
